@@ -7,6 +7,7 @@
     <languages />
     <certifications />
     <education />
+    <my-footer />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import Experience from "./Experience";
 import Languages from "./Languages";
 import Certifications from "./Certifications";
 import Education from "./Education";
+import Footer from "./Footer";
 export default {
   name: "Main",
   components: {
@@ -28,6 +30,7 @@ export default {
     Languages,
     Certifications,
     Education,
+    "my-footer": Footer,
   },
 };
 </script>

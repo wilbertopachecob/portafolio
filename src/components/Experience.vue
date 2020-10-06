@@ -10,7 +10,12 @@
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h3 class="timeline-title">Velocigo Inc</h3>
-              <h4>Software Developer</h4>
+              <span
+                class="badge p-2"
+                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
+                >Software Developer</span
+              >
+              <!-- <h4>Software Developer</h4> -->
               <p>
                 <small class="text-primary"
                   ><font-awesome-icon :icon="['fas', 'calendar-alt']" /> 3/2020
@@ -48,7 +53,12 @@
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h3 class="timeline-title">TPV.com</h3>
-              <h4>Web Developer</h4>
+              <span
+                class="badge p-2"
+                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
+                >Web Developer</span
+              >
+              <!-- <h4>Web Developer</h4> -->
               <p>
                 <small class="text-primary"
                   ><font-awesome-icon :icon="['fas', 'calendar-alt']" /> 2/2019
@@ -90,7 +100,12 @@
               <h3 class="timeline-title">
                 Institute of Cybernetics, Mathematics and Physics
               </h3>
-              <h4>Web Developer / Webmaster</h4>
+              <span
+                class="badge p-2"
+                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
+                >Web Developer / Webmaster</span
+              >
+              <!-- <h4>Web Developer / Webmaster</h4> -->
               <p>
                 <small class="text-primary"
                   ><font-awesome-icon :icon="['fas', 'calendar-alt']" /> 9/2010
@@ -144,7 +159,7 @@
   position: absolute;
   content: "";
   width: 3px;
-  background-color: #3498db;
+  background-color: #f2b357;
   left: 25px;
   margin-right: -1.5px;
 }
@@ -203,7 +218,7 @@
   left: auto;
 }
 .timeline-badge.primary {
-  background-color: #3498db !important;
+  background-color: #f2b357 !important;
 }
 .timeline-badge.success {
   background-color: #3f903f !important;

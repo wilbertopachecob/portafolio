@@ -62,8 +62,7 @@
         </li>
 
         <li class="list-inline-item">
-          <i class="fab fa-js"></i>
-          <font-awesome-icon :icon="['fab', 'js']" />
+          <font-awesome-icon :icon="['fab', 'js']" style="color: #F7DF1E;" />
           JavaScript
         </li>
 
