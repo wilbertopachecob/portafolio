@@ -3,7 +3,7 @@
     <div class="my-auto" id="skills-content">
       <h2 class="mb-5">Skills</h2>
 
-      <div class="subheading mb-3 skills-heading">Architecture</div>
+      <h3>Architecture</h3>
       <ul>
         <li class="list-inline-item">
           <font-awesome-icon :icon="['fas', 'terminal']" />
@@ -16,48 +16,56 @@
         </li>
       </ul>
 
-      <div class="subheading mb-3 skills-heading">
-        Languages, Operating Systems &amp; Tools
-      </div>
+      <h3>
+        Languages,
+        <span class="text-primary">Operating Systems &amp; Tools</span>
+      </h3>
       <ul>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'windows']" />
+          <font-awesome-icon
+            :icon="['fab', 'windows']"
+            style="color: #00B7EE;"
+          />
           Windows
         </li>
-
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'git']" />
+          <font-awesome-icon :icon="['fab', 'git']" style="color: #E84E31;" />
           git
         </li>
-
         <li class="list-inline-item">
           Golang
         </li>
-
         <li class="list-inline-item">
           <font-awesome-icon :icon="['fas', 'terminal']" />
           bash
         </li>
-
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'php']" />
+          <font-awesome-icon :icon="['fab', 'php']" style="color: #8892BF;" />
           PHP
         </li>
-
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'laravel']" />
+          <font-awesome-icon
+            :icon="['fab', 'laravel']"
+            style="color: #F72C1F;"
+          />
           Laravel
         </li>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'html5']" />
-          HTml5
+          <font-awesome-icon :icon="['fab', 'html5']" style="color: #E44D26;" />
+          HTML5
         </li>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'css3-alt']" />
+          <font-awesome-icon
+            :icon="['fab', 'css3-alt']"
+            style="color: #254BDD;"
+          />
           CSS3
         </li>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'bootstrap']" />
+          <font-awesome-icon
+            :icon="['fab', 'bootstrap']"
+            style="color: #533B78;"
+          />
           Bootstrap
         </li>
 
@@ -67,32 +75,39 @@
         </li>
 
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'vuejs']" />
+          <font-awesome-icon :icon="['fab', 'vuejs']" style="color: #41B883;" />
           Vue.js
         </li>
-
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'angular']" />
+          <font-awesome-icon
+            :icon="['fab', 'angular']"
+            style="color: #D6002F;"
+          />
           Angular
         </li>
-
         <li class="list-inline-item">
-          <i class="devicons devicons-jquery"></i>
           jQuery
         </li>
       </ul>
 
-      <div class="subheading mb-3 skills-heading">
-        Platform Development &amp; Administration
-      </div>
+      <h3>
+        Platform
+        <span class="text-primary">Development &amp; Administration</span>
+      </h3>
       <ul>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'github-alt']" />
+          <font-awesome-icon
+            :icon="['fab', 'github-alt']"
+            style="color: #323131;"
+          />
           GitHub
         </li>
 
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'bitbucket']" />
+          <font-awesome-icon
+            :icon="['fab', 'bitbucket']"
+            style="color: #2580F7;"
+          />
           Bitbucket
         </li>
 
@@ -101,16 +116,22 @@
         </li>
 
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'wordpress']" />
+          <font-awesome-icon
+            :icon="['fab', 'wordpress']"
+            style="color: #207196;"
+          />
           Wordpress 5
         </li>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'drupal']" />
+          <font-awesome-icon
+            :icon="['fab', 'drupal']"
+            style="color: #0097D7;"
+          />
           Drupal 7
         </li>
       </ul>
 
-      <div class="subheading mb-3 skills-heading">Data Management</div>
+      <h3>Data <span class="text-primary">Management</span></h3>
       <ul>
         <li class="list-inline-item">
           MySQL
@@ -124,17 +145,18 @@
           MongoDB
         </li>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'node']" />
+          <font-awesome-icon :icon="['fab', 'node']" style="color: #74AA63;" />
           Node.js
         </li>
       </ul>
 
-      <div class="subheading mb-3 skills-heading">
-        Organizing Tools
-      </div>
+      <h3>Organizing <span class="text-primary">Tools</span></h3>
       <ul>
         <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'trello']" />
+          <font-awesome-icon
+            :icon="['fab', 'trello']"
+            style="color: #0D77C0;"
+          />
           Trello
         </li>
 
