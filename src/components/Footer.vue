@@ -3,8 +3,7 @@
     <div class="my-auto w-100">
       <font-awesome-icon
         :icon="['fas', 'arrow-alt-circle-up']"
-        style="color: white; font-size: 2rem; cursor: pointer;"
-        class="mt-3"
+        class="mt-3 to-top-button"
         @click="scrollTop"
         title="Scroll to Top"
       />
@@ -35,5 +34,14 @@ export default {
 .f-container {
   text-align: center;
   color: white;
+}
+.to-top-button {
+  color: white;
+  font-size: 2.3rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.to-top-button:hover {
+  opacity: 1;
 }
 </style>
