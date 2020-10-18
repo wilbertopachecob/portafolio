@@ -169,12 +169,26 @@
   margin-left: 55px;
   float: left;
   top: 19px;
-  padding: 4px 10px 8px 15px;
+  padding: 4px 0px 8px 15px;
   /* border: 1px solid #ccc; */
   border: 1px solid #e6e6e6;
   border-radius: 5px;
-  width: 80vw;
+  /* width: 78vw; */
+  width: 95%;
 }
+
+@media screen and (min-width: 400px) {
+  .timeline > li > .timeline-panel {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .timeline > li > .timeline-panel {
+    width: 95%;
+  }
+}
+
 .timeline > li > .timeline-badge {
   color: #fff;
   width: 36px;
