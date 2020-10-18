@@ -1,6 +1,6 @@
 <template>
   <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-    <div class="my-auto" id="experience-content" style="width: 98%">
+    <div class="my-auto" id="experience-content">
       <h2 class="mb-5">Experience</h2>
       <ul class="timeline">
         <li>
@@ -10,11 +10,7 @@
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h3 class="timeline-title">Velocigo Inc</h3>
-              <span
-                class="badge p-2"
-                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
-                >Software Developer</span
-              >
+              <span class="badge p-2 title-heading">Software Developer</span>
               <!-- <h4>Software Developer</h4> -->
               <p>
                 <small class="text-primary"
@@ -53,11 +49,7 @@
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h3 class="timeline-title">TPV.com</h3>
-              <span
-                class="badge p-2"
-                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
-                >Web Developer</span
-              >
+              <span class="badge p-2 title-heading">Web Developer</span>
               <!-- <h4>Web Developer</h4> -->
               <p>
                 <small class="text-primary"
@@ -100,9 +92,7 @@
               <h3 class="timeline-title">
                 Institute of Cybernetics, Mathematics and Physics
               </h3>
-              <span
-                class="badge p-2"
-                style="background-color: #F2B357; color: #212529; font-size: 1.5rem; font-family: 'Saira Extra Condensed', serif; font-weight: 700;"
+              <span class="badge p-2 title-heading"
                 >Web Developer / Webmaster</span
               >
               <!-- <h4>Web Developer / Webmaster</h4> -->
@@ -145,7 +135,6 @@
     </div>
   </section>
 </template>
-<script></script>
 <style scoped>
 .timeline {
   list-style: none;
@@ -184,7 +173,7 @@
   /* border: 1px solid #ccc; */
   border: 1px solid #e6e6e6;
   border-radius: 5px;
-  width: 100%;
+  width: 80vw;
 }
 .timeline > li > .timeline-badge {
   color: #fff;
@@ -246,5 +235,13 @@
 }
 .timeline-body > h4 {
   margin-bottom: 0 !important;
+}
+
+.title-heading {
+  background-color: #f2b357;
+  color: #212529;
+  font-size: 1.5rem;
+  font-family: "Saira Extra Condensed", serif;
+  font-weight: 700;
 }
 </style>
