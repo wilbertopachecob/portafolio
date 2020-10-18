@@ -1,6 +1,6 @@
 <template>
-  <sidebar />
-  <div class="container-fluid p-0">
+  <sidebar ref="sidebar" />
+  <div class="container-fluid p-0" @click="closeToggler()">
     <about />
     <skills />
     <experience />
@@ -31,6 +31,14 @@ export default {
     Certifications,
     Education,
     "my-footer": Footer,
+  },
+  methods: {
+    closeToggler() {
+      const s = this.$refs.sidebar;
+      if (s.$refs.toggler.getAttribute("aria-expanded") === "true") {
+        s.$refs.toggler.click();
+      }
+    },
   },
 };
 </script>

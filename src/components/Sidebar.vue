@@ -26,6 +26,7 @@
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      ref="toggler"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
