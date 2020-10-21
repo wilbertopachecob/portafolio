@@ -1,6 +1,10 @@
 <template>
   <sidebar ref="sidebar" />
-  <div class="container-fluid p-0" @click="closeToggler()">
+  <div
+    class="container-fluid p-0"
+    id="sections_container"
+    @click="closeToggler()"
+  >
     <about />
     <skills />
     <experience />
@@ -31,6 +35,31 @@ export default {
     Certifications,
     Education,
     "my-footer": Footer,
+  },
+  mounted() {
+    var observer = new IntersectionObserver(
+      function(entries) {
+        // isIntersecting is true when element and viewport are overlapping
+        // isIntersecting is false when element and viewport don't overlap
+        if (entries[0].isIntersecting === true) {
+          document
+            .querySelectorAll("div#navbarSupportedContent>ul>li>a")
+            .forEach((a) => {
+              if (a.getAttribute("href") === `/#${entries[0].target.id}`) {
+                a.classList.add("active");
+                return;
+              }
+              a.classList.remove("active");
+            });
+        }
+      },
+      { threshold: [0.1] }
+    );
+    document
+      .querySelectorAll("#sections_container>section")
+      .forEach((section) => {
+        observer.observe(section);
+      });
   },
   methods: {
     closeToggler() {
