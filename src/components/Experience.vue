@@ -15,14 +15,14 @@
               <p>
                 <small class="text-primary"
                   ><font-awesome-icon :icon="['fas', 'calendar-alt']" /> 3/2020
-                  - present</small
+                  - 2/2021</small
                 >
               </p>
             </div>
             <div class="timeline-body">
               <ul style="list-style:square">
                 <li>
-                  Built of a Web App moving our main client from Microsoft
+                  Development of a Web App moving our main client from Microsoft
                   Dynamics NAV 2009 to an intuitive web UI increasing
                   performance, visibility and communication. The backend was
                   supported by Golang and Node.js, implementing a microservices
@@ -37,6 +37,14 @@
                 <li>
                   Guidance of our Junior Developer, supporting him and teaching
                   him the best practices of the profession.
+                </li>
+                <li>
+                  Built a Golang App to manage campaigns, audiences, etc. using
+                  the Mailchimp API.
+                </li>
+                <li>
+                  Vuejs Dashboard that provides Jira metadata using Golang in
+                  the backend.
                 </li>
               </ul>
             </div>

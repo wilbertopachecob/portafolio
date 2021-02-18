@@ -7,6 +7,42 @@
       <h2 class="mb-5">Certifications</h2>
       <div class="row">
         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+          <img src="@/assets/img/AWS-CloudPractitioner-2020.004d50ea.png" alt="AWS-badge" />
+        </div>
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+          <h3>
+            <a
+              href="https://www.youracclaim.com/users/wilberto-pacheco-batista" title="Amazon Web Services"
+              target="_blank"
+            >
+              Amazon Web Services (AWS)</a
+            >
+          </h3>
+          <div class="subheading mb-3">
+             AWS Certified Cloud Practitioner 
+          </div>
+          <p>
+            <small class="text-primary"
+              ><font-awesome-icon :icon="['fas', 'calendar-alt']" />
+              (12/14/2020)</small
+            >
+          </p>
+          <h3>
+             AWS Certified Cloud Practitioner 
+          </h3>
+          <p>
+              Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.
+              <ul class="mt-2" style="list-style:square">
+                <li>Amazon Web Services</li>
+                <li>Cloud Computing</li>
+                <li>Cloud Platform</li>                
+                <li>Cloud Services</li>                              
+              </ul>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
           <img src="@/assets/img/ITEC.jpg" alt="ITEC" />
         </div>
         <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">

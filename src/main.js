@@ -5,6 +5,8 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { FontAwesomeLayers } from "@fortawesome/vue-fontawesome";
+// import "@fortawesome/fontawesome-free/css/solid.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 library.add(fas, fab);
 

@@ -166,3 +166,29 @@ a:active {
 img {
   max-width: 80%;
 }
+
+.theme-dark {
+  color: #a1988c;
+  background-color: #181a1b;
+}
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3,
+.theme-dark h4,
+.theme-dark h5,
+.theme-dark h6 {
+  color: #c3beb6 !important;
+}
+.theme-dark .timeline li > div.timeline-panel,
+.theme-dark section {
+  border-color: #383d3f;
+}
+.theme-dark .list-social-icons a {
+  color: #b5afa6;
+}
+.theme-dark .list-social-icons a:hover {
+  color: #bd5d38;
+}
+.theme-dark .timeline-title {
+  color: #c3beb6;
+}

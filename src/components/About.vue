@@ -18,7 +18,7 @@
       </div>
       <div>
         <p class="text-left">
-          Bilingual Full Stack Web Developer with more than 10 years of
+          Bilingual Full Stack Web Developer with more than 11 years of
           experience developing frontend and backend software. Enjoys solving
           technical issues and seeking to make a change in a company with high
           goals.

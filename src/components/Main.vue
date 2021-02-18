@@ -1,4 +1,20 @@
 <template>
+  <div
+    id="toggleDarkMode"
+    class="topcorner"
+    title="Toggle Dark Mode"
+    style="display: block"
+  >
+    <label class="switch" for="checkbox">
+      <input
+        type="checkbox"
+        id="checkbox"
+        @change="toggleDarkMode($event)"
+        autocomplete="off"
+      />
+      <div class="slider round"></div>
+    </label>
+  </div>
   <sidebar ref="sidebar" />
   <div
     class="container-fluid p-0"
@@ -68,6 +84,13 @@ export default {
         s.$refs.toggler.click();
       }
     },
+    toggleDarkMode(e) {
+      const isCkecked = e.target.checked;
+      const body = document.querySelector("body");
+      isCkecked
+        ? body.classList.add("theme-dark")
+        : body.classList.remove("theme-dark");
+    },
   },
 };
 </script>
@@ -87,5 +110,57 @@ li {
 }
 a {
   color: #42b983;
+}
+.topcorner {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  z-index: 9999;
+}
+.switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 44px;
+}
+.switch input {
+  display: none;
+}
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+.slider:before {
+  background-color: #fff;
+  bottom: 3px;
+  font-family: "Font Awesome\ 5 Free";
+  content: "\f186";
+  font-size: 0.8rem;
+  color: #000;
+  height: 18px;
+  left: 3px;
+  position: absolute;
+  transition: 0.4s;
+  width: 18px;
+}
+input:checked + .slider {
+  background-color: #bd5d38;
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+  color: #fff;
+  background-color: #181a1b;
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>

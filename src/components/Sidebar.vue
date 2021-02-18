@@ -27,6 +27,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
       ref="toggler"
+      @click="hideDarkMode()"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,6 +74,16 @@ export default {
           top: container.offsetTop,
           behavior: "smooth",
         });
+      }
+    },
+    hideDarkMode() {
+      const e = document.querySelector("#toggleDarkMode");
+      if (e) {
+        if ("none" === e.style.display) {
+          e.style.display = "block";
+          return;
+        }
+        e.style.display = "none";
       }
     },
   },
