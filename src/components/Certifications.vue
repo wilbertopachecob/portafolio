@@ -32,13 +32,13 @@
           </h3>
           <p>
               Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.
-              <ul class="mt-2" style="list-style:square">
-                <li>Amazon Web Services</li>
-                <li>Cloud Computing</li>
-                <li>Cloud Platform</li>                
-                <li>Cloud Services</li>                              
-              </ul>
           </p>
+          <ul class="mt-2" style="list-style:square">
+            <li>Amazon Web Services</li>
+            <li>Cloud Computing</li>
+            <li>Cloud Platform</li>                
+            <li>Cloud Services</li>                              
+          </ul>
         </div>
       </div>
       <div class="row">
@@ -69,16 +69,16 @@
             Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725
           </h3>
           <p>
-              This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:  
-              <ul class="mt-2" style="list-style:square">
-                <li>Adobe Photoshop</li>
-                <li>HTML5</li>
-                <li>CSS3</li>                
-                <li>JavaScript</li>                
-                <li>jQuery</li>                
-                <li>Wordpress</li>                
-              </ul>
+              This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:
           </p>
+          <ul class="mt-2" style="list-style:square">
+            <li>Adobe Photoshop</li>
+            <li>HTML5</li>
+            <li>CSS3</li>                
+            <li>JavaScript</li>                
+            <li>jQuery</li>                
+            <li>Wordpress</li>                
+          </ul>
         </div>
       </div>
     </div>
