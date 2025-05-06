@@ -27,7 +27,7 @@
         <ul class="list-inline list-social-icons mb-0 mt-5 float-left">
           <li class="list-inline-item">
             <a
-              href="https://www.linkedin.com/in/wilberto-pacheco-batista-31806660/"
+              href="https://www.linkedin.com/in/wilberto-pacheco-batista/"
               title="LinkedIn"
               data-toggle="tooltip"
               data-offset="0 10"
