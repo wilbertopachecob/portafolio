@@ -185,8 +185,8 @@ describe('Skills.vue', () => {
         plugins: [i18n]
       }
     })
-    // Look for font-awesome icons (they have aria-label attributes)
-    const icons = screen.getAllByLabelText(/icon$/i)
+    // Look for font-awesome icons using test ID
+    const icons = screen.getAllByTestId('font-awesome-icon')
     expect(icons.length).toBeGreaterThan(0)
   })
 

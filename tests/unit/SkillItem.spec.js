@@ -53,7 +53,7 @@ describe('SkillItem.vue', () => {
       }
     })
     // Look for font-awesome icon element
-    const icon = document.querySelector('font-awesome-icon')
+    const icon = screen.getByTestId('font-awesome-icon')
     expect(icon).toBeInTheDocument()
   })
 
@@ -90,7 +90,7 @@ describe('SkillItem.vue', () => {
     })
     
     expect(screen.getByText('React')).toBeInTheDocument()
-    const icon = document.querySelector('font-awesome-icon')
+    const icon = screen.getByTestId('font-awesome-icon')
     expect(icon).toBeInTheDocument()
   })
 
@@ -103,7 +103,7 @@ describe('SkillItem.vue', () => {
     })
     
     expect(screen.getByText('Node.js')).toBeInTheDocument()
-    const icon = document.querySelector('font-awesome-icon')
+    const icon = screen.getByTestId('font-awesome-icon')
     expect(icon).toBeInTheDocument()
   })
 }) 

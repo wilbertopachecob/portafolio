@@ -26,7 +26,7 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button', () => {
     render(Footer)
-    const scrollButton = document.querySelector('font-awesome-icon')
+    const scrollButton = screen.getByTestId('font-awesome-icon')
     expect(scrollButton).toBeInTheDocument()
     expect(scrollButton).toHaveAttribute('title', 'Scroll to Top')
   })
@@ -51,7 +51,7 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button with proper styling', () => {
     render(Footer)
-    const scrollButton = document.querySelector('font-awesome-icon')
+    const scrollButton = screen.getByTestId('font-awesome-icon')
     expect(scrollButton).toHaveClass('mt-3', 'to-top-button', 'bounce')
   })
 }) 

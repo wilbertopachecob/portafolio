@@ -1,5 +1,15 @@
 // Vitest setup file
 import '@testing-library/jest-dom'
+import { config } from '@vue/test-utils'
+
+// Configure global stubs for FontAwesome components
+config.global.stubs = {
+  'font-awesome-icon': {
+    template: '<span data-testid="font-awesome-icon" v-bind="$attrs"></span>',
+    inheritAttrs: false
+  },
+  'font-awesome-layers': true,
+}
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
