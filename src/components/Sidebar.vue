@@ -1,23 +1,29 @@
 <template>
-  <!-- <div class="nav-container"> -->
+  <!-- Navigation sidebar -->
   <nav
     class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
     id="sideNav"
   >
+    <!-- Brand/Logo section -->
     <a
       class="navbar-brand js-scroll-trigger"
       @click="smoothScroll($event, { text: 'About', url: 'about' })"
       :href="`/#about`"
     >
+      <!-- Mobile brand text -->
       <span class="d-block d-lg-none">Wilberto Pacheco Batista</span>
+      
+      <!-- Desktop profile image -->
       <span class="d-none d-lg-block">
         <img
           class="img-fluid img-profile rounded-circle mx-auto mb-2"
           src="@/assets/img/profile_cropped.jpg"
-          alt="profile"
+          alt="Wilberto Pacheco Batista Profile"
         />
       </span>
     </a>
+
+    <!-- Mobile navigation toggle button -->
     <button
       class="navbar-toggler collapsed"
       type="button"
@@ -27,35 +33,39 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
       ref="toggler"
-      @click="hideDarkMode()"
+      @click="hideDarkModeToggle"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navigation menu -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item" v-for="(m, index) in menu" :key="index">
+        <li 
+          class="nav-item" 
+          v-for="(menuItem, index) in navigationMenu" 
+          :key="index"
+        >
           <a
             class="nav-link js-scroll-trigger"
-            :href="`/#${m.url}`"
-            @click="smoothScroll($event, m)"
-            >{{ m.text }}</a
+            :href="`/#${menuItem.url}`"
+            @click="smoothScroll($event, menuItem)"
           >
+            {{ menuItem.text }}
+          </a>
         </li>
       </ul>
     </div>
   </nav>
-  <!-- <div id="lead-overlay"></div> -->
-  <!-- </div> -->
 </template>
+
 <script>
 export default {
   name: "Sidebar",
-  props: {
-    msg: String,
-  },
   data() {
     return {
-      menu: [
+      // Navigation menu configuration
+      navigationMenu: [
         { text: "About", url: "about" },
         { text: "Skills", url: "skills" },
         { text: "Experience", url: "experience" },
@@ -66,49 +76,37 @@ export default {
     };
   },
   methods: {
-    smoothScroll(e, m) {
-      e.preventDefault();
-      const container = document.querySelector("#" + m.url);
-      if (container) {
-        scroll({
-          top: container.offsetTop,
+    /**
+     * Smoothly scrolls to the target section
+     * @param {Event} event - The click event
+     * @param {Object} menuItem - The menu item object with url property
+     */
+    smoothScroll(event, menuItem) {
+      event.preventDefault();
+      const targetSection = document.querySelector(`#${menuItem.url}`);
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({
           behavior: "smooth",
+          block: "start",
         });
       }
     },
-    hideDarkMode() {
-      const e = document.querySelector("#toggleDarkMode");
-      if (e) {
-        if ("none" === e.style.display) {
-          e.style.display = "block";
-          return;
-        }
-        e.style.display = "none";
+
+    /**
+     * Hides/shows the dark mode toggle when mobile menu is opened/closed
+     */
+    hideDarkModeToggle() {
+      const darkModeToggle = document.querySelector("#toggleDarkMode");
+      if (darkModeToggle) {
+        const isCurrentlyHidden = darkModeToggle.style.display === "none";
+        darkModeToggle.style.display = isCurrentlyHidden ? "block" : "none";
       }
     },
   },
 };
 </script>
+
 <style scoped>
-/* .nav-container {
-  position: relative;
-  height: 100vh;
-  min-height: 500px;
-  max-height: 1080px;
-  background: url(~@/assets/img/lead-bg.jpg);
-  background-size: cover;
-  padding: 15px;
-  overflow: hidden;
-} 
-#lead-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #bd5d38 !important;
-  z-index: 1;
-}*/
+/* Sidebar-specific styles - most styling is handled by Bootstrap and main.css */
 </style>
