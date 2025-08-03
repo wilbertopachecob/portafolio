@@ -75,7 +75,7 @@
           {{ $t('hero.viewSkills') }}
         </a>
         <a 
-          href="/resume.pdf" 
+          href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
           class="btn btn-outline" 
           download="Engineer_Wilberto_Pacheco_Batista.pdf"
           :aria-label="$t('hero.downloadResume')"

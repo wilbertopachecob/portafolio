@@ -7,7 +7,7 @@ Your portfolio website now includes a downloadable PDF resume feature. The resum
 - The mobile menu
 
 ## Current Setup
-- **Resume PDF**: `public/resume.pdf` (your actual resume)
+- **Resume PDF**: `public/Engineer_Wilberto_Pacheco_Batista.pdf` (your actual resume)
 - **Download filename**: `Engineer_Wilberto_Pacheco_Batista.pdf`
 - **Accessible in**: English and Spanish
 
@@ -15,15 +15,15 @@ Your portfolio website now includes a downloadable PDF resume feature. The resum
 
 ### Option 1: Replace the existing file
 1. Create your resume as a PDF file
-2. Name it `resume.pdf`
-3. Replace the file at `public/resume.pdf`
+2. Name it `Engineer_Wilberto_Pacheco_Batista.pdf`
+3. Replace the file at `public/Engineer_Wilberto_Pacheco_Batista.pdf`
 4. The website will automatically use your new resume
 
 ### Option 2: Use a different filename
 1. Place your resume PDF in the `public/` folder
 2. Update the href attributes in the following files:
-   - `src/components/About.vue` (line with `href="/resume.pdf"`)
-   - `src/components/Navigation.vue` (line with `href="/resume.pdf"`)
+   - `src/components/About.vue` (line with `href="/Engineer_Wilberto_Pacheco_Batista.pdf"`)
+   - `src/components/Navigation.vue` (line with `href="/Engineer_Wilberto_Pacheco_Batista.pdf"`)
 
 ### Option 3: Use a different download filename
 To change the filename that users see when downloading:

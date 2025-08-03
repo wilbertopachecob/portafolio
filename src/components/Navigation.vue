@@ -45,7 +45,7 @@
       
       <!-- Download Resume Button -->
       <a 
-        href="/resume.pdf" 
+        href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
         class="resume-download-btn"
         download="Engineer_Wilberto_Pacheco_Batista.pdf"
         :title="$t('hero.downloadResume')"
@@ -130,7 +130,7 @@
         </li>
         <li class="mobile-nav-item" role="none">
           <a 
-            href="/resume.pdf" 
+            href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
             class="mobile-nav-link resume-link"
             download="Engineer_Wilberto_Pacheco_Batista.pdf"
             @click="closeMobileMenu"
