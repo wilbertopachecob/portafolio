@@ -1,8 +1,6 @@
 <template>
   <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="languages" role="region" aria-labelledby="languages-heading">
     <div class="my-auto" id="languages-content">
-      <h2 class="mb-5" id="languages-heading">Languages</h2>
-      
       <!-- Language display grid with modern styling -->
       <div class="languages-container" role="list" aria-label="Language proficiency">
         <div 
