@@ -29,6 +29,11 @@
           </a>
         </li>
         <li class="nav-item" role="none">
+          <a href="#languages" class="nav-link" @click="scrollToSection('languages')" role="menuitem" aria-label="Go to languages section">
+            Languages
+          </a>
+        </li>
+        <li class="nav-item" role="none">
           <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')" role="menuitem" aria-label="Go to certifications section">
             Certifications
           </a>
@@ -94,6 +99,11 @@
         <li class="mobile-nav-item" role="none">
           <a href="#education" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to education section">
             Education
+          </a>
+        </li>
+        <li class="mobile-nav-item" role="none">
+          <a href="#languages" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to languages section">
+            Languages
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
