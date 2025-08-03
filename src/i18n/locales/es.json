@@ -15,6 +15,9 @@
     "viewSkills": "Ver Habilidades"
   },
   "sections": {
+    "about": {
+      "jobTitle": "Ingeniero de Software y Desarrollador Full Stack"
+    },
     "experience": {
       "title": "Experiencia",
       "subtitle": "Mi trayectoria profesional y experiencia laboral"

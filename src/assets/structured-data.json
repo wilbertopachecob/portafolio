@@ -1,0 +1,50 @@
+{
+  "person": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Wilberto Pacheco Batista",
+    "jobTitle": "Software Engineer",
+    "description": "Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies",
+    "url": "https://wilbertopachecob.github.io/portafolio/",
+    "image": "https://wilbertopachecob.github.io/portafolio/favicon-geometric.svg",
+    "sameAs": [
+      "https://github.com/wilbertopachecob",
+      "https://linkedin.com/in/wilbertopachecobatista"
+    ],
+    "knowsAbout": [
+      "Vue.js",
+      "React",
+      "Node.js",
+      "JavaScript",
+      "TypeScript",
+      "Full Stack Development",
+      "Web Development",
+      "Cloud Computing",
+      "AWS"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    },
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "University of Havana"
+    }
+  },
+  "website": {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Wilberto Pacheco Batista Portfolio",
+    "url": "https://wilbertopachecob.github.io/portafolio/",
+    "description": "Professional portfolio of Wilberto Pacheco Batista, a skilled Software Engineer and Full Stack Web Developer specializing in Vue.js, React, Node.js, and modern web technologies.",
+    "author": {
+      "@type": "Person",
+      "name": "Wilberto Pacheco Batista"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://wilbertopachecob.github.io/portafolio/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+}
