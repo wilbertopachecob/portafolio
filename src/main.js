@@ -7,15 +7,36 @@ import i18n from './i18n'
 
 // FontAwesome configuration
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { 
+  faEnvelope, 
+  faMapMarkerAlt, 
+  faBriefcase, 
+  faCode, 
+  faCalendarAlt,
+  faArrowAltCircleUp
+} from '@fortawesome/free-solid-svg-icons'
+import { 
+  faLinkedin, 
+  faGithub, 
+  faXTwitter 
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 
 // Import FontAwesome CSS
 import '@fortawesome/fontawesome-free/css/all.css'
 
 // Add FontAwesome icons to the library
-library.add(fas, fab)
+library.add(
+  faEnvelope, 
+  faMapMarkerAlt, 
+  faBriefcase, 
+  faCode, 
+  faCalendarAlt,
+  faArrowAltCircleUp,
+  faLinkedin, 
+  faGithub, 
+  faXTwitter
+)
 
 // Create and configure Vue app
 const app = createApp(App)
