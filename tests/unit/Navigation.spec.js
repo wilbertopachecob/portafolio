@@ -129,4 +129,21 @@ describe('Navigation.vue', () => {
     const navMenu = screen.getByRole('menubar')
     expect(navMenu).toBeInTheDocument()
   })
+
+  it('has active section highlighting functionality', () => {
+    const i18n = createTestI18n()
+    render(Navigation, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    
+    // Check that navigation links have active class binding
+    const aboutLink = screen.getByRole('menuitem', { name: 'About' })
+    expect(aboutLink).toHaveClass('nav-link')
+    expect(aboutLink).toHaveClass('active')
+    
+    // The active class should be applied based on activeSection data property
+    // This is tested through the Vue component's reactivity system
+  })
 }) 
