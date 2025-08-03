@@ -75,15 +75,19 @@ export default {
       // Certification data configuration
       certifications: [
         {
-          name: "AWS Cloud Practitioner",
-          provider: "Amazon Web Services",
+          issuer: "Amazon Web Services",
+          title: "AWS Cloud Practitioner",
           date: "2020",
-          level: "Foundational",
-          description: "Cloud computing fundamentals and AWS services",
-          badge: this.getCertificationImage("AWS-CloudPractitioner-2020.004d50ea.png"),
           link: "https://www.credly.com/badges/aws-cloud-practitioner",
-          status: "Active",
-          verification: "https://www.credly.com/badges/aws-cloud-practitioner"
+          badgeImage: this.getCertificationImage("AWS-CloudPractitioner-2020.004d50ea.png"),
+          description: "Cloud computing fundamentals and AWS services",
+          skills: [
+            "AWS Cloud Computing",
+            "Cloud Security",
+            "Cloud Architecture",
+            "AWS Services",
+            "Cloud Best Practices"
+          ]
         },
         {
           issuer: "Centre for Development of Advanced Computing",
