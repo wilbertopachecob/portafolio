@@ -35,11 +35,11 @@ export default {
       languages: [
         {
           name: "Spanish",
-          flagImage: require("@/assets/img/spanish_flag_cropped.png"),
+          flagImage: require("@/assets/img/spanish_flag.png"),
         },
         {
           name: "English",
-          flagImage: require("@/assets/img/english_flag_cropped.png"),
+          flagImage: require("@/assets/img/english_flag.png"),
         },
       ],
     };
