@@ -1,16 +1,57 @@
 import { render, screen } from '@testing-library/vue'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+import { createI18n } from 'vue-i18n'
 import Skills from '@/components/Skills.vue'
+
+// Mock i18n for testing
+const createTestI18n = (locale = 'en') => {
+  return createI18n({
+    legacy: false,
+    locale,
+    messages: {
+      en: {
+        skills: {
+          programmingLanguages: 'Programming Languages',
+          frameworksLibraries: 'Frameworks & Libraries',
+          databasesTools: 'Databases & Tools',
+          cloudDevops: 'Cloud & DevOps',
+          contentManagement: 'Content Management',
+          developmentTools: 'Development Tools'
+        }
+      },
+      es: {
+        skills: {
+          programmingLanguages: 'Lenguajes de Programación',
+          frameworksLibraries: 'Frameworks y Librerías',
+          databasesTools: 'Bases de Datos y Herramientas',
+          cloudDevops: 'Cloud y DevOps',
+          contentManagement: 'Gestión de Contenido',
+          developmentTools: 'Herramientas de Desarrollo'
+        }
+      }
+    }
+  })
+}
 
 describe('Skills.vue', () => {
   it('renders the skills section', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const section = screen.getByRole('region', { name: /technical skills/i })
     expect(section).toBeInTheDocument()
   })
 
   it('renders the section title', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
     expect(screen.getByText(/Technical Skills/)).toBeInTheDocument()
   })

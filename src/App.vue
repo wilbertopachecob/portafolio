@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">{{ $t('accessibility.skipToContent') }}</a>
     
     <!-- Navigation -->
     <Navigation />
@@ -15,8 +15,8 @@
       <section id="experience" class="section" role="region" aria-labelledby="experience-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="experience-section-heading" class="section-title">Experience</h2>
-            <p class="section-subtitle">My professional journey and work experience</p>
+            <h2 id="experience-section-heading" class="section-title">{{ $t('sections.experience.title') }}</h2>
+            <p class="section-subtitle">{{ $t('sections.experience.subtitle') }}</p>
           </div>
           <Experience />
         </div>
@@ -26,8 +26,8 @@
       <section id="skills" class="section" role="region" aria-labelledby="skills-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="skills-section-heading" class="section-title">Skills</h2>
-            <p class="section-subtitle">Technical skills and technologies I work with</p>
+            <h2 id="skills-section-heading" class="section-title">{{ $t('sections.skills.title') }}</h2>
+            <p class="section-subtitle">{{ $t('sections.skills.subtitle') }}</p>
           </div>
           <Skills />
         </div>
@@ -37,8 +37,8 @@
       <section id="education" class="section" role="region" aria-labelledby="education-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="education-section-heading" class="section-title">Education</h2>
-            <p class="section-subtitle">My academic background and qualifications</p>
+            <h2 id="education-section-heading" class="section-title">{{ $t('sections.education.title') }}</h2>
+            <p class="section-subtitle">{{ $t('sections.education.subtitle') }}</p>
           </div>
           <Education />
         </div>
@@ -48,8 +48,8 @@
       <section id="languages" class="section" role="region" aria-labelledby="languages-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="languages-section-heading" class="section-title">Languages</h2>
-            <p class="section-subtitle">Languages I speak and write</p>
+            <h2 id="languages-section-heading" class="section-title">{{ $t('sections.languages.title') }}</h2>
+            <p class="section-subtitle">{{ $t('sections.languages.subtitle') }}</p>
           </div>
           <Languages />
         </div>
@@ -59,8 +59,8 @@
       <section id="certifications" class="section" role="region" aria-labelledby="certifications-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="certifications-section-heading" class="section-title">Certifications</h2>
-            <p class="section-subtitle">Professional certifications and achievements</p>
+            <h2 id="certifications-section-heading" class="section-title">{{ $t('sections.certifications.title') }}</h2>
+            <p class="section-subtitle">{{ $t('sections.certifications.subtitle') }}</p>
           </div>
           <Certifications />
         </div>
@@ -71,8 +71,8 @@
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
-          <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. All rights reserved.</p>
-          <p>Built with Vue.js and modern web technologies</p>
+          <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. {{ $t('footer.copyright') }}</p>
+          <p>{{ $t('footer.builtWith') }}</p>
         </div>
       </div>
     </footer>
@@ -105,12 +105,25 @@ export default {
     }
   },
   mounted() {
-    // Set document title
-    document.title = 'Wilberto Pacheco Batista | Software Engineer'
+    // Set document title based on current locale
+    this.updateDocumentTitle()
     
     // Add smooth scrolling behavior
     document.documentElement.style.scrollBehavior = 'smooth'
   },
+  methods: {
+    updateDocumentTitle() {
+      const title = this.$i18n.locale === 'es' 
+        ? 'Wilberto Pacheco Batista | Ingeniero de Software'
+        : 'Wilberto Pacheco Batista | Software Engineer'
+      document.title = title
+    }
+  },
+  watch: {
+    '$i18n.locale'() {
+      this.updateDocumentTitle()
+    }
+  }
 }
 </script>
 

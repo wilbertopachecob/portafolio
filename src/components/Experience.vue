@@ -13,16 +13,16 @@
           <div class="timeline-position">{{ job.position }}</div>
           <div class="timeline-period">
             <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
-            <span>Period: {{ job.period }}</span>
+            <span>{{ $t('experience.period') }}: {{ job.period }}</span>
             <span v-if="job.location" class="timeline-location">
               <font-awesome-icon :icon="['fas', 'map-marker-alt']" aria-hidden="true" />
-              <span>Location: {{ job.location }}</span>
+              <span>{{ $t('experience.location') }}: {{ job.location }}</span>
             </span>
           </div>
         </div>
         
         <div class="timeline-description">
-          <ul class="timeline-achievements" role="list" aria-label="Key achievements and responsibilities">
+          <ul class="timeline-achievements" role="list" :aria-label="$t('experience.achievements')">
             <li 
               v-for="(responsibility, respIndex) in job.responsibilities" 
               :key="respIndex"
@@ -39,62 +39,14 @@
 </template>
 
 <script>
+import { getWorkExperience } from '@/i18n/content';
+
 export default {
   name: "Experience",
-  data() {
-    return {
-      // Work experience data
-      workExperience: [
-        {
-          company: "Included Health",
-          position: "Software Engineer II",
-          period: "May 2021 - Present",
-          location: "San Francisco, California",
-          responsibilities: [
-            "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
-            "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
-            "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
-            "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation.",
-          ],
-        },
-        {
-          company: "Velocigo Inc",
-          position: "Software Developer",
-          period: "March 2020 - February 2021",
-          location: "Tulsa, Oklahoma",
-          responsibilities: [
-            "Migrated our primary client from Microsoft Dynamics NAV 2009 to a modern web UI, significantly enhancing performance, visibility, and communication.",
-            "Designed and implemented a RESTful architecture with Golang to extract metadata from Jira and generate dynamic reports for end users.",
-            "Mentored a junior developer, resulting in improved code quality by 30%.",
-            "Developed a Golang application to manage marketing campaigns. Integrated business data with the Mailchimp API for enhanced email campaign functionalities.",
-          ],
-        },
-        {
-          company: "TPV.com",
-          position: "Web Developer",
-          period: "February 2019 - March 2020",
-          location: "Tulsa, Oklahoma",
-          responsibilities: [
-            "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
-            "Designed and implemented reports, a RESTful web service and APIs for various departments using Google Maps, Google Charts, Highcharts JS, vue-chartjs and jQuery to increase action response and data analysis in real time.",
-            "Provided rapid support for new features and bug fixes, with over 1,550 contributions on GitHub in order to maintain and improve code quality.",
-            "Drove the internationalization and localization of a web administrative platform increasing our audience reach by 8%.",
-          ],
-        },
-        {
-          company: "Institute of Cybernetics, Mathematics and Physics",
-          position: "Web Developer / Webmaster",
-          period: "September 2010 - June 2017",
-          location: "Havana, Cuba",
-          responsibilities: [
-            "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success rate.",
-            "Designed and maintained custom Wordpress themes and plugins for public website. Applied SEO techniques to attract customers into buying our products and increased our visibility by 50%.",
-            "Enhanced internal communication by 80% through the implementation of chat systems and forums.",
-            "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, reducing resolution time by 17%.",
-          ],
-        },
-      ],
-    };
+  computed: {
+    workExperience() {
+      return getWorkExperience(this.$i18n.locale);
+    },
   },
 };
 </script>
