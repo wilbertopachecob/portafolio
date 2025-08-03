@@ -16,6 +16,9 @@
     "downloadResume": "Download Resume"
   },
   "sections": {
+    "about": {
+      "jobTitle": "Software Engineer & Full Stack Developer"
+    },
     "experience": {
       "title": "Experience",
       "subtitle": "My professional journey and work experience"

@@ -4,33 +4,112 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="description" content="Wilberto Pacheco Batista - Software Engineer Portfolio. Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies.">
-    <meta name="keywords" content="software engineer, web developer, full stack, Vue.js, React, Node.js, portfolio">
+    
+    <!-- Primary Meta Tags -->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="title" content="Wilberto Pacheco Batista - Software Engineer & Full Stack Developer">
+    <meta name="description" content="Professional portfolio of Wilberto Pacheco Batista, a skilled Software Engineer and Full Stack Web Developer specializing in Vue.js, React, Node.js, and modern web technologies. View projects, experience, and skills.">
+    <meta name="keywords" content="software engineer, web developer, full stack developer, Vue.js, React, Node.js, JavaScript, TypeScript, portfolio, frontend, backend, AWS, cloud computing">
     <meta name="author" content="Wilberto Pacheco Batista">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://wilbertopachecob.github.io/portafolio/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wilbertopachecob.github.io/portafolio/">
-    <meta property="og:title" content="Wilberto Pacheco Batista - Software Engineer">
-    <meta property="og:description" content="Full Stack Web Developer with expertise in modern web technologies">
+    <meta property="og:title" content="Wilberto Pacheco Batista - Software Engineer & Full Stack Developer">
+    <meta property="og:description" content="Professional portfolio showcasing expertise in Vue.js, React, Node.js, and modern web technologies. Full stack development with cloud computing experience.">
     <meta property="og:image" content="<%= BASE_URL %>favicon-geometric.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Wilberto Pacheco Batista Portfolio">
+    <meta property="og:locale" content="en_US">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://wilbertopachecob.github.io/portafolio/">
-    <meta property="twitter:title" content="Wilberto Pacheco Batista - Software Engineer">
-    <meta property="twitter:description" content="Full Stack Web Developer with expertise in modern web technologies">
+    <meta property="twitter:title" content="Wilberto Pacheco Batista - Software Engineer & Full Stack Developer">
+    <meta property="twitter:description" content="Professional portfolio showcasing expertise in Vue.js, React, Node.js, and modern web technologies. Full stack development with cloud computing experience.">
     <meta property="twitter:image" content="<%= BASE_URL %>favicon-geometric.svg">
+    <meta property="twitter:creator" content="@wilbertopachecob">
     
+    <!-- LinkedIn -->
+    <meta property="og:image:alt" content="Wilberto Pacheco Batista - Software Engineer Portfolio">
+    
+    <!-- Favicon and App Icons -->
     <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>favicon-geometric.svg">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link rel="apple-touch-icon" href="<%= BASE_URL %>favicon-geometric.svg">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+    <meta name="theme-color" content="#007bff">
+    <meta name="msapplication-TileColor" content="#007bff">
     
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.amplitude.com">
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Wilberto Pacheco Batista",
+      "jobTitle": "Software Engineer",
+      "description": "Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies",
+      "url": "https://wilbertopachecob.github.io/portafolio/",
+      "image": "<%= BASE_URL %>favicon-geometric.svg",
+      "sameAs": [
+        "https://github.com/wilbertopachecob",
+        "https://linkedin.com/in/wilbertopachecobatista"
+      ],
+      "knowsAbout": [
+        "Vue.js",
+        "React",
+        "Node.js",
+        "JavaScript",
+        "TypeScript",
+        "Full Stack Development",
+        "Web Development",
+        "Cloud Computing",
+        "AWS"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "University of Havana"
+      }
+    }
+    </script>
+    
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Wilberto Pacheco Batista Portfolio",
+      "url": "https://wilbertopachecob.github.io/portafolio/",
+      "description": "Professional portfolio of Wilberto Pacheco Batista, Software Engineer and Full Stack Developer",
+      "author": {
+        "@type": "Person",
+        "name": "Wilberto Pacheco Batista"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://wilbertopachecob.github.io/portafolio/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     
     <!-- Analytics -->
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>

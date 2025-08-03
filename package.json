@@ -11,7 +11,9 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint --config eslint.config.mjs src/**/*.js",
     "lint:fix": "eslint --config eslint.config.mjs src/**/*.js --fix",
-    "lint:check": "eslint --config eslint.config.mjs src/**/*.js --max-warnings 0"
+    "lint:check": "eslint --config eslint.config.mjs src/**/*.js --max-warnings 0",
+    "seo:optimize": "node scripts/seo-optimizer.js",
+    "build:seo": "npm run seo:optimize && npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.11.0",

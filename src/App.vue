@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" itemscope itemtype="https://schema.org/Person">
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-link">{{ $t('accessibility.skipToContent') }}</a>
     
@@ -9,7 +9,15 @@
     <!-- Main Content -->
     <main id="main-content" class="main-content" role="main">
       <!-- About Section -->
-      <About />
+      <section id="about" class="section" role="region" aria-labelledby="about-section-heading">
+        <div class="container">
+          <div class="section-header">
+            <h1 id="about-section-heading" class="section-title" itemprop="name">Wilberto Pacheco Batista</h1>
+            <p class="section-subtitle" itemprop="jobTitle">{{ $t('sections.about.jobTitle') }}</p>
+          </div>
+          <About />
+        </div>
+      </section>
       
       <!-- Experience Section -->
       <section id="experience" class="section" role="region" aria-labelledby="experience-section-heading">
@@ -71,7 +79,7 @@
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
-          <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. {{ $t('footer.copyright') }}</p>
+          <p>&copy; {{ currentYear }} <span itemprop="name">Wilberto Pacheco Batista</span>. {{ $t('footer.copyright') }}</p>
           <p>{{ $t('footer.builtWith') }}</p>
         </div>
       </div>
