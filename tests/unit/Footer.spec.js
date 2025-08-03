@@ -38,7 +38,8 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button', () => {
     renderFooter()
-    const scrollButton = screen.getByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('font-awesome-icon')
+    const scrollButton = icons[0] // First icon is the scroll-to-top button
     expect(scrollButton).toBeInTheDocument()
     expect(scrollButton).toHaveAttribute('title', 'Scroll to Top')
   })
@@ -63,7 +64,8 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button with proper styling', () => {
     renderFooter()
-    const scrollButton = screen.getByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('font-awesome-icon')
+    const scrollButton = icons[0] // First icon is the scroll-to-top button
     expect(scrollButton).toHaveClass('mt-3', 'to-top-button', 'bounce')
   })
 
@@ -73,5 +75,12 @@ describe('Footer.vue', () => {
     expect(downloadLink).toBeInTheDocument()
     expect(downloadLink.closest('a')).toHaveAttribute('href', '/Engineer_Wilberto_Pacheco_Batista.pdf')
     expect(downloadLink.closest('a')).toHaveAttribute('download', 'Engineer_Wilberto_Pacheco_Batista.pdf')
+  })
+
+  it('renders download icon', () => {
+    renderFooter()
+    const icons = screen.getAllByTestId('font-awesome-icon')
+    const downloadIcon = icons[1] // Second icon is the download icon
+    expect(downloadIcon).toBeInTheDocument()
   })
 }) 
