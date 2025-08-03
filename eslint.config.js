@@ -1,7 +1,7 @@
-import js from '@eslint/js'
-import babelParser from '@babel/eslint-parser'
+const js = require('@eslint/js')
+const babelParser = require('@babel/eslint-parser')
 
-export default [
+module.exports = [
   {
     ignores: ['node_modules/**', 'dist/**', 'build/**'],
   },
