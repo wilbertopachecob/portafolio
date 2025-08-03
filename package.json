@@ -5,6 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     "lint:check": "eslint src/**/*.js --max-warnings 0"
@@ -27,14 +31,20 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.0",
+    "@babel/preset-env": "^7.24.0",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/user-event": "^14.6.1",
+    "@testing-library/vue": "^8.1.0",
+    "@vitejs/plugin-vue": "^5.1.4",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "^3.5.18",
     "eslint": "^9.32.0",
-    "eslint-plugin-vue": "^10.4.0"
+    "eslint-plugin-vue": "^10.4.0",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.8"
   },
-
   "browserslist": [
     "> 1%",
     "last 2 versions",
