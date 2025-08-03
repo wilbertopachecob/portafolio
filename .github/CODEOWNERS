@@ -1,0 +1,19 @@
+# Global owners
+* @wilbertopachecobatista
+
+# Vue components
+src/components/ @wilbertopachecobatista
+
+# Tests
+tests/ @wilbertopachecobatista
+
+# Configuration files
+*.config.js @wilbertopachecobatista
+package.json @wilbertopachecobatista
+yarn.lock @wilbertopachecobatista
+
+# GitHub Actions
+.github/ @wilbertopachecobatista
+
+# Documentation
+*.md @wilbertopachecobatista 
