@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Preview</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            padding: 2rem;
+            color: #0f172a;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 2rem;
+        }
+        .favicon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .favicon-option {
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .favicon-option:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .favicon-option img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+        .favicon-option h3 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        .favicon-option p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .recommended {
+            border-color: #2563eb;
+            background: #f0f9ff;
+        }
+        .recommended::before {
+            content: "⭐ Recommended";
+            display: block;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Favicon Options for Your Portfolio</h1>
+        
+        <div class="favicon-grid">
+            <div class="favicon-option recommended">
+                <img src="favicon-geometric.svg" alt="Geometric Favicon">
+                <h3>Geometric Design</h3>
+                <p>Modern gradient background with clean geometric "WP" (Wilberto Pacheco) and accent dot. Matches your design system perfectly.</p>
+            </div>
+            
+            <div class="favicon-option">
+                <img src="favicon-modern.svg" alt="Modern Favicon">
+                <h3>Modern Minimalist</h3>
+                <p>Clean rounded square with minimalist "WP" design and subtle accent line.</p>
+            </div>
+            
+            <div class="favicon-option">
+                <img src="favicon.svg" alt="Classic Favicon">
+                <h3>Classic Circular</h3>
+                <p>Traditional circular design with your primary blue color and white "WP".</p>
+            </div>
+        </div>
+        
+        <div style="background: #f1f5f9; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+            <h3 style="color: #2563eb; margin-top: 0;">📋 Implementation Details</h3>
+            <ul style="color: #475569;">
+                <li><strong>Primary Color:</strong> #2563eb (matches your CSS variables)</li>
+                <li><strong>Accent Color:</strong> #f59e0b (your accent color)</li>
+                <li><strong>Design:</strong> Stylized "WP" for Wilberto Pacheco</li>
+                <li><strong>Format:</strong> SVG for crisp display at all sizes</li>
+                <li><strong>Fallback:</strong> Original ICO file maintained</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html> 
