@@ -20,7 +20,7 @@ This will:
 If you prefer to deploy manually, you can use the deployment script directly:
 
 ```bash
-./deploy-gh-pages.sh
+./scripts/deploy-gh-pages.sh
 ```
 
 ## What the Deployment Script Does
