@@ -9,6 +9,22 @@
         title="Scroll to Top"
       />
       
+      <!-- Footer links -->
+      <div class="footer-links">
+        <a 
+          href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
+          class="footer-link"
+          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+          :title="$t('hero.downloadResume')"
+          :aria-label="$t('hero.downloadResume')"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          {{ $t('hero.downloadResume') }}
+        </a>
+      </div>
+      
       <!-- Copyright information -->
       <p style="color: rgba(255,255,255,.5);" class="mb-0">
         Copyright © {{ currentYear }} Wilberto Pacheco Batista. All rights reserved
@@ -47,6 +63,31 @@ export default {
 .f-container {
   text-align: center;
   color: white;
+}
+
+/* Footer links styling */
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Scroll to top button styling */
