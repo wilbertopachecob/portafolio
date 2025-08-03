@@ -3,19 +3,21 @@
     <div class="my-auto" id="languages-content">
       <h2 class="mb-5">Languages</h2>
       
-      <!-- Language display grid -->
-      <div class="row">
+      <!-- Language display grid with modern styling -->
+      <div class="languages-container">
         <div 
-          class="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+          class="language-card"
           v-for="(language, index) in languages"
           :key="index"
         >
-          <img
-            :src="language.flagImage"
-            :alt="`${language.name} flag`"
-            class="rounded-circle mx-auto scale-img"
-          />
-          <h2>{{ language.name }}</h2>
+          <div class="language-flag">
+            <img
+              :src="language.flagImage"
+              :alt="`${language.name} flag`"
+              class="flag-image"
+            />
+          </div>
+          <h3 class="language-name">{{ language.name }}</h3>
         </div>
       </div>
     </div>
@@ -44,14 +46,103 @@ export default {
 </script>
 
 <style scoped>
-/* Center align the section content */
-section {
-  text-align: center !important;
+/* Modern languages section styling */
+.languages-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
-/* Scale flag images appropriately */
-.scale-img {
-  max-height: 60%;
-  max-width: 60%;
+.language-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.language-flag {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.flag-image {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.language-card:hover .flag-image {
+  border-color: #bd5d38;
+  transform: scale(1.05);
+}
+
+.language-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .languages-container {
+    gap: 2rem;
+    flex-direction: column;
+  }
+  
+  .language-card {
+    min-width: 180px;
+    padding: 1.5rem;
+  }
+  
+  .flag-image {
+    width: 100px;
+    height: 70px;
+  }
+  
+  .language-name {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .languages-container {
+    gap: 1.5rem;
+  }
+  
+  .language-card {
+    min-width: 160px;
+    padding: 1rem;
+  }
+  
+  .flag-image {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .language-name {
+    font-size: 1.1rem;
+  }
 }
 </style>

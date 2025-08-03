@@ -2,101 +2,118 @@
 
 A modern, responsive portfolio website built with Vue.js 3, showcasing professional experience, skills, and achievements.
 
-## 🚀 Features
+## ✨ Features
 
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Dark Mode Toggle**: User-friendly dark/light theme switching
-- **Smooth Scrolling**: Seamless navigation between sections
-- **Interactive Timeline**: Visual representation of work experience
-- **Modern UI**: Clean, professional design using Bootstrap 5
-- **FontAwesome Icons**: Rich iconography throughout the interface
+- **Modern Design**: Clean, professional layout with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Dark Mode**: Toggle between light and dark themes
+- **Interactive Elements**: Hover effects and smooth transitions
+- **Accessibility**: WCAG compliant with proper focus states
+- **Performance Optimized**: Fast loading with optimized assets
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-- **Frontend Framework**: Vue.js 3 with Composition API
-- **Styling**: Bootstrap 5 + Custom CSS
+- **Frontend Framework**: Vue.js 3 (Composition API)
+- **Styling**: Bootstrap 5 + Custom CSS with Flexbox/Grid
 - **Icons**: FontAwesome 7
 - **Build Tool**: Vue CLI 5
 - **Package Manager**: Yarn
+- **Code Quality**: ESLint 9
 
 ## 📁 Project Structure
 
 ```
 src/
-├── components/           # Vue components
-│   ├── About.vue        # Personal information and social links
+├── components/          # Vue components
+│   ├── About.vue       # Personal information and social links
+│   ├── Skills.vue      # Technical skills with categories
+│   ├── Experience.vue  # Work experience timeline
+│   ├── Education.vue   # Educational background
+│   ├── Languages.vue   # Language proficiency
 │   ├── Certifications.vue # Professional certifications
 │   ├── DarkModeToggle.vue # Dark mode toggle component
-│   ├── Education.vue    # Educational background
-│   ├── Experience.vue   # Work experience timeline
-│   ├── ExperienceItem.vue # Individual experience item
-│   ├── Footer.vue       # Footer with scroll-to-top
-│   ├── Languages.vue    # Language proficiency
-│   ├── Main.vue         # Main layout component
-│   ├── Sidebar.vue      # Navigation sidebar
-│   ├── Skills.vue       # Technical skills display
-│   └── SkillItem.vue    # Individual skill item
-├── assets/              # Static assets
+│   ├── SkillItem.vue   # Individual skill item
+│   ├── ExperienceItem.vue # Individual experience entry
+│   └── ...
+├── assets/
 │   ├── css/            # Stylesheets
-│   └── img/            # Images and icons
-├── App.vue             # Root application component
-└── main.js            # Application entry point
+│   │   ├── main.css    # Main styles with modern CSS
+│   │   └── tweaks.css  # Custom enhancements
+│   └── img/            # Images and assets
+└── main.js             # Application entry point
 ```
 
-## 🎯 Key Improvements Made
+## 🎨 Modern CSS Improvements
 
-### Code Organization
-- **Component Separation**: Extracted reusable components (DarkModeToggle, SkillItem, ExperienceItem)
-- **Data-Driven Approach**: Moved hardcoded content to data properties for easier maintenance
-- **Consistent Naming**: Standardized component and method names
-- **Proper File Extensions**: Added `.vue` extensions to all imports
+### Flexbox Layout System
+- **Replaced floats** with modern flexbox layouts throughout
+- **Responsive grid** using CSS Grid and Flexbox
+- **Better alignment** with `align-items` and `justify-content`
+- **Gap spacing** instead of margins for consistent spacing
 
-### Performance Optimizations
-- **Efficient Rendering**: Used `v-for` with proper keys for list rendering
-- **Optimized Intersection Observer**: Improved navigation highlighting logic
-- **Smooth Scrolling**: Enhanced scroll behavior with proper error handling
+### Enhanced Components
 
-### Code Quality
-- **Comprehensive Comments**: Added JSDoc-style comments for all methods
-- **Semantic HTML**: Used proper HTML5 elements (footer, section, etc.)
-- **Accessibility**: Improved alt text and ARIA labels
-- **Error Handling**: Added null checks and fallbacks
+#### Skills Section
+- **Card-based layout** with hover effects
+- **Flexible skill categories** with modern styling
+- **Responsive design** that adapts to screen size
+- **Interactive elements** with smooth transitions
 
-### Maintainability
-- **Configuration Objects**: Centralized data in component properties
-- **Reusable Components**: Created modular, single-responsibility components
-- **Consistent Styling**: Organized CSS with clear comments and structure
+#### Experience Timeline
+- **Modern timeline design** with flexbox layout
+- **Hover animations** and visual feedback
+- **Improved typography** and spacing
+- **Better mobile experience** with responsive breakpoints
+
+#### Certifications & Education
+- **Card-based presentation** with consistent styling
+- **Flexible layouts** that work on all devices
+- **Enhanced visual hierarchy** with better typography
+- **Interactive elements** with hover states
+
+#### Social Icons
+- **Perfect centering** using flexbox
+- **Smooth hover animations** with transform effects
+- **Responsive sizing** for different screen sizes
+- **Modern color scheme** with brand colors
+
+### Modern CSS Features
+- **CSS Custom Properties** for consistent theming
+- **Flexbox and Grid** for modern layouts
+- **Smooth transitions** and animations
+- **Responsive design** with mobile-first approach
+- **Accessibility improvements** with focus states
+- **Print styles** for better document output
+
+### Color Scheme & Typography
+- **Consistent color palette** with primary brand colors
+- **Modern typography** with improved readability
+- **Better contrast ratios** for accessibility
+- **Gradient backgrounds** for visual appeal
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v20.15.1 or higher)
+- Node.js (v16 or higher)
 - Yarn package manager
 
 ### Installation
+```bash
+# Clone the repository
+git clone https://github.com/wilbertopachecob/portafolio.git
+cd portafolio
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd portafolio
-   ```
+# Install dependencies
+yarn install
 
-2. **Install dependencies**
-   ```bash
-   yarn install
-   ```
+# Start development server
+yarn serve
 
-3. **Start development server**
-   ```bash
-   yarn serve
-   ```
+# Build for production
+yarn build
+```
 
-4. **Build for production**
-   ```bash
-   yarn build
-   ```
-
-## 📝 Customization
+## 🎯 Customization
 
 ### Adding New Skills
 Edit the `skillCategories` array in `src/components/Skills.vue`:
@@ -104,10 +121,9 @@ Edit the `skillCategories` array in `src/components/Skills.vue`:
 ```javascript
 skillCategories: [
   {
-    title: "New Category",
+    title: "Category Name",
     skills: [
-      { name: "Skill Name", icon: ["fab", "icon-name"], iconColor: "#color" },
-      { name: "Another Skill" }, // Without icon
+      { name: "Skill Name", icon: ["fas", "icon-name"], iconColor: "#color" },
     ],
   },
 ]
@@ -122,6 +138,7 @@ workExperience: [
     company: "Company Name",
     position: "Job Title",
     period: "Start Date - End Date",
+    location: "Location",
     responsibilities: [
       "Responsibility 1",
       "Responsibility 2",
@@ -152,8 +169,16 @@ certifications: [
 
 The project uses a combination of:
 - **Bootstrap 5**: For responsive grid and components
+- **Modern CSS**: Flexbox, Grid, Custom Properties
 - **Custom CSS**: Located in `src/assets/css/`
 - **Component-scoped styles**: For component-specific styling
+
+### CSS Architecture
+- **Mobile-first** responsive design
+- **Flexbox-based** layouts for better alignment
+- **CSS Grid** for complex layouts
+- **Custom properties** for consistent theming
+- **Smooth animations** with CSS transitions
 
 ### Dark Mode
 Dark mode is implemented using CSS classes and can be toggled via the button in the top-right corner.
@@ -164,6 +189,12 @@ The portfolio is fully responsive with breakpoints for:
 - **Mobile**: < 768px
 - **Tablet**: 768px - 991px
 - **Desktop**: ≥ 992px
+
+### Responsive Features
+- **Flexible layouts** that adapt to screen size
+- **Optimized typography** for different devices
+- **Touch-friendly** interactive elements
+- **Performance optimized** for mobile devices
 
 ## 🔧 Development
 
@@ -178,6 +209,12 @@ The portfolio is fully responsive with breakpoints for:
 - Use props for data passing
 - Emit events for parent communication
 - Use scoped styles when possible
+
+### CSS Best Practices
+- Use flexbox for layouts instead of floats
+- Implement mobile-first responsive design
+- Use CSS custom properties for theming
+- Ensure accessibility with proper focus states
 
 ## 📄 License
 

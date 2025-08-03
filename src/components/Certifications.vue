@@ -4,53 +4,59 @@
     id="certifications"
   >
     <div class="my-auto" id="certifications-content">
-      <h2 class="mb-5">Certifications</h2>
-      
-      <!-- Certification items -->
-      <div 
-        class="row"
-        v-for="(certification, index) in certifications"
-        :key="index"
-      >
-        <!-- Certification badge/image -->
-        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
-          <img :src="certification.badgeImage" :alt="certification.badgeAlt" />
-        </div>
-        
-        <!-- Certification details -->
-        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
-          <h3>
-            <a
-              :href="certification.link"
-              :title="certification.issuer"
-              target="_blank"
-            >
-              {{ certification.issuer }}
-            </a>
-          </h3>
-          
-          <div class="subheading mb-3">
-            {{ certification.title }}
+      <!-- Certification items with modern styling -->
+      <div class="certifications-container">
+        <div 
+          class="certification-card"
+          v-for="(certification, index) in certifications"
+          :key="index"
+        >
+          <!-- Certification badge/image -->
+          <div class="certification-badge">
+            <img 
+              :src="certification.badgeImage" 
+              :alt="certification.badgeAlt"
+              class="badge-image"
+            />
           </div>
           
-          <p>
-            <small class="text-primary">
+          <!-- Certification details -->
+          <div class="certification-details">
+            <h3 class="certification-issuer">
+              <a
+                :href="certification.link"
+                :title="certification.issuer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ certification.issuer }}
+              </a>
+            </h3>
+            
+            <div class="certification-title">
+              {{ certification.title }}
+            </div>
+            
+            <div class="certification-date">
               <font-awesome-icon :icon="['fas', 'calendar-alt']" />
-              ({{ certification.date }})
-            </small>
-          </p>
-          
-          <h3 v-if="certification.certificateNumber">
-            {{ certification.certificateNumber }}
-          </h3>
-          
-          <p>{{ certification.description }}</p>
-          
-          <ul class="mt-2" style="list-style:square">
-            <li v-for="(skill, skillIndex) in certification.skills" :key="skillIndex">
-              {{ skill }}
-            </li>
-          </ul>
+              {{ certification.date }}
+            </div>
+            
+            <div v-if="certification.certificateNumber" class="certificate-number">
+              {{ certification.certificateNumber }}
+            </div>
+            
+            <p class="certification-description">{{ certification.description }}</p>
+            
+            <div class="certification-skills">
+              <h4>Skills Covered:</h4>
+              <ul class="skills-list">
+                <li v-for="(skill, skillIndex) in certification.skills" :key="skillIndex">
+                  {{ skill }}
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -102,3 +108,184 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* Modern certifications styling */
+.certifications-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.certification-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.certification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: white;
+  border-color: #bd5d38;
+}
+
+.certification-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-image {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.certification-card:hover .badge-image {
+  transform: scale(1.05);
+}
+
+.certification-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.certification-issuer {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.certification-issuer a {
+  color: #bd5d38;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.certification-issuer a:hover {
+  color: #824027;
+  text-decoration: underline;
+}
+
+.certification-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #495057;
+  margin: 0;
+}
+
+.certification-date {
+  color: #bd5d38;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.certificate-number {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-style: italic;
+  background: #e9ecef;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.certification-description {
+  color: #495057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.certification-skills h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #343a40;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  background: #bd5d38;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .certification-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .certification-badge {
+    order: -1;
+  }
+  
+  .badge-image {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  .certification-issuer {
+    font-size: 1.3rem;
+  }
+  
+  .skills-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .certification-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .badge-image {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  
+  .certification-issuer {
+    font-size: 1.2rem;
+  }
+  
+  .certification-title {
+    font-size: 1rem;
+  }
+  
+  .skills-list li {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+</style>

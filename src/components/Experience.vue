@@ -1,71 +1,93 @@
 <template>
-  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-    <div class="my-auto" id="experience-content">
-      <h2 class="mb-5">Experience</h2>
-      
-      <!-- Experience timeline -->
-      <ul class="timeline">
-        <ExperienceItem
-          v-for="(job, index) in workExperience"
-          :key="index"
-          :company="job.company"
-          :position="job.position"
-          :period="job.period"
-          :responsibilities="job.responsibilities"
-        />
-      </ul>
+  <div class="timeline">
+    <div 
+      class="timeline-item"
+      v-for="(job, index) in workExperience"
+      :key="index"
+    >
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3 class="timeline-company">{{ job.company }}</h3>
+          <div class="timeline-position">{{ job.position }}</div>
+          <div class="timeline-period">
+            <font-awesome-icon :icon="['fas', 'calendar-alt']" />
+            {{ job.period }}
+            <span v-if="job.location" class="timeline-location">
+              <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+              {{ job.location }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="timeline-description">
+          <ul class="timeline-achievements">
+            <li 
+              v-for="(responsibility, respIndex) in job.responsibilities" 
+              :key="respIndex"
+              class="timeline-achievement"
+            >
+              {{ responsibility }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import ExperienceItem from "./ExperienceItem.vue";
-
 export default {
   name: "Experience",
-  components: {
-    ExperienceItem,
-  },
   data() {
     return {
       // Work experience data
       workExperience: [
         {
+          company: "Included Health",
+          position: "Software Engineer II",
+          period: "May 2021 - Present",
+          location: "San Francisco, California",
+          responsibilities: [
+            "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
+            "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
+            "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
+            "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation.",
+          ],
+        },
+        {
           company: "Velocigo Inc",
           position: "Software Developer",
-          period: "3/2020 - 2/2021",
+          period: "March 2020 - February 2021",
+          location: "Tulsa, Oklahoma",
           responsibilities: [
-            "Development of a Web App moving our main client from Microsoft Dynamics NAV 2009 to an intuitive web UI increasing performance, visibility and communication. The backend was supported by Golang and Node.js, implementing a microservices architecture, Microsoft SQL Server, AWS and Angular 9 on the frontend.",
-            "Generation on reports using a RESTful architecture that involved extracting metadata from statistics to present to the final user in dynamic charts, tables and forms.",
-            "Guidance of our Junior Developer, supporting him and teaching him the best practices of the profession.",
-            "Built a Golang App to manage campaigns, audiences, etc. using the Mailchimp API.",
-            "Vuejs Dashboard that provides Jira metadata using Golang in the backend.",
+            "Migrated our primary client from Microsoft Dynamics NAV 2009 to a modern web UI, significantly enhancing performance, visibility, and communication.",
+            "Designed and implemented a RESTful architecture with Golang to extract metadata from Jira and generate dynamic reports for end users.",
+            "Mentored a junior developer, resulting in improved code quality by 30%.",
+            "Developed a Golang application to manage marketing campaigns. Integrated business data with the Mailchimp API for enhanced email campaign functionalities.",
           ],
         },
         {
           company: "TPV.com",
           position: "Web Developer",
-          period: "2/2019 – 3/2020",
+          period: "February 2019 - March 2020",
+          location: "Tulsa, Oklahoma",
           responsibilities: [
-            "Converted a big percentage of two major platforms from PHP (Laravel) to Vue.js increasing the loading speed for customers satisfaction.",
-            "Built reports, RESTful web services and APIs for Developers, HR personal and other departments of the company involving diverse technologies.",
-            "Supporting new features, bug fix and providing a fast solution to issues with more than 1550 contributions on GitHub.",
-            "Was one of the key figures in the Internationalization and Localization process of one of the major platforms in the company.",
+            "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
+            "Designed and implemented reports, a RESTful web service and APIs for various departments using Google Maps, Google Charts, Highcharts JS, vue-chartjs and jQuery to increase action response and data analysis in real time.",
+            "Provided rapid support for new features and bug fixes, with over 1,550 contributions on GitHub in order to maintain and improve code quality.",
+            "Drove the internationalization and localization of a web administrative platform increasing our audience reach by 8%.",
           ],
         },
         {
           company: "Institute of Cybernetics, Mathematics and Physics",
           position: "Web Developer / Webmaster",
-          period: "9/2010 – 6/2017",
+          period: "September 2010 - June 2017",
+          location: "Havana, Cuba",
           responsibilities: [
-            "Website management, frontend and backend",
-            "Development of a PHP modular CMS",
-            "Promptly resolve customer service issues and requests",
-            "Development and maintenance of WordPress themes and plugins",
-            "Intranet management of services including chats and data entry interfaces",
-            "Web service development following OWASP standards",
-            "APIs development to track process as part of a CRM",
-            "Train end users and technical support personnel on optimization and use of services and programs",
+            "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success rate.",
+            "Designed and maintained custom Wordpress themes and plugins for public website. Applied SEO techniques to attract customers into buying our products and increased our visibility by 50%.",
+            "Enhanced internal communication by 80% through the implementation of chat systems and forums.",
+            "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, reducing resolution time by 17%.",
           ],
         },
       ],
@@ -75,167 +97,183 @@ export default {
 </script>
 
 <style scoped>
-/* Timeline styling */
+/* Timeline Styles */
 .timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+  padding-left: 60px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 4px solid var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-content {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-content:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.timeline-header {
+  margin-bottom: var(--space-lg);
+}
+
+.timeline-company {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-position {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-period {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.timeline-location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: var(--space-md);
+}
+
+.timeline-period svg,
+.timeline-location svg {
+  color: var(--text-muted);
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.timeline-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.timeline-achievements {
   list-style: none;
-  padding: 0 0 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-achievement {
   position: relative;
-  margin-top: -15px;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
 }
 
-.timeline:before {
-  top: 30px;
-  bottom: 25px;
+.timeline-achievement::before {
+  content: '';
   position: absolute;
-  content: "";
-  width: 3px;
-  background-color: #f2b357;
-  left: 25px;
-  margin-right: -1.5px;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
 }
 
-.timeline > li,
-.timeline > li > .timeline-panel {
-  margin-bottom: 5px;
-  position: relative;
-}
-
-.timeline > li:after,
-.timeline > li:before {
-  content: "";
-  display: table;
-}
-
-.timeline > li:after {
-  clear: both;
-}
-
-.timeline > li > .timeline-panel {
-  margin-left: 55px;
-  float: left;
-  top: 19px;
-  padding: 4px 0px 8px 15px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  width: 95%;
-}
-
-@media screen and (min-width: 400px) {
-  .timeline > li > .timeline-panel {
-    width: 85%;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .timeline > li > .timeline-panel {
-    width: 95%;
-  }
-}
-
-.timeline > li > .timeline-badge {
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4em;
-  text-align: center;
-  position: absolute;
-  top: 16px;
-  left: 0px;
-  margin-left: 0px;
-  background-color: #999999;
-  z-index: 100;
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel {
-  float: right;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:before {
-  border-left-width: 0;
-  border-right-width: 15px;
-  left: -15px;
-  right: auto;
-}
-
-.timeline > li.timeline-inverted > .timeline-panel:after {
-  border-left-width: 0;
-  border-right-width: 14px;
-  left: -14px;
-  right: auto;
-}
-
-.timeline-badge.primary {
-  background-color: #2e6da4 !important;
-}
-
-.timeline-badge.success {
-  background-color: #3f903f !important;
-}
-
-.timeline-badge.warning {
-  background-color: #f0ad4e !important;
-}
-
-.timeline-badge.danger {
-  background-color: #d9534f !important;
-}
-
-.timeline-badge.info {
-  background-color: #5bc0de !important;
-}
-
-.timeline-title {
-  margin-top: 0;
-  color: inherit;
-}
-
-.timeline-body > p,
-.timeline-body > ul {
+.timeline-achievement:last-child {
   margin-bottom: 0;
 }
 
-.timeline-body > p + p {
-  margin-top: 5px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 15px;
+  }
+  
+  .timeline-item {
+    padding-left: 45px;
+  }
+  
+  .timeline-item::before {
+    left: 6px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .timeline-content {
+    padding: var(--space-lg);
+  }
+  
+  .timeline-company {
+    font-size: 1.25rem;
+  }
+  
+  .timeline-position {
+    font-size: 1rem;
+  }
+  
+  .timeline-period {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  
+  .timeline-location {
+    margin-left: 0;
+  }
 }
 
-@media (max-width: 767px) {
-  ul.timeline:before {
-    left: 40px;
+@media (max-width: 480px) {
+  .timeline-content {
+    padding: var(--space-md);
   }
-
-  ul.timeline > li > .timeline-panel {
-    width: calc(100% - 90px);
-    width: -moz-calc(100% - 90px);
-    width: -webkit-calc(100% - 90px);
+  
+  .timeline-company {
+    font-size: 1.125rem;
   }
-
-  ul.timeline > li > .timeline-badge {
-    left: 15px;
-    margin-left: 0;
-    top: 16px;
-  }
-
-  ul.timeline > li > .timeline-panel {
-    float: right;
-  }
-
-  ul.timeline > li > .timeline-panel:before {
-    border-left-width: 0;
-    border-right-width: 15px;
-    left: -15px;
-    right: auto;
-  }
-
-  ul.timeline > li > .timeline-panel:after {
-    border-left-width: 0;
-    border-right-width: 14px;
-    left: -14px;
-    right: auto;
+  
+  .timeline-achievement {
+    padding-left: var(--space-md);
+    font-size: 0.9rem;
   }
 }
 </style>
+
