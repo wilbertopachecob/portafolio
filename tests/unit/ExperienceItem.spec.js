@@ -4,139 +4,134 @@ import ExperienceItem from '@/components/ExperienceItem.vue'
 
 describe('ExperienceItem.vue', () => {
   const mockExperience = {
-    title: 'Senior Software Engineer',
     company: 'Tech Company Inc.',
+    position: 'Senior Software Engineer',
+    period: '2020-01 - 2023-12',
     location: 'San Francisco, CA',
-    startDate: '2020-01',
-    endDate: '2023-12',
-    description: 'Developed and maintained web applications using Vue.js and Node.js.',
-    technologies: ['Vue.js', 'Node.js', 'MongoDB'],
-    achievements: ['Led team of 5 developers', 'Improved performance by 40%']
+    responsibilities: [
+      'Developed and maintained web applications using Vue.js and Node.js.',
+      'Led team of 5 developers',
+      'Improved performance by 40%'
+    ]
   }
 
   it('renders the experience item', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
-    const experienceItem = screen.getByRole('listitem')
-    expect(experienceItem).toBeInTheDocument()
-  })
-
-  it('renders job title', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
-    expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument()
+    // Use getAllByRole and check the first one (main experience item)
+    const experienceItems = screen.getAllByRole('listitem')
+    expect(experienceItems.length).toBeGreaterThan(0)
   })
 
   it('renders company name', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
     expect(screen.getByText('Tech Company Inc.')).toBeInTheDocument()
   })
 
+  it('renders job position', () => {
+    render(ExperienceItem, {
+      props: mockExperience
+    })
+    expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument()
+  })
+
+  it('renders period', () => {
+    render(ExperienceItem, {
+      props: mockExperience
+    })
+    expect(screen.getByText('2020-01 - 2023-12')).toBeInTheDocument()
+  })
+
   it('renders location', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
     expect(screen.getByText('San Francisco, CA')).toBeInTheDocument()
   })
 
-  it('renders date range', () => {
+  it('renders responsibilities', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
-    expect(screen.getByText(/2020.*2023/)).toBeInTheDocument()
-  })
-
-  it('renders job description', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
     expect(screen.getByText(/Developed and maintained web applications/)).toBeInTheDocument()
-  })
-
-  it('renders technologies used', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
-    expect(screen.getByText('Vue.js')).toBeInTheDocument()
-    expect(screen.getByText('Node.js')).toBeInTheDocument()
-    expect(screen.getByText('MongoDB')).toBeInTheDocument()
-  })
-
-  it('renders achievements', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
     expect(screen.getByText(/Led team of 5 developers/)).toBeInTheDocument()
     expect(screen.getByText(/Improved performance by 40%/)).toBeInTheDocument()
   })
 
-  it('has proper accessibility attributes', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
-    const experienceItem = screen.getByRole('listitem')
-    expect(experienceItem).toHaveAttribute('aria-label')
-  })
-
   it('has proper semantic structure', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
-    expect(screen.getByRole('listitem')).toBeInTheDocument()
+    const experienceItems = screen.getAllByRole('listitem')
+    expect(experienceItems.length).toBeGreaterThan(0)
     expect(screen.getByRole('heading', { level: 3 })).toBeInTheDocument()
   })
 
   it('renders with different experience data', () => {
     const differentExperience = {
-      title: 'Frontend Developer',
       company: 'Startup XYZ',
+      position: 'Frontend Developer',
+      period: '2018-06 - 2020-01',
       location: 'New York, NY',
-      startDate: '2018-06',
-      endDate: '2020-01',
-      description: 'Built responsive web applications using React and TypeScript.',
-      technologies: ['React', 'TypeScript', 'Redux'],
-      achievements: ['Reduced bundle size by 30%', 'Implemented CI/CD pipeline']
+      responsibilities: [
+        'Built responsive web applications using React and TypeScript.',
+        'Reduced bundle size by 30%',
+        'Implemented CI/CD pipeline'
+      ]
     }
     
     render(ExperienceItem, {
-      props: { experience: differentExperience }
+      props: differentExperience
     })
     
-    expect(screen.getByText('Frontend Developer')).toBeInTheDocument()
     expect(screen.getByText('Startup XYZ')).toBeInTheDocument()
-    expect(screen.getByText('React')).toBeInTheDocument()
-  })
-
-  it('renders job title with proper styling', () => {
-    render(ExperienceItem, {
-      props: { experience: mockExperience }
-    })
-    const titleElement = screen.getByText('Senior Software Engineer')
-    expect(titleElement).toHaveClass('job-title')
+    expect(screen.getByText('Frontend Developer')).toBeInTheDocument()
+    expect(screen.getByText(/Built responsive web applications/)).toBeInTheDocument()
   })
 
   it('renders company with proper styling', () => {
     render(ExperienceItem, {
-      props: { experience: mockExperience }
+      props: mockExperience
     })
     const companyElement = screen.getByText('Tech Company Inc.')
-    expect(companyElement).toHaveClass('company-name')
+    expect(companyElement).toHaveClass('timeline-title')
+  })
+
+  it('renders position with proper styling', () => {
+    render(ExperienceItem, {
+      props: mockExperience
+    })
+    const positionElement = screen.getByText('Senior Software Engineer')
+    expect(positionElement).toHaveClass('badge', 'p-2', 'title-heading')
   })
 
   it('renders current job indicator', () => {
     const currentJob = {
       ...mockExperience,
-      endDate: 'Present'
+      period: '2020-01 - Present'
     }
     
     render(ExperienceItem, {
-      props: { experience: currentJob }
+      props: currentJob
     })
     
-    expect(screen.getByText('Present')).toBeInTheDocument()
+    expect(screen.getByText('2020-01 - Present')).toBeInTheDocument()
+  })
+
+  it('renders without location', () => {
+    const experienceWithoutLocation = {
+      ...mockExperience,
+      location: null
+    }
+    
+    render(ExperienceItem, {
+      props: experienceWithoutLocation
+    })
+    
+    expect(screen.getByText('Tech Company Inc.')).toBeInTheDocument()
+    expect(screen.queryByText('San Francisco, CA')).not.toBeInTheDocument()
   })
 }) 

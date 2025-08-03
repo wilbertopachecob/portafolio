@@ -1,49 +1,61 @@
-import fs from 'fs'
-import path from 'path'
+import { render, screen } from '@testing-library/vue'
+import { describe, it, expect } from 'vitest'
+import Languages from '@/components/Languages.vue'
 
-describe('Languages.vue Component Tests', () => {
-  const languagesPath = path.join(__dirname, '../../src/components/Languages.vue')
-  
-  test('Languages component file exists', () => {
-    expect(fs.existsSync(languagesPath)).toBe(true)
+describe('Languages.vue', () => {
+  it('renders language names', () => {
+    render(Languages)
+    expect(screen.getByText('Spanish')).toBeInTheDocument()
+    expect(screen.getByText('English')).toBeInTheDocument()
   })
 
-  test('Languages component contains language names', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('Spanish')
-    expect(content).toContain('English')
+  it('renders flag images with proper alt text', () => {
+    render(Languages)
+    const spanishFlag = screen.getByAltText('Flag of Spanish')
+    const englishFlag = screen.getByAltText('Flag of English')
+    
+    expect(spanishFlag).toBeInTheDocument()
+    expect(englishFlag).toBeInTheDocument()
+    expect(spanishFlag).toHaveAttribute('aria-label', 'Flag representing Spanish language')
+    expect(englishFlag).toHaveAttribute('aria-label', 'Flag representing English language')
   })
 
-  test('Languages component contains flag images', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('spanish_flag.png')
-    expect(content).toContain('english_flag.png')
+  it('has proper accessibility attributes', () => {
+    render(Languages)
+    const section = screen.getByRole('region')
+    expect(section).toBeInTheDocument()
+    expect(section).toHaveAttribute('aria-labelledby', 'languages-heading')
+    expect(section).toHaveAttribute('id', 'languages')
   })
 
-  test('Languages component has proper accessibility attributes', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('role="region"')
-    expect(content).toContain('aria-labelledby')
-    expect(content).toContain('id="languages"')
+  it('has proper semantic structure', () => {
+    render(Languages)
+    expect(screen.getByRole('region')).toBeInTheDocument()
+    expect(screen.getByRole('list')).toBeInTheDocument()
+    expect(screen.getAllByRole('listitem')).toHaveLength(2)
   })
 
-  test('Languages component has proper semantic structure', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('<section')
-    expect(content).toContain('class="language-card"')
-    expect(content).toContain('class="flag-image"')
+  it('renders language cards with proper styling classes', () => {
+    render(Languages)
+    const languageCards = screen.getAllByRole('listitem')
+    
+    languageCards.forEach(card => {
+      expect(card).toHaveClass('language-card')
+    })
   })
 
-  test('Languages component contains alt text for images', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('alt="`Flag of ${language.name}`"')
-    expect(content).toContain('aria-label="`Flag representing ${language.name} language`"')
+  it('renders flag images with proper styling classes', () => {
+    render(Languages)
+    const flagImages = screen.getAllByRole('img')
+    
+    flagImages.forEach(img => {
+      expect(img).toHaveClass('flag-image')
+    })
   })
 
-  test('Languages component has proper data structure', () => {
-    const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('languages: [')
-    expect(content).toContain('name: "Spanish"')
-    expect(content).toContain('name: "English"')
+  it('displays languages in a list format', () => {
+    render(Languages)
+    const list = screen.getByRole('list')
+    expect(list).toHaveAttribute('aria-label', 'Language proficiency')
   })
 }) 

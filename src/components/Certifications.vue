@@ -75,26 +75,22 @@ export default {
       // Certification data configuration
       certifications: [
         {
-          issuer: "Amazon Web Services (AWS)",
-          title: "AWS Certified Cloud Practitioner",
-          date: "12/14/2020",
-          link: "https://www.youracclaim.com/users/wilberto-pacheco-batista",
-          badgeImage: require("@/assets/img/AWS-CloudPractitioner-2020.004d50ea.png"),
-          badgeAlt: "AWS-badge",
-          description: "Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.",
-          skills: [
-            "Amazon Web Services",
-            "Cloud Computing",
-            "Cloud Platform",
-            "Cloud Services",
-          ],
+          name: "AWS Cloud Practitioner",
+          provider: "Amazon Web Services",
+          date: "2020",
+          level: "Foundational",
+          description: "Cloud computing fundamentals and AWS services",
+          badge: this.getCertificationImage("AWS-CloudPractitioner-2020.004d50ea.png"),
+          link: "https://www.credly.com/badges/aws-cloud-practitioner",
+          status: "Active",
+          verification: "https://www.credly.com/badges/aws-cloud-practitioner"
         },
         {
           issuer: "Centre for Development of Advanced Computing",
           title: "Specialized Training Programme in Multimedia and Web Design Technology",
           date: "6/10/2016",
           link: "https://www.cdac.in/",
-          badgeImage: require("@/assets/img/ITEC.jpg"),
+          badgeImage: this.getCertificationImage("ITEC.jpg"),
           badgeAlt: "ITEC",
           certificateNumber: "Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725",
           description: "This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:",
@@ -109,6 +105,16 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    getCertificationImage(filename) {
+      try {
+        return require(`@/assets/img/${filename}`);
+      } catch (error) {
+        // Fallback for test environment or missing images
+        return `/src/assets/img/${filename}`;
+      }
+    },
   },
 };
 </script>

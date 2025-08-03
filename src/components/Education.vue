@@ -59,10 +59,20 @@ export default {
           degree: "Computer Science Engineer",
           period: "2005 - 2010",
           link: "https://www.uci.cu/",
-          logoImage: require("@/assets/img/UCI.jpg"),
+          logoImage: this.getEducationImage("UCI.jpg"),
         },
       ],
     };
+  },
+  methods: {
+    getEducationImage(filename) {
+      try {
+        return require(`@/assets/img/${filename}`);
+      } catch (error) {
+        // Fallback for test environment or missing images
+        return `/src/assets/img/${filename}`;
+      }
+    },
   },
 };
 </script>
