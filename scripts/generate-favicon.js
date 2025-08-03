@@ -46,7 +46,7 @@ console.log('   - Or install ImageMagick: brew install imagemagick');
 
 console.log('\n🎯 Recommended:');
 console.log('- The geometric favicon (favicon-geometric.svg) is set as primary');
-console.log('- It matches your design system colors perfectly');
+console.log('- Features "WP" for Wilberto Pacheco with your design system colors');
 console.log('- SVG format provides crisp display at all sizes');
 console.log('- No additional conversion needed for modern browsers');
 

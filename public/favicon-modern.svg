@@ -2,8 +2,16 @@
   <!-- Rounded square background with primary color -->
   <rect x="2" y="2" width="28" height="28" rx="6" fill="#2563eb"/>
   
-  <!-- Minimalist "W" design -->
-  <path d="M7 24 L11 8 L16 20 L21 8 L25 24" 
+  <!-- "WP" letters - W -->
+  <path d="M6 24 L9 8 L12 20 L16 8 L19 24" 
+        stroke="white" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- "WP" letters - P -->
+  <path d="M21 8 L21 24 M21 8 L26 8 Q28 8 28 10 L28 14 Q28 16 26 16 L21 16" 
         stroke="white" 
         stroke-width="2" 
         stroke-linecap="round" 
@@ -11,7 +19,7 @@
         fill="none"/>
   
   <!-- Subtle accent line -->
-  <line x1="7" y1="26" x2="25" y2="26" 
+  <line x1="6" y1="26" x2="26" y2="26" 
         stroke="#f59e0b" 
         stroke-width="1.5" 
         stroke-linecap="round"/>

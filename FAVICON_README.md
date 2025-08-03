@@ -12,7 +12,7 @@ Updated the portfolio favicon to match the modern design system with three diffe
 - **White**: `#ffffff` (for contrast)
 
 ### Design Elements
-- **Typography**: Stylized "W" for Wilberto
+- **Typography**: Stylized "WP" for Wilberto Pacheco
 - **Shape**: Modern rounded rectangle with gradient
 - **Style**: Clean, minimal, geometric design
 - **Branding**: Consistent with portfolio's visual identity
@@ -22,17 +22,17 @@ Updated the portfolio favicon to match the modern design system with three diffe
 ### SVG Favicons
 1. **`favicon-geometric.svg`** ⭐ **RECOMMENDED**
    - Modern gradient background
-   - Clean geometric "W" design
+   - Clean geometric "WP" design
    - Accent dot for visual interest
    - Perfect match for design system
 
 2. **`favicon-modern.svg`**
    - Minimalist rounded square design
-   - Simple "W" with accent line
+   - Simple "WP" with accent line
    - Clean and modern aesthetic
 
 3. **`favicon.svg`**
-   - Traditional circular design
+   - Traditional circular design with "WP"
    - Classic approach with modern colors
    - Good fallback option
 
@@ -59,7 +59,7 @@ Updated the portfolio favicon to match the modern design system with three diffe
 
 ### Geometric Favicon (Recommended)
 - **Gradient Background**: Blue gradient for depth
-- **Geometric "W"**: Clean lines forming stylized W
+- **Geometric "WP"**: Clean lines forming stylized WP
 - **Accent Dot**: Amber dot for brand consistency
 - **Rounded Corners**: Modern 8px border radius
 - **Scalable**: SVG format works at any size
