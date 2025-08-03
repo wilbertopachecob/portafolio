@@ -12,9 +12,9 @@ describe('Component Structure Tests', () => {
   test('About component contains expected content', () => {
     const aboutPath = path.join(componentsDir, 'About.vue')
     const content = fs.readFileSync(aboutPath, 'utf8')
-    expect(content).toContain('Wilberto Pacheco')
-    expect(content).toContain('Software Engineer')
-    expect(content).toContain('Bilingual Full Stack Web Developer')
+    expect(content).toContain('$t(\'hero.title\')')
+    expect(content).toContain('$t(\'hero.subtitle\')')
+    expect(content).toContain('$t(\'hero.description\')')
   })
 
   test('About component has proper structure', () => {
@@ -33,8 +33,8 @@ describe('Component Structure Tests', () => {
   test('Languages component contains expected content', () => {
     const languagesPath = path.join(componentsDir, 'Languages.vue')
     const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('Spanish')
-    expect(content).toContain('English')
+    expect(content).toContain('$t(\'languages.spanish\')')
+    expect(content).toContain('$t(\'languages.english\')')
   })
 
   test('Languages component has proper structure', () => {
@@ -54,9 +54,9 @@ describe('Component Structure Tests', () => {
     const navigationPath = path.join(componentsDir, 'Navigation.vue')
     const content = fs.readFileSync(navigationPath, 'utf8')
     expect(content).toContain('Wilberto Pacheco')
-    expect(content).toContain('About')
-    expect(content).toContain('Experience')
-    expect(content).toContain('Skills')
+    expect(content).toContain('$t(\'nav.about\')')
+    expect(content).toContain('$t(\'nav.experience\')')
+    expect(content).toContain('$t(\'nav.skills\')')
   })
 
   test('Navigation component has proper structure', () => {
@@ -75,7 +75,7 @@ describe('Component Structure Tests', () => {
   test('Skills component contains expected content', () => {
     const skillsPath = path.join(componentsDir, 'Skills.vue')
     const content = fs.readFileSync(skillsPath, 'utf8')
-    expect(content).toContain('Programming Languages')
+    expect(content).toContain('$t(\'skills.programmingLanguages\')')
     expect(content).toContain('JavaScript')
     expect(content).toContain('Vue.js')
   })
@@ -96,9 +96,9 @@ describe('Component Structure Tests', () => {
   test('Experience component contains expected content', () => {
     const experiencePath = path.join(componentsDir, 'Experience.vue')
     const content = fs.readFileSync(experiencePath, 'utf8')
-    expect(content).toContain('Included Health')
-    expect(content).toContain('Velocigo Inc')
-    expect(content).toContain('Software Engineer')
+    expect(content).toContain('getWorkExperience')
+    expect(content).toContain('$t(\'experience.period\')')
+    expect(content).toContain('$t(\'experience.location\')')
   })
 
   test('Experience component has proper structure', () => {

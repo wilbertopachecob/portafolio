@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "certifications": "Certifications"
+  },
+  "hero": {
+    "title": "Wilberto Pacheco",
+    "subtitle": "Software Engineer",
+    "description": "Bilingual Full Stack Web Developer with a degree in Computer Science (2010) and a passion for solving complex technical challenges. My goal is to excel at my job by delivering impactful solutions that increase company performance and contribute to my personal growth.",
+    "viewExperience": "View Experience",
+    "viewSkills": "View Skills"
+  },
+  "sections": {
+    "experience": {
+      "title": "Experience",
+      "subtitle": "My professional journey and work experience"
+    },
+    "skills": {
+      "title": "Skills",
+      "subtitle": "Technical skills and technologies I work with"
+    },
+    "education": {
+      "title": "Education",
+      "subtitle": "My academic background and qualifications"
+    },
+    "languages": {
+      "title": "Languages",
+      "subtitle": "Languages I speak and write"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "subtitle": "Professional certifications and achievements"
+    }
+  },
+  "experience": {
+    "present": "Present",
+    "responsibilities": "Responsibilities"
+  },
+  "skills": {
+    "frontend": "Frontend Development",
+    "backend": "Backend Development",
+    "databases": "Databases",
+    "devops": "DevOps & Tools",
+    "languages": "Programming Languages"
+  },
+  "languages": {
+    "native": "Native",
+    "fluent": "Fluent",
+    "intermediate": "Intermediate",
+    "basic": "Basic"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "builtWith": "Built with Vue.js and modern web technologies"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "darkMode": "Switch to Dark Mode",
+    "lightMode": "Switch to Light Mode",
+    "openMenu": "Open mobile menu",
+    "closeMenu": "Close mobile menu",
+    "languageToggle": "Toggle language"
+  },
+  "contact": {
+    "email": "Email",
+    "location": "Location"
+  },
+  "experience": {
+    "period": "Period",
+    "location": "Location",
+    "achievements": "Key achievements and responsibilities"
+  },
+  "skills": {
+    "programmingLanguages": "Programming Languages",
+    "frameworksLibraries": "Frameworks & Libraries",
+    "databasesTools": "Databases & Tools",
+    "cloudDevops": "Cloud & DevOps",
+    "contentManagement": "Content Management",
+    "developmentTools": "Development Tools"
+  },
+  "education": {
+    "period": "Period",
+    "visitWebsite": "Visit {institution} website"
+  },
+  "languages": {
+    "spanish": "Spanish",
+    "english": "English",
+    "flagAlt": "Flag of {language}",
+    "flagLabel": "Flag representing {language} language"
+  },
+  "certifications": {
+    "issued": "Issued",
+    "skillsCovered": "Skills Covered",
+    "visitWebsite": "Visit {issuer} website",
+    "badgeAlt": "{issuer} certification badge",
+    "badgeLabel": "Badge for {title} certification from {issuer}"
+  },
+  "common": {
+    "scrollToTop": "Scroll to Top",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "content": {
+    "workExperience": [
+      {
+        "company": "Included Health",
+        "position": "Software Engineer II",
+        "period": "May 2021 - Present",
+        "location": "San Francisco, California",
+        "responsibilities": [
+          "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
+          "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
+          "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
+          "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation."
+        ]
+      },
+      {
+        "company": "Velocigo Inc",
+        "position": "Software Developer",
+        "period": "March 2020 - February 2021",
+        "location": "Tulsa, Oklahoma",
+        "responsibilities": [
+          "Migrated our primary client from Microsoft Dynamics NAV 2009 to a modern web UI, significantly enhancing performance, visibility, and communication.",
+          "Designed and implemented a RESTful architecture with Golang to extract metadata from Jira and generate dynamic reports for end users.",
+          "Mentored a junior developer, resulting in improved code quality by 30%.",
+          "Developed a Golang application to manage marketing campaigns. Integrated business data with the Mailchimp API for enhanced email campaign functionalities."
+        ]
+      },
+      {
+        "company": "TPV.com",
+        "position": "Web Developer",
+        "period": "February 2019 - March 2020",
+        "location": "Tulsa, Oklahoma",
+        "responsibilities": [
+          "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
+          "Designed and implemented reports, a RESTful web service and APIs for various departments using Google Maps, Google Charts, Highcharts JS, vue-chartjs and jQuery to increase action response and data analysis in real time.",
+          "Provided rapid support for new features and bug fixes, with over 1,550 contributions on GitHub in order to maintain and improve code quality.",
+          "Drove the internationalization and localization of a web administrative platform increasing our audience reach by 8%."
+        ]
+      },
+      {
+        "company": "Institute of Cybernetics, Mathematics and Physics",
+        "position": "Web Developer / Webmaster",
+        "period": "September 2010 - June 2017",
+        "location": "Havana, Cuba",
+        "responsibilities": [
+          "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success rate.",
+          "Designed and maintained custom Wordpress themes and plugins for public website. Applied SEO techniques to attract customers into buying our products and increased our visibility by 50%.",
+          "Enhanced internal communication by 80% through the implementation of chat systems and forums.",
+          "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, reducing resolution time by 17%."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Informatic Sciences",
+        "degree": "Computer Science Engineer",
+        "period": "2005 - 2010",
+        "link": "https://www.uci.cu/"
+      }
+    ],
+    "certifications": [
+      {
+        "issuer": "Amazon Web Services (AWS)",
+        "title": "AWS Certified Cloud Practitioner",
+        "date": "12/14/2020",
+        "link": "https://www.youracclaim.com/users/wilberto-pacheco-batista",
+        "description": "Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.",
+        "skills": [
+          "Amazon Web Services",
+          "Cloud Computing",
+          "Cloud Platform",
+          "Cloud Services"
+        ]
+      },
+      {
+        "issuer": "Centre for Development of Advanced Computing",
+        "title": "Specialized Training Programme in Multimedia and Web Design Technology",
+        "date": "6/10/2016",
+        "link": "https://www.cdac.in/",
+        "certificateNumber": "Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725",
+        "description": "This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:",
+        "skills": [
+          "Multimedia Design",
+          "Web Design Technology",
+          "Advanced Computing",
+          "Digital Media"
+        ]
+      }
+    ]
+  }
+} 

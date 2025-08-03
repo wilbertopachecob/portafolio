@@ -9,43 +9,46 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav" role="menubar">
         <li class="nav-item" role="none">
-          <a href="#about" class="nav-link" @click="scrollToSection('about')" role="menuitem" aria-label="Go to about section">
-            About
+          <a href="#about" class="nav-link" @click="scrollToSection('about')" role="menuitem" :aria-label="$t('nav.about')">
+            {{ $t('nav.about') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#experience" class="nav-link" @click="scrollToSection('experience')" role="menuitem" aria-label="Go to experience section">
-            Experience
+          <a href="#experience" class="nav-link" @click="scrollToSection('experience')" role="menuitem" :aria-label="$t('nav.experience')">
+            {{ $t('nav.experience') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#skills" class="nav-link" @click="scrollToSection('skills')" role="menuitem" aria-label="Go to skills section">
-            Skills
+          <a href="#skills" class="nav-link" @click="scrollToSection('skills')" role="menuitem" :aria-label="$t('nav.skills')">
+            {{ $t('nav.skills') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#education" class="nav-link" @click="scrollToSection('education')" role="menuitem" aria-label="Go to education section">
-            Education
+          <a href="#education" class="nav-link" @click="scrollToSection('education')" role="menuitem" :aria-label="$t('nav.education')">
+            {{ $t('nav.education') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#languages" class="nav-link" @click="scrollToSection('languages')" role="menuitem" aria-label="Go to languages section">
-            Languages
+          <a href="#languages" class="nav-link" @click="scrollToSection('languages')" role="menuitem" :aria-label="$t('nav.languages')">
+            {{ $t('nav.languages') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')" role="menuitem" aria-label="Go to certifications section">
-            Certifications
+          <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')" role="menuitem" :aria-label="$t('nav.certifications')">
+            {{ $t('nav.certifications') }}
           </a>
         </li>
       </ul>
+      
+      <!-- Language Toggle -->
+      <LanguageToggle />
       
       <!-- Dark Mode Toggle -->
       <button 
         class="theme-toggle"
         @click="toggleTheme"
-        :title="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-        :aria-label="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        :title="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
+        :aria-label="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
         :aria-pressed="isDarkMode"
         role="switch"
         aria-checked="isDarkMode"
@@ -82,43 +85,53 @@
     >
       <ul class="mobile-nav" role="menubar">
         <li class="mobile-nav-item" role="none">
-          <a href="#about" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to about section">
-            About
+          <a href="#about" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.about')">
+            {{ $t('nav.about') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#experience" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to experience section">
-            Experience
+          <a href="#experience" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.experience')">
+            {{ $t('nav.experience') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#skills" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to skills section">
-            Skills
+          <a href="#skills" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.skills')">
+            {{ $t('nav.skills') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#education" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to education section">
-            Education
+          <a href="#education" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.education')">
+            {{ $t('nav.education') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#languages" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to languages section">
-            Languages
+          <a href="#languages" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.languages')">
+            {{ $t('nav.languages') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#certifications" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to certifications section">
-            Certifications
+          <a href="#certifications" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.certifications')">
+            {{ $t('nav.certifications') }}
           </a>
         </li>
       </ul>
+      
+      <!-- Mobile Language Toggle -->
+      <div class="mobile-language-toggle">
+        <LanguageToggle />
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+import LanguageToggle from './LanguageToggle.vue'
+
 export default {
   name: "Navigation",
+  components: {
+    LanguageToggle
+  },
   data() {
     return {
       isScrolled: false,
@@ -444,6 +457,12 @@ export default {
   color: #2563eb !important;
 }
 
+.mobile-language-toggle {
+  margin-top: 2rem !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
@@ -454,8 +473,12 @@ export default {
     display: none !important;
   }
   
-  .theme-toggle {
+  .language-toggle {
     margin-left: 1rem !important;
+  }
+  
+  .theme-toggle {
+    margin-left: 0.5rem !important;
     width: 32px !important;
     height: 32px !important;
   }

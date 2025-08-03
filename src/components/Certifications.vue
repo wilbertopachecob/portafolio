@@ -19,9 +19,9 @@
           <div class="certification-badge">
             <img 
               :src="certification.badgeImage" 
-              :alt="`${certification.issuer} certification badge`"
+              :alt="$t('certifications.badgeAlt', { issuer: certification.issuer })"
               class="badge-image"
-              :aria-label="`Badge for ${certification.title} certification from ${certification.issuer}`"
+              :aria-label="$t('certifications.badgeLabel', { title: certification.title, issuer: certification.issuer })"
             />
           </div>
           
@@ -33,7 +33,7 @@
                 :title="certification.issuer"
                 target="_blank"
                 rel="noopener noreferrer"
-                :aria-label="`Visit ${certification.issuer} website`"
+                :aria-label="$t('certifications.visitWebsite', { issuer: certification.issuer })"
               >
                 {{ certification.issuer }}
               </a>
@@ -43,7 +43,7 @@
             
             <div class="certification-date">
               <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
-              <span>Issued: {{ certification.date }}</span>
+              <span>{{ $t('certifications.issued') }}: {{ certification.date }}</span>
             </div>
             
             <div v-if="certification.certificateNumber" class="certificate-number">
@@ -53,8 +53,8 @@
             <p class="certification-description">{{ certification.description }}</p>
             
             <div class="certification-skills">
-              <h4>Skills Covered:</h4>
-              <ul class="skills-list" role="list" aria-label="Skills covered by this certification">
+              <h4>{{ $t('certifications.skillsCovered') }}:</h4>
+              <ul class="skills-list" role="list" :aria-label="$t('certifications.skillsCovered')">
                 <li v-for="(skill, skillIndex) in certification.skills" :key="skillIndex" role="listitem">
                   {{ skill }}
                 </li>
@@ -68,47 +68,25 @@
 </template>
 
 <script>
+import { getCertifications } from '@/i18n/content';
+
 export default {
   name: "Certifications",
-  data() {
-    return {
-      // Certification data configuration
-      certifications: [
-        {
-          issuer: "Amazon Web Services (AWS)",
-          title: "AWS Certified Cloud Practitioner",
-          date: "12/14/2020",
-          link: "https://www.youracclaim.com/users/wilberto-pacheco-batista",
-          badgeImage: require("@/assets/img/AWS-CloudPractitioner-2020.004d50ea.png"),
-          badgeAlt: "AWS-badge",
-          description: "Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.",
-          skills: [
-            "Amazon Web Services",
-            "Cloud Computing",
-            "Cloud Platform",
-            "Cloud Services",
-          ],
-        },
-        {
-          issuer: "Centre for Development of Advanced Computing",
-          title: "Specialized Training Programme in Multimedia and Web Design Technology",
-          date: "6/10/2016",
-          link: "https://www.cdac.in/",
-          badgeImage: require("@/assets/img/ITEC.jpg"),
-          badgeAlt: "ITEC",
-          certificateNumber: "Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725",
-          description: "This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:",
-          skills: [
-            "Adobe Photoshop",
-            "HTML5",
-            "CSS3",
-            "JavaScript",
-            "jQuery",
-            "Wordpress",
-          ],
-        },
-      ],
-    };
+  computed: {
+    certifications() {
+      const certificationsData = getCertifications(this.$i18n.locale);
+      return certificationsData.map((cert, index) => {
+        const badgeImages = [
+          require("@/assets/img/AWS-CloudPractitioner-2020.004d50ea.png"),
+          require("@/assets/img/ITEC.jpg")
+        ];
+        return {
+          ...cert,
+          badgeImage: badgeImages[index],
+          badgeAlt: cert.issuer === "Amazon Web Services (AWS)" ? "AWS-badge" : "ITEC"
+        };
+      });
+    },
   },
 };
 </script>

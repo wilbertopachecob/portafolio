@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "about": "Acerca de",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "education": "Educación",
+    "languages": "Idiomas",
+    "certifications": "Certificaciones"
+  },
+  "hero": {
+    "title": "Wilberto Pacheco",
+    "subtitle": "Ingeniero de Software",
+    "description": "Desarrollador Web Full Stack bilingüe con un título en Ciencias de la Computación (2010) y una pasión por resolver desafíos técnicos complejos. Mi objetivo es sobresalir en mi trabajo entregando soluciones impactantes que aumenten el rendimiento de la empresa y contribuyan a mi crecimiento personal.",
+    "viewExperience": "Ver Experiencia",
+    "viewSkills": "Ver Habilidades"
+  },
+  "sections": {
+    "experience": {
+      "title": "Experiencia",
+      "subtitle": "Mi trayectoria profesional y experiencia laboral"
+    },
+    "skills": {
+      "title": "Habilidades",
+      "subtitle": "Habilidades técnicas y tecnologías con las que trabajo"
+    },
+    "education": {
+      "title": "Educación",
+      "subtitle": "Mi formación académica y calificaciones"
+    },
+    "languages": {
+      "title": "Idiomas",
+      "subtitle": "Idiomas que hablo y escribo"
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "subtitle": "Certificaciones profesionales y logros"
+    }
+  },
+  "experience": {
+    "present": "Presente",
+    "responsibilities": "Responsabilidades"
+  },
+  "skills": {
+    "frontend": "Desarrollo Frontend",
+    "backend": "Desarrollo Backend",
+    "databases": "Bases de Datos",
+    "devops": "DevOps y Herramientas",
+    "languages": "Lenguajes de Programación"
+  },
+  "languages": {
+    "native": "Nativo",
+    "fluent": "Fluido",
+    "intermediate": "Intermedio",
+    "basic": "Básico"
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados.",
+    "builtWith": "Construido con Vue.js y tecnologías web modernas"
+  },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido principal",
+    "darkMode": "Cambiar a modo oscuro",
+    "lightMode": "Cambiar a modo claro",
+    "openMenu": "Abrir menú móvil",
+    "closeMenu": "Cerrar menú móvil",
+    "languageToggle": "Cambiar idioma"
+  },
+  "contact": {
+    "email": "Correo electrónico",
+    "location": "Ubicación"
+  },
+  "experience": {
+    "period": "Período",
+    "location": "Ubicación",
+    "achievements": "Logros clave y responsabilidades"
+  },
+  "skills": {
+    "programmingLanguages": "Lenguajes de Programación",
+    "frameworksLibraries": "Frameworks y Librerías",
+    "databasesTools": "Bases de Datos y Herramientas",
+    "cloudDevops": "Cloud y DevOps",
+    "contentManagement": "Gestión de Contenido",
+    "developmentTools": "Herramientas de Desarrollo"
+  },
+  "education": {
+    "period": "Período",
+    "visitWebsite": "Visitar sitio web de {institution}"
+  },
+  "languages": {
+    "spanish": "Español",
+    "english": "Inglés",
+    "flagAlt": "Bandera de {language}",
+    "flagLabel": "Bandera que representa el idioma {language}"
+  },
+  "certifications": {
+    "issued": "Emitido",
+    "skillsCovered": "Habilidades Cubiertas",
+    "visitWebsite": "Visitar sitio web de {issuer}",
+    "badgeAlt": "Insignia de certificación de {issuer}",
+    "badgeLabel": "Insignia para certificación {title} de {issuer}"
+  },
+  "common": {
+    "scrollToTop": "Ir al Inicio",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "content": {
+    "workExperience": [
+      {
+        "company": "Included Health",
+        "position": "Ingeniero de Software II",
+        "period": "Mayo 2021 - Presente",
+        "location": "San Francisco, California",
+        "responsibilities": [
+          "Rol principal en campañas de Dependabot y mitigación de seguridad, mejorando significativamente la mantenibilidad de nuestra aplicación monolítica y contribuyendo a asegurar un acuerdo importante con un cliente.",
+          "Participé en el desarrollo de una extensión de Chrome para coordinadores de atención (CCs), liderando una refactorización sustancial del código. Logré mejoras en legibilidad, cobertura de pruebas, optimización de flujo de trabajo, estándares de linting y reducción del tamaño del bundle de JavaScript.",
+          "Desarrollo Full Stack en una aplicación web (Node.js, Redis, React y Elastic Search) que aceleró los tiempos de respuesta para CCs en un 5% y eliminó la dependencia de una herramienta externa, reduciendo costos operativos.",
+          "Migré AngularJS a componentes Vue.js en la aplicación web orientada a miembros, refactoricé código para reducir deuda técnica, mejorar la organización del código y optimizar la implementación de feature flags."
+        ]
+      },
+      {
+        "company": "Velocigo Inc",
+        "position": "Desarrollador de Software",
+        "period": "Marzo 2020 - Febrero 2021",
+        "location": "Tulsa, Oklahoma",
+        "responsibilities": [
+          "Migré nuestro cliente principal de Microsoft Dynamics NAV 2009 a una interfaz web moderna, mejorando significativamente el rendimiento, visibilidad y comunicación.",
+          "Diseñé e implementé una arquitectura RESTful con Golang para extraer metadatos de Jira y generar reportes dinámicos para usuarios finales.",
+          "Mentoricé a un desarrollador junior, resultando en una mejora del 30% en la calidad del código.",
+          "Desarrollé una aplicación Golang para gestionar campañas de marketing. Integré datos comerciales con la API de Mailchimp para funcionalidades mejoradas de campañas por correo electrónico."
+        ]
+      },
+      {
+        "company": "TPV.com",
+        "position": "Desarrollador Web",
+        "period": "Febrero 2019 - Marzo 2020",
+        "location": "Tulsa, Oklahoma",
+        "responsibilities": [
+          "Lideré la conversión de porciones significativas de dos plataformas principales de PHP (Laravel) a componentes Vue.js, resultando en velocidades de carga mejoradas.",
+          "Diseñé e implementé reportes, un servicio web RESTful y APIs para varios departamentos usando Google Maps, Google Charts, Highcharts JS, vue-chartjs y jQuery para aumentar la respuesta de acción y análisis de datos en tiempo real.",
+          "Proporcioné soporte rápido para nuevas características y correcciones de errores, con más de 1,550 contribuciones en GitHub para mantener y mejorar la calidad del código.",
+          "Impulsé la internacionalización y localización de una plataforma administrativa web aumentando nuestro alcance de audiencia en un 8%."
+        ]
+      },
+      {
+        "company": "Instituto de Cibernética, Matemática y Física",
+        "position": "Desarrollador Web / Webmaster",
+        "period": "Septiembre 2010 - Junio 2017",
+        "location": "La Habana, Cuba",
+        "responsibilities": [
+          "Asumí un rol FullStack en el Portal web usando PHP, jQuery y MYSQL. Atendí solicitudes de servicio al cliente en menos de 30 min y resolví tickets de alta prioridad en 24h con una tasa de éxito del 90%.",
+          "Diseñé y mantuve temas y plugins personalizados de Wordpress para el sitio web público. Apliqué técnicas de SEO para atraer clientes a comprar nuestros productos y aumenté nuestra visibilidad en un 50%.",
+          "Mejoré la comunicación interna en un 80% a través de la implementación de sistemas de chat y foros.",
+          "Renové los procesos de RRHH y resolución de mantenimiento desarrollando APIs y gráficos visuales interactivos, reduciendo el tiempo de resolución en un 17%."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Universidad de Ciencias Informáticas",
+        "degree": "Ingeniero en Ciencias de la Computación",
+        "period": "2005 - 2010",
+        "link": "https://www.uci.cu/"
+      }
+    ],
+    "certifications": [
+      {
+        "issuer": "Amazon Web Services (AWS)",
+        "title": "AWS Certified Cloud Practitioner",
+        "date": "14/12/2020",
+        "link": "https://www.youracclaim.com/users/wilberto-pacheco-batista",
+        "description": "Los ganadores de esta certificación tienen una comprensión fundamental de los servicios de TI y sus usos en la Nube AWS. Demostraron fluidez en la nube y conocimiento fundamental de AWS. Los propietarios de insignias pueden identificar servicios esenciales de AWS necesarios para configurar proyectos enfocados en AWS.",
+        "skills": [
+          "Amazon Web Services",
+          "Computación en la Nube",
+          "Plataforma en la Nube",
+          "Servicios en la Nube"
+        ]
+      },
+      {
+        "issuer": "Centro para el Desarrollo de Computación Avanzada",
+        "title": "Programa de Entrenamiento Especializado en Tecnología de Diseño Multimedia y Web",
+        "date": "10/6/2016",
+        "link": "https://www.cdac.in/",
+        "certificateNumber": "Certificado No. CDAC(M)/16-17/ITEC-MWDT/7725",
+        "description": "Este fue un programa intensivo de 3 meses en el Centro para el Desarrollo de Computación Avanzada en Mohali, Chandigarh, India para dominar diferentes herramientas para crear multimedia como:",
+        "skills": [
+          "Diseño Multimedia",
+          "Tecnología de Diseño Web",
+          "Computación Avanzada",
+          "Medios Digitales"
+        ]
+      }
+    ]
+  }
+} 

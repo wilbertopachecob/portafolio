@@ -1,68 +1,169 @@
 import { render, screen } from '@testing-library/vue'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+import { createI18n } from 'vue-i18n'
 import Experience from '@/components/Experience.vue'
+
+// Mock the content helper
+vi.mock('@/i18n/content', () => ({
+  getWorkExperience: vi.fn((locale) => {
+    if (locale === 'es') {
+      return [
+        {
+          company: 'Test Company ES',
+          position: 'Ingeniero de Software',
+          period: '2020 - Presente',
+          location: 'Test Location ES',
+          responsibilities: ['Responsabilidad 1', 'Responsabilidad 2']
+        }
+      ]
+    }
+    return [
+      {
+        company: 'Test Company',
+        position: 'Software Engineer',
+        period: '2020 - Present',
+        location: 'Test Location',
+        responsibilities: ['Responsibility 1', 'Responsibility 2']
+      }
+    ]
+  })
+}))
+
+// Mock i18n for testing
+const createTestI18n = (locale = 'en') => {
+  return createI18n({
+    legacy: false,
+    locale,
+    messages: {
+      en: {
+        experience: {
+          period: 'Period',
+          location: 'Location',
+          achievements: 'Key achievements and responsibilities'
+        }
+      },
+      es: {
+        experience: {
+          period: 'Período',
+          location: 'Ubicación',
+          achievements: 'Logros clave y responsabilidades'
+        }
+      }
+    }
+  })
+}
 
 describe('Experience.vue', () => {
   it('renders the experience section', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const section = screen.getByRole('region', { name: /work experience/i })
     expect(section).toBeInTheDocument()
   })
 
   it('renders the section title', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
     expect(screen.getByText(/Work Experience/)).toBeInTheDocument()
   })
 
   it('renders the section subtitle', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText(/My professional journey/)).toBeInTheDocument()
   })
 
   it('renders experience timeline', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const timeline = screen.getByRole('list')
     expect(timeline).toBeInTheDocument()
     expect(timeline).toHaveClass('timeline')
   })
 
   it('renders multiple experience items', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const experienceItems = screen.getAllByRole('listitem')
     expect(experienceItems.length).toBeGreaterThan(0)
   })
 
   it('renders job titles', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for common job titles that should be present
     const jobTitles = screen.getAllByRole('heading', { level: 3 })
     expect(jobTitles.length).toBeGreaterThan(0)
   })
 
   it('renders company names', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for company information
     const companyElements = screen.getAllByText(/Company|Corporation|Inc|LLC/i)
     expect(companyElements.length).toBeGreaterThan(0)
   })
 
   it('renders job dates', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for date patterns
     const dateElements = screen.getAllByText(/\d{4}/)
     expect(dateElements.length).toBeGreaterThan(0)
   })
 
   it('renders job descriptions', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for description content
     const descriptions = screen.getAllByText(/Developed|Implemented|Managed|Created/i)
     expect(descriptions.length).toBeGreaterThan(0)
   })
 
   it('has proper accessibility attributes', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const section = screen.getByRole('region')
     expect(section).toHaveAttribute('aria-labelledby')
     
@@ -71,9 +172,64 @@ describe('Experience.vue', () => {
   })
 
   it('has proper semantic structure', () => {
-    render(Experience)
+    const i18n = createTestI18n()
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByRole('region')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
     expect(screen.getByRole('list')).toBeInTheDocument()
+  })
+
+  it('displays English content when locale is English', () => {
+    const i18n = createTestI18n('en')
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument()
+    expect(screen.getByText('Test Company')).toBeInTheDocument()
+    expect(screen.getByText('Responsibility 1')).toBeInTheDocument()
+  })
+
+  it('displays Spanish content when locale is Spanish', () => {
+    const i18n = createTestI18n('es')
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    
+    expect(screen.getByText('Ingeniero de Software')).toBeInTheDocument()
+    expect(screen.getByText('Test Company ES')).toBeInTheDocument()
+    expect(screen.getByText('Responsabilidad 1')).toBeInTheDocument()
+  })
+
+  it('displays translated labels in English', () => {
+    const i18n = createTestI18n('en')
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    
+    expect(screen.getByText(/Period:/)).toBeInTheDocument()
+    expect(screen.getByText(/Location:/)).toBeInTheDocument()
+  })
+
+  it('displays translated labels in Spanish', () => {
+    const i18n = createTestI18n('es')
+    render(Experience, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    
+    expect(screen.getByText(/Período:/)).toBeInTheDocument()
+    expect(screen.getByText(/Ubicación:/)).toBeInTheDocument()
   })
 }) 

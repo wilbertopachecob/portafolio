@@ -8,10 +8,10 @@ describe('Languages.vue Component Tests', () => {
     expect(fs.existsSync(languagesPath)).toBe(true)
   })
 
-  test('Languages component contains language names', () => {
+  test('Languages component contains i18n translation keys', () => {
     const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('Spanish')
-    expect(content).toContain('English')
+    expect(content).toContain('$t(\'languages.spanish\')')
+    expect(content).toContain('$t(\'languages.english\')')
   })
 
   test('Languages component contains flag images', () => {
@@ -34,16 +34,16 @@ describe('Languages.vue Component Tests', () => {
     expect(content).toContain('class="flag-image"')
   })
 
-  test('Languages component contains alt text for images', () => {
+  test('Languages component contains i18n alt text for images', () => {
     const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('alt="`Flag of ${language.name}`"')
-    expect(content).toContain('aria-label="`Flag representing ${language.name} language`"')
+    expect(content).toContain('$t(\'languages.flagAlt\'')
+    expect(content).toContain('$t(\'languages.flagLabel\'')
   })
 
-  test('Languages component has proper data structure', () => {
+  test('Languages component has proper computed structure', () => {
     const content = fs.readFileSync(languagesPath, 'utf8')
-    expect(content).toContain('languages: [')
-    expect(content).toContain('name: "Spanish"')
-    expect(content).toContain('name: "English"')
+    expect(content).toContain('languages() {')
+    expect(content).toContain('this.$t(\'languages.spanish\')')
+    expect(content).toContain('this.$t(\'languages.english\')')
   })
 }) 

@@ -12,9 +12,9 @@
           <div class="language-flag">
             <img
               :src="language.flagImage"
-              :alt="`Flag of ${language.name}`"
+              :alt="$t('languages.flagAlt', { language: language.name })"
               class="flag-image"
-              :aria-label="`Flag representing ${language.name} language`"
+              :aria-label="$t('languages.flagLabel', { language: language.name })"
             />
           </div>
           <h3 class="language-name">{{ language.name }}</h3>
@@ -27,20 +27,19 @@
 <script>
 export default {
   name: "Languages",
-  data() {
-    return {
-      // Language data configuration
-      languages: [
+  computed: {
+    languages() {
+      return [
         {
-          name: "Spanish",
+          name: this.$t('languages.spanish'),
           flagImage: require("@/assets/img/spanish_flag.png"),
         },
         {
-          name: "English",
+          name: this.$t('languages.english'),
           flagImage: require("@/assets/img/english_flag.png"),
         },
-      ],
-    };
+      ];
+    },
   },
   mounted() {
     console.log('Languages component mounted');

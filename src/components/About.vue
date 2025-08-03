@@ -3,19 +3,16 @@
     <div class="hero-content">
       <!-- Hero Title -->
       <h1 class="hero-title" id="hero-title">
-        Wilberto Pacheco
+        {{ $t('hero.title') }}
         <span class="text-primary">Batista</span>
       </h1>
       
       <!-- Hero Subtitle -->
-      <h2 class="hero-subtitle">Software Engineer</h2>
+      <h2 class="hero-subtitle">{{ $t('hero.subtitle') }}</h2>
       
       <!-- Hero Description -->
       <p class="hero-description">
-        Bilingual Full Stack Web Developer with a degree in Computer Science (2010) 
-        and a passion for solving complex technical challenges. My goal is to excel 
-        at my job by delivering impactful solutions that increase company performance 
-        and contribute to my personal growth.
+        {{ $t('hero.description') }}
       </p>
       
       <!-- Contact Information -->
@@ -69,13 +66,13 @@
       <!-- Call to Action -->
       <div class="hero-actions" role="region" aria-labelledby="actions-heading">
         <h3 id="actions-heading" class="sr-only">Call to Action</h3>
-        <a href="#experience" class="btn btn-primary" aria-label="View work experience">
+        <a href="#experience" class="btn btn-primary" :aria-label="$t('hero.viewExperience')">
           <font-awesome-icon :icon="['fas', 'briefcase']" aria-hidden="true" />
-          View Experience
+          {{ $t('hero.viewExperience') }}
         </a>
-        <a href="#skills" class="btn btn-secondary" aria-label="View technical skills">
+        <a href="#skills" class="btn btn-secondary" :aria-label="$t('hero.viewSkills')">
           <font-awesome-icon :icon="['fas', 'code']" aria-hidden="true" />
-          View Skills
+          {{ $t('hero.viewSkills') }}
         </a>
       </div>
     </div>

@@ -7,6 +7,7 @@ A modern, responsive portfolio website built with Vue.js 3, showcasing professio
 - **Modern Design**: Clean, professional layout with smooth animations
 - **Responsive**: Fully responsive design that works on all devices
 - **Dark Mode**: Toggle between light and dark themes
+- **Internationalization**: Bilingual support (English/Spanish) with language toggle
 - **Interactive Elements**: Hover effects and smooth transitions
 - **Accessibility**: WCAG compliant with proper focus states
 - **Performance Optimized**: Fast loading with optimized assets
@@ -14,6 +15,7 @@ A modern, responsive portfolio website built with Vue.js 3, showcasing professio
 ## 🛠 Tech Stack
 
 - **Frontend Framework**: Vue.js 3 (Composition API)
+- **Internationalization**: Vue I18n 9
 - **Styling**: Bootstrap 5 + Custom CSS with Flexbox/Grid
 - **Icons**: FontAwesome 7
 - **Build Tool**: Vue CLI 5
@@ -32,9 +34,15 @@ src/
 │   ├── Languages.vue   # Language proficiency
 │   ├── Certifications.vue # Professional certifications
 │   ├── DarkModeToggle.vue # Dark mode toggle component
+│   ├── LanguageToggle.vue # Language toggle component
 │   ├── SkillItem.vue   # Individual skill item
 │   ├── ExperienceItem.vue # Individual experience entry
 │   └── ...
+├── i18n/               # Internationalization
+│   ├── index.js        # i18n configuration
+│   └── locales/        # Translation files
+│       ├── en.json     # English translations
+│       └── es.json     # Spanish translations
 ├── assets/
 │   ├── css/            # Stylesheets
 │   │   ├── main.css    # Main styles with modern CSS
@@ -84,6 +92,37 @@ src/
 - **Responsive design** with mobile-first approach
 - **Accessibility improvements** with focus states
 - **Print styles** for better document output
+
+## 🌐 Internationalization (i18n)
+
+The portfolio supports multiple languages with a seamless language switching experience:
+
+### Features
+- **Bilingual Support**: English and Spanish translations
+- **Language Toggle**: Visual flag-based toggle in the navigation
+- **Automatic Detection**: Detects user's browser language preference
+- **Persistent Choice**: Remembers user's language preference
+- **Accessibility**: Proper ARIA labels and screen reader support
+
+### Language Toggle
+- **Visual Design**: Flag-based toggle with smooth animations
+- **Mobile Support**: Responsive design for all screen sizes
+- **Dark Mode**: Compatible with both light and dark themes
+- **Keyboard Navigation**: Full keyboard accessibility support
+
+### Translation Coverage
+- **Navigation Menu**: All menu items translated
+- **Hero Section**: Title, subtitle, description, and call-to-action buttons
+- **Section Headers**: All section titles and subtitles
+- **Experience Section**: Complete work experience content (companies, positions, responsibilities)
+- **Skills Section**: All category titles (Programming Languages, Frameworks & Libraries, etc.)
+- **Education Section**: Complete education content (institutions, degrees, periods)
+- **Languages Section**: Language names and flag accessibility labels
+- **Certifications Section**: Complete certification content (issuers, titles, descriptions, skills)
+- **Footer**: Copyright and attribution text
+- **Accessibility**: Screen reader labels and ARIA attributes
+
+For detailed implementation information, see [I18N_IMPLEMENTATION.md](./I18N_IMPLEMENTATION.md).
 
 ### Color Scheme & Typography
 - **Consistent color palette** with primary brand colors

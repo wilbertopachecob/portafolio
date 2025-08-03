@@ -28,7 +28,7 @@
                 :title="education.institution"
                 target="_blank"
                 rel="noopener noreferrer"
-                :aria-label="`Visit ${education.institution} website`"
+                :aria-label="$t('education.visitWebsite', { institution: education.institution })"
               >
                 {{ education.institution }}
               </a>
@@ -38,7 +38,7 @@
             
             <div class="education-period">
               <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
-              <span>Period: {{ education.period }}</span>
+              <span>{{ $t('education.period') }}: {{ education.period }}</span>
             </div>
           </div>
         </div>
@@ -48,21 +48,18 @@
 </template>
 
 <script>
+import { getEducation } from '@/i18n/content';
+
 export default {
   name: "Education",
-  data() {
-    return {
-      // Education history data
-      educationHistory: [
-        {
-          institution: "University of Informatic Sciences",
-          degree: "Computer Science Engineer",
-          period: "2005 - 2010",
-          link: "https://www.uci.cu/",
-          logoImage: require("@/assets/img/UCI.jpg"),
-        },
-      ],
-    };
+  computed: {
+    educationHistory() {
+      const educationData = getEducation(this.$i18n.locale);
+      return educationData.map(item => ({
+        ...item,
+        logoImage: require("@/assets/img/UCI.jpg"),
+      }));
+    },
   },
 };
 </script>

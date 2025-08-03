@@ -36,12 +36,11 @@
 <script>
 export default {
   name: "Skills",
-  data() {
-    return {
-      // Skill categories configuration
-      skillCategories: [
+  computed: {
+    skillCategories() {
+      return [
         {
-          title: "Programming Languages",
+          title: this.$t('skills.programmingLanguages'),
           skills: [
             { name: "JavaScript", icon: ["fab", "js"], iconColor: "#F7DF1E" },
             { name: "TypeScript", icon: ["fab", "js"], iconColor: "#3178C6" },
@@ -52,7 +51,7 @@ export default {
           ],
         },
         {
-          title: "Frameworks & Libraries",
+          title: this.$t('skills.frameworksLibraries'),
           skills: [
             { name: "Vue.js", icon: ["fab", "vuejs"], iconColor: "#41B883" },
             { name: "React", icon: ["fab", "react"], iconColor: "#61DAFB" },
@@ -65,7 +64,7 @@ export default {
           ],
         },
         {
-          title: "Databases & Tools",
+          title: this.$t('skills.databasesTools'),
           skills: [
             { name: "MySQL", icon: ["fas", "database"], iconColor: "#4479A1" },
             { name: "MongoDB", icon: ["fas", "database"], iconColor: "#47A248" },
@@ -76,7 +75,7 @@ export default {
           ],
         },
         {
-          title: "Cloud & DevOps",
+          title: this.$t('skills.cloudDevops'),
           skills: [
             { name: "AWS", icon: ["fab", "aws"], iconColor: "#FF9900" },
             { name: "Docker", icon: ["fab", "docker"], iconColor: "#2496ED" },
@@ -86,7 +85,7 @@ export default {
           ],
         },
         {
-          title: "Content Management",
+          title: this.$t('skills.contentManagement'),
           skills: [
             { name: "WordPress", icon: ["fab", "wordpress"], iconColor: "#207196" },
             { name: "Drupal", icon: ["fab", "drupal"], iconColor: "#0097D7" },
@@ -94,7 +93,7 @@ export default {
           ],
         },
         {
-          title: "Development Tools",
+          title: this.$t('skills.developmentTools'),
           skills: [
             { name: "VS Code", icon: ["fas", "code"], iconColor: "#007ACC" },
             { name: "Webpack", icon: ["fas", "cog"], iconColor: "#8DD6F9" },
@@ -104,8 +103,8 @@ export default {
             { name: "REST APIs", icon: ["fas", "plug"], iconColor: "#FF6B6B" },
           ],
         },
-      ],
-    };
+      ];
+    },
   },
 };
 </script>
