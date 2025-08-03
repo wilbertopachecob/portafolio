@@ -114,6 +114,7 @@
             {{ $t('nav.certifications') }}
           </a>
         </li>
+
       </ul>
       
       <!-- Mobile Language Toggle -->
@@ -334,7 +335,7 @@ export default {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  gap: 2rem !important;
+  gap: 1.5rem !important;
   align-items: center !important;
   flex-direction: row !important;
 }
@@ -393,20 +394,22 @@ export default {
   width: 100% !important;
 }
 
+
+
 /* Theme Toggle */
 .theme-toggle {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 36px !important;
-  height: 36px !important;
+  width: 32px !important;
+  height: 32px !important;
   background: #f8fafc !important;
   border: 1px solid #e2e8f0 !important;
   border-radius: 0.5rem !important;
   color: #475569 !important;
   cursor: pointer !important;
   transition: all 0.25s ease-in-out !important;
-  margin-left: 1.5rem !important;
+  margin-left: 0.75rem !important;
 }
 
 [data-theme="dark"] .theme-toggle {
@@ -532,6 +535,8 @@ export default {
   display: flex !important;
   justify-content: center !important;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

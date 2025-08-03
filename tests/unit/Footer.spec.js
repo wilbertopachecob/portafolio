@@ -12,46 +12,66 @@ vi.mock('@fortawesome/vue-fontawesome', () => ({
   }
 }))
 
+// Helper function to render Footer with i18n mock
+const renderFooter = (options = {}) => {
+  return render(Footer, {
+    global: {
+      mocks: {
+        $t: (msg) => msg // Simple passthrough mock
+      }
+    },
+    ...options
+  })
+}
+
 describe('Footer.vue', () => {
   it('renders copyright information', () => {
-    render(Footer)
+    renderFooter()
     const copyright = screen.getByText(/Copyright © \d{4} Wilberto Pacheco Batista/)
     expect(copyright).toBeInTheDocument()
   })
 
   it('renders rights reserved text', () => {
-    render(Footer)
+    renderFooter()
     expect(screen.getByText(/All rights reserved/)).toBeInTheDocument()
   })
 
   it('renders scroll to top button', () => {
-    render(Footer)
+    renderFooter()
     const scrollButton = screen.getByTestId('font-awesome-icon')
     expect(scrollButton).toBeInTheDocument()
     expect(scrollButton).toHaveAttribute('title', 'Scroll to Top')
   })
 
   it('has proper semantic structure', () => {
-    render(Footer)
+    renderFooter()
     expect(screen.getByRole('contentinfo')).toBeInTheDocument()
   })
 
   it('renders current year in copyright', () => {
-    render(Footer)
+    renderFooter()
     const currentYear = new Date().getFullYear()
     const copyright = screen.getByText(new RegExp(`Copyright © ${currentYear}`))
     expect(copyright).toBeInTheDocument()
   })
 
   it('renders footer with proper styling classes', () => {
-    render(Footer)
+    renderFooter()
     const footer = screen.getByRole('contentinfo')
     expect(footer).toHaveClass('bg-primary', 'f-container')
   })
 
   it('renders scroll to top button with proper styling', () => {
-    render(Footer)
+    renderFooter()
     const scrollButton = screen.getByTestId('font-awesome-icon')
     expect(scrollButton).toHaveClass('mt-3', 'to-top-button', 'bounce')
+  })
+
+  it('renders download resume link with translation', () => {
+    renderFooter()
+    const downloadLink = screen.getByText('hero.downloadResume')
+    expect(downloadLink).toBeInTheDocument()
+    expect(downloadLink.closest('a')).toHaveAttribute('href', '/Engineer_Wilberto_Pacheco_Batista.pdf')
+    expect(downloadLink.closest('a')).toHaveAttribute('download', 'Engineer_Wilberto_Pacheco_Batista.pdf')
   })
 }) 
