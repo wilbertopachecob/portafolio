@@ -9,32 +9,32 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav" role="menubar">
         <li class="nav-item" role="none">
-          <a href="#about" class="nav-link" @click="scrollToSection('about')" role="menuitem" :aria-label="$t('nav.about')">
+          <a href="#about" class="nav-link" :class="{ 'active': activeSection === 'about' }" @click="scrollToSection('about')" role="menuitem" :aria-label="$t('nav.about')">
             {{ $t('nav.about') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#experience" class="nav-link" @click="scrollToSection('experience')" role="menuitem" :aria-label="$t('nav.experience')">
+          <a href="#experience" class="nav-link" :class="{ 'active': activeSection === 'experience' }" @click="scrollToSection('experience')" role="menuitem" :aria-label="$t('nav.experience')">
             {{ $t('nav.experience') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#skills" class="nav-link" @click="scrollToSection('skills')" role="menuitem" :aria-label="$t('nav.skills')">
+          <a href="#skills" class="nav-link" :class="{ 'active': activeSection === 'skills' }" @click="scrollToSection('skills')" role="menuitem" :aria-label="$t('nav.skills')">
             {{ $t('nav.skills') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#education" class="nav-link" @click="scrollToSection('education')" role="menuitem" :aria-label="$t('nav.education')">
+          <a href="#education" class="nav-link" :class="{ 'active': activeSection === 'education' }" @click="scrollToSection('education')" role="menuitem" :aria-label="$t('nav.education')">
             {{ $t('nav.education') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#languages" class="nav-link" @click="scrollToSection('languages')" role="menuitem" :aria-label="$t('nav.languages')">
+          <a href="#languages" class="nav-link" :class="{ 'active': activeSection === 'languages' }" @click="scrollToSection('languages')" role="menuitem" :aria-label="$t('nav.languages')">
             {{ $t('nav.languages') }}
           </a>
         </li>
         <li class="nav-item" role="none">
-          <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')" role="menuitem" :aria-label="$t('nav.certifications')">
+          <a href="#certifications" class="nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="scrollToSection('certifications')" role="menuitem" :aria-label="$t('nav.certifications')">
             {{ $t('nav.certifications') }}
           </a>
         </li>
@@ -85,32 +85,32 @@
     >
       <ul class="mobile-nav" role="menubar">
         <li class="mobile-nav-item" role="none">
-          <a href="#about" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.about')">
+          <a href="#about" class="mobile-nav-link" :class="{ 'active': activeSection === 'about' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.about')">
             {{ $t('nav.about') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#experience" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.experience')">
+          <a href="#experience" class="mobile-nav-link" :class="{ 'active': activeSection === 'experience' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.experience')">
             {{ $t('nav.experience') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#skills" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.skills')">
+          <a href="#skills" class="mobile-nav-link" :class="{ 'active': activeSection === 'skills' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.skills')">
             {{ $t('nav.skills') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#education" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.education')">
+          <a href="#education" class="mobile-nav-link" :class="{ 'active': activeSection === 'education' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.education')">
             {{ $t('nav.education') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#languages" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.languages')">
+          <a href="#languages" class="mobile-nav-link" :class="{ 'active': activeSection === 'languages' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.languages')">
             {{ $t('nav.languages') }}
           </a>
         </li>
         <li class="mobile-nav-item" role="none">
-          <a href="#certifications" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.certifications')">
+          <a href="#certifications" class="mobile-nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.certifications')">
             {{ $t('nav.certifications') }}
           </a>
         </li>
@@ -137,6 +137,8 @@ export default {
       isScrolled: false,
       isDarkMode: false,
       isMobileMenuOpen: false,
+      activeSection: 'about',
+      scrollTimeout: null,
     };
   },
   mounted() {
@@ -153,15 +155,60 @@ export default {
     
     // Add keyboard event listeners
     document.addEventListener('keydown', this.handleKeydown);
+    
+    // Initialize active section
+    this.updateActiveSection();
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
     document.removeEventListener('click', this.handleClickOutside);
     document.removeEventListener('keydown', this.handleKeydown);
+    
+    // Clean up timeout
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
+    }
   },
   methods: {
     handleScroll() {
       this.isScrolled = window.scrollY > 50;
+      
+      // Throttle the active section update for better performance
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+      
+      this.scrollTimeout = setTimeout(() => {
+        this.updateActiveSection();
+      }, 50);
+    },
+    
+    updateActiveSection() {
+      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
+      const scrollPosition = window.scrollY + 150; // Offset for navbar height and some buffer
+      
+      // Find the section that is currently in view
+      let currentSection = 'about';
+      
+      for (let i = 0; i < sections.length; i++) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = sections[i];
+            break;
+          }
+        }
+      }
+      
+      // If we're at the very top, default to about section
+      if (scrollPosition < 200) {
+        currentSection = 'about';
+      }
+      
+      this.activeSection = currentSection;
     },
     
     scrollToSection(sectionId) {
@@ -333,6 +380,19 @@ export default {
   width: 100% !important;
 }
 
+/* Active Navigation Link Styles */
+.nav-link.active {
+  color: #2563eb !important;
+}
+
+[data-theme="dark"] .nav-link.active {
+  color: #3b82f6 !important;
+}
+
+.nav-link.active::after {
+  width: 100% !important;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   display: flex !important;
@@ -455,6 +515,16 @@ export default {
 
 .mobile-nav-link:hover {
   color: #2563eb !important;
+}
+
+/* Active Mobile Navigation Link Styles */
+.mobile-nav-link.active {
+  color: #2563eb !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .mobile-nav-link.active {
+  color: #3b82f6 !important;
 }
 
 .mobile-language-toggle {
