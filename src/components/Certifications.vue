@@ -4,8 +4,6 @@
     id="certifications"
   >
     <div class="my-auto" id="certifications-content">
-      <h2 class="mb-5">Certifications</h2>
-      
       <!-- Certification items with modern styling -->
       <div class="certifications-container">
         <div 

@@ -1,60 +1,76 @@
 <template>
-  <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-    <div class="my-auto">
-      <!-- Personal information -->
-      <div class="resume-item d-flex flex-column flex-md-row">
-        <div class="mr-auto text-left">
-          <h1 class="mb-0">
-            Wilberto
-            <span class="text-primary">Pacheco Batista</span>
-          </h1>
-          <div class="subheading mb-5">
-            Broken Arrow, OK, 74012, USA ·
-            <a href="mailto:wilbertopachecob@gmail.com">
-              wilbertopachecob<span style="display: none">-remove-</span>@gmail.com
-            </a>
-          </div>
+  <section class="hero" id="about">
+    <div class="hero-content">
+      <!-- Hero Title -->
+      <h1 class="hero-title">
+        Wilberto Pacheco
+        <span class="text-primary">Batista</span>
+      </h1>
+      
+      <!-- Hero Subtitle -->
+      <h2 class="hero-subtitle">Software Engineer</h2>
+      
+      <!-- Hero Description -->
+      <p class="hero-description">
+        Bilingual Full Stack Web Developer with a degree in Computer Science (2010) 
+        and a passion for solving complex technical challenges. My goal is to excel 
+        at my job by delivering impactful solutions that increase company performance 
+        and contribute to my personal growth.
+      </p>
+      
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <font-awesome-icon :icon="['fas', 'envelope']" />
+          <a href="mailto:wilbertopachecob@gmail.com">wilbertopachecob@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+          <span>Broken Arrow, OK</span>
         </div>
       </div>
-
-      <!-- Professional summary -->
-      <div>
-        <p class="text-left">
-          Bilingual Full Stack Web Developer with more than 11 years of
-          experience developing frontend and backend software. Enjoys solving
-          technical issues and seeking to make a change in a company with high
-          goals.
-        </p>
-
-        <!-- Social media links -->
-        <div class="social-links-container">
-          <ul class="social-icons-list">
-            <li 
-              class="social-icon-item" 
-              v-for="(social, index) in socialLinks" 
-              :key="index"
-            >
-              <a
-                :href="social.url"
-                :title="social.title"
-                data-toggle="tooltip"
-                data-offset="0 10"
-                rel="me"
-                class="social-link"
-              >
-                <div class="social-icon-container">
-                  <font-awesome-icon :icon="['fas', 'circle']" size="5x" class="social-bg" />
-                  <font-awesome-icon
-                    :icon="social.icon"
-                    :size="'2x'"
-                    :inverse="true"
-                    class="social-icon"
-                  />
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
+      
+      <!-- Social Links -->
+      <div class="social-links">
+        <a 
+          href="https://www.linkedin.com/in/wilberto-pacheco-batista/"
+          class="social-link"
+          title="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fab', 'linkedin']" />
+        </a>
+        <a 
+          href="https://github.com/wilbertopachecob"
+          class="social-link"
+          title="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fab', 'github']" />
+        </a>
+        <a 
+          href="https://twitter.com/PachecoWilberto"
+          class="social-link"
+          title="X (Twitter)"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fab', 'x-twitter']" />
+        </a>
+      </div>
+      
+      <!-- Call to Action -->
+      <div class="hero-actions">
+        <a href="#experience" class="btn btn-primary">
+          <font-awesome-icon :icon="['fas', 'briefcase']" />
+          View Experience
+        </a>
+        <a href="#skills" class="btn btn-secondary">
+          <font-awesome-icon :icon="['fas', 'code']" />
+          View Skills
+        </a>
       </div>
     </div>
   </section>
@@ -63,113 +79,229 @@
 <script>
 export default {
   name: "About",
-  data() {
-    return {
-      // Social media links configuration
-      socialLinks: [
-        {
-          title: "LinkedIn",
-          url: "https://www.linkedin.com/in/wilberto-pacheco-batista/",
-          icon: ["fab", "linkedin"],
-        },
-        {
-          title: "GitHub",
-          url: "https://github.com/wilbertopachecob",
-          icon: ["fab", "github"],
-        },
-        {
-          title: "X (Twitter)",
-          url: "https://twitter.com/PachecoWilberto",
-          icon: ["fab", "x-twitter"],
-        },
-      ],
-    };
-  },
 };
 </script>
 
 <style scoped>
-/* Social links container */
-.social-links-container {
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-}
-
-/* Social icons list */
-.social-icons-list {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Social icon item */
-.social-icon-item {
-  flex-shrink: 0;
-}
-
-/* Social icons styling */
-.social-link {
-  display: inline-block;
-  text-decoration: none;
-  transition: transform 0.2s ease-in-out;
-}
-
-.social-link:hover {
-  transform: scale(1.1);
-}
-
-.social-icon-container {
+/* Hero Section Enhancements */
+.hero {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 5rem;
-  height: 5rem;
+  overflow: hidden;
 }
 
-.social-bg {
-  color: #6c757d;
-  transition: color 0.2s ease-in-out;
+.hero::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
 
-.social-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.hero-content {
+  position: relative;
   z-index: 1;
 }
 
-/* Hover effects for different social platforms */
-.social-link:hover .social-bg {
-  color: #0077b5; /* LinkedIn blue */
+.hero-title {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-lg);
 }
 
-.social-link[title="GitHub"]:hover .social-bg {
-  color: #333; /* GitHub dark */
+.text-primary {
+  color: var(--primary-color);
+  -webkit-text-fill-color: var(--primary-color);
 }
 
-.social-link[title="X (Twitter)"]:hover .social-bg {
-  color: #000000; /* X platform black */
+.hero-subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: var(--space-xl);
+  letter-spacing: 0.02em;
 }
 
-/* Responsive design */
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* Contact Information */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.contact-item svg {
+  color: var(--primary-color);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.contact-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.contact-item a:hover {
+  color: var(--primary-color);
+}
+
+/* Social Links Enhancement */
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  font-size: 1.25rem;
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+/* Hero Actions */
+.hero-actions {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-xl);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  gap: var(--space-sm);
+  min-width: 160px;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .social-icons-list {
-    gap: 1rem;
+  .hero {
+    padding: var(--space-2xl) 0;
   }
   
-  .social-icon-container {
-    width: 4rem;
-    height: 4rem;
+  .contact-info {
+    gap: var(--space-sm);
+  }
+  
+  .contact-item {
+    font-size: 0.9rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .social-links {
+    gap: var(--space-sm);
+  }
+  
+  .social-link {
+    width: 48px;
+    height: 48px;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
   }
 }
 </style>

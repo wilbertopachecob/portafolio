@@ -1,8 +1,6 @@
 <template>
   <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
     <div class="my-auto" id="education-content">
-      <h2 class="mb-5">Education</h2>
-      
       <!-- Education items with modern styling -->
       <div class="education-container">
         <div 

@@ -1,52 +1,63 @@
 <template>
-  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-    <div class="my-auto" id="experience-content">
-      <h2 class="mb-5">Experience</h2>
-      
-      <!-- Experience timeline -->
-      <ul class="timeline">
-        <ExperienceItem
-          v-for="(job, index) in workExperience"
-          :key="index"
-          :company="job.company"
-          :position="job.position"
-          :period="job.period"
-          :location="job.location"
-          :responsibilities="job.responsibilities"
-        />
-      </ul>
+  <div class="timeline">
+    <div 
+      class="timeline-item"
+      v-for="(job, index) in workExperience"
+      :key="index"
+    >
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <h3 class="timeline-company">{{ job.company }}</h3>
+          <div class="timeline-position">{{ job.position }}</div>
+          <div class="timeline-period">
+            <font-awesome-icon :icon="['fas', 'calendar-alt']" />
+            {{ job.period }}
+            <span v-if="job.location" class="timeline-location">
+              <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+              {{ job.location }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="timeline-description">
+          <ul class="timeline-achievements">
+            <li 
+              v-for="(responsibility, respIndex) in job.responsibilities" 
+              :key="respIndex"
+              class="timeline-achievement"
+            >
+              {{ responsibility }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import ExperienceItem from "./ExperienceItem.vue";
-
 export default {
   name: "Experience",
-  components: {
-    ExperienceItem,
-  },
   data() {
     return {
       // Work experience data
       workExperience: [
         {
           company: "Included Health",
-          position: "SWE II",
-          period: "5/2021 - Current",
+          position: "Software Engineer II",
+          period: "May 2021 - Present",
           location: "San Francisco, California",
           responsibilities: [
             "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
             "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
-            "Full Stack on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
+            "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
             "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation.",
           ],
         },
         {
           company: "Velocigo Inc",
           position: "Software Developer",
-          period: "3/2020 - 2/2021",
+          period: "March 2020 - February 2021",
           location: "Tulsa, Oklahoma",
           responsibilities: [
             "Migrated our primary client from Microsoft Dynamics NAV 2009 to a modern web UI, significantly enhancing performance, visibility, and communication.",
@@ -58,7 +69,7 @@ export default {
         {
           company: "TPV.com",
           position: "Web Developer",
-          period: "2/2019 - 3/2020",
+          period: "February 2019 - March 2020",
           location: "Tulsa, Oklahoma",
           responsibilities: [
             "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
@@ -70,10 +81,10 @@ export default {
         {
           company: "Institute of Cybernetics, Mathematics and Physics",
           position: "Web Developer / Webmaster",
-          period: "9/2010 - 6/2017",
+          period: "September 2010 - June 2017",
           location: "Havana, Cuba",
           responsibilities: [
-            "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success.",
+            "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success rate.",
             "Designed and maintained custom Wordpress themes and plugins for public website. Applied SEO techniques to attract customers into buying our products and increased our visibility by 50%.",
             "Enhanced internal communication by 80% through the implementation of chat systems and forums.",
             "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, reducing resolution time by 17%.",
@@ -86,179 +97,183 @@ export default {
 </script>
 
 <style scoped>
-/* Modern timeline styling with flexbox */
+/* Timeline Styles */
 .timeline {
-  list-style: none;
-  padding: 0;
   position: relative;
-  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.timeline:before {
-  content: "";
+.timeline::before {
+  content: '';
   position: absolute;
-  top: 30px;
-  bottom: 25px;
-  left: 25px;
-  width: 3px;
-  background: linear-gradient(to bottom, #bd5d38, #e6e6e6);
-  border-radius: 2px;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-color);
 }
 
-.timeline > li {
+.timeline-item {
   position: relative;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: flex-start;
+  margin-bottom: var(--space-2xl);
+  padding-left: 60px;
 }
 
-.timeline > li > .timeline-panel {
-  flex: 1;
-  margin-left: 55px;
-  padding: 1.5rem;
-  border: 1px solid #e6e6e6;
-  border-radius: 8px;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.timeline > li > .timeline-panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #bd5d38;
-}
-
-.timeline > li > .timeline-badge {
+.timeline-item::before {
+  content: '';
   position: absolute;
-  top: 16px;
-  left: 0;
-  width: 50px;
-  height: 50px;
+  left: 11px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
   border-radius: 50%;
-  background: #bd5d38;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  transition: transform 0.3s ease;
+  border: 4px solid var(--bg-primary);
+  box-shadow: var(--shadow-sm);
 }
 
-.timeline > li:hover > .timeline-badge {
-  transform: scale(1.1);
+.timeline-content {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
-.timeline-badge.primary {
-  background: #bd5d38 !important;
+.timeline-content:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
 }
 
-.timeline-badge.success {
-  background: #28a745 !important;
+.timeline-header {
+  margin-bottom: var(--space-lg);
 }
 
-.timeline-badge.warning {
-  background: #ffc107 !important;
-  color: #212529;
-}
-
-.timeline-badge.danger {
-  background: #dc3545 !important;
-}
-
-.timeline-badge.info {
-  background: #17a2b8 !important;
-}
-
-.timeline-title {
-  margin: 0 0 0.5rem 0;
-  color: #343a40;
+.timeline-company {
   font-size: 1.5rem;
   font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
 }
 
-.timeline-heading {
-  margin-bottom: 1rem;
+.timeline-position {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-bottom: var(--space-sm);
 }
 
-.timeline-heading .badge {
-  background: #bd5d38;
-  color: white;
-  font-size: 0.8rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.timeline-heading p {
-  margin: 0.5rem 0;
-  color: #6c757d;
-  font-size: 0.9rem;
-}
-
-.timeline-heading small {
-  display: inline-flex;
+.timeline-period {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
-.timeline-body {
-  color: #495057;
+.timeline-location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: var(--space-md);
+}
+
+.timeline-period svg,
+.timeline-location svg {
+  color: var(--text-muted);
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.timeline-description {
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
-.timeline-body ul {
+.timeline-achievements {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  padding-left: 1.2rem;
 }
 
-.timeline-body li {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
+.timeline-achievement {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
 }
 
-/* Responsive design */
-@media (max-width: 767px) {
-  .timeline:before {
-    left: 20px;
-  }
+.timeline-achievement::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}
 
-  .timeline > li > .timeline-panel {
-    margin-left: 45px;
-    padding: 1rem;
-  }
+.timeline-achievement:last-child {
+  margin-bottom: 0;
+}
 
-  .timeline > li > .timeline-badge {
-    left: 10px;
-    width: 40px;
-    height: 40px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 15px;
+  }
+  
+  .timeline-item {
+    padding-left: 45px;
+  }
+  
+  .timeline-item::before {
+    left: 6px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .timeline-content {
+    padding: var(--space-lg);
+  }
+  
+  .timeline-company {
+    font-size: 1.25rem;
+  }
+  
+  .timeline-position {
     font-size: 1rem;
   }
-
-  .timeline-title {
-    font-size: 1.3rem;
+  
+  .timeline-period {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
   }
-
-  .timeline-heading .badge {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+  
+  .timeline-location {
+    margin-left: 0;
   }
 }
 
-@media (max-width: 576px) {
-  .timeline > li > .timeline-panel {
-    margin-left: 40px;
-    padding: 0.8rem;
+@media (max-width: 480px) {
+  .timeline-content {
+    padding: var(--space-md);
   }
-
-  .timeline > li > .timeline-badge {
-    width: 35px;
-    height: 35px;
+  
+  .timeline-company {
+    font-size: 1.125rem;
+  }
+  
+  .timeline-achievement {
+    padding-left: var(--space-md);
     font-size: 0.9rem;
   }
 }
 </style>
+
