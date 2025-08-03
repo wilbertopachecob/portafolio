@@ -24,6 +24,8 @@ export default [
         exports: 'readonly',
         __dirname: 'readonly',
         __filename: 'readonly',
+        localStorage: 'readonly',
+        navigator: 'readonly',
       },
     },
     rules: {
