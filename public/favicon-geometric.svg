@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded rectangle background -->
+  <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#bgGradient)"/>
+  
+  <!-- Geometric "W" made of connected lines -->
+  <g stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <line x1="8" y1="24" x2="12" y2="8"/>
+    <line x1="12" y1="8" x2="16" y2="20"/>
+    <line x1="16" y1="20" x2="20" y2="8"/>
+    <line x1="20" y1="8" x2="24" y2="24"/>
+  </g>
+  
+  <!-- Accent dot -->
+  <circle cx="16" cy="28" r="1.5" fill="#f59e0b"/>
+</svg> 
