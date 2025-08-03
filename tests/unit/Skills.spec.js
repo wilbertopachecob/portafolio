@@ -3,6 +3,15 @@ import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import Skills from '@/components/Skills.vue'
 
+// Mock FontAwesome components
+vi.mock('@fortawesome/vue-fontawesome', () => ({
+  FontAwesomeIcon: {
+    name: 'FontAwesomeIcon',
+    template: '<span data-testid="font-awesome-icon" :aria-label="$attrs[\'aria-label\']" :aria-hidden="$attrs[\'aria-hidden\']"></span>',
+    props: ['icon', 'aria-label', 'aria-hidden']
+  }
+}))
+
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
   return createI18n({
@@ -57,53 +66,98 @@ describe('Skills.vue', () => {
   })
 
   it('renders skills container', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const container = screen.getByRole('region', { name: /technical skills/i })
     expect(container).toBeInTheDocument()
     expect(container).toHaveClass('skills-container')
   })
 
   it('renders multiple skill categories', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const skillCategories = screen.getAllByRole('listitem')
     expect(skillCategories.length).toBeGreaterThan(1) // At least 2 categories
   })
 
   it('renders programming languages category', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText(/Programming Languages/)).toBeInTheDocument()
   })
 
   it('renders frameworks category', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText(/Frameworks & Libraries/)).toBeInTheDocument()
   })
 
   it('renders databases category', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText(/Databases & Tools/)).toBeInTheDocument()
   })
 
   it('renders cloud category', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText(/Cloud & DevOps/)).toBeInTheDocument()
   })
 
   it('renders skill items', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const skillItems = screen.getAllByRole('listitem')
     expect(skillItems.length).toBeGreaterThan(0)
   })
 
   it('renders skill names', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for common technology names
     const techNames = screen.getAllByText(/JavaScript|Vue\.js|React|Node\.js|MySQL|AWS/i)
     expect(techNames.length).toBeGreaterThan(0)
   })
 
   it('has proper accessibility attributes', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     const section = screen.getByRole('region')
     expect(section).toHaveAttribute('aria-labelledby')
     
@@ -112,7 +166,12 @@ describe('Skills.vue', () => {
   })
 
   it('has proper semantic structure', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByRole('region')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
     const lists = screen.getAllByRole('list')
@@ -120,34 +179,59 @@ describe('Skills.vue', () => {
   })
 
   it('renders skill icons', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     // Look for font-awesome icons (they have aria-label attributes)
     const icons = screen.getAllByLabelText(/icon$/i)
     expect(icons.length).toBeGreaterThan(0)
   })
 
   it('renders specific programming languages', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText('JavaScript')).toBeInTheDocument()
     expect(screen.getByText('TypeScript')).toBeInTheDocument()
     expect(screen.getByText('PHP')).toBeInTheDocument()
   })
 
   it('renders specific frameworks', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText('Vue.js')).toBeInTheDocument()
     expect(screen.getByText('React')).toBeInTheDocument()
     expect(screen.getByText('Node.js')).toBeInTheDocument()
   })
 
   it('renders specific databases', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText('MySQL')).toBeInTheDocument()
     expect(screen.getByText('MongoDB')).toBeInTheDocument()
   })
 
   it('renders specific cloud services', () => {
-    render(Skills)
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
     expect(screen.getByText('AWS')).toBeInTheDocument()
     expect(screen.getByText('Docker')).toBeInTheDocument()
   })

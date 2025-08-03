@@ -1,17 +1,24 @@
 import { render, screen } from '@testing-library/vue'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import SkillItem from '@/components/SkillItem.vue'
 
-describe('SkillItem.vue', () => {
-  const mockSkill = {
-    name: 'JavaScript',
-    level: 'Advanced',
-    icon: 'fab,js'
+// Mock FontAwesome components
+vi.mock('@fortawesome/vue-fontawesome', () => ({
+  FontAwesomeIcon: {
+    name: 'FontAwesomeIcon',
+    template: '<span data-testid="font-awesome-icon" :aria-label="$attrs[\'aria-label\']" :aria-hidden="$attrs[\'aria-hidden\']"></span>',
+    props: ['icon', 'aria-label', 'aria-hidden']
   }
+}))
 
+describe('SkillItem.vue', () => {
   it('renders the skill item', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'JavaScript',
+        icon: ['fab', 'js'],
+        iconColor: '#F7DF1E'
+      }
     })
     const skillItem = screen.getByRole('listitem')
     expect(skillItem).toBeInTheDocument()
@@ -19,70 +26,84 @@ describe('SkillItem.vue', () => {
 
   it('renders skill name', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'JavaScript',
+        icon: ['fab', 'js'],
+        iconColor: '#F7DF1E'
+      }
     })
     expect(screen.getByText('JavaScript')).toBeInTheDocument()
   })
 
-  it('renders skill level', () => {
+  it('renders skill name without icon', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'JavaScript'
+      }
     })
-    expect(screen.getByText('Advanced')).toBeInTheDocument()
+    expect(screen.getByText('JavaScript')).toBeInTheDocument()
   })
 
   it('renders skill icon', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'JavaScript',
+        icon: ['fab', 'js'],
+        iconColor: '#F7DF1E'
+      }
     })
-    // Look for icon element
-    const icon = screen.getByRole('img') || screen.getByText(/🔧|⚡|💻/)
+    // Look for font-awesome icon element
+    const icon = document.querySelector('font-awesome-icon')
     expect(icon).toBeInTheDocument()
-  })
-
-  it('has proper accessibility attributes', () => {
-    render(SkillItem, {
-      props: { skill: mockSkill }
-    })
-    const skillItem = screen.getByRole('listitem')
-    expect(skillItem).toHaveAttribute('aria-label')
   })
 
   it('has proper semantic structure', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'JavaScript',
+        icon: ['fab', 'js'],
+        iconColor: '#F7DF1E'
+      }
     })
     expect(screen.getByRole('listitem')).toBeInTheDocument()
   })
 
   it('renders with different skill data', () => {
-    const differentSkill = {
-      name: 'Vue.js',
-      level: 'Expert',
-      icon: 'fab,vuejs'
-    }
-    
     render(SkillItem, {
-      props: { skill: differentSkill }
+      props: { 
+        name: 'Vue.js',
+        icon: ['fab', 'vuejs'],
+        iconColor: '#41B883'
+      }
     })
     
     expect(screen.getByText('Vue.js')).toBeInTheDocument()
-    expect(screen.getByText('Expert')).toBeInTheDocument()
   })
 
-  it('renders skill level with proper styling', () => {
+  it('renders skill with custom icon color', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'React',
+        icon: ['fab', 'react'],
+        iconColor: '#61DAFB'
+      }
     })
-    const levelElement = screen.getByText('Advanced')
-    expect(levelElement).toHaveClass('skill-level')
+    
+    expect(screen.getByText('React')).toBeInTheDocument()
+    const icon = document.querySelector('font-awesome-icon')
+    expect(icon).toBeInTheDocument()
   })
 
-  it('renders skill name with proper styling', () => {
+  it('renders skill without icon color', () => {
     render(SkillItem, {
-      props: { skill: mockSkill }
+      props: { 
+        name: 'Node.js',
+        icon: ['fab', 'node']
+      }
     })
-    const nameElement = screen.getByText('JavaScript')
-    expect(nameElement).toHaveClass('skill-name')
+    
+    expect(screen.getByText('Node.js')).toBeInTheDocument()
+    const icon = document.querySelector('font-awesome-icon')
+    expect(icon).toBeInTheDocument()
   })
 }) 

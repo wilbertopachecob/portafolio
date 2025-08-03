@@ -61,7 +61,7 @@ describe('Navigation.vue', () => {
         plugins: [i18n]
       }
     })
-    const brand = screen.getByRole('link', { name: /Wilberto Pacheco/ })
+    const brand = screen.getByRole('link', { name: /Go to about section/ })
     expect(brand).toBeInTheDocument()
     expect(brand).toHaveTextContent('Wilberto Pacheco')
   })
@@ -73,12 +73,13 @@ describe('Navigation.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText('About')).toBeInTheDocument()
-    expect(screen.getByText('Experience')).toBeInTheDocument()
-    expect(screen.getByText('Skills')).toBeInTheDocument()
-    expect(screen.getByText('Education')).toBeInTheDocument()
-    expect(screen.getByText('Languages')).toBeInTheDocument()
-    expect(screen.getByText('Certifications')).toBeInTheDocument()
+    // Use getAllByText to handle multiple instances (desktop and mobile)
+    expect(screen.getAllByText('About').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Experience').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Skills').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Education').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Languages').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Certifications').length).toBeGreaterThan(0)
   })
 
   it('renders theme toggle button', () => {
@@ -88,7 +89,7 @@ describe('Navigation.vue', () => {
         plugins: [i18n]
       }
     })
-    const themeToggle = screen.getByRole('button', { name: /Switch to Dark Mode/ })
+    const themeToggle = screen.getByRole('switch', { name: /Switch to Dark Mode/ })
     expect(themeToggle).toBeInTheDocument()
   })
 
