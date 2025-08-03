@@ -74,6 +74,17 @@
           <font-awesome-icon :icon="['fas', 'code']" aria-hidden="true" />
           {{ $t('hero.viewSkills') }}
         </a>
+        <a 
+          href="/resume.pdf" 
+          class="btn btn-outline" 
+          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+          :aria-label="$t('hero.downloadResume')"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          {{ $t('hero.downloadResume') }}
+        </a>
       </div>
     </div>
   </section>
@@ -253,6 +264,20 @@ export default {
   box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
   border-width: 2px;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
 }
 
 /* Responsive Design */

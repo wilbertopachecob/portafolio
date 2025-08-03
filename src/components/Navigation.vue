@@ -43,6 +43,20 @@
       <!-- Language Toggle -->
       <LanguageToggle />
       
+      <!-- Download Resume Button -->
+      <a 
+        href="/resume.pdf" 
+        class="resume-download-btn"
+        download="Engineer_Wilberto_Pacheco_Batista.pdf"
+        :title="$t('hero.downloadResume')"
+        :aria-label="$t('hero.downloadResume')"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+        <span class="resume-text">{{ $t('hero.downloadResume') }}</span>
+      </a>
+      
       <!-- Dark Mode Toggle -->
       <button 
         class="theme-toggle"
@@ -112,6 +126,21 @@
         <li class="mobile-nav-item" role="none">
           <a href="#certifications" class="mobile-nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.certifications')">
             {{ $t('nav.certifications') }}
+          </a>
+        </li>
+        <li class="mobile-nav-item" role="none">
+          <a 
+            href="/resume.pdf" 
+            class="mobile-nav-link resume-link"
+            download="Engineer_Wilberto_Pacheco_Batista.pdf"
+            @click="closeMobileMenu"
+            role="menuitem" 
+            :aria-label="$t('hero.downloadResume')"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+            {{ $t('hero.downloadResume') }}
           </a>
         </li>
       </ul>
@@ -393,6 +422,35 @@ export default {
   width: 100% !important;
 }
 
+/* Resume Download Button */
+.resume-download-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  background: #2563eb !important;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 0.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: all 0.25s ease-in-out !important;
+  margin-left: 1rem !important;
+  border: 1px solid #2563eb !important;
+}
+
+.resume-download-btn:hover {
+  background: #1d4ed8 !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.resume-text {
+  white-space: nowrap !important;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   display: flex !important;
@@ -406,7 +464,7 @@ export default {
   color: #475569 !important;
   cursor: pointer !important;
   transition: all 0.25s ease-in-out !important;
-  margin-left: 1.5rem !important;
+  margin-left: 1rem !important;
 }
 
 [data-theme="dark"] .theme-toggle {
@@ -533,6 +591,19 @@ export default {
   justify-content: center !important;
 }
 
+.mobile-nav-link.resume-link {
+  color: #2563eb !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+[data-theme="dark"] .mobile-nav-link.resume-link {
+  color: #3b82f6 !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
@@ -540,6 +611,10 @@ export default {
   }
   
   .navbar-nav {
+    display: none !important;
+  }
+  
+  .resume-download-btn {
     display: none !important;
   }
   
