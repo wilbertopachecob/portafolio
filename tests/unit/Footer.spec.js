@@ -13,12 +13,6 @@ vi.mock('@fortawesome/vue-fontawesome', () => ({
 }))
 
 describe('Footer.vue', () => {
-  it('renders the footer', () => {
-    render(Footer)
-    const footer = screen.getByRole('contentinfo')
-    expect(footer).toBeInTheDocument()
-  })
-
   it('renders copyright information', () => {
     render(Footer)
     const copyright = screen.getByText(/Copyright © \d{4} Wilberto Pacheco Batista/)

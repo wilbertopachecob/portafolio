@@ -88,6 +88,16 @@ export default {
       });
     },
   },
+  methods: {
+    getCertificationImage(filename) {
+      try {
+        return require(`@/assets/img/${filename}`);
+      } catch (error) {
+        // Fallback for test environment or missing images
+        return `/src/assets/img/${filename}`;
+      }
+    },
+  },
 };
 </script>
 

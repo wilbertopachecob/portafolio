@@ -3,104 +3,61 @@ import { describe, it, expect } from 'vitest'
 import Education from '@/components/Education.vue'
 
 describe('Education.vue', () => {
-  it('renders the education section', () => {
+  it('renders education section', () => {
     render(Education)
-    const section = screen.getByRole('region', { name: /education/i })
-    expect(section).toBeInTheDocument()
+    const educationSection = screen.getByRole('region')
+    expect(educationSection).toBeInTheDocument()
+    expect(educationSection).toHaveAttribute('aria-labelledby', 'education-heading')
   })
 
-  it('renders the section title', () => {
+  it('renders education heading', () => {
     render(Education)
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByText(/Education/)).toBeInTheDocument()
-  })
-
-  it('renders the section subtitle', () => {
-    render(Education)
-    expect(screen.getByText(/Academic background/)).toBeInTheDocument()
+    const heading = screen.getByRole('heading', { level: 2 })
+    expect(heading).toBeInTheDocument()
+    expect(heading).toHaveClass('sr-only')
+    expect(heading).toHaveAttribute('id', 'education-heading')
   })
 
   it('renders education container', () => {
     render(Education)
-    const container = screen.getByRole('region', { name: /education timeline/i })
+    const container = screen.getByRole('list')
     expect(container).toBeInTheDocument()
     expect(container).toHaveClass('education-container')
   })
 
-  it('renders multiple education items', () => {
+  it('renders education cards', () => {
     render(Education)
-    const educationItems = screen.getAllByRole('listitem')
-    expect(educationItems.length).toBeGreaterThan(0)
+    const educationCards = screen.getAllByRole('listitem')
+    expect(educationCards.length).toBeGreaterThan(0)
   })
 
-  it('renders degree information', () => {
+  it('renders institution names', () => {
     render(Education)
-    // Look for degree-related text
-    const degreeElements = screen.getAllByText(/Bachelor|Master|PhD|Computer Science|Engineering/i)
-    expect(degreeElements.length).toBeGreaterThan(0)
+    expect(screen.getByText('University of Informatic Sciences')).toBeInTheDocument()
   })
 
-  it('renders university names', () => {
+  it('renders degree titles', () => {
     render(Education)
-    // Look for university information
-    const universityElements = screen.getAllByText(/University|College|Institute/i)
-    expect(universityElements.length).toBeGreaterThan(0)
+    expect(screen.getByText('Computer Science Engineer')).toBeInTheDocument()
   })
 
-  it('renders graduation dates', () => {
+  it('renders education periods', () => {
     render(Education)
-    // Look for date patterns
-    const dateElements = screen.getAllByText(/\d{4}/)
-    expect(dateElements.length).toBeGreaterThan(0)
+    expect(screen.getByText(/Period: 2005 - 2010/)).toBeInTheDocument()
   })
 
-  it('renders GPA information', () => {
+  it('renders institution links', () => {
     render(Education)
-    // Look for GPA-related text
-    const gpaElements = screen.getAllByText(/GPA|Grade|Score/i)
-    expect(gpaElements.length).toBeGreaterThan(0)
+    const link = screen.getByRole('link')
+    expect(link).toBeInTheDocument()
+    expect(link).toHaveAttribute('href', 'https://www.uci.cu/')
+    expect(link).toHaveAttribute('target', '_blank')
   })
 
-  it('renders academic achievements', () => {
+  it('renders institution logos', () => {
     render(Education)
-    // Look for achievement-related text
-    const achievementElements = screen.getAllByText(/Honors|Dean|Dean's List|Magna Cum Laude|Summa Cum Laude/i)
-    expect(achievementElements.length).toBeGreaterThan(0)
-  })
-
-  it('renders course information', () => {
-    render(Education)
-    // Look for course-related text
-    const courseElements = screen.getAllByText(/Course|Class|Subject|Curriculum/i)
-    expect(courseElements.length).toBeGreaterThan(0)
-  })
-
-  it('has proper accessibility attributes', () => {
-    render(Education)
-    const section = screen.getByRole('region')
-    expect(section).toHaveAttribute('aria-labelledby')
-    
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toHaveAttribute('id')
-  })
-
-  it('has proper semantic structure', () => {
-    render(Education)
-    expect(screen.getByRole('region')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('list')).toBeInTheDocument()
-  })
-
-  it('renders education timeline', () => {
-    render(Education)
-    const timeline = screen.getByRole('list')
-    expect(timeline).toHaveClass('education-timeline')
-  })
-
-  it('renders education icons', () => {
-    render(Education)
-    // Look for education-related icons
-    const icons = screen.getAllByRole('img') || screen.getAllByText(/🎓|📚|🏫/)
-    expect(icons.length).toBeGreaterThan(0)
+    const logo = screen.getByRole('img')
+    expect(logo).toBeInTheDocument()
+    expect(logo).toHaveAttribute('alt', 'University of Informatic Sciences logo')
   })
 }) 

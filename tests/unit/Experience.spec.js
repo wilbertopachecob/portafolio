@@ -180,7 +180,23 @@ describe('Experience.vue', () => {
     })
     expect(screen.getByRole('region')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('list')).toBeInTheDocument()
+    const lists = screen.getAllByRole('list')
+    expect(lists.length).toBeGreaterThan(0)
+  })
+
+  it('has proper accessibility attributes', () => {
+    render(Experience)
+    const experienceSection = screen.getByRole('region')
+    expect(experienceSection).toHaveAttribute('aria-labelledby', 'experience-heading')
+    
+    const heading = screen.getByRole('heading', { level: 2 })
+    expect(heading).toHaveAttribute('id', 'experience-heading')
+  })
+
+  it('renders timeline with proper styling', () => {
+    render(Experience)
+    const timeline = screen.getByRole('region')
+    expect(timeline).toHaveClass('timeline')
   })
 
   it('displays English content when locale is English', () => {

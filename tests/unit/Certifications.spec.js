@@ -3,118 +3,75 @@ import { describe, it, expect } from 'vitest'
 import Certifications from '@/components/Certifications.vue'
 
 describe('Certifications.vue', () => {
-  it('renders the certifications section', () => {
+  it('renders certifications section', () => {
     render(Certifications)
-    const section = screen.getByRole('region', { name: /certifications/i })
-    expect(section).toBeInTheDocument()
+    const certificationsSection = screen.getByRole('region')
+    expect(certificationsSection).toBeInTheDocument()
+    expect(certificationsSection).toHaveAttribute('aria-labelledby', 'certifications-heading')
   })
 
-  it('renders the section title', () => {
+  it('renders certifications heading', () => {
     render(Certifications)
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByText(/Certifications/)).toBeInTheDocument()
-  })
-
-  it('renders the section subtitle', () => {
-    render(Certifications)
-    expect(screen.getByText(/Professional credentials/)).toBeInTheDocument()
+    const heading = screen.getByRole('heading', { level: 2 })
+    expect(heading).toBeInTheDocument()
+    expect(heading).toHaveClass('sr-only')
+    expect(heading).toHaveAttribute('id', 'certifications-heading')
   })
 
   it('renders certifications container', () => {
     render(Certifications)
-    const container = screen.getByRole('region', { name: /certifications grid/i })
-    expect(container).toBeInTheDocument()
-    expect(container).toHaveClass('certifications-container')
+    // Use getAllByRole and check the first one (main certifications container)
+    const containers = screen.getAllByRole('list')
+    const mainContainer = containers[0] // First list is the main certifications container
+    expect(mainContainer).toBeInTheDocument()
+    expect(mainContainer).toHaveClass('certifications-container')
   })
 
-  it('renders multiple certification items', () => {
+  it('renders certification cards', () => {
     render(Certifications)
-    const certificationItems = screen.getAllByRole('listitem')
-    expect(certificationItems.length).toBeGreaterThan(0)
+    const certificationCards = screen.getAllByRole('listitem')
+    expect(certificationCards.length).toBeGreaterThan(0)
   })
 
-  it('renders certification names', () => {
+  it('renders certification issuer names', () => {
     render(Certifications)
-    // Look for common certification names
-    const certNames = screen.getAllByText(/AWS|Azure|Google|Microsoft|Cisco|CompTIA/i)
-    expect(certNames.length).toBeGreaterThan(0)
+    expect(screen.getByText('Centre for Development of Advanced Computing')).toBeInTheDocument()
   })
 
-  it('renders certification providers', () => {
+  it('renders certification titles', () => {
     render(Certifications)
-    // Look for certification provider names
-    const providers = screen.getAllByText(/Amazon|Microsoft|Google|Cisco|CompTIA|Oracle/i)
-    expect(providers.length).toBeGreaterThan(0)
+    expect(screen.getByText('Specialized Training Programme in Multimedia and Web Design Technology')).toBeInTheDocument()
   })
 
   it('renders certification dates', () => {
     render(Certifications)
-    // Look for date patterns
-    const dateElements = screen.getAllByText(/\d{4}/)
-    expect(dateElements.length).toBeGreaterThan(0)
-  })
-
-  it('renders certification levels', () => {
-    render(Certifications)
-    // Look for certification level indicators
-    const levels = screen.getAllByText(/Associate|Professional|Expert|Foundation|Advanced/i)
-    expect(levels.length).toBeGreaterThan(0)
+    expect(screen.getByText(/Issued: 6\/10\/2016/)).toBeInTheDocument()
   })
 
   it('renders certification descriptions', () => {
     render(Certifications)
-    // Look for description content
-    const descriptions = screen.getAllByText(/Cloud|Security|Networking|Development|Administration/i)
-    expect(descriptions.length).toBeGreaterThan(0)
+    expect(screen.getByText(/This was an intensive 3 months program/)).toBeInTheDocument()
   })
 
-  it('renders certification badges', () => {
+  it('renders skills covered section', () => {
     render(Certifications)
-    // Look for badge images
-    const badges = screen.getAllByRole('img')
-    expect(badges.length).toBeGreaterThan(0)
+    // Use getAllByText and check that at least one exists
+    const skillsHeaders = screen.getAllByText('Skills Covered:')
+    expect(skillsHeaders.length).toBeGreaterThan(0)
   })
 
-  it('renders certification links', () => {
+  it('renders skills list', () => {
     render(Certifications)
-    // Look for verification links
-    const links = screen.getAllByRole('link')
-    expect(links.length).toBeGreaterThan(0)
+    expect(screen.getByText('Adobe Photoshop')).toBeInTheDocument()
+    expect(screen.getByText('HTML5')).toBeInTheDocument()
+    expect(screen.getByText('CSS3')).toBeInTheDocument()
+    expect(screen.getByText('JavaScript')).toBeInTheDocument()
+    expect(screen.getByText('jQuery')).toBeInTheDocument()
+    expect(screen.getByText('Wordpress')).toBeInTheDocument()
   })
 
-  it('has proper accessibility attributes', () => {
+  it('renders certificate number', () => {
     render(Certifications)
-    const section = screen.getByRole('region')
-    expect(section).toHaveAttribute('aria-labelledby')
-    
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toHaveAttribute('id')
-  })
-
-  it('has proper semantic structure', () => {
-    render(Certifications)
-    expect(screen.getByRole('region')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('list')).toBeInTheDocument()
-  })
-
-  it('renders certification grid', () => {
-    render(Certifications)
-    const grid = screen.getByRole('list')
-    expect(grid).toHaveClass('certifications-grid')
-  })
-
-  it('renders certification status', () => {
-    render(Certifications)
-    // Look for status indicators
-    const statusElements = screen.getAllByText(/Active|Valid|Expired|Renewal/i)
-    expect(statusElements.length).toBeGreaterThan(0)
-  })
-
-  it('renders certification verification', () => {
-    render(Certifications)
-    // Look for verification text
-    const verificationElements = screen.getAllByText(/Verify|View|Check/i)
-    expect(verificationElements.length).toBeGreaterThan(0)
+    expect(screen.getByText(/Certificate No\. CDAC\(M\)\/16-17\/ITEC-MWDT\/7725/)).toBeInTheDocument()
   })
 }) 

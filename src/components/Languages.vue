@@ -41,6 +41,16 @@ export default {
       ];
     },
   },
+  methods: {
+    getFlagImage(filename) {
+      try {
+        return require(`@/assets/img/${filename}`);
+      } catch (error) {
+        // Fallback for test environment or missing images
+        return `/src/assets/img/${filename}`;
+      }
+    },
+  },
   mounted() {
     console.log('Languages component mounted');
     console.log('Languages data:', this.languages);
