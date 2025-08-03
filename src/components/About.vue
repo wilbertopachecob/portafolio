@@ -244,10 +244,12 @@ export default {
 }
 
 .btn-secondary:hover {
-  background: var(--bg-tertiary);
+  background: transparent;
+  color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
+  border-width: 2px;
 }
 
 /* Responsive Design */
