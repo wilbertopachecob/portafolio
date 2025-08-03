@@ -10,13 +10,7 @@
     <main id="main-content" class="main-content" role="main">
       <!-- About Section -->
       <section id="about" class="section" role="region" aria-labelledby="about-section-heading">
-        <div class="container">
-          <div class="section-header">
-            <h1 id="about-section-heading" class="section-title" itemprop="name">Wilberto Pacheco Batista</h1>
-            <p class="section-subtitle" itemprop="jobTitle">{{ $t('sections.about.jobTitle') }}</p>
-          </div>
-          <About />
-        </div>
+        <About />
       </section>
       
       <!-- Experience Section -->
