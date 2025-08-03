@@ -77,8 +77,8 @@ export default {
       const certificationsData = getCertifications(this.$i18n.locale);
       return certificationsData.map((cert, index) => {
         const badgeImages = [
-          require("@/assets/img/AWS-CloudPractitioner-2020.004d50ea.png"),
-          require("@/assets/img/ITEC.jpg")
+          this.getCertificationImage('AWS-CloudPractitioner-2020.004d50ea.png'),
+          this.getCertificationImage('ITEC.jpg')
         ];
         return {
           ...cert,

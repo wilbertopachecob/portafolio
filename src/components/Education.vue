@@ -57,7 +57,7 @@ export default {
       const educationData = getEducation(this.$i18n.locale);
       return educationData.map(item => ({
         ...item,
-        logoImage: require("@/assets/img/UCI.jpg"),
+        logoImage: this.getEducationImage('UCI.jpg'),
       }));
     },
   },

@@ -32,11 +32,11 @@ export default {
       return [
         {
           name: this.$t('languages.spanish'),
-          flagImage: require("@/assets/img/spanish_flag.png"),
+          flagImage: this.getFlagImage('spanish_flag.png'),
         },
         {
           name: this.$t('languages.english'),
-          flagImage: require("@/assets/img/english_flag.png"),
+          flagImage: this.getFlagImage('english_flag.png'),
         },
       ];
     },
