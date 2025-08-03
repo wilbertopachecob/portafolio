@@ -1,23 +1,28 @@
 <template>
-  <div class="skills-container">
+  <div class="skills-container" role="region" aria-labelledby="skills-heading">
+    <h2 id="skills-heading" class="sr-only">Technical Skills</h2>
     <!-- Skills Grid -->
-    <div class="skills-grid">
+    <div class="skills-grid" role="list" aria-label="Technical skills by category">
       <div 
         class="skill-category"
         v-for="(category, index) in skillCategories"
         :key="index"
+        role="listitem"
       >
         <h3 class="skill-category-title" v-html="category.title"></h3>
-        <div class="skill-items">
+        <div class="skill-items" role="list" :aria-label="`${category.title} skills`">
           <div 
             class="skill-item"
             v-for="(skill, skillIndex) in category.skills"
             :key="skillIndex"
+            role="listitem"
           >
             <div class="skill-icon" v-if="skill.icon">
               <font-awesome-icon 
                 :icon="skill.icon" 
                 :style="{ color: skill.iconColor || 'var(--primary-color)' }"
+                :aria-label="`${skill.name} icon`"
+                aria-hidden="true"
               />
             </div>
             <span class="skill-name">{{ skill.name }}</span>

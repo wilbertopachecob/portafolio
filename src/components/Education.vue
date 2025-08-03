@@ -1,19 +1,22 @@
 <template>
-  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education" role="region" aria-labelledby="education-heading">
     <div class="my-auto" id="education-content">
+      <h2 id="education-heading" class="sr-only">Education Background</h2>
       <!-- Education items with modern styling -->
-      <div class="education-container">
+      <div class="education-container" role="list" aria-label="Educational background">
         <div 
           class="education-card"
           v-for="(education, index) in educationHistory"
           :key="index"
+          role="listitem"
         >
           <!-- Institution logo -->
           <div class="education-logo">
             <img 
               :src="education.logoImage" 
-              :alt="education.institution"
+              :alt="`${education.institution} logo`"
               class="logo-image"
+              :aria-label="`Logo of ${education.institution}`"
             />
           </div>
           
@@ -25,6 +28,7 @@
                 :title="education.institution"
                 target="_blank"
                 rel="noopener noreferrer"
+                :aria-label="`Visit ${education.institution} website`"
               >
                 {{ education.institution }}
               </a>
@@ -33,8 +37,8 @@
             <div class="degree-title">{{ education.degree }}</div>
             
             <div class="education-period">
-              <font-awesome-icon :icon="['fas', 'calendar-alt']" />
-              {{ education.period }}
+              <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+              <span>Period: {{ education.period }}</span>
             </div>
           </div>
         </div>

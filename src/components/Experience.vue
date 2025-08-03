@@ -1,30 +1,33 @@
 <template>
-  <div class="timeline">
+  <div class="timeline" role="region" aria-labelledby="experience-heading">
+    <h2 id="experience-heading" class="sr-only">Work Experience Timeline</h2>
     <div 
       class="timeline-item"
       v-for="(job, index) in workExperience"
       :key="index"
+      role="listitem"
     >
       <div class="timeline-content">
         <div class="timeline-header">
           <h3 class="timeline-company">{{ job.company }}</h3>
           <div class="timeline-position">{{ job.position }}</div>
           <div class="timeline-period">
-            <font-awesome-icon :icon="['fas', 'calendar-alt']" />
-            {{ job.period }}
+            <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+            <span>Period: {{ job.period }}</span>
             <span v-if="job.location" class="timeline-location">
-              <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
-              {{ job.location }}
+              <font-awesome-icon :icon="['fas', 'map-marker-alt']" aria-hidden="true" />
+              <span>Location: {{ job.location }}</span>
             </span>
           </div>
         </div>
         
         <div class="timeline-description">
-          <ul class="timeline-achievements">
+          <ul class="timeline-achievements" role="list" aria-label="Key achievements and responsibilities">
             <li 
               v-for="(responsibility, respIndex) in job.responsibilities" 
               :key="respIndex"
               class="timeline-achievement"
+              role="listitem"
             >
               {{ responsibility }}
             </li>

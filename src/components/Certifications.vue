@@ -2,21 +2,26 @@
   <section
     class="resume-section p-3 p-lg-5 d-flex flex-column"
     id="certifications"
+    role="region"
+    aria-labelledby="certifications-heading"
   >
     <div class="my-auto" id="certifications-content">
+      <h2 id="certifications-heading" class="sr-only">Professional Certifications</h2>
       <!-- Certification items with modern styling -->
-      <div class="certifications-container">
+      <div class="certifications-container" role="list" aria-label="Professional certifications">
         <div 
           class="certification-card"
           v-for="(certification, index) in certifications"
           :key="index"
+          role="listitem"
         >
           <!-- Certification badge/image -->
           <div class="certification-badge">
             <img 
               :src="certification.badgeImage" 
-              :alt="certification.badgeAlt"
+              :alt="`${certification.issuer} certification badge`"
               class="badge-image"
+              :aria-label="`Badge for ${certification.title} certification from ${certification.issuer}`"
             />
           </div>
           
@@ -28,18 +33,17 @@
                 :title="certification.issuer"
                 target="_blank"
                 rel="noopener noreferrer"
+                :aria-label="`Visit ${certification.issuer} website`"
               >
                 {{ certification.issuer }}
               </a>
             </h3>
             
-            <div class="certification-title">
-              {{ certification.title }}
-            </div>
+            <div class="certification-title">{{ certification.title }}</div>
             
             <div class="certification-date">
-              <font-awesome-icon :icon="['fas', 'calendar-alt']" />
-              {{ certification.date }}
+              <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+              <span>Issued: {{ certification.date }}</span>
             </div>
             
             <div v-if="certification.certificateNumber" class="certificate-number">
@@ -50,8 +54,8 @@
             
             <div class="certification-skills">
               <h4>Skills Covered:</h4>
-              <ul class="skills-list">
-                <li v-for="(skill, skillIndex) in certification.skills" :key="skillIndex">
+              <ul class="skills-list" role="list" aria-label="Skills covered by this certification">
+                <li v-for="(skill, skillIndex) in certification.skills" :key="skillIndex" role="listitem">
                   {{ skill }}
                 </li>
               </ul>
