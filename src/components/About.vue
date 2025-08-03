@@ -1,8 +1,8 @@
 <template>
-  <section class="hero" id="about">
+  <section class="hero" id="about" role="banner" aria-labelledby="hero-title">
     <div class="hero-content">
       <!-- Hero Title -->
-      <h1 class="hero-title">
+      <h1 class="hero-title" id="hero-title">
         Wilberto Pacheco
         <span class="text-primary">Batista</span>
       </h1>
@@ -19,27 +19,30 @@
       </p>
       
       <!-- Contact Information -->
-      <div class="contact-info">
+      <div class="contact-info" role="region" aria-labelledby="contact-heading">
+        <h3 id="contact-heading" class="sr-only">Contact Information</h3>
         <div class="contact-item">
-          <font-awesome-icon :icon="['fas', 'envelope']" />
-          <a href="mailto:wilbertopachecob@gmail.com">wilbertopachecob@gmail.com</a>
+          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
+          <a href="mailto:wilbertopachecob@gmail.com" aria-label="Send email to wilbertopachecob@gmail.com">wilbertopachecob@gmail.com</a>
         </div>
         <div class="contact-item">
-          <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+          <font-awesome-icon :icon="['fas', 'map-marker-alt']" aria-hidden="true" />
           <span>Broken Arrow, OK</span>
         </div>
       </div>
       
       <!-- Social Links -->
-      <div class="social-links">
+      <div class="social-links" role="region" aria-labelledby="social-heading">
+        <h3 id="social-heading" class="sr-only">Social Media Links</h3>
         <a 
           href="https://www.linkedin.com/in/wilberto-pacheco-batista/"
           class="social-link"
           title="LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit LinkedIn profile"
         >
-          <font-awesome-icon :icon="['fab', 'linkedin']" />
+          <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
         </a>
         <a 
           href="https://github.com/wilbertopachecob"
@@ -47,8 +50,9 @@
           title="GitHub"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit GitHub profile"
         >
-          <font-awesome-icon :icon="['fab', 'github']" />
+          <font-awesome-icon :icon="['fab', 'github']" aria-hidden="true" />
         </a>
         <a 
           href="https://twitter.com/PachecoWilberto"
@@ -56,19 +60,21 @@
           title="X (Twitter)"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit X (Twitter) profile"
         >
-          <font-awesome-icon :icon="['fab', 'x-twitter']" />
+          <font-awesome-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />
         </a>
       </div>
       
       <!-- Call to Action -->
-      <div class="hero-actions">
-        <a href="#experience" class="btn btn-primary">
-          <font-awesome-icon :icon="['fas', 'briefcase']" />
+      <div class="hero-actions" role="region" aria-labelledby="actions-heading">
+        <h3 id="actions-heading" class="sr-only">Call to Action</h3>
+        <a href="#experience" class="btn btn-primary" aria-label="View work experience">
+          <font-awesome-icon :icon="['fas', 'briefcase']" aria-hidden="true" />
           View Experience
         </a>
-        <a href="#skills" class="btn btn-secondary">
-          <font-awesome-icon :icon="['fas', 'code']" />
+        <a href="#skills" class="btn btn-secondary" aria-label="View technical skills">
+          <font-awesome-icon :icon="['fas', 'code']" aria-hidden="true" />
           View Skills
         </a>
       </div>

@@ -1,20 +1,22 @@
 <template>
-  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="languages">
+  <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="languages" role="region" aria-labelledby="languages-heading">
     <div class="my-auto" id="languages-content">
-      <h2 class="mb-5">Languages</h2>
+      <h2 class="mb-5" id="languages-heading">Languages</h2>
       
       <!-- Language display grid with modern styling -->
-      <div class="languages-container">
+      <div class="languages-container" role="list" aria-label="Language proficiency">
         <div 
           class="language-card"
           v-for="(language, index) in languages"
           :key="index"
+          role="listitem"
         >
           <div class="language-flag">
             <img
               :src="language.flagImage"
-              :alt="`${language.name} flag`"
+              :alt="`Flag of ${language.name}`"
               class="flag-image"
+              :aria-label="`Flag representing ${language.name} language`"
             />
           </div>
           <h3 class="language-name">{{ language.name }}</h3>

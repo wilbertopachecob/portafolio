@@ -1,60 +1,66 @@
 <template>
   <div id="app">
-    <!-- Modern Navigation -->
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
     <Navigation />
     
     <!-- Main Content -->
-    <main class="main-content">
-      <!-- Hero/About Section -->
+    <main id="main-content" class="main-content" role="main">
+      <!-- About Section -->
       <About />
       
       <!-- Experience Section -->
-      <section class="section" id="experience">
+      <section id="experience" class="section" role="region" aria-labelledby="experience-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Work Experience</h2>
-            <p class="section-subtitle">
-              My professional journey in software development and engineering
-            </p>
+            <h2 id="experience-section-heading" class="section-title">Experience</h2>
+            <p class="section-subtitle">My professional journey and work experience</p>
           </div>
           <Experience />
         </div>
       </section>
       
       <!-- Skills Section -->
-      <section class="section" id="skills">
+      <section id="skills" class="section" role="region" aria-labelledby="skills-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <p class="section-subtitle">
-              Technical expertise and tools I use to build amazing applications
-            </p>
+            <h2 id="skills-section-heading" class="section-title">Skills</h2>
+            <p class="section-subtitle">Technical skills and technologies I work with</p>
           </div>
           <Skills />
         </div>
       </section>
       
       <!-- Education Section -->
-      <section class="section" id="education">
+      <section id="education" class="section" role="region" aria-labelledby="education-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Education</h2>
-            <p class="section-subtitle">
-              My academic background and continuous learning journey
-            </p>
+            <h2 id="education-section-heading" class="section-title">Education</h2>
+            <p class="section-subtitle">My academic background and qualifications</p>
           </div>
           <Education />
         </div>
       </section>
       
-      <!-- Certifications Section -->
-      <section class="section" id="certifications">
+      <!-- Languages Section -->
+      <section id="languages" class="section" role="region" aria-labelledby="languages-section-heading">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Certifications</h2>
-            <p class="section-subtitle">
-              Professional certifications and specialized training
-            </p>
+            <h2 id="languages-section-heading" class="section-title">Languages</h2>
+            <p class="section-subtitle">Languages I speak and write</p>
+          </div>
+          <Languages />
+        </div>
+      </section>
+      
+      <!-- Certifications Section -->
+      <section id="certifications" class="section" role="region" aria-labelledby="certifications-section-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="certifications-section-heading" class="section-title">Certifications</h2>
+            <p class="section-subtitle">Professional certifications and achievements</p>
           </div>
           <Certifications />
         </div>
@@ -62,7 +68,7 @@
     </main>
     
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
           <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. All rights reserved.</p>

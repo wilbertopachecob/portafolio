@@ -1,35 +1,35 @@
 <template>
-  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
+  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }" role="navigation" aria-label="Main navigation">
     <div class="navbar-container">
       <!-- Brand/Logo -->
-      <a href="#about" class="navbar-brand">
+      <a href="#about" class="navbar-brand" aria-label="Go to about section">
         Wilberto Pacheco
       </a>
       
       <!-- Navigation Links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="#about" class="nav-link" @click="scrollToSection('about')">
+      <ul class="navbar-nav" role="menubar">
+        <li class="nav-item" role="none">
+          <a href="#about" class="nav-link" @click="scrollToSection('about')" role="menuitem" aria-label="Go to about section">
             About
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#experience" class="nav-link" @click="scrollToSection('experience')">
+        <li class="nav-item" role="none">
+          <a href="#experience" class="nav-link" @click="scrollToSection('experience')" role="menuitem" aria-label="Go to experience section">
             Experience
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#skills" class="nav-link" @click="scrollToSection('skills')">
+        <li class="nav-item" role="none">
+          <a href="#skills" class="nav-link" @click="scrollToSection('skills')" role="menuitem" aria-label="Go to skills section">
             Skills
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#education" class="nav-link" @click="scrollToSection('education')">
+        <li class="nav-item" role="none">
+          <a href="#education" class="nav-link" @click="scrollToSection('education')" role="menuitem" aria-label="Go to education section">
             Education
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')">
+        <li class="nav-item" role="none">
+          <a href="#certifications" class="nav-link" @click="scrollToSection('certifications')" role="menuitem" aria-label="Go to certifications section">
             Certifications
           </a>
         </li>
@@ -40,9 +40,14 @@
         class="theme-toggle"
         @click="toggleTheme"
         :title="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        :aria-label="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        :aria-pressed="isDarkMode"
+        role="switch"
+        aria-checked="isDarkMode"
       >
         <font-awesome-icon 
           :icon="isDarkMode ? ['fas', 'sun'] : ['fas', 'moon']" 
+          :aria-hidden="true"
         />
       </button>
       
@@ -51,7 +56,11 @@
         class="mobile-menu-toggle"
         @click="toggleMobileMenu"
         :class="{ 'active': isMobileMenuOpen }"
+        :aria-label="isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'"
+        :aria-expanded="isMobileMenuOpen"
+        :aria-controls="'mobile-menu'"
       >
+        <span class="sr-only">{{ isMobileMenuOpen ? 'Close menu' : 'Open menu' }}</span>
         <span></span>
         <span></span>
         <span></span>
@@ -59,30 +68,36 @@
     </div>
     
     <!-- Mobile Menu -->
-    <div class="mobile-menu" :class="{ 'active': isMobileMenuOpen }">
-      <ul class="mobile-nav">
-        <li class="mobile-nav-item">
-          <a href="#about" class="mobile-nav-link" @click="closeMobileMenu">
+    <div 
+      class="mobile-menu" 
+      :class="{ 'active': isMobileMenuOpen }"
+      id="mobile-menu"
+      role="menu"
+      :aria-hidden="!isMobileMenuOpen"
+    >
+      <ul class="mobile-nav" role="menubar">
+        <li class="mobile-nav-item" role="none">
+          <a href="#about" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to about section">
             About
           </a>
         </li>
-        <li class="mobile-nav-item">
-          <a href="#experience" class="mobile-nav-link" @click="closeMobileMenu">
+        <li class="mobile-nav-item" role="none">
+          <a href="#experience" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to experience section">
             Experience
           </a>
         </li>
-        <li class="mobile-nav-item">
-          <a href="#skills" class="mobile-nav-link" @click="closeMobileMenu">
+        <li class="mobile-nav-item" role="none">
+          <a href="#skills" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to skills section">
             Skills
           </a>
         </li>
-        <li class="mobile-nav-item">
-          <a href="#education" class="mobile-nav-link" @click="closeMobileMenu">
+        <li class="mobile-nav-item" role="none">
+          <a href="#education" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to education section">
             Education
           </a>
         </li>
-        <li class="mobile-nav-item">
-          <a href="#certifications" class="mobile-nav-link" @click="closeMobileMenu">
+        <li class="mobile-nav-item" role="none">
+          <a href="#certifications" class="mobile-nav-link" @click="closeMobileMenu" role="menuitem" aria-label="Go to certifications section">
             Certifications
           </a>
         </li>
@@ -112,10 +127,14 @@ export default {
     
     // Add click listener to close mobile menu when clicking outside
     document.addEventListener('click', this.handleClickOutside);
+    
+    // Add keyboard event listeners
+    document.addEventListener('keydown', this.handleKeydown);
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
     document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener('keydown', this.handleKeydown);
   },
   methods: {
     handleScroll() {
@@ -129,6 +148,8 @@ export default {
           behavior: 'smooth',
           block: 'start'
         });
+        // Focus the section for screen readers
+        element.focus();
       }
     },
     
@@ -156,6 +177,24 @@ export default {
       
       if (!navbar && !mobileToggle && this.isMobileMenuOpen) {
         this.closeMobileMenu();
+      }
+    },
+    
+    handleKeydown(event) {
+      // Close mobile menu on Escape key
+      if (event.key === 'Escape' && this.isMobileMenuOpen) {
+        this.closeMobileMenu();
+        // Focus the mobile menu toggle button
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        if (toggleButton) {
+          toggleButton.focus();
+        }
+      }
+      
+      // Toggle theme on Ctrl/Cmd + T
+      if ((event.ctrlKey || event.metaKey) && event.key === 't') {
+        event.preventDefault();
+        this.toggleTheme();
       }
     },
   },
