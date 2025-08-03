@@ -1,59 +1,61 @@
-.p-0{
+/* Modern CSS improvements with flexbox and better responsive design */
+
+.p-0 {
   margin: 0 auto;
 }
 
-.devicons{
-  font-size:1.5em;
-      vertical-align: sub;
+.devicons {
+  font-size: 1.5em;
+  vertical-align: sub;
 }
 
-/* ensure items with short summarues push date over image */
-.publication-content{
-  width:90%;
+/* Ensure items with short summaries push date over image */
+.publication-content {
+  width: 90%;
 }
 
-
-h3{
-    margin-top:40px;
+h3 {
+  margin-top: 40px;
 }
 
-h3.mb-0{
-    margin-top:0;
+h3.mb-0 {
+  margin-top: 0;
 }
 
-div.skills-heading{
-    margin-top:1em;
-    margin-bottom:0 !important;
+div.skills-heading {
+  margin-top: 1em;
+  margin-bottom: 0 !important;
 }
 
-
-
-/* From https://codepen.io/wbeeftink/pen/dIaDH */
-
+/* Modernized tags component using flexbox instead of floats */
 .tags {
-    font: 12px/1.5 'PT Sans', serif;
+  font: 12px/1.5 'PT Sans', serif;
   list-style: none;
   margin: 0;
-  overflow: hidden;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .tags li {
-  float: left;
+  /* Remove float, use flexbox instead */
+  display: flex;
 }
 
 .tag {
   background: #eee;
   border-radius: 3px 0 0 3px;
   color: #999;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   height: 26px;
   line-height: 26px;
   padding: 0 20px 0 23px;
   position: relative;
-  margin: 0 10px 10px 0;
   text-decoration: none;
-  -webkit-transition: color 0.2s;
+  transition: all 0.2s ease;
+  /* Remove margin, use gap from parent instead */
 }
 
 .tag::before {
@@ -77,31 +79,81 @@ div.skills-heading{
   position: absolute;
   right: 0;
   top: 0;
+  transition: border-left-color 0.2s ease;
 }
 
 .tag:hover {
   background-color: crimson;
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tag:hover::after {
-   border-left-color: crimson;
+  border-left-color: crimson;
 }
 
-.project-fact{
-  font-size:80%;
-  font-style:italic;
+.project-fact {
+  font-size: 80%;
+  font-style: italic;
 }
-
-
-
 
 .resume-section blockquote {
-    border-left: 4px solid #BD5D38;
-    padding-left: 1em;
+  border-left: 4px solid #BD5D38;
+  padding-left: 1em;
+  margin: 1rem 0;
 }
 
 /* Fix responsive width for blog posts */
 .my-auto {
-	width: 100%
+  width: 100%;
+}
+
+/* Modern flexbox utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Improved responsive design */
+@media (max-width: 768px) {
+  .tags {
+    gap: 8px;
+  }
+  
+  .tag {
+    font-size: 11px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 16px 0 19px;
+  }
+  
+  .tag::before {
+    height: 5px;
+    width: 5px;
+    left: 8px;
+    top: 9px;
+  }
+  
+  .tag::after {
+    border-bottom: 12px solid transparent;
+    border-left: 8px solid #eee;
+    border-top: 12px solid transparent;
+  }
+  
+  .tag:hover::after {
+    border-left: 8px solid crimson;
+  }
 }

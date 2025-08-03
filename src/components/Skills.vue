@@ -3,18 +3,24 @@
     <div class="my-auto" id="skills-content">
       <h2 class="mb-5">Skills</h2>
 
-      <!-- Render each skill category -->
-      <div v-for="(category, index) in skillCategories" :key="index">
-        <h3 v-html="category.title"></h3>
-        <ul>
-          <SkillItem
-            v-for="(skill, skillIndex) in category.skills"
-            :key="skillIndex"
-            :name="skill.name"
-            :icon="skill.icon"
-            :icon-color="skill.iconColor"
-          />
-        </ul>
+      <!-- Render each skill category with modern styling -->
+      <div class="skills-section">
+        <div 
+          v-for="(category, index) in skillCategories" 
+          :key="index"
+          class="skill-category"
+        >
+          <h3 v-html="category.title"></h3>
+          <ul class="skills-list">
+            <SkillItem
+              v-for="(skill, skillIndex) in category.skills"
+              :key="skillIndex"
+              :name="skill.name"
+              :icon="skill.icon"
+              :icon-color="skill.iconColor"
+            />
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -89,3 +95,91 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* Skills section styling with modern flexbox layout */
+.skills-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.skill-category {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skill-category h3 {
+  margin-bottom: 1rem;
+  color: #343a40;
+  border-bottom: 2px solid #bd5d38;
+  padding-bottom: 0.5rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skills-list li:hover {
+  background: #bd5d38;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.skills-list li svg {
+  flex-shrink: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .skill-category {
+    padding: 1rem;
+  }
+  
+  .skills-list {
+    gap: 0.5rem;
+  }
+  
+  .skills-list li {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .skills-list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .skills-list li {
+    justify-content: center;
+  }
+}
+</style>

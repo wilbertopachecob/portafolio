@@ -1,11 +1,5 @@
 <template>
   <li>
-    <!-- Timeline badge with location icon -->
-    <div class="timeline-badge primary">
-      <font-awesome-icon :icon="['fas', 'map-marker-alt']" size="1x" />
-    </div>
-    
-    <!-- Timeline panel with job details -->
     <div class="timeline-panel">
       <div class="timeline-heading">
         <h3 class="timeline-title">{{ company }}</h3>
@@ -14,6 +8,10 @@
           <small class="text-primary">
             <font-awesome-icon :icon="['fas', 'calendar-alt']" /> 
             {{ period }}
+          </small>
+          <small v-if="location" class="text-muted ml-2">
+            <font-awesome-icon :icon="['fas', 'map-marker-alt']" /> 
+            {{ location }}
           </small>
         </p>
       </div>
@@ -44,6 +42,11 @@ export default {
     period: {
       type: String,
       required: true,
+    },
+    location: {
+      type: String,
+      required: false,
+      default: null,
     },
     responsibilities: {
       type: Array,

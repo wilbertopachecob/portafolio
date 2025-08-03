@@ -7,4 +7,21 @@ module.exports = {
     },
   },
   lintOnSave: false,
+  devServer: {
+    hot: true,
+    liveReload: true,
+    watchFiles: {
+      paths: ['src/**/*'],
+      options: {
+        usePolling: true,
+        interval: 1000,
+      },
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+  },
 };
