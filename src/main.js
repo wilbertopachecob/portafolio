@@ -13,12 +13,37 @@ import {
   faBriefcase, 
   faCode, 
   faCalendarAlt,
-  faArrowAltCircleUp
+  faArrowAltCircleUp,
+  faServer,
+  faDatabase,
+  faSearch,
+  faCog,
+  faCheckCircle,
+  faVial,
+  faPlug,
+  faSun,
+  faMoon
 } from '@fortawesome/free-solid-svg-icons'
 import { 
   faLinkedin, 
   faGithub, 
-  faXTwitter 
+  faXTwitter,
+  faJs,
+  faPhp,
+  faHtml5,
+  faCss3Alt,
+  faVuejs,
+  faReact,
+  faAngular,
+  faLaravel,
+  faNode,
+  faBootstrap,
+  faGit,
+  faAws,
+  faDocker,
+  faLinux,
+  faWordpress,
+  faDrupal
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 
@@ -33,9 +58,34 @@ library.add(
   faCode, 
   faCalendarAlt,
   faArrowAltCircleUp,
+  faServer,
+  faDatabase,
+  faSearch,
+  faCog,
+  faCheckCircle,
+  faVial,
+  faPlug,
+  faSun,
+  faMoon,
   faLinkedin, 
   faGithub, 
-  faXTwitter
+  faXTwitter,
+  faJs,
+  faPhp,
+  faHtml5,
+  faCss3Alt,
+  faVuejs,
+  faReact,
+  faAngular,
+  faLaravel,
+  faNode,
+  faBootstrap,
+  faGit,
+  faAws,
+  faDocker,
+  faLinux,
+  faWordpress,
+  faDrupal
 )
 
 // Create and configure Vue app
