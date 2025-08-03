@@ -8,7 +8,7 @@ const getDefaultLocale = () => {
   if (savedLocale && ['en', 'es'].includes(savedLocale)) {
     return savedLocale
   }
-  
+
   // Fallback to browser language
   const browserLang = navigator.language.split('-')[0]
   return ['en', 'es'].includes(browserLang) ? browserLang : 'en'
@@ -20,10 +20,10 @@ const i18n = createI18n({
   fallbackLocale: 'en',
   messages: {
     en,
-    es
+    es,
   },
   globalInjection: true, // Inject $t globally
-  silentTranslationWarn: process.env.NODE_ENV === 'production'
+  silentTranslationWarn: process.env.NODE_ENV === 'production',
 })
 
-export default i18n 
+export default i18n
