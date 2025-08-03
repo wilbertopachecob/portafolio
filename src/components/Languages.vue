@@ -44,6 +44,10 @@ export default {
       ],
     };
   },
+  mounted() {
+    console.log('Languages component mounted');
+    console.log('Languages data:', this.languages);
+  },
 };
 </script>
 
@@ -56,6 +60,7 @@ export default {
   gap: 3rem;
   flex-wrap: wrap;
   margin-top: 2rem;
+  min-height: 200px; /* Ensure container has height */
 }
 
 .language-card {
@@ -69,6 +74,7 @@ export default {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   min-width: 200px;
+  border: 1px solid #e9ecef; /* Add border for visibility */
 }
 
 .language-card:hover {
@@ -80,11 +86,16 @@ export default {
 .language-flag {
   margin-bottom: 1rem;
   position: relative;
+  width: 120px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flag-image {
-  width: 120px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -118,7 +129,7 @@ export default {
     padding: 1.5rem;
   }
   
-  .flag-image {
+  .language-flag {
     width: 100px;
     height: 70px;
   }
@@ -138,7 +149,7 @@ export default {
     padding: 1rem;
   }
   
-  .flag-image {
+  .language-flag {
     width: 80px;
     height: 60px;
   }

@@ -85,6 +85,7 @@ import About from './components/About.vue'
 import Experience from './components/Experience.vue'
 import Skills from './components/Skills.vue'
 import Education from './components/Education.vue'
+import Languages from './components/Languages.vue'
 import Certifications from './components/Certifications.vue'
 
 export default {
@@ -95,6 +96,7 @@ export default {
     Experience,
     Skills,
     Education,
+    Languages,
     Certifications,
   },
   data() {
