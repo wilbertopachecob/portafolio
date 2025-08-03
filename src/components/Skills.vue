@@ -3,172 +3,89 @@
     <div class="my-auto" id="skills-content">
       <h2 class="mb-5">Skills</h2>
 
-      <h3>Architecture</h3>
-      <ul>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fas', 'terminal']" />
-          Microservices
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fas', 'terminal']" />
-          RESTful APIs
-        </li>
-      </ul>
-
-      <h3>
-        Languages,
-        <span class="text-primary">Operating Systems &amp; Tools</span>
-      </h3>
-      <ul>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'windows']"
-            style="color: #00B7EE;"
+      <!-- Render each skill category -->
+      <div v-for="(category, index) in skillCategories" :key="index">
+        <h3 v-html="category.title"></h3>
+        <ul>
+          <SkillItem
+            v-for="(skill, skillIndex) in category.skills"
+            :key="skillIndex"
+            :name="skill.name"
+            :icon="skill.icon"
+            :icon-color="skill.iconColor"
           />
-          Windows
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'git']" style="color: #E84E31;" />
-          git
-        </li>
-        <li class="list-inline-item">
-          Golang
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fas', 'terminal']" />
-          bash
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'php']" style="color: #8892BF;" />
-          PHP
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'laravel']"
-            style="color: #F72C1F;"
-          />
-          Laravel
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'html5']" style="color: #E44D26;" />
-          HTML5
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'css3-alt']"
-            style="color: #254BDD;"
-          />
-          CSS3
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'bootstrap']"
-            style="color: #533B78;"
-          />
-          Bootstrap
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'js']" style="color: #F7DF1E;" />
-          JavaScript
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'vuejs']" style="color: #41B883;" />
-          Vue.js
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'angular']"
-            style="color: #D6002F;"
-          />
-          Angular
-        </li>
-        <li class="list-inline-item">
-          jQuery
-        </li>
-      </ul>
-
-      <h3>
-        Platform
-        <span class="text-primary">Development &amp; Administration</span>
-      </h3>
-      <ul>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'github-alt']"
-            style="color: #323131;"
-          />
-          GitHub
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'bitbucket']"
-            style="color: #2580F7;"
-          />
-          Bitbucket
-        </li>
-
-        <li class="list-inline-item">
-          Apache
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'wordpress']"
-            style="color: #207196;"
-          />
-          Wordpress 5
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'drupal']"
-            style="color: #0097D7;"
-          />
-          Drupal 7
-        </li>
-      </ul>
-
-      <h3>Data <span class="text-primary">Management</span></h3>
-      <ul>
-        <li class="list-inline-item">
-          MySQL
-        </li>
-
-        <li class="list-inline-item">
-          Microsoft SQL Server
-        </li>
-
-        <li class="list-inline-item">
-          MongoDB
-        </li>
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'node']" style="color: #74AA63;" />
-          Node.js
-        </li>
-      </ul>
-
-      <h3>Organizing <span class="text-primary">Tools</span></h3>
-      <ul>
-        <li class="list-inline-item">
-          <font-awesome-icon
-            :icon="['fab', 'trello']"
-            style="color: #0D77C0;"
-          />
-          Trello
-        </li>
-
-        <li class="list-inline-item">
-          <font-awesome-icon :icon="['fab', 'slack']" />
-          Slack
-        </li>
-
-        <li class="list-inline-item">
-          Monday.com
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
   </section>
 </template>
+
+<script>
+import SkillItem from "./SkillItem.vue";
+
+export default {
+  name: "Skills",
+  components: {
+    SkillItem,
+  },
+  data() {
+    return {
+      // Skill categories configuration
+      skillCategories: [
+        {
+          title: "Architecture",
+          skills: [
+            { name: "Microservices", icon: ["fas", "terminal"] },
+            { name: "RESTful APIs", icon: ["fas", "terminal"] },
+          ],
+        },
+        {
+          title: 'Languages, <span class="text-primary">Operating Systems &amp; Tools</span>',
+          skills: [
+            { name: "Windows", icon: ["fab", "windows"], iconColor: "#00B7EE" },
+            { name: "git", icon: ["fab", "git"], iconColor: "#E84E31" },
+            { name: "Golang" },
+            { name: "bash", icon: ["fas", "terminal"] },
+            { name: "PHP", icon: ["fab", "php"], iconColor: "#8892BF" },
+            { name: "Laravel", icon: ["fab", "laravel"], iconColor: "#F72C1F" },
+            { name: "HTML5", icon: ["fab", "html5"], iconColor: "#E44D26" },
+            { name: "CSS3", icon: ["fab", "css3-alt"], iconColor: "#254BDD" },
+            { name: "Bootstrap", icon: ["fab", "bootstrap"], iconColor: "#533B78" },
+            { name: "JavaScript", icon: ["fab", "js"], iconColor: "#F7DF1E" },
+            { name: "Vue.js", icon: ["fab", "vuejs"], iconColor: "#41B883" },
+            { name: "Angular", icon: ["fab", "angular"], iconColor: "#D6002F" },
+            { name: "jQuery" },
+          ],
+        },
+        {
+          title: 'Platform <span class="text-primary">Development &amp; Administration</span>',
+          skills: [
+            { name: "GitHub", icon: ["fab", "github-alt"], iconColor: "#323131" },
+            { name: "Bitbucket", icon: ["fab", "bitbucket"], iconColor: "#2580F7" },
+            { name: "Apache" },
+            { name: "Wordpress 5", icon: ["fab", "wordpress"], iconColor: "#207196" },
+            { name: "Drupal 7", icon: ["fab", "drupal"], iconColor: "#0097D7" },
+          ],
+        },
+        {
+          title: 'Data <span class="text-primary">Management</span>',
+          skills: [
+            { name: "MySQL" },
+            { name: "Microsoft SQL Server" },
+            { name: "MongoDB" },
+            { name: "Node.js", icon: ["fab", "node"], iconColor: "#74AA63" },
+          ],
+        },
+        {
+          title: 'Organizing <span class="text-primary">Tools</span>',
+          skills: [
+            { name: "Trello", icon: ["fab", "trello"], iconColor: "#0D77C0" },
+            { name: "Slack", icon: ["fab", "slack"] },
+            { name: "Monday.com" },
+          ],
+        },
+      ],
+    };
+  },
+};
+</script>
