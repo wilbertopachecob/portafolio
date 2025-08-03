@@ -9,9 +9,9 @@
     "test:run": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix",
-    "lint:check": "eslint src/**/*.js --max-warnings 0"
+    "lint": "eslint --config eslint.config.mjs src/**/*.js",
+    "lint:fix": "eslint --config eslint.config.mjs src/**/*.js --fix",
+    "lint:check": "eslint --config eslint.config.mjs src/**/*.js --max-warnings 0"
   },
   "dependencies": {
     "@babel/core": "^7.11.0",
