@@ -1,0 +1,51 @@
+# Dependabot configuration for automatic dependency updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    # Group minor and patch updates together
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Allow up to 10 open pull requests for dependency updates
+    open-pull-requests-limit: 10
+    # Automatically merge minor and patch updates if CI passes
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    # Labels to add to PRs
+    labels:
+      - "dependencies"
+      - "automated"
+    # Assign to the repository owner
+    assignees:
+      - "wilbertopachecobatista"
+    # Reviewers for the PRs
+    reviewers:
+      - "wilbertopachecobatista"
+    # Target the main branch
+    target-branch: "main"
+    # Rebase strategy to keep history clean
+    rebase-strategy: "auto"
+    # Allow updates to lockfile
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    # Ignore major version updates for now (can be enabled later)
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
