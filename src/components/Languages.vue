@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { APP_CONFIG } from '@/config/constants';
+
 export default {
   name: "Languages",
   computed: {
@@ -47,7 +49,7 @@ export default {
         return require(`@/assets/img/${filename}`);
       } catch (error) {
         // Fallback for test environment or missing images
-        return `/portafolio/src/assets/img/${filename}`;
+        return `${APP_CONFIG.PRODUCTION_BASE_PATH}/src/assets/img/${filename}`;
       }
     },
   },
