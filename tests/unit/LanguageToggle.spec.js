@@ -99,7 +99,6 @@ describe('LanguageToggle.vue', () => {
     
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toHaveAttribute('aria-label')
-    expect(toggleButton).toHaveAttribute('aria-pressed')
     expect(toggleButton).toHaveAttribute('aria-checked')
     expect(toggleButton).toHaveAttribute('title')
   })
@@ -118,7 +117,7 @@ describe('LanguageToggle.vue', () => {
     expect(toggleButton).toBeInTheDocument()
   })
 
-  it('updates aria-pressed attribute based on current locale', () => {
+  it('updates aria-checked attribute based on current locale', () => {
     // Test with English locale
     const englishI18n = createTestI18n('en')
     const { unmount } = render(LanguageToggle, {
@@ -128,7 +127,7 @@ describe('LanguageToggle.vue', () => {
     })
     
     const englishToggleButton = screen.getByRole('switch')
-    expect(englishToggleButton).toHaveAttribute('aria-pressed', 'false') // English is not Spanish
+    expect(englishToggleButton).toHaveAttribute('aria-checked', 'false') // English is not Spanish
     
     // Clean up and test with Spanish locale
     unmount()
@@ -141,7 +140,7 @@ describe('LanguageToggle.vue', () => {
     })
     
     const spanishToggleButton = screen.getByRole('switch')
-    expect(spanishToggleButton).toHaveAttribute('aria-pressed', 'true') // Spanish is Spanish
+    expect(spanishToggleButton).toHaveAttribute('aria-checked', 'true') // Spanish is Spanish
   })
 
   it('has proper CSS classes for styling', () => {

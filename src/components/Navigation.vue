@@ -49,9 +49,8 @@
         @click="toggleTheme"
         :title="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
         :aria-label="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
-        :aria-pressed="isDarkMode"
         role="switch"
-        aria-checked="isDarkMode"
+        :aria-checked="isDarkMode"
       >
         <font-awesome-icon 
           :icon="isDarkMode ? ['fas', 'sun'] : ['fas', 'moon']" 
