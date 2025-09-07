@@ -9,9 +9,8 @@ const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1';
 // Development mode detection
 const isDevelopment = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
 
-// Production path detection
-const isProduction = !isDevelopment;
-const basePath = isProduction ? '/portafolio' : '';
+// Production base path - matches the configuration in src/config/constants.js
+const basePath = !isDevelopment ? '/portafolio' : '';
 
 // Static assets to cache immediately
 const STATIC_ASSETS = [

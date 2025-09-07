@@ -5,6 +5,9 @@ import App from './App.vue'
 // Import i18n configuration
 import i18n from './i18n'
 
+// Import application configuration
+import { APP_CONFIG } from './config/constants'
+
 // FontAwesome configuration
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
@@ -105,8 +108,12 @@ app.mount('#app')
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     // Use dynamic path based on environment
-    const swPath = process.env.NODE_ENV === 'production' ? '/portafolio/sw.js' : '/sw.js';
-    const swScope = process.env.NODE_ENV === 'production' ? '/portafolio/' : '/';
+    const swPath = process.env.NODE_ENV === 'production' 
+      ? APP_CONFIG.SERVICE_WORKER.PROD_PATH 
+      : APP_CONFIG.SERVICE_WORKER.DEV_PATH;
+    const swScope = process.env.NODE_ENV === 'production' 
+      ? APP_CONFIG.SERVICE_WORKER.PROD_SCOPE 
+      : APP_CONFIG.SERVICE_WORKER.DEV_SCOPE;
     navigator.serviceWorker.register(swPath, { scope: swScope })
       .then((registration) => {
         console.log('Service Worker registered successfully:', registration.scope);
