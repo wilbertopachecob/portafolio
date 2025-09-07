@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import { APP_CONFIG } from './src/config/constants.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: `${APP_CONFIG.PRODUCTION_BASE_PATH}/`,
+  base: '/portafolio/',
   plugins: [
     vue(),
   ],
