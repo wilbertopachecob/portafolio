@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
-
-expect.extend(toHaveNoViolations)
 
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {

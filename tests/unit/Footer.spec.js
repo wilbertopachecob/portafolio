@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { axe } from 'jest-axe'
 import Footer from '@/components/Footer.vue'
-
-expect.extend(toHaveNoViolations)
 
 // Mock FontAwesome components
 vi.mock('@fortawesome/vue-fontawesome', () => ({

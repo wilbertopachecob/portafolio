@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { axe } from 'jest-axe'
 import Education from '@/components/Education.vue'
-
-expect.extend(toHaveNoViolations)
 
 // Mock the content module
 vi.mock('@/i18n/content', () => ({
