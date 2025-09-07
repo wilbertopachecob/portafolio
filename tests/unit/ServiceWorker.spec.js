@@ -182,7 +182,7 @@ self.addEventListener('activate', (event) => {
 // Helper functions to determine request types
 function isStaticAsset(request) {
   const url = new URL(request.url);
-  return !!url.pathname.match(/\\.(js|css|woff2?|ttf|eot)$/);
+  return !!url.pathname.match(/\.(js|css|woff2?|ttf|eot)$/);
 }
 
 function isAPIRequest(request) {
@@ -196,12 +196,12 @@ function isHTMLRequest(request) {
 
 function isImageRequest(request) {
   const url = new URL(request.url);
-  return !!url.pathname.match(/\\.(jpg|jpeg|png|gif|webp|svg|ico)$/);
+  return !!url.pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/);
 }
 
 function isFontRequest(request) {
   const url = new URL(request.url);
-  return !!url.pathname.match(/\\.(woff2?|ttf|eot)$/) || 
+  return !!url.pathname.match(/\.(woff2?|ttf|eot)$/) || 
          url.hostname.includes('fonts.googleapis.com') ||
          url.hostname.includes('fonts.gstatic.com');
 }
