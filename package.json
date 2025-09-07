@@ -2,6 +2,11 @@
   "name": "portafolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24.7.0",
+    "npm": ">=11.0.0",
+    "yarn": ">=1.22.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -30,7 +35,7 @@
     "popper.js": "^1.16.1",
     "vue": "^3.5.18",
     "vue-eslint-parser": "^10.0.0",
-    "vue-i18n": "^9.14.5"
+    "vue-i18n": "^11.1.12"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.0",
@@ -38,8 +43,8 @@
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/user-event": "^14.6.1",
     "@testing-library/vue": "^8.1.0",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vitest/coverage-v8": "^2.1.9",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
@@ -48,8 +53,8 @@
     "eslint": "^9.32.0",
     "eslint-plugin-vue": "^10.4.0",
     "jest-axe": "^10.0.0",
-    "jsdom": "^25.0.1",
-    "vitest": "^2.1.8"
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.4"
   },
   "browserslist": [
     "> 1%",

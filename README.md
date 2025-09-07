@@ -34,8 +34,30 @@ A modern, responsive personal portfolio website built with Vue.js 3, featuring a
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- Yarn package manager
+- Node.js (v24.7.0 or higher) - See `.nvmrc` file
+- Yarn package manager (v1.22.0 or higher)
+- npm (v11.0.0 or higher)
+
+### Node.js Version Management
+
+This project uses Node.js v24.7.0. To ensure you're using the correct version:
+
+1. **Using nvm (recommended)**:
+   ```bash
+   nvm use
+   ```
+   This will automatically use the version specified in `.nvmrc`
+
+2. **Manual installation**:
+   ```bash
+   nvm install 24.7.0
+   nvm use 24.7.0
+   ```
+
+3. **Verify your version**:
+   ```bash
+   node --version  # Should output v24.7.0
+   ```
 
 ### Installation
 
