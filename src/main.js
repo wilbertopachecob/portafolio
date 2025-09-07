@@ -104,7 +104,10 @@ app.mount('#app')
 // Register Service Worker for offline functionality
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    // Use dynamic path based on environment
+    const swPath = process.env.NODE_ENV === 'production' ? '/portafolio/sw.js' : '/sw.js';
+    const swScope = process.env.NODE_ENV === 'production' ? '/portafolio/' : '/';
+    navigator.serviceWorker.register(swPath, { scope: swScope })
       .then((registration) => {
         console.log('Service Worker registered successfully:', registration.scope);
         
