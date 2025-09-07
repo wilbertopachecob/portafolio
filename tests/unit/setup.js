@@ -1,6 +1,11 @@
 // Vitest setup file
 import '@testing-library/jest-dom'
 import { config } from '@vue/test-utils'
+import { toHaveNoViolations } from 'jest-axe'
+import { expect } from 'vitest'
+
+// Extend vitest expect with jest-axe matchers
+expect.extend(toHaveNoViolations)
 
 // Configure global stubs for FontAwesome components
 config.global.stubs = {

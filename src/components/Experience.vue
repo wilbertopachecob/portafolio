@@ -1,12 +1,13 @@
 <template>
   <div class="timeline" role="region" aria-labelledby="experience-heading">
     <h2 id="experience-heading" class="sr-only">Work Experience Timeline</h2>
-    <div 
-      class="timeline-item"
-      v-for="(job, index) in workExperience"
-      :key="index"
-      role="listitem"
-    >
+    <ul class="timeline-list" role="list">
+      <li 
+        class="timeline-item"
+        v-for="(job, index) in workExperience"
+        :key="index"
+        role="listitem"
+      >
       <div class="timeline-content">
         <div class="timeline-header">
           <h3 class="timeline-company">{{ job.company }}</h3>
@@ -34,7 +35,8 @@
           </ul>
         </div>
       </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -57,6 +59,12 @@ export default {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .timeline::before {

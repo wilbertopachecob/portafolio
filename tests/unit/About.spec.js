@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
+import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
 
 // Mock i18n for testing
@@ -123,5 +124,16 @@ describe('About.vue', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
+  })
+
+  it('should have no accessibility violations', async () => {
+    const i18n = createTestI18n()
+    const { container } = render(About, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 }) 

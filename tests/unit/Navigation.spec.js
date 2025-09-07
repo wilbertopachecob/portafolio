@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
+import { axe } from 'jest-axe'
 import Navigation from '@/components/Navigation.vue'
 
 // Mock i18n for testing
@@ -145,5 +146,16 @@ describe('Navigation.vue', () => {
     
     // The active class should be applied based on activeSection data property
     // This is tested through the Vue component's reactivity system
+  })
+
+  it('should have no accessibility violations', async () => {
+    const i18n = createTestI18n()
+    const { container } = render(Navigation, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 }) 

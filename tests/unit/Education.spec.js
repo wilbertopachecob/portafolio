@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
+import { axe } from 'jest-axe'
 import Education from '@/components/Education.vue'
 
 // Mock the content module
@@ -152,5 +153,16 @@ describe('Education.vue', () => {
     const logo = screen.getByRole('img')
     expect(logo).toBeInTheDocument()
     expect(logo).toHaveAttribute('alt', 'University of Informatic Sciences logo')
+  })
+
+  it('should have no accessibility violations', async () => {
+    const i18n = createTestI18n()
+    const { container } = render(Education, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 }) 

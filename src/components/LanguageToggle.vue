@@ -5,9 +5,8 @@
       @click="toggleLanguage"
       :title="$t('accessibility.languageToggle')"
       :aria-label="$t('accessibility.languageToggle')"
-      :aria-pressed="currentLocale === 'es'"
       role="switch"
-      aria-checked="currentLocale === 'es'"
+      :aria-checked="currentLocale === 'es'"
     >
       <span class="language-flag" :class="{ active: currentLocale === 'en' }">
         <img src="@/assets/img/english_flag.png" alt="English" class="flag-icon" />
