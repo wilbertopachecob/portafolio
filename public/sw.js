@@ -6,20 +6,23 @@ const CACHE_NAME = 'portfolio-cache-v1';
 const STATIC_CACHE_NAME = 'portfolio-static-v1';
 const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1';
 
-// Static assets to cache immediately
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.ico',
-  '/favicon-geometric.svg',
-  '/robots.txt',
-  '/sitemap.xml',
-  '/Engineer_Wilberto_Pacheco_Batista.pdf'
-];
-
 // Development mode detection
 const isDevelopment = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
+
+// Production base path - matches the configuration in src/config/constants.js
+const basePath = !isDevelopment ? '/portafolio' : '';
+
+// Static assets to cache immediately
+const STATIC_ASSETS = [
+  basePath + '/',
+  basePath + '/index.html',
+  basePath + '/manifest.json',
+  basePath + '/favicon.ico',
+  basePath + '/favicon-geometric.svg',
+  basePath + '/robots.txt',
+  basePath + '/sitemap.xml',
+  basePath + '/Engineer_Wilberto_Pacheco_Batista.pdf'
+];
 
 // Cache strategies
 const CACHE_STRATEGIES = {
@@ -277,7 +280,7 @@ async function handleHTMLRequest(request) {
     return networkResponse;
   } catch (error) {
     const cache = await caches.open(STATIC_CACHE_NAME);
-    const cachedResponse = await cache.match('/index.html');
+    const cachedResponse = await cache.match(basePath + '/index.html');
     
     if (cachedResponse) {
       return cachedResponse;
@@ -481,7 +484,7 @@ self.addEventListener('notificationclick', (event) => {
   
   if (event.action === 'explore') {
     event.waitUntil(
-      clients.openWindow('/')
+      clients.openWindow(basePath + '/')
     );
   }
 });
