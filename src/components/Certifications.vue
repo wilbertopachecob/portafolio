@@ -69,7 +69,6 @@
 
 <script>
 import { getCertifications } from '@/i18n/content';
-import { APP_CONFIG } from '@/config/constants';
 
 export default {
   name: "Certifications",
@@ -95,7 +94,7 @@ export default {
         return require(`@/assets/img/${filename}`);
       } catch (error) {
         // Fallback for test environment or missing images
-        return `${APP_CONFIG.PRODUCTION_BASE_PATH}/src/assets/img/${filename}`;
+        return `${import.meta.env.BASE_URL}src/assets/img/${filename}`;
       }
     },
   },
