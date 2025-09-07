@@ -10,16 +10,20 @@ A modern, responsive personal portfolio website built with Vue.js 3, featuring a
 - **Modern UI**: Clean, professional design with smooth animations
 - **Accessibility**: WCAG compliant with proper ARIA labels and semantic HTML
 - **Performance**: Optimized FontAwesome imports and efficient code splitting
+- **Service Worker**: Offline functionality and improved performance
+- **SEO Optimized**: Structured data and meta tags for better search visibility
 
 ## 🛠️ Tech Stack
 
 - **Frontend Framework**: Vue.js 3
-- **Build Tool**: Vue CLI
+- **Build Tool**: Vite 7.1.4
+- **Package Manager**: npm (migrated from Yarn)
 - **Styling**: CSS3 with CSS Custom Properties (variables)
 - **Icons**: FontAwesome 6
 - **Internationalization**: Vue I18n
 - **Testing**: Vitest + Vue Test Utils
 - **Deployment**: GitHub Pages
+- **Service Worker**: Custom implementation for offline support
 
 ## 📋 Sections
 
@@ -81,12 +85,12 @@ This project uses Node.js v24.7.0. To ensure you're using the correct version:
 
 ### Available Scripts
 
-- `yarn serve` - Start development server
-- `yarn build` - Build for production
-- `yarn test` - Run tests in watch mode
-- `yarn test:run` - Run tests once
-- `yarn lint` - Lint and fix files
-- `yarn lint:check` - Check linting without fixing
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run test` - Run tests in watch mode
+- `npm run test:run` - Run tests once
+- `npm run lint` - Lint and fix files
+- `npm run lint:check` - Check linting without fixing
 
 ## 🧪 Testing
 
@@ -94,13 +98,17 @@ The project includes comprehensive unit tests for all components:
 
 ```bash
 # Run all tests
-yarn test:run
+npm run test:run
 
 # Run tests with coverage (if needed)
-yarn test:coverage
+npm run test:coverage
 ```
 
-All 146 tests should pass successfully.
+All 176 tests should pass successfully, covering:
+- Component rendering and functionality
+- Internationalization (i18n) features
+- Service Worker functionality
+- Accessibility compliance
 
 ## 🚀 Deployment
 
@@ -110,7 +118,7 @@ The portfolio is automatically deployed to GitHub Pages when changes are pushed 
 
 ```bash
 # Build the project
-yarn build
+npm run build
 
 # Deploy to GitHub Pages
 ./deploy.sh
@@ -118,23 +126,42 @@ yarn build
 
 **Live Site**: https://wilbertopachecob.github.io/portafolio/
 
+### Deployment Features
+
+- **GitHub Pages**: Automatic deployment from master branch
+- **Base Path Configuration**: Properly configured for `/portafolio/` subdirectory
+- **Static Assets**: Images and assets served from `/portafolio/img/` and `/portafolio/assets/`
+- **Service Worker**: Offline functionality and caching
+
 ## 📁 Project Structure
 
 ```
 portafolio/
-├── public/                 # Static assets
+├── public/                 # Static assets (images, PDFs, etc.)
+│   ├── img/               # Production images
+│   ├── sw.js              # Service Worker
+│   └── manifest.json      # PWA manifest
 ├── src/
-│   ├── assets/            # Images and static files
+│   ├── assets/            # Source images and static files
 │   ├── components/        # Vue components
 │   ├── i18n/             # Internationalization
+│   ├── config/           # Configuration files
 │   └── main.js           # Application entry point
 ├── tests/                # Unit tests
+├── .github/workflows/    # GitHub Actions
 ├── eslint.config.mjs     # ESLint configuration
+├── vite.config.js        # Vite configuration
 ├── vitest.config.js      # Vitest configuration
 └── package.json          # Dependencies and scripts
 ```
 
 ## 🔧 Configuration
+
+### Build Configuration
+- **Vite**: Modern build tool with fast HMR and optimized bundling
+- **Base Path**: Configured for GitHub Pages subdirectory deployment
+- **Asset Handling**: Images copied to public directory for static serving
+- **Code Splitting**: Optimized chunks for better performance
 
 ### ESLint Configuration
 - Uses flat config format (`.mjs`)
@@ -145,6 +172,22 @@ portafolio/
 - Optimized imports for better performance
 - Only imports required icons to reduce bundle size
 - Supports both solid (`fas`) and brand (`fab`) icons
+
+### Service Worker
+- Custom implementation for offline functionality
+- Caches static assets and API responses
+- Handles fallback for missing resources
+
+## 🚀 Recent Updates
+
+### v2.0.0 - Major Improvements
+- ✅ **Package Manager Migration**: Migrated from Yarn to npm
+- ✅ **Build Tool Upgrade**: Upgraded from Vue CLI to Vite 7.1.4
+- ✅ **Image Loading Fix**: Resolved 404 errors for all production images
+- ✅ **Service Worker**: Added offline functionality and caching
+- ✅ **Test Coverage**: Increased to 176 tests with comprehensive coverage
+- ✅ **Performance**: Improved build times and bundle optimization
+- ✅ **CI/CD**: Enhanced GitHub Actions workflows
 
 ## 🤝 Contributing
 
