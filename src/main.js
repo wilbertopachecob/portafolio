@@ -100,3 +100,34 @@ app.component('font-awesome-layers', FontAwesomeLayers)
 
 // Mount the application
 app.mount('#app')
+
+// Register Service Worker for offline functionality
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered successfully:', registration.scope);
+        
+        // Check for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content is available, prompt user to refresh
+              if (confirm('New version available! Refresh to update?')) {
+                window.location.reload();
+              }
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+  
+  // Listen for service worker messages
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    console.log('Message from service worker:', event.data);
+  });
+}

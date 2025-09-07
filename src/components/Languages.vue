@@ -51,10 +51,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log('Languages component mounted');
-    console.log('Languages data:', this.languages);
-  },
 };
 </script>
 
