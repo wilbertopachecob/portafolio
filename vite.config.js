@@ -27,6 +27,12 @@ export default defineConfig({
           vendor: ['vue'],
           fontawesome: ['@fortawesome/fontawesome-svg-core', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons'],
         },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.match(/\.(png|jpe?g|gif|svg)$/)) {
+            return 'assets/img/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
   },
