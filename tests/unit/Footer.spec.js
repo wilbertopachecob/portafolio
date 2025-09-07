@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'jest-axe'
 import Footer from '@/components/Footer.vue'
 
 // Mock FontAwesome components
@@ -82,5 +83,11 @@ describe('Footer.vue', () => {
     const icons = screen.getAllByTestId('font-awesome-icon')
     const downloadIcon = icons[1] // Second icon is the download icon
     expect(downloadIcon).toBeInTheDocument()
+  })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = renderFooter()
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 }) 

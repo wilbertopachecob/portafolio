@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
+import { axe } from 'jest-axe'
 import Skills from '@/components/Skills.vue'
 
 // Mock FontAwesome components
@@ -234,5 +235,16 @@ describe('Skills.vue', () => {
     })
     expect(screen.getByText('AWS')).toBeInTheDocument()
     expect(screen.getByText('Docker')).toBeInTheDocument()
+  })
+
+  it('should have no accessibility violations', async () => {
+    const i18n = createTestI18n()
+    const { container } = render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 }) 
