@@ -13,9 +13,8 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
-# Configure git to disable Cursor's askpass and use macOS keychain
+# Disable askpass so git doesn't hang in Cursor/VSCode (auth uses SSH keys)
 git config core.askpass ""
-git config credential.helper osxkeychain
 git add -A
 git commit -m 'deploy'
 

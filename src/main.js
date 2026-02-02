@@ -25,7 +25,8 @@ import {
   faVial,
   faPlug,
   faSun,
-  faMoon
+  faMoon,
+  faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 import { 
   faLinkedin, 
@@ -70,6 +71,7 @@ library.add(
   faPlug,
   faSun,
   faMoon,
+  faGlobe,
   faLinkedin, 
   faGithub, 
   faXTwitter,
