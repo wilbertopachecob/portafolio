@@ -18,11 +18,10 @@ A modern, responsive personal portfolio website built with Vue.js 3, featuring a
 - **Frontend Framework**: Vue.js 3.5.27
 - **Build Tool**: Vite 7.3.1
 - **Package Manager**: npm (migrated from Yarn)
-- **Testing Framework**: Vitest 4.0.18
+- **Testing Framework**: Vitest 4.0.18 + Vue Test Utils
 - **Styling**: CSS3 with CSS Custom Properties (variables)
 - **Icons**: FontAwesome 6
 - **Internationalization**: Vue I18n
-- **Testing**: Vitest + Vue Test Utils
 - **Deployment**: GitHub Pages
 - **Service Worker**: Custom implementation for offline support
 
