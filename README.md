@@ -15,9 +15,10 @@ A modern, responsive personal portfolio website built with Vue.js 3, featuring a
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Vue.js 3
-- **Build Tool**: Vite 7.1.4
+- **Frontend Framework**: Vue.js 3.5.27
+- **Build Tool**: Vite 7.3.1
 - **Package Manager**: npm (migrated from Yarn)
+- **Testing Framework**: Vitest 4.0.18
 - **Styling**: CSS3 with CSS Custom Properties (variables)
 - **Icons**: FontAwesome 6
 - **Internationalization**: Vue I18n
@@ -112,7 +113,7 @@ All 176 tests should pass successfully, covering:
 
 ## 🚀 Deployment
 
-The portfolio is automatically deployed to GitHub Pages when changes are pushed to the master branch.
+The portfolio is deployed to GitHub Pages. The `master` branch is protected and requires pull requests for changes.
 
 ### Manual Deployment
 
@@ -132,6 +133,53 @@ npm run build
 - **Base Path Configuration**: Properly configured for `/portafolio/` subdirectory
 - **Static Assets**: Images and assets served from `/portafolio/img/` and `/portafolio/assets/`
 - **Service Worker**: Offline functionality and caching
+- **Deploy Script**: Uses SSH authentication and configures git settings automatically
+
+### Deployment Workflow
+
+1. **Create a feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes and commit**:
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
+
+3. **Push to your branch**:
+   ```bash
+   git push -u origin feature/your-feature-name
+   ```
+
+4. **Create a Pull Request** on GitHub to merge into `master`
+
+5. **After PR is merged**, deploy to GitHub Pages:
+   ```bash
+   ./deploy.sh
+   ```
+
+### Troubleshooting Deployment
+
+#### Git Authentication Issues
+
+If you encounter authentication errors when running `./deploy.sh`, ensure:
+
+1. **SSH keys are configured**:
+   ```bash
+   ssh -T git@github.com
+   ```
+
+2. **Git config is set correctly** (already configured in deploy.sh):
+   ```bash
+   git config core.askpass ""
+   git config credential.helper osxkeychain
+   ```
+
+3. **For HTTPS authentication**, ensure your GitHub Personal Access Token is stored in macOS Keychain
+
+The `deploy.sh` script automatically configures git settings to avoid Cursor/VSCode askpass conflicts.
 
 ## 📁 Project Structure
 
@@ -182,12 +230,14 @@ portafolio/
 
 ### v2.0.0 - Major Improvements
 - ✅ **Package Manager Migration**: Migrated from Yarn to npm
-- ✅ **Build Tool Upgrade**: Upgraded from Vue CLI to Vite 7.1.4
+- ✅ **Build Tool Upgrade**: Upgraded from Vue CLI to Vite 7.3.1
+- ✅ **Package Updates**: Upgraded all dependencies to latest versions (Vue 3.5.27, Vitest 4.0.18, etc.)
 - ✅ **Image Loading Fix**: Resolved 404 errors for all production images
 - ✅ **Service Worker**: Added offline functionality and caching
 - ✅ **Test Coverage**: Increased to 176 tests with comprehensive coverage
 - ✅ **Performance**: Improved build times and bundle optimization
 - ✅ **CI/CD**: Enhanced GitHub Actions workflows
+- ✅ **Deployment**: Fixed git authentication issues in deploy script, now uses SSH
 
 ## 🤝 Contributing
 
