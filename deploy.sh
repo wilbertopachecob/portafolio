@@ -13,6 +13,9 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
+# Configure git to disable Cursor's askpass and use macOS keychain
+git config core.askpass ""
+git config credential.helper osxkeychain
 git add -A
 git commit -m 'deploy'
 
@@ -20,6 +23,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/wilbertopachecob/portafolio.git main:gh-pages
+# Use SSH instead of HTTPS to avoid askpass issues
+git push -f git@github.com:wilbertopachecob/portafolio.git main:gh-pages
 
 cd -
