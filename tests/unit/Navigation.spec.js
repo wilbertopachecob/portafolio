@@ -21,7 +21,10 @@ const createTestI18n = (locale = 'en') => {
         },
         accessibility: {
           lightMode: 'Switch to Light Mode',
-          darkMode: 'Switch to Dark Mode'
+          darkMode: 'Switch to Dark Mode',
+          openMenu: 'Open mobile menu',
+          closeMenu: 'Close mobile menu',
+          languageToggle: 'Toggle language'
         }
       },
       es: {
@@ -35,7 +38,10 @@ const createTestI18n = (locale = 'en') => {
         },
         accessibility: {
           lightMode: 'Cambiar a Modo Claro',
-          darkMode: 'Cambiar a Modo Oscuro'
+          darkMode: 'Cambiar a Modo Oscuro',
+          openMenu: 'Abrir menú móvil',
+          closeMenu: 'Cerrar menú móvil',
+          languageToggle: 'Cambiar idioma'
         }
       }
     }

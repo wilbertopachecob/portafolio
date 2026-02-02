@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/vue'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import LanguageToggle from '@/components/LanguageToggle.vue'
 
@@ -23,10 +23,6 @@ const createTestI18n = (locale = 'en') => {
   })
 }
 
-// Mock the flag images
-vi.mock('@/assets/img/english_flag.png', () => ({ default: 'english-flag-mock' }))
-vi.mock('@/assets/img/spanish_flag.png', () => ({ default: 'spanish-flag-mock' }))
-
 describe('LanguageToggle.vue', () => {
   let i18n
 
@@ -42,52 +38,30 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toBeInTheDocument()
   })
 
-  it('displays both language flags', () => {
+  it('displays language code EN when locale is English', () => {
     render(LanguageToggle, {
       global: {
         plugins: [i18n]
       }
     })
-    
-    const englishFlag = screen.getByAltText('English')
-    const spanishFlag = screen.getByAltText('Español')
-    
-    expect(englishFlag).toBeInTheDocument()
-    expect(spanishFlag).toBeInTheDocument()
+
+    expect(screen.getByText('EN')).toBeInTheDocument()
   })
 
-  it('shows English flag as active when locale is English', () => {
-    render(LanguageToggle, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    
-    const englishFlag = screen.getByAltText('English').closest('.language-flag')
-    const spanishFlag = screen.getByAltText('Español').closest('.language-flag')
-    
-    expect(englishFlag).toHaveClass('active')
-    expect(spanishFlag).not.toHaveClass('active')
-  })
-
-  it('shows Spanish flag as active when locale is Spanish', () => {
+  it('displays language code ES when locale is Spanish', () => {
     const spanishI18n = createTestI18n('es')
     render(LanguageToggle, {
       global: {
         plugins: [spanishI18n]
       }
     })
-    
-    const englishFlag = screen.getByAltText('English').closest('.language-flag')
-    const spanishFlag = screen.getByAltText('Español').closest('.language-flag')
-    
-    expect(spanishFlag).toHaveClass('active')
-    expect(englishFlag).not.toHaveClass('active')
+
+    expect(screen.getByText('ES')).toBeInTheDocument()
   })
 
   it('has proper accessibility attributes', () => {
@@ -96,7 +70,7 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toHaveAttribute('aria-label')
     expect(toggleButton).toHaveAttribute('aria-checked')
@@ -104,15 +78,15 @@ describe('LanguageToggle.vue', () => {
   })
 
   it('calls toggleLanguage when clicked', async () => {
-    const { emitted } = render(LanguageToggle, {
+    render(LanguageToggle, {
       global: {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     await fireEvent.click(toggleButton)
-    
+
     // The component should handle the click internally
     expect(toggleButton).toBeInTheDocument()
   })
@@ -125,20 +99,20 @@ describe('LanguageToggle.vue', () => {
         plugins: [englishI18n]
       }
     })
-    
+
     const englishToggleButton = screen.getByRole('switch')
     expect(englishToggleButton).toHaveAttribute('aria-checked', 'false') // English is not Spanish
-    
+
     // Clean up and test with Spanish locale
     unmount()
-    
+
     const spanishI18n = createTestI18n('es')
     render(LanguageToggle, {
       global: {
         plugins: [spanishI18n]
       }
     })
-    
+
     const spanishToggleButton = screen.getByRole('switch')
     expect(spanishToggleButton).toHaveAttribute('aria-checked', 'true') // Spanish is Spanish
   })
@@ -149,10 +123,10 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toHaveClass('language-btn')
-    
+
     const languageToggle = screen.getByRole('switch').closest('.language-toggle')
     expect(languageToggle).toBeInTheDocument()
   })
@@ -163,7 +137,7 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toHaveAttribute('title', 'Toggle language')
   })
@@ -175,7 +149,7 @@ describe('LanguageToggle.vue', () => {
         plugins: [spanishI18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     expect(toggleButton).toHaveAttribute('title', 'Cambiar idioma')
   })
@@ -186,10 +160,10 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     toggleButton.focus()
-    
+
     expect(toggleButton).toHaveFocus()
   })
 
@@ -199,16 +173,16 @@ describe('LanguageToggle.vue', () => {
         plugins: [i18n]
       }
     })
-    
+
     const toggleButton = screen.getByRole('switch')
     toggleButton.focus()
-    
+
     // Test Enter key
     await fireEvent.keyDown(toggleButton, { key: 'Enter' })
     expect(toggleButton).toBeInTheDocument()
-    
+
     // Test Space key
     await fireEvent.keyDown(toggleButton, { key: ' ' })
     expect(toggleButton).toBeInTheDocument()
   })
-}) 
+})

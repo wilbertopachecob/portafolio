@@ -6,11 +6,11 @@
         class="mobile-menu-toggle"
         @click="toggleMobileMenu"
         :class="{ 'active': isMobileMenuOpen }"
-        :aria-label="isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'"
+        :aria-label="isMobileMenuOpen ? $t('accessibility.closeMenu') : $t('accessibility.openMenu')"
         :aria-expanded="isMobileMenuOpen"
         :aria-controls="'mobile-menu'"
       >
-        <span class="sr-only">{{ isMobileMenuOpen ? 'Close menu' : 'Open menu' }}</span>
+        <span class="sr-only">{{ isMobileMenuOpen ? $t('accessibility.closeMenu') : $t('accessibility.openMenu') }}</span>
         <span></span>
         <span></span>
         <span></span>
@@ -212,11 +212,14 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ 
+        element.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
-        // Focus the section for screen readers
+        // Focus the section for screen readers (make focusable if needed)
+        if (!element.hasAttribute('tabindex')) {
+          element.setAttribute('tabindex', '-1');
+        }
         element.focus();
       }
     },
