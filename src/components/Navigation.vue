@@ -1,6 +1,21 @@
 <template>
   <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }" role="navigation" aria-label="Main navigation">
     <div class="navbar-container">
+      <!-- Mobile Menu Toggle (Left side on mobile) -->
+      <button 
+        class="mobile-menu-toggle"
+        @click="toggleMobileMenu"
+        :class="{ 'active': isMobileMenuOpen }"
+        :aria-label="isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'"
+        :aria-expanded="isMobileMenuOpen"
+        :aria-controls="'mobile-menu'"
+      >
+        <span class="sr-only">{{ isMobileMenuOpen ? 'Close menu' : 'Open menu' }}</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
       <!-- Brand/Logo -->
       <a href="#about" class="navbar-brand" aria-label="Go to about section">
         Wilberto Pacheco
@@ -40,38 +55,26 @@
         </li>
       </ul>
       
-      <!-- Language Toggle -->
-      <LanguageToggle />
-      
-      <!-- Dark Mode Toggle -->
-      <button 
-        class="theme-toggle"
-        @click="toggleTheme"
-        :title="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
-        :aria-label="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
-        role="switch"
-        :aria-checked="isDarkMode"
-      >
-        <font-awesome-icon 
-          :icon="isDarkMode ? ['fas', 'sun'] : ['fas', 'moon']" 
-          :aria-hidden="true"
-        />
-      </button>
-      
-      <!-- Mobile Menu Toggle -->
-      <button 
-        class="mobile-menu-toggle"
-        @click="toggleMobileMenu"
-        :class="{ 'active': isMobileMenuOpen }"
-        :aria-label="isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'"
-        :aria-expanded="isMobileMenuOpen"
-        :aria-controls="'mobile-menu'"
-      >
-        <span class="sr-only">{{ isMobileMenuOpen ? 'Close menu' : 'Open menu' }}</span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <!-- Right side controls -->
+      <div class="navbar-controls">
+        <!-- Language Toggle -->
+        <LanguageToggle />
+        
+        <!-- Dark Mode Toggle -->
+        <button 
+          class="theme-toggle"
+          @click="toggleTheme"
+          :title="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
+          :aria-label="isDarkMode ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
+          role="switch"
+          :aria-checked="isDarkMode"
+        >
+          <font-awesome-icon 
+            :icon="isDarkMode ? ['fas', 'sun'] : ['fas', 'moon']" 
+            :aria-hidden="true"
+          />
+        </button>
+      </div>
     </div>
     
     <!-- Mobile Menu -->
@@ -305,6 +308,12 @@ export default {
   max-width: 1200px !important;
   margin: 0 auto !important;
   width: 100% !important;
+}
+
+.navbar-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
 }
 
 .navbar-brand {

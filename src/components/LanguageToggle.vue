@@ -8,12 +8,12 @@
       role="switch"
       :aria-checked="currentLocale === 'es'"
     >
-      <span class="language-flag" :class="{ active: currentLocale === 'en' }">
-        <img src="@/assets/img/english_flag.png" alt="English" class="flag-icon" />
-      </span>
-      <span class="language-flag" :class="{ active: currentLocale === 'es' }">
-        <img src="@/assets/img/spanish_flag.png" alt="Español" class="flag-icon" />
-      </span>
+      <font-awesome-icon 
+        :icon="['fas', 'globe']" 
+        class="globe-icon"
+        aria-hidden="true"
+      />
+      <span class="language-code">{{ currentLocale.toUpperCase() }}</span>
     </button>
   </div>
 </template>
@@ -59,24 +59,29 @@ export default {
 }
 
 .language-btn {
-  position: relative;
   display: flex;
   align-items: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xs);
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #3b82f6;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all var(--transition-normal);
-  min-width: 80px;
-  height: 40px;
+  min-width: fit-content;
+  height: auto;
+  font-family: var(--font-primary);
 }
 
 .language-btn:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--primary-color);
+  background: #f1f5f9;
+  border-color: #2563eb;
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+.language-btn:active {
+  transform: translateY(0);
 }
 
 .language-btn:focus-visible {
@@ -84,70 +89,63 @@ export default {
   outline-offset: 2px;
 }
 
-.language-flag {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 24px;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-normal);
-  opacity: 0.5;
-  transform: scale(0.8);
+.globe-icon {
+  color: #475569;
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+  transition: color var(--transition-normal);
 }
 
-.language-flag.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
+.language-code {
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  transition: color var(--transition-normal);
 }
 
-.language-flag:first-child {
-  left: var(--space-xs);
-}
-
-.language-flag:last-child {
-  right: var(--space-xs);
-}
-
-.flag-icon {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-}
-
-/* Animation for language switch */
-.language-btn:hover .language-flag {
-  opacity: 0.8;
-}
-
-.language-btn:hover .language-flag.active {
-  opacity: 1;
+.language-btn:hover .globe-icon,
+.language-btn:hover .language-code {
+  color: #334155;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .language-btn {
-    min-width: 70px;
-    height: 36px;
+    padding: 0.375rem 0.75rem;
+    gap: 0.375rem;
   }
   
-  .language-flag {
-    width: 28px;
-    height: 20px;
+  .globe-icon {
+    font-size: 0.875rem;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .language-code {
+    font-size: 0.8125rem;
   }
 }
 
 /* Dark mode adjustments */
 [data-theme="dark"] .language-btn {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
+  background: #1e293b;
+  border-color: #3b82f6;
 }
 
 [data-theme="dark"] .language-btn:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--primary-color);
+  background: #334155;
+  border-color: #2563eb;
+}
+
+[data-theme="dark"] .globe-icon,
+[data-theme="dark"] .language-code {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .language-btn:hover .globe-icon,
+[data-theme="dark"] .language-btn:hover .language-code {
+  color: #f8fafc;
 }
 </style> 
