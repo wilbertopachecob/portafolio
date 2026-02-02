@@ -61,11 +61,11 @@ export default {
 .language-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: #f8fafc;
-  border: 1px solid #3b82f6;
+  gap: var(--space-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--primary-color);
   border-radius: 9999px;
-  padding: 0.5rem 1rem;
+  padding: var(--space-sm) var(--space-md);
   cursor: pointer;
   transition: all var(--transition-normal);
   min-width: fit-content;
@@ -74,10 +74,10 @@ export default {
 }
 
 .language-btn:hover {
-  background: #f1f5f9;
-  border-color: #2563eb;
+  background: var(--bg-tertiary);
+  border-color: var(--primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .language-btn:active {
@@ -90,7 +90,7 @@ export default {
 }
 
 .globe-icon {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 1rem;
   width: 1rem;
   height: 1rem;
@@ -98,7 +98,7 @@ export default {
 }
 
 .language-code {
-  color: #475569;
+  color: var(--text-secondary);
   font-weight: 500;
   font-size: 0.875rem;
   letter-spacing: 0.025em;
@@ -107,14 +107,14 @@ export default {
 
 .language-btn:hover .globe-icon,
 .language-btn:hover .language-code {
-  color: #334155;
+  color: var(--text-primary);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .language-btn {
-    padding: 0.375rem 0.75rem;
-    gap: 0.375rem;
+    padding: var(--space-xs) var(--space-sm);
+    gap: var(--space-xs);
   }
   
   .globe-icon {
@@ -130,22 +130,22 @@ export default {
 
 /* Dark mode adjustments */
 [data-theme="dark"] .language-btn {
-  background: #1e293b;
-  border-color: #3b82f6;
+  background: var(--bg-secondary);
+  border-color: var(--primary-color);
 }
 
 [data-theme="dark"] .language-btn:hover {
-  background: #334155;
-  border-color: #2563eb;
+  background: var(--bg-tertiary);
+  border-color: var(--primary-dark);
 }
 
 [data-theme="dark"] .globe-icon,
 [data-theme="dark"] .language-code {
-  color: #cbd5e1;
+  color: var(--text-secondary);
 }
 
 [data-theme="dark"] .language-btn:hover .globe-icon,
 [data-theme="dark"] .language-btn:hover .language-code {
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 </style> 
