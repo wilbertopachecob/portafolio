@@ -137,6 +137,8 @@ export default {
       isMobileMenuOpen: false,
       activeSection: 'about',
       scrollTimeout: null,
+      rafId: null,
+      sectionPositions: null, // Cache section positions to avoid forced reflows
     };
   },
   mounted() {
@@ -156,48 +158,58 @@ export default {
     
     // Initialize active section
     this.updateActiveSection();
+    
+    // Re-cache section positions on resize to handle layout changes
+    window.addEventListener('resize', this.handleResize);
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('click', this.handleClickOutside);
     document.removeEventListener('keydown', this.handleKeydown);
     
-    // Clean up timeout
+    // Clean up timeout and animation frame
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
+    }
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
     }
   },
   methods: {
     handleScroll() {
       this.isScrolled = window.scrollY > 50;
       
-      // Throttle the active section update for better performance
-      if (this.scrollTimeout) {
-        clearTimeout(this.scrollTimeout);
+      // Use requestAnimationFrame to batch DOM reads and avoid forced reflows
+      if (this.rafId) {
+        cancelAnimationFrame(this.rafId);
       }
       
-      this.scrollTimeout = setTimeout(() => {
+      this.rafId = requestAnimationFrame(() => {
         this.updateActiveSection();
-      }, 50);
+        this.rafId = null;
+      });
     },
     
     updateActiveSection() {
       const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
       const scrollPosition = window.scrollY + 150; // Offset for navbar height and some buffer
       
-      // Find the section that is currently in view
+      // Cache section positions on first call or if cache is invalid
+      if (!this.sectionPositions) {
+        this.cacheSectionPositions();
+      }
+      
+      // Find the section that is currently in view using cached positions
       let currentSection = 'about';
       
       for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            currentSection = sections[i];
-            break;
-          }
+        const sectionId = sections[i];
+        const position = this.sectionPositions[sectionId];
+        
+        if (position && scrollPosition >= position.top && scrollPosition < position.top + position.height) {
+          currentSection = sectionId;
+          break;
         }
       }
       
@@ -207,6 +219,23 @@ export default {
       }
       
       this.activeSection = currentSection;
+    },
+    
+    cacheSectionPositions() {
+      // Batch all DOM reads together to avoid forced reflows
+      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
+      this.sectionPositions = {};
+      
+      for (let i = 0; i < sections.length; i++) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          // Read all layout properties together
+          this.sectionPositions[sections[i]] = {
+            top: section.offsetTop,
+            height: section.offsetHeight,
+          };
+        }
+      }
     },
     
     scrollToSection(sectionId) {
@@ -221,7 +250,22 @@ export default {
           element.setAttribute('tabindex', '-1');
         }
         element.focus();
+        // Invalidate cache after scrolling to ensure accurate positions
+        this.sectionPositions = null;
       }
+    },
+    
+    handleResize() {
+      // Invalidate cache on resize to recalculate positions
+      this.sectionPositions = null;
+      // Debounce resize handler
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+      this.scrollTimeout = setTimeout(() => {
+        this.cacheSectionPositions();
+        this.updateActiveSection();
+      }, 150);
     },
     
     toggleTheme() {

@@ -1,6 +1,5 @@
 /* Modern Minimalistic Personal Website Design */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+/* Note: Google Fonts are now loaded via <link> tags in index.html to prevent render blocking */
 
 /* CSS Custom Properties for consistent theming */
 :root {

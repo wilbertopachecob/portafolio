@@ -46,7 +46,7 @@ div.skills-heading {
 .tag {
   background: #eee;
   border-radius: 3px 0 0 3px;
-  color: #999;
+  color: #555; /* Improved contrast: changed from #999 to #555 for WCAG AA compliance (4.5:1 ratio) */
   display: inline-flex;
   align-items: center;
   height: 26px;
