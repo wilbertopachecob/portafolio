@@ -124,11 +124,14 @@ self.addEventListener('fetch', (event) => {
     }
   }
 
-  // Check for no-cache headers and skip caching
-  // This handles cases where servers explicitly set no-cache
+  // Check for no-cache headers - still handle via service worker but don't cache
+  // This ensures offline fallbacks still work while respecting no-cache directives
   const cacheControl = request.headers.get('cache-control');
-  if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
-    // Skip service worker caching, let browser handle it
+  const shouldSkipCache = cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'));
+  
+  if (shouldSkipCache) {
+    // Handle via network-first but don't write to cache
+    event.respondWith(handleNoCacheRequest(request));
     return;
   }
 
@@ -416,12 +419,15 @@ async function handleImageRequest(request) {
     
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
+      // Clone the response before using its body to avoid stream locking
+      const clonedResponse = networkResponse.clone();
+      
       // Add cache headers for image caching
       const headers = new Headers(networkResponse.headers);
       headers.set('Cache-Control', 'public, max-age=2592000'); // 30 days
       headers.set('Date', new Date().toUTCString());
       
-      const responseToCache = new Response(networkResponse.body, {
+      const responseToCache = new Response(clonedResponse.body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: headers
@@ -467,12 +473,15 @@ async function handleFontRequest(request) {
     
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
+      // Clone the response before using its body to avoid stream locking
+      const clonedResponse = networkResponse.clone();
+      
       // Add cache headers for long-term font caching
       const headers = new Headers(networkResponse.headers);
       headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
       headers.set('Date', new Date().toUTCString());
       
-      const responseToCache = new Response(networkResponse.body, {
+      const responseToCache = new Response(clonedResponse.body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: headers
@@ -497,6 +506,27 @@ async function handleFontRequest(request) {
       return cachedResponse;
     }
     return new Response('', { status: 404 });
+  }
+}
+
+// Handle requests with no-cache headers - network-first but don't cache
+async function handleNoCacheRequest(request) {
+  try {
+    const networkResponse = await fetch(request);
+    return networkResponse;
+  } catch (error) {
+    // Even for no-cache requests, try to serve stale cache if offline
+    const cache = await caches.open(DYNAMIC_CACHE_NAME);
+    const cachedResponse = await cache.match(request);
+    
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    return new Response('Offline - Resource not available', { 
+      status: 503, 
+      statusText: 'Service Unavailable' 
+    });
   }
 }
 
