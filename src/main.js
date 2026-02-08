@@ -26,7 +26,8 @@ import {
   faPlug,
   faSun,
   faMoon,
-  faGlobe
+  faGlobe,
+  faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import { 
   faLinkedin, 
@@ -51,10 +52,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 
-// Import FontAwesome CSS
-import '@fortawesome/fontawesome-free/css/all.css'
-
 // Add FontAwesome icons to the library
+// Note: We don't import the full CSS file - only SVG icons are used via tree-shaking
 library.add(
   faEnvelope, 
   faMapMarkerAlt, 
@@ -72,6 +71,7 @@ library.add(
   faSun,
   faMoon,
   faGlobe,
+  faDownload,
   faLinkedin, 
   faGithub, 
   faXTwitter,
@@ -107,15 +107,12 @@ app.component('font-awesome-layers', FontAwesomeLayers)
 app.mount('#app')
 
 // Register Service Worker for offline functionality
-if ('serviceWorker' in navigator) {
+// Only register in production to avoid interfering with Vite's dev server
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
     // Use dynamic path based on environment
-    const swPath = process.env.NODE_ENV === 'production' 
-      ? APP_CONFIG.SERVICE_WORKER.PROD_PATH 
-      : APP_CONFIG.SERVICE_WORKER.DEV_PATH;
-    const swScope = process.env.NODE_ENV === 'production' 
-      ? APP_CONFIG.SERVICE_WORKER.PROD_SCOPE 
-      : APP_CONFIG.SERVICE_WORKER.DEV_SCOPE;
+    const swPath = APP_CONFIG.SERVICE_WORKER.PROD_PATH;
+    const swScope = APP_CONFIG.SERVICE_WORKER.PROD_SCOPE;
     navigator.serviceWorker.register(swPath, { scope: swScope })
       .then((registration) => {
         console.log('Service Worker registered successfully:', registration.scope);
@@ -141,5 +138,14 @@ if ('serviceWorker' in navigator) {
   // Listen for service worker messages
   navigator.serviceWorker.addEventListener('message', (event) => {
     console.log('Message from service worker:', event.data);
+  });
+} else if ('serviceWorker' in navigator && import.meta.env.DEV) {
+  // In development, unregister any existing service workers to prevent conflicts
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const registration of registrations) {
+      registration.unregister().then(() => {
+        console.log('Service Worker unregistered for development mode');
+      });
+    }
   });
 }

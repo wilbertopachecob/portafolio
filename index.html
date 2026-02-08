@@ -111,10 +111,6 @@
     }
     </script>
     
-    <!-- Analytics -->
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('9a2306c6adf0d200a9d4bd7b2ba61cc5', {"autocapture":{"elementInteractions":true}});</script>
   </head>
   <body>
     <noscript>
@@ -122,5 +118,40 @@
     </noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- Analytics - Loaded after page load to avoid blocking render -->
+    <script>
+      // Defer analytics loading until after page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadAnalytics);
+      } else {
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          setTimeout(loadAnalytics, 2000);
+        }
+      }
+      
+      function loadAnalytics() {
+        // Load Amplitude scripts dynamically
+        const script1 = document.createElement('script');
+        script1.src = 'https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz';
+        script1.async = true;
+        script1.onload = function() {
+          const script2 = document.createElement('script');
+          script2.src = 'https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz';
+          script2.async = true;
+          script2.onload = function() {
+            if (window.amplitude && window.sessionReplay) {
+              window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+              window.amplitude.init('9a2306c6adf0d200a9d4bd7b2ba61cc5', {"autocapture":{"elementInteractions":true}});
+            }
+          };
+          document.head.appendChild(script2);
+        };
+        document.head.appendChild(script1);
+      }
+    </script>
   </body>
 </html>

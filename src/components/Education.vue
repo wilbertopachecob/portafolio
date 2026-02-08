@@ -17,6 +17,9 @@
               :alt="`${education.institution} logo`"
               class="logo-image"
               :aria-label="`Logo of ${education.institution}`"
+              width="120"
+              height="120"
+              loading="lazy"
             />
           </div>
           
@@ -122,6 +125,9 @@ export default {
 .logo-image {
   max-width: 100%;
   max-height: 100%;
+  width: 120px;
+  height: 120px;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 0.5rem;
 }
@@ -158,7 +164,7 @@ export default {
 }
 
 .education-period {
-  color: #bd5d38;
+  color: #8b4225; /* Darker shade for better contrast (WCAG AA compliant) */
   font-size: 1rem;
   font-weight: 500;
   display: flex;

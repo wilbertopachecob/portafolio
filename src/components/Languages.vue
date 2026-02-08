@@ -15,6 +15,9 @@
               :alt="$t('languages.flagAlt', { language: language.name })"
               class="flag-image"
               :aria-label="$t('languages.flagLabel', { language: language.name })"
+              width="120"
+              height="80"
+              loading="lazy"
             />
           </div>
           <h3 class="language-name">{{ language.name }}</h3>
@@ -99,6 +102,7 @@ export default {
 .flag-image {
   width: 100%;
   height: 100%;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

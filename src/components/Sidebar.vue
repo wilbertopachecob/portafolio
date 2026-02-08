@@ -19,6 +19,9 @@
           class="img-fluid img-profile rounded-circle mx-auto mb-2"
           src="@/assets/img/profile_cropped.jpg"
           alt="Wilberto Pacheco Batista Profile"
+          width="150"
+          height="150"
+          loading="eager"
         />
       </span>
     </a>

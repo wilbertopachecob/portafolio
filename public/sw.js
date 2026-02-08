@@ -1,10 +1,15 @@
 // Service Worker for Portfolio Website
-// Version: 1.0.0
-// Caches resources for offline functionality
+// Version: 1.1.0
+// Caches resources for offline functionality with optimized cache lifetimes
 
-const CACHE_NAME = 'portfolio-cache-v1';
-const STATIC_CACHE_NAME = 'portfolio-static-v1';
-const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1';
+const CACHE_NAME = 'portfolio-cache-v1.1';
+const STATIC_CACHE_NAME = 'portfolio-static-v1.1';
+const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1.1';
+
+// Cache lifetime constants (in milliseconds)
+const STATIC_CACHE_MAX_AGE = 365 * 24 * 60 * 60 * 1000; // 1 year for static assets
+const DYNAMIC_CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days for dynamic content
+const IMAGE_CACHE_MAX_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days for images
 
 // Development mode detection
 const isDevelopment = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
@@ -103,13 +108,28 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // In development, be more lenient with caching
+  // In development mode, skip service worker caching for Vite dev server
+  // This prevents interference with HMR and ensures fresh content
   if (isDevelopment) {
-    // For development, try network first for most requests
+    // Skip caching for Vite dev server requests (localhost/127.0.0.1)
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+      // Let the request pass through without service worker interception
+      return;
+    }
+    
+    // For other development requests, use network-first strategy
     if (isStaticAsset(request) && (url.pathname.includes('.js') || url.pathname.includes('.css'))) {
       event.respondWith(handleDevelopmentAsset(request));
       return;
     }
+  }
+
+  // Check for no-cache headers and skip caching
+  // This handles cases where servers explicitly set no-cache
+  const cacheControl = request.headers.get('cache-control');
+  if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
+    // Skip service worker caching, let browser handle it
+    return;
   }
 
   // Handle different types of requests
@@ -160,8 +180,16 @@ async function handleDevelopmentAsset(request) {
   try {
     // In development, always try network first
     const networkResponse = await fetch(request);
+    
+    // Check if response has no-cache headers - don't cache these
+    const cacheControl = networkResponse.headers.get('cache-control');
+    if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
+      // Return response without caching
+      return networkResponse;
+    }
+    
     if (networkResponse.ok) {
-      // Cache the response for future use
+      // Only cache if response doesn't have no-cache headers
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
       cache.put(request, networkResponse.clone());
     }
@@ -195,25 +223,63 @@ async function handleDevelopmentAsset(request) {
   }
 }
 
+// Helper function to check if cached response is still valid
+function isCacheValid(cachedResponse, maxAge) {
+  if (!cachedResponse) return false;
+  
+  const dateHeader = cachedResponse.headers.get('date');
+  if (!dateHeader) return true; // If no date header, assume valid
+  
+  const responseDate = new Date(dateHeader).getTime();
+  const now = Date.now();
+  return (now - responseDate) < maxAge;
+}
+
 // Cache strategies implementation
 async function handleStaticAsset(request) {
   try {
     const cache = await caches.open(STATIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
     
-    if (cachedResponse) {
+    // Check if cached response is still valid (within max age)
+    if (cachedResponse && isCacheValid(cachedResponse, STATIC_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
     
     // Try to fetch from network
     try {
       const networkResponse = await fetch(request);
+      
+      // Check if response has no-cache headers - don't cache these
+      const cacheControl = networkResponse.headers.get('cache-control');
+      if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
+        // Return response without caching
+        return networkResponse;
+      }
+      
       if (networkResponse.ok) {
-        cache.put(request, networkResponse.clone());
+        // Clone response before caching
+        const responseToCache = networkResponse.clone();
+        // Add cache headers for long-term caching
+        const headers = new Headers(responseToCache.headers);
+        headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
+        headers.set('Date', new Date().toUTCString());
+        
+        const modifiedResponse = new Response(responseToCache.body, {
+          status: responseToCache.status,
+          statusText: responseToCache.statusText,
+          headers: headers
+        });
+        
+        cache.put(request, modifiedResponse.clone());
         return networkResponse;
       }
     } catch (networkError) {
       console.log('Service Worker: Network unavailable for static asset', request.url);
+      // Return stale cache if available, even if expired
+      if (cachedResponse) {
+        return cachedResponse;
+      }
     }
     
     // If no cache and no network, return appropriate fallback
@@ -343,17 +409,42 @@ async function handleImageRequest(request) {
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
     
-    if (cachedResponse) {
+    // Check if cached image is still valid
+    if (cachedResponse && isCacheValid(cachedResponse, IMAGE_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
     
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
-      cache.put(request, networkResponse.clone());
+      // Add cache headers for image caching
+      const headers = new Headers(networkResponse.headers);
+      headers.set('Cache-Control', 'public, max-age=2592000'); // 30 days
+      headers.set('Date', new Date().toUTCString());
+      
+      const responseToCache = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: headers
+      });
+      
+      cache.put(request, responseToCache.clone());
+      return networkResponse;
+    }
+    
+    // Return stale cache if available
+    if (cachedResponse) {
+      return cachedResponse;
     }
     
     return networkResponse;
   } catch (error) {
+    // Return cached response if available, even if expired
+    const cache = await caches.open(DYNAMIC_CACHE_NAME);
+    const cachedResponse = await cache.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
     // Return a placeholder image or transparent pixel
     return new Response(
       'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+',
@@ -369,18 +460,42 @@ async function handleFontRequest(request) {
     const cache = await caches.open(STATIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
     
-    if (cachedResponse) {
+    // Fonts should be cached long-term (1 year)
+    if (cachedResponse && isCacheValid(cachedResponse, STATIC_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
     
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
-      cache.put(request, networkResponse.clone());
+      // Add cache headers for long-term font caching
+      const headers = new Headers(networkResponse.headers);
+      headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
+      headers.set('Date', new Date().toUTCString());
+      
+      const responseToCache = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: headers
+      });
+      
+      cache.put(request, responseToCache.clone());
+      return networkResponse;
+    }
+    
+    // Return stale cache if available
+    if (cachedResponse) {
+      return cachedResponse;
     }
     
     return networkResponse;
   } catch (error) {
     console.error('Service Worker: Font request failed', error);
+    // Return cached font if available
+    const cache = await caches.open(STATIC_CACHE_NAME);
+    const cachedResponse = await cache.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
     return new Response('', { status: 404 });
   }
 }
@@ -419,26 +534,29 @@ self.addEventListener('sync', (event) => {
 
 async function doBackgroundSync() {
   try {
-    // Clear old dynamic cache entries
-    const cache = await caches.open(DYNAMIC_CACHE_NAME);
-    const requests = await cache.keys();
+    // Clear old dynamic cache entries based on cache type
+    const dynamicCache = await caches.open(DYNAMIC_CACHE_NAME);
+    const staticCache = await caches.open(STATIC_CACHE_NAME);
     
-    // Remove entries older than 7 days
-    const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-    
-    for (const request of requests) {
-      const response = await cache.match(request);
-      const dateHeader = response.headers.get('date');
-      
-      if (dateHeader) {
-        const responseDate = new Date(dateHeader).getTime();
-        if (responseDate < oneWeekAgo) {
-          await cache.delete(request);
-        }
+    // Clean dynamic cache (7 days)
+    const dynamicRequests = await dynamicCache.keys();
+    for (const request of dynamicRequests) {
+      const response = await dynamicCache.match(request);
+      if (response && !isCacheValid(response, DYNAMIC_CACHE_MAX_AGE)) {
+        await dynamicCache.delete(request);
       }
     }
     
-    console.log('Service Worker: Background sync completed');
+    // Clean static cache (1 year) - only remove if really old
+    const staticRequests = await staticCache.keys();
+    for (const request of staticRequests) {
+      const response = await staticCache.match(request);
+      if (response && !isCacheValid(response, STATIC_CACHE_MAX_AGE)) {
+        await staticCache.delete(request);
+      }
+    }
+    
+    console.log('Service Worker: Background sync completed - cache cleaned');
   } catch (error) {
     console.error('Service Worker: Background sync failed', error);
   }
