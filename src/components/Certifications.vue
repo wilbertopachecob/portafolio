@@ -22,6 +22,9 @@
               :alt="$t('certifications.badgeAlt', { issuer: certification.issuer })"
               class="badge-image"
               :aria-label="$t('certifications.badgeLabel', { title: certification.title, issuer: certification.issuer })"
+              width="120"
+              height="120"
+              loading="lazy"
             />
           </div>
           
@@ -137,6 +140,9 @@ export default {
 .badge-image {
   max-width: 120px;
   max-height: 120px;
+  width: 120px;
+  height: 120px;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

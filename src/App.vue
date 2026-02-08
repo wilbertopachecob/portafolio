@@ -133,11 +133,9 @@ export default {
 /* Import Bootstrap CSS */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* Import FontAwesome CSS */
-@import '@fortawesome/fontawesome-free/css/all.css';
-
 /* Import custom CSS */
 @import './assets/css/main.css';
+/* Note: FontAwesome CSS removed - using SVG icons only via tree-shaking */
 
 /* App-specific styles */
 #app {
