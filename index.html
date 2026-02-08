@@ -111,19 +111,65 @@
     }
     </script>
     
-    <!-- Analytics -->
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('9a2306c6adf0d200a9d4bd7b2ba61cc5', {"autocapture":{"elementInteractions":true}});</script>
-    <script type="module" crossorigin src="/portafolio/assets/index-DDdxKNKa.js"></script>
-    <link rel="modulepreload" crossorigin href="/portafolio/assets/vendor-Dz2b5rBP.js">
-    <link rel="modulepreload" crossorigin href="/portafolio/assets/fontawesome-CaRSUbl5.js">
-    <link rel="stylesheet" crossorigin href="/portafolio/assets/index-D4y1jKZd.css">
+    <script type="module" crossorigin src="/portafolio/assets/js/index-BfyDs1X4.js"></script>
+    <link rel="modulepreload" crossorigin href="/portafolio/assets/js/vendor-BV1KyQj3.js">
+    <link rel="modulepreload" crossorigin href="/portafolio/assets/js/fontawesome-YehsZxyg.js">
+    <link rel="stylesheet" crossorigin href="/portafolio/assets/css/index-COPGq77p.css">
   </head>
   <body>
     <noscript>
       <strong>We're sorry but this portfolio doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    
+    <!-- Analytics - Loaded after page load to avoid blocking render -->
+    <script>
+      // Defer analytics loading until after page load
+      // Use window.load to ensure all resources are loaded, then defer with requestIdleCallback
+      window.addEventListener('load', function() {
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          setTimeout(loadAnalytics, 2000);
+        }
+      }, { once: true });
+      
+      function loadAnalytics() {
+        // Load Amplitude scripts dynamically
+        const script1 = document.createElement('script');
+        script1.src = 'https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz';
+        script1.async = true;
+        script1.onerror = function() {
+          // Silently fail if analytics script can't load - don't break the page
+          console.warn('Analytics script failed to load');
+        };
+        script1.onload = function() {
+          const script2 = document.createElement('script');
+          script2.src = 'https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz';
+          script2.async = true;
+          script2.onerror = function() {
+            // Silently fail if session replay plugin can't load
+            console.warn('Session replay plugin failed to load');
+            // Still initialize amplitude if available
+            if (window.amplitude) {
+              window.amplitude.init('9a2306c6adf0d200a9d4bd7b2ba61cc5', {"autocapture":{"elementInteractions":true}});
+            }
+          };
+          script2.onload = function() {
+            if (window.amplitude && window.sessionReplay) {
+              try {
+                window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+                window.amplitude.init('9a2306c6adf0d200a9d4bd7b2ba61cc5', {"autocapture":{"elementInteractions":true}});
+              } catch (error) {
+                console.warn('Analytics initialization failed:', error);
+              }
+            }
+          };
+          document.head.appendChild(script2);
+        };
+        document.head.appendChild(script1);
+      }
+    </script>
   </body>
 </html>
