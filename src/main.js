@@ -108,8 +108,9 @@ app.mount('#app')
 
 // Register Service Worker for offline functionality
 // Only register in production to avoid interfering with Vite's dev server
+// Defer registration using requestIdleCallback to avoid blocking main thread
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  window.addEventListener('load', () => {
+  const registerServiceWorker = () => {
     // Use dynamic path based on environment
     const swPath = APP_CONFIG.SERVICE_WORKER.PROD_PATH;
     const swScope = APP_CONFIG.SERVICE_WORKER.PROD_SCOPE;
@@ -133,7 +134,18 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
       .catch((error) => {
         console.log('Service Worker registration failed:', error);
       });
-  });
+  };
+  
+  // Use requestIdleCallback if available, otherwise defer with setTimeout
+  if ('requestIdleCallback' in window) {
+    window.addEventListener('load', () => {
+      requestIdleCallback(registerServiceWorker, { timeout: 2000 });
+    });
+  } else {
+    window.addEventListener('load', () => {
+      setTimeout(registerServiceWorker, 2000);
+    });
+  }
   
   // Listen for service worker messages
   navigator.serviceWorker.addEventListener('message', (event) => {
@@ -141,11 +153,26 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
   });
 } else if ('serviceWorker' in navigator && import.meta.env.DEV) {
   // In development, unregister any existing service workers to prevent conflicts
-  navigator.serviceWorker.getRegistrations().then((registrations) => {
-    for (const registration of registrations) {
-      registration.unregister().then(() => {
-        console.log('Service Worker unregistered for development mode');
+  // Defer this as well to avoid blocking
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister().then(() => {
+            console.log('Service Worker unregistered for development mode');
+          });
+        }
       });
-    }
-  });
+    }, { timeout: 1000 });
+  } else {
+    setTimeout(() => {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister().then(() => {
+            console.log('Service Worker unregistered for development mode');
+          });
+        }
+      });
+    }, 1000);
+  }
 }
