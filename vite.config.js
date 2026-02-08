@@ -62,7 +62,7 @@ export default defineConfig({
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
-    // Minify with terser for better compression
+    // Minify with terser for better compression and console removal
     minify: 'terser',
     terserOptions: {
       compress: {
