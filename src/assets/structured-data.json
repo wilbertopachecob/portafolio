@@ -7,9 +7,15 @@
     "description": "Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies",
     "url": "https://wilbertopachecob.github.io/portafolio/",
     "image": "https://wilbertopachecob.github.io/portafolio/favicon-geometric.svg",
+    "alternateName": [
+      "Wilberto Pacheco",
+      "Pacheco Batista"
+    ],
+    "email": "wilbertopachecob@gmail.com",
     "sameAs": [
       "https://github.com/wilbertopachecob",
-      "https://linkedin.com/in/wilbertopachecobatista"
+      "https://www.linkedin.com/in/wilberto-pacheco-batista/",
+      "https://twitter.com/PachecoWilberto"
     ],
     "knowsAbout": [
       "Vue.js",
@@ -24,11 +30,11 @@
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Freelance"
+      "name": "Included Health"
     },
     "alumniOf": {
       "@type": "Organization",
-      "name": "University of Havana"
+      "name": "University of Informatic Sciences"
     }
   },
   "website": {
@@ -36,7 +42,7 @@
     "@type": "WebSite",
     "name": "Wilberto Pacheco Batista Portfolio",
     "url": "https://wilbertopachecob.github.io/portafolio/",
-    "description": "Professional portfolio of Wilberto Pacheco Batista, a skilled Software Engineer and Full Stack Web Developer specializing in Vue.js, React, Node.js, and modern web technologies.",
+    "description": "Wilberto Pacheco Batista - Software Engineer & Full Stack Developer. Bilingual web developer in Broken Arrow, OK. Vue.js, React, Node.js expertise. View portfolio, experience, and contact.",
     "author": {
       "@type": "Person",
       "name": "Wilberto Pacheco Batista"

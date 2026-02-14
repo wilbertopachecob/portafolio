@@ -115,9 +115,10 @@ export default {
   },
   methods: {
     updateDocumentTitle() {
+      // Keep full name + role for SEO when people search "Wilberto Pacheco Batista"
       const title = this.$i18n.locale === 'es' 
-        ? 'Wilberto Pacheco Batista | Ingeniero de Software'
-        : 'Wilberto Pacheco Batista | Software Engineer'
+        ? 'Wilberto Pacheco Batista - Ingeniero de Software y Desarrollador Full Stack'
+        : 'Wilberto Pacheco Batista - Software Engineer & Full Stack Developer'
       document.title = title
     }
   },

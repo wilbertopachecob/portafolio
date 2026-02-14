@@ -7,8 +7,8 @@ const path = require('path');
 const SEO_CONFIG = {
   baseUrl: 'https://wilbertopachecob.github.io/portafolio/',
   title: 'Wilberto Pacheco Batista - Software Engineer & Full Stack Developer',
-  description: 'Professional portfolio of Wilberto Pacheco Batista, a skilled Software Engineer and Full Stack Web Developer specializing in Vue.js, React, Node.js, and modern web technologies.',
-  keywords: 'software engineer, web developer, full stack developer, Vue.js, React, Node.js, JavaScript, TypeScript, portfolio, frontend, backend, AWS, cloud computing',
+  description: 'Wilberto Pacheco Batista - Software Engineer & Full Stack Developer. Bilingual web developer in Broken Arrow, OK. Vue.js, React, Node.js expertise. View portfolio, experience, and contact.',
+  keywords: 'Wilberto Pacheco Batista, Pacheco Batista, software engineer, web developer, full stack developer, Vue.js, React, Node.js, JavaScript, TypeScript, portfolio, frontend, backend, AWS, cloud computing, Broken Arrow OK',
   author: 'Wilberto Pacheco Batista',
   lastmod: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
   sections: [
@@ -62,9 +62,6 @@ Allow: /
 
 # Sitemap location
 Sitemap: ${SEO_CONFIG.baseUrl}sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
 
 # Allow all major search engines
 User-agent: Googlebot
@@ -156,9 +153,14 @@ function generateStructuredData() {
     "description": "Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies",
     "url": SEO_CONFIG.baseUrl,
     "image": `${SEO_CONFIG.baseUrl}favicon-geometric.svg`,
+    "givenName": "Wilberto",
+    "familyName": "Pacheco Batista",
+    "alternateName": "Pacheco Batista",
+    "email": "wilbertopachecob@gmail.com",
     "sameAs": [
       "https://github.com/wilbertopachecob",
-      "https://linkedin.com/in/wilbertopachecobatista"
+      "https://www.linkedin.com/in/wilberto-pacheco-batista/",
+      "https://twitter.com/PachecoWilberto"
     ],
     "knowsAbout": [
       "Vue.js",
@@ -173,11 +175,11 @@ function generateStructuredData() {
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Freelance"
+      "name": "Included Health"
     },
     "alumniOf": {
       "@type": "Organization", 
-      "name": "University of Havana"
+      "name": "University of Informatic Sciences"
     }
   };
 
