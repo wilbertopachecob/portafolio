@@ -1,8 +1,8 @@
 <template>
   <section class="hero" id="about" role="banner" aria-labelledby="hero-title">
     <div class="hero-content">
-      <!-- Hero Title -->
-      <h1 class="hero-title" id="hero-title">
+      <!-- Hero Title - Full name in H1 for SEO (Wilberto Pacheco Batista) -->
+      <h1 class="hero-title" id="hero-title" itemprop="name">
         {{ $t('hero.title') }}
         <span class="text-primary">Batista</span>
       </h1>
