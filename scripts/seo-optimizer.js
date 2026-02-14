@@ -11,23 +11,15 @@ const SEO_CONFIG = {
   keywords: 'Wilberto Pacheco Batista, Pacheco Batista, software engineer, web developer, full stack developer, Vue.js, React, Node.js, JavaScript, TypeScript, portfolio, frontend, backend, AWS, cloud computing, Broken Arrow OK',
   author: 'Wilberto Pacheco Batista',
   lastmod: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
-  sections: [
-    { id: 'about', priority: 1.0, changefreq: 'monthly' },
-    { id: 'experience', priority: 0.9, changefreq: 'monthly' },
-    { id: 'skills', priority: 0.8, changefreq: 'monthly' },
-    { id: 'education', priority: 0.7, changefreq: 'yearly' },
-    { id: 'languages', priority: 0.6, changefreq: 'yearly' },
-    { id: 'certifications', priority: 0.7, changefreq: 'monthly' }
-  ]
 };
 
 // Generate sitemap.xml
+// Note: Hash fragments (#about, #skills, etc.) are ignored by search engines - single entry for SPA
 function generateSitemap() {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  const fullSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Homepage -->
+  <!-- Homepage - single-page app -->
   <url>
     <loc>${SEO_CONFIG.baseUrl}</loc>
     <lastmod>${SEO_CONFIG.lastmod}</lastmod>
@@ -35,21 +27,9 @@ function generateSitemap() {
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${SEO_CONFIG.baseUrl}"/>
     <xhtml:link rel="alternate" hreflang="es" href="${SEO_CONFIG.baseUrl}?lang=es"/>
-  </url>`;
-
-  const sectionUrls = SEO_CONFIG.sections.map(section => `
-  <!-- ${section.id.charAt(0).toUpperCase() + section.id.slice(1)} Section -->
-  <url>
-    <loc>${SEO_CONFIG.baseUrl}#${section.id}</loc>
-    <lastmod>${SEO_CONFIG.lastmod}</lastmod>
-    <changefreq>${section.changefreq}</changefreq>
-    <priority>${section.priority}</priority>
-  </url>`).join('');
-
-  const sitemapEnd = `
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SEO_CONFIG.baseUrl}"/>
+  </url>
 </urlset>`;
-
-  const fullSitemap = sitemap + sectionUrls + sitemapEnd;
   
   fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), fullSitemap);
   console.log('✅ Sitemap generated successfully');
@@ -57,24 +37,32 @@ function generateSitemap() {
 
 // Generate robots.txt
 function generateRobotsTxt() {
+  const disallowPaths = `Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/`;
   const robotsTxt = `User-agent: *
 Allow: /
+${disallowPaths}
 
 # Sitemap location
 Sitemap: ${SEO_CONFIG.baseUrl}sitemap.xml
 
-# Allow all major search engines
+# Allow major search engines
 User-agent: Googlebot
 Allow: /
+${disallowPaths}
 
 User-agent: Bingbot
 Allow: /
+${disallowPaths}
 
 User-agent: Slurp
 Allow: /
+${disallowPaths}
 
 User-agent: DuckDuckBot
 Allow: /
+${disallowPaths}
 
 # Block common bad bots
 User-agent: AhrefsBot
@@ -87,12 +75,7 @@ User-agent: MJ12bot
 Disallow: /
 
 User-agent: DotBot
-Disallow: /
-
-# Block access to admin areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/`;
+Disallow: /`;
 
   fs.writeFileSync(path.join(__dirname, '../public/robots.txt'), robotsTxt);
   console.log('✅ Robots.txt generated successfully');

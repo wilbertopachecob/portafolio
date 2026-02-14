@@ -7,10 +7,9 @@
     "description": "Full Stack Web Developer with expertise in Vue.js, React, Node.js, and modern web technologies",
     "url": "https://wilbertopachecob.github.io/portafolio/",
     "image": "https://wilbertopachecob.github.io/portafolio/favicon-geometric.svg",
-    "alternateName": [
-      "Wilberto Pacheco",
-      "Pacheco Batista"
-    ],
+    "givenName": "Wilberto",
+    "familyName": "Pacheco Batista",
+    "alternateName": "Pacheco Batista",
     "email": "wilbertopachecob@gmail.com",
     "sameAs": [
       "https://github.com/wilbertopachecob",
