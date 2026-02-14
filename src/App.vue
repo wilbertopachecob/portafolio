@@ -73,7 +73,7 @@
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
-          <p>&copy; {{ currentYear }} <span itemprop="name">Wilberto Pacheco Batista</span>. {{ $t('footer.copyright') }}</p>
+          <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. {{ $t('footer.copyright') }}</p>
           <p>{{ $t('footer.builtWith') }}</p>
         </div>
       </div>
