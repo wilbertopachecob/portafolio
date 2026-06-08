@@ -70,9 +70,9 @@
   },
   "skills": {
     "productEngineering": "Ingeniería de producto",
+    "mobileProductDelivery": "Mobile y entrega de producto",
     "modernizationArchitecture": "Modernización y arquitectura",
-    "platformData": "Plataforma y datos",
-    "cloudOperations": "Cloud y operación"
+    "platformData": "Plataforma, datos y cloud"
   },
   "languages": {
     "spanish": "Español",
