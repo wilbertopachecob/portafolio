@@ -1,0 +1,46 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://wilbertopachecob.github.io/portafolio/sitemap.xml
+
+# Allow major search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+User-agent: Slurp
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Block common bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
