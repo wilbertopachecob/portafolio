@@ -37,7 +37,8 @@ describe('i18n Configuration', () => {
       expect(en.nav.impact).toBe('Impact')
       expect(en.nav.experience).toBe('Experience')
       expect(en.nav.portfolio).toBe('Products')
-      expect(en.nav.skills).toBe('Capabilities')
+      expect(en.nav.skills).toBe('Technical capabilities')
+      expect(en.nav.howIWork).toBe('How I work')
       expect(en.nav.credentials).toBe('Credentials')
     })
 
@@ -53,7 +54,8 @@ describe('i18n Configuration', () => {
       expect(es.nav.impact).toBe('Impacto')
       expect(es.nav.experience).toBe('Experiencia')
       expect(es.nav.portfolio).toBe('Productos')
-      expect(es.nav.skills).toBe('Capacidades')
+      expect(es.nav.skills).toBe('Capacidades técnicas')
+      expect(es.nav.howIWork).toBe('Cómo trabajo')
       expect(es.nav.credentials).toBe('Credenciales')
     })
 
@@ -131,6 +133,8 @@ describe('i18n Configuration', () => {
       expect(Array.isArray(es.content.certifications)).toBe(true)
       
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
+      expect(en.content.certifications[0].date).toBe('December 2020')
+      expect(es.content.certifications[0].date).toBe('Diciembre 2020')
     })
 
     it('has impact content and language note in both languages', () => {

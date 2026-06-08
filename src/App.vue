@@ -56,8 +56,8 @@ import ContactClosing from './components/ContactClosing.vue'
 const PAGE_SECTIONS = [
   { id: 'about', component: markRaw(About), showHeader: false },
   { id: 'impact', component: markRaw(Impact), showHeader: true },
-  { id: 'experience', component: markRaw(Experience), showHeader: true },
   { id: 'portfolio', component: markRaw(Portfolio), showHeader: true },
+  { id: 'experience', component: markRaw(Experience), showHeader: true },
   { id: 'skills', component: markRaw(Skills), showHeader: true },
   { id: 'howIWork', component: markRaw(HowIWork), showHeader: true },
   { id: 'credentials', component: markRaw(Credentials), showHeader: true },

@@ -2,12 +2,13 @@
   "nav": {
     "about": "Home",
     "experience": "Experience",
-    "skills": "Capabilities",
+    "skills": "Technical capabilities",
     "portfolio": "Products",
     "education": "Education",
     "languages": "Languages",
     "certifications": "Certifications",
     "impact": "Impact",
+    "howIWork": "How I work",
     "credentials": "Credentials",
     "contact": "Contact"
   },
@@ -28,8 +29,8 @@
       "subtitle": "Roles where I led modernization, product work, and full stack delivery"
     },
     "skills": {
-      "title": "Capabilities",
-      "subtitle": "Technical and product problems I can solve with senior judgment"
+      "title": "Technical capabilities",
+      "subtitle": "Curated capabilities for building, modernizing, and operating products with senior judgment"
     },
     "portfolio": {
       "title": "Products",
@@ -68,12 +69,10 @@
     "stack": "Stack"
   },
   "skills": {
-    "programmingLanguages": "Programming Languages",
-    "frameworksLibraries": "Frameworks & Libraries",
-    "databasesTools": "Databases & Tools",
-    "cloudDevops": "Cloud & DevOps",
-    "contentManagement": "Content Management",
-    "developmentTools": "Development Tools"
+    "productEngineering": "Product engineering",
+    "mobileProductDelivery": "Mobile and product delivery",
+    "modernizationArchitecture": "Modernization and architecture",
+    "platformData": "Platform, data, and cloud"
   },
   "languages": {
     "spanish": "Spanish",
@@ -165,8 +164,6 @@
           "React",
           "Vue.js",
           "Go",
-          "Redis",
-          "Elasticsearch",
           "Amplitude"
         ],
         "responsibilities": [
@@ -230,8 +227,7 @@
           "Laravel",
           "PHP",
           "Google Charts",
-          "Highcharts",
-          "jQuery"
+          "i18n"
         ],
         "responsibilities": [
           "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
@@ -303,10 +299,9 @@
         "tags": [
           "React Native",
           "Expo",
-          "iOS",
-          "Android",
           "TypeScript",
-          "Supabase"
+          "Supabase",
+          "RevenueCat"
         ],
         "screenshots": [
           {
@@ -342,7 +337,6 @@
         "tags": [
           "Next.js",
           "React",
-          "Vue.js",
           "Technical Writing",
           "i18n"
         ],
@@ -358,7 +352,7 @@
         "url": "https://micalpacheco.com",
         "featured": false,
         "type": "landing",
-        "description": "A professional landing page for a board-certified psychiatric nurse practitioner in Broken Arrow, OK, focused on clarity, trust, and local presence.",
+        "description": "A professional landing page for a board-certified psychiatric nurse practitioner in Broken Arrow, OK, focused on trust, service clarity, and local presence.",
         "highlights": [],
         "tags": [
           "Personal",
@@ -370,7 +364,7 @@
         "url": "https://paint.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "A Canvas API drawing experiment exploring simple touch interactions, large controls, and immediate browser feedback.",
+        "description": "A Canvas API drawing tool for testing simple touch interactions, accessible controls, and immediate browser feedback.",
         "highlights": [],
         "tags": [
           "Canvas API",
@@ -382,7 +376,7 @@
         "url": "https://tictactoe.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "A classic, simple, responsive tic-tac-toe game built as an exercise in game rules, UI state, and quick interaction.",
+        "description": "A responsive tic-tac-toe game built to practice state rules, immediate feedback, and clear interaction on small screens.",
         "highlights": [],
         "tags": [
           "JavaScript",
@@ -394,7 +388,7 @@
         "url": "https://weather-ai.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "An AI-integrated weather app exploring how a conversational layer can make an everyday query more useful.",
+        "description": "An AI-integrated weather app exploring how a conversational layer can turn an everyday query into a more useful recommendation.",
         "highlights": [],
         "tags": [
           "AI",
@@ -407,7 +401,7 @@
       {
         "issuer": "Amazon Web Services (AWS)",
         "title": "AWS Certified Cloud Practitioner",
-        "date": "12/14/2020",
+        "date": "December 2020",
         "link": "https://www.youracclaim.com/users/wilberto-pacheco-batista",
         "description": "Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.",
         "skills": [
@@ -416,12 +410,12 @@
           "Cloud Platform",
           "Cloud Services"
         ],
-        "conciseDescription": "Formal foundation for understanding cloud services, cost, shared security, and initial AWS architecture."
+        "conciseDescription": "Formal foundation for evaluating cloud services, cost, shared security, and initial AWS architecture decisions."
       },
       {
         "issuer": "Centre for Development of Advanced Computing",
         "title": "Specialized Training Programme in Multimedia and Web Design Technology",
-        "date": "6/10/2016",
+        "date": "June 2016",
         "link": "https://www.cdac.in/",
         "certificateNumber": "Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725",
         "description": "This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:",
@@ -431,7 +425,7 @@
           "Advanced Computing",
           "Digital Media"
         ],
-        "conciseDescription": "Early international training in multimedia and web design that connected engineering with visual experience."
+        "conciseDescription": "International training in multimedia and web design that connected engineering, visual experience, and digital communication."
       }
     ],
     "impactHighlights": [

@@ -133,15 +133,15 @@ export default {
 .timeline-content {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--space-xl);
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
 }
 
 .timeline-content:hover {
-  transform: translateX(8px);
-  box-shadow: var(--shadow-lg);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
 }
 

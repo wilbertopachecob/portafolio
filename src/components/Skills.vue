@@ -1,8 +1,8 @@
 <template>
   <div class="skills-container" role="region" aria-labelledby="skills-heading">
-    <h2 id="skills-heading" class="sr-only">Technical Skills</h2>
+    <h2 id="skills-heading" class="sr-only">{{ $t('sections.skills.title') }}</h2>
     <!-- Skills Grid -->
-    <div class="skills-grid" role="list" aria-label="Technical skills by category">
+    <div class="skills-grid" role="list" :aria-label="$t('sections.skills.title')">
       <div 
         class="skill-category"
         v-for="(category, index) in skillCategories"
@@ -10,7 +10,7 @@
         role="listitem"
       >
         <h3 class="skill-category-title" v-html="category.title"></h3>
-        <div class="skill-items" role="list" :aria-label="`${category.title} skills`">
+        <div class="skill-items" role="list" :aria-label="category.title">
           <div 
             class="skill-item"
             v-for="(skill, skillIndex) in category.skills"
@@ -67,14 +67,14 @@ export default {
 .skill-category {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--space-xl);
   transition: all var(--transition-normal);
 }
 
 .skill-category:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
 }
 
@@ -108,7 +108,6 @@ export default {
 
 .skill-item:hover {
   background: var(--bg-tertiary);
-  transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
 

@@ -109,8 +109,8 @@ export default {
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -122,10 +122,9 @@ export default {
 .btn-secondary:hover {
   background: transparent;
   color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
   border-color: var(--primary-color);
-  border-width: 2px;
 }
 
 .btn-outline {
@@ -137,8 +136,8 @@ export default {
 .btn-outline:hover {
   background: var(--primary-color);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
 }
 
