@@ -173,6 +173,7 @@
         ],
         "stack": [
           "Node.js",
+          "GraphQL",
           "React",
           "Vue.js",
           "Go",
