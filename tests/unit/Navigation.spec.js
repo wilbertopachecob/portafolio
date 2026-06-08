@@ -39,6 +39,7 @@ const createTestI18n = (locale = 'en') => {
           darkMode: 'Switch to Dark Mode',
           openMenu: 'Open mobile menu',
           closeMenu: 'Close mobile menu',
+          mobileNavigation: 'Mobile navigation',
           languageToggle: 'Toggle language'
         }
       },
@@ -68,6 +69,7 @@ const createTestI18n = (locale = 'en') => {
           darkMode: 'Cambiar a Modo Oscuro',
           openMenu: 'Abrir menú móvil',
           closeMenu: 'Cerrar menú móvil',
+          mobileNavigation: 'Navegación móvil',
           languageToggle: 'Cambiar idioma'
         }
       }
@@ -245,6 +247,7 @@ describe('Navigation.vue', () => {
       expect(toggle).toHaveAttribute('aria-expanded', 'true')
       expect(document.body.style.overflow).toBe('hidden')
       expect(document.querySelector('.mobile-menu-drawer')).toBeTruthy()
+      expect(screen.getByRole('complementary', { name: 'Mobile navigation' })).toBeInTheDocument()
 
       await fireEvent.click(toggle)
       expect(toggle).toHaveAttribute('aria-expanded', 'false')
@@ -319,7 +322,8 @@ describe('Navigation.vue', () => {
       const resumeLink = document.querySelector('.mm-resume-btn')
       expect(resumeLink).toBeTruthy()
       expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
-      expect(resumeLink).toHaveAttribute('aria-label', 'Download Resume')
+      expect(resumeLink).toHaveTextContent('Download Resume')
+      expect(resumeLink).not.toHaveAttribute('target')
       expect(document.querySelectorAll('.mm-nav .mm-link')).toHaveLength(PRIMARY_NAV_IDS.length)
     })
 

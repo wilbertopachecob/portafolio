@@ -32,7 +32,6 @@
             :href="'#' + item.id"
             class="nav-link"
             :class="{ active: activeSection === item.id }"
-            :aria-label="$t('nav.' + item.id)"
             @click="scrollToSection(item.id)"
           >
             {{ navLabel(item.id) }}
@@ -83,7 +82,7 @@
           v-if="isMobileMenuOpen"
           class="mobile-menu-drawer"
           id="mobile-menu"
-          :aria-label="$t('accessibility.openMenu')"
+          :aria-label="$t('accessibility.mobileNavigation')"
         >
           <div class="mm-header">
             <span class="mm-title">Wilberto Pacheco</span>
@@ -104,7 +103,6 @@
               :href="'#' + item.id"
               class="mm-link"
               :class="{ 'active': activeSection === item.id }"
-              :aria-label="$t('nav.' + item.id)"
               @click.prevent="goToSection(item.id)"
             >
               <span class="mm-icon" aria-hidden="true">
@@ -120,9 +118,6 @@
               :href="resumeUrl"
               class="mm-resume-btn"
               :download="resumeFilename"
-              :aria-label="$t('hero.downloadResume')"
-              target="_blank"
-              rel="noopener noreferrer"
               @click="closeMobileMenu"
             >
               <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
@@ -153,7 +148,9 @@ export default {
       return getPublicAssetUrl(RESUME_FILENAME)
     },
     primaryNavItems() {
-      return NAV_ITEMS.filter((item) => PRIMARY_NAV_IDS.includes(item.id))
+      return PRIMARY_NAV_IDS
+        .map((id) => NAV_ITEMS.find((item) => item.id === id))
+        .filter(Boolean)
     },
   },
   data() {
