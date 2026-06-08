@@ -1,19 +1,27 @@
 <template>
-  <div class="language-toggle">
+  <div
+    class="language-toggle"
+    role="group"
+    :aria-label="$t('accessibility.languageToggle')"
+  >
     <button
-      class="language-btn"
-      @click="toggleLanguage"
-      :title="$t('accessibility.languageToggle')"
-      :aria-label="$t('accessibility.languageToggle')"
-      role="switch"
-      :aria-checked="currentLocale === 'es'"
+      type="button"
+      class="language-option"
+      :class="{ 'language-option--active': currentLocale === 'es' }"
+      :aria-pressed="currentLocale === 'es'"
+      @click="setLocale('es')"
     >
-      <font-awesome-icon 
-        :icon="['fas', 'globe']" 
-        class="globe-icon"
-        aria-hidden="true"
-      />
-      <span class="language-code">{{ currentLocale.toUpperCase() }}</span>
+      ES
+    </button>
+    <span class="language-divider" aria-hidden="true">|</span>
+    <button
+      type="button"
+      class="language-option"
+      :class="{ 'language-option--active': currentLocale === 'en' }"
+      :aria-pressed="currentLocale === 'en'"
+      @click="setLocale('en')"
+    >
+      EN
     </button>
   </div>
 </template>
@@ -26,126 +34,82 @@ export default {
   name: 'LanguageToggle',
   setup() {
     const { locale } = useI18n()
-    
+
     const currentLocale = computed(() => locale.value)
-    
-    const toggleLanguage = () => {
-      const newLocale = currentLocale.value === 'en' ? 'es' : 'en'
+
+    const setLocale = (newLocale) => {
+      if (currentLocale.value === newLocale) return
+
       locale.value = newLocale
       localStorage.setItem('locale', newLocale)
-      
-      // Update document language attribute
       document.documentElement.lang = newLocale
-      
-      // Update document title
-      const title = newLocale === 'en' 
-        ? 'Wilberto Pacheco Batista | Software Engineer'
-        : 'Wilberto Pacheco Batista | Ingeniero de Software'
-      document.title = title
     }
-    
+
     return {
       currentLocale,
-      toggleLanguage
+      setLocale,
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
 .language-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-}
-
-.language-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
   background: var(--bg-secondary);
-  border: 1px solid var(--primary-color);
-  border-radius: 9999px;
-  padding: var(--space-sm) var(--space-md);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  min-width: fit-content;
-  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.language-option {
+  min-width: 2rem;
+  padding: 0.2rem 0.35rem;
+  border: none;
+  border-radius: calc(var(--radius-md) - 2px);
+  background: transparent;
+  color: var(--text-muted);
   font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.language-btn:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+.language-option:hover {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-tertiary) 70%, transparent);
 }
 
-.language-btn:active {
-  transform: translateY(0);
+.language-option--active {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
 }
 
-.language-btn:focus-visible {
+.language-option:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-.globe-icon {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  width: 1rem;
-  height: 1rem;
-  transition: color var(--transition-normal);
+.language-divider {
+  color: var(--border-light);
+  font-size: 0.75rem;
+  line-height: 1;
+  user-select: none;
 }
 
-.language-code {
-  color: var(--text-secondary);
-  font-weight: 500;
-  font-size: 0.875rem;
-  letter-spacing: 0.025em;
-  transition: color var(--transition-normal);
-}
-
-.language-btn:hover .globe-icon,
-.language-btn:hover .language-code {
-  color: var(--text-primary);
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
-  .language-btn {
-    padding: var(--space-xs) var(--space-sm);
-    gap: var(--space-xs);
+  .language-toggle {
+    padding: 0.15rem 0.35rem;
   }
-  
-  .globe-icon {
-    font-size: 0.875rem;
-    width: 0.875rem;
-    height: 0.875rem;
-  }
-  
-  .language-code {
-    font-size: 0.8125rem;
+
+  .language-option {
+    min-width: 1.75rem;
+    font-size: 0.75rem;
   }
 }
-
-/* Dark mode adjustments */
-[data-theme="dark"] .language-btn {
-  background: var(--bg-secondary);
-  border-color: var(--primary-color);
-}
-
-[data-theme="dark"] .language-btn:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--primary-dark);
-}
-
-[data-theme="dark"] .globe-icon,
-[data-theme="dark"] .language-code {
-  color: var(--text-secondary);
-}
-
-[data-theme="dark"] .language-btn:hover .globe-icon,
-[data-theme="dark"] .language-btn:hover .language-code {
-  color: var(--text-primary);
-}
-</style> 
+</style>

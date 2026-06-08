@@ -30,15 +30,18 @@
       "jobTitle": "Software Engineer & Full Stack Developer"
     },
     "experience": {
-      "title": "Experience",
+      "eyebrow": "Experience",
+      "title": "Professional trajectory",
       "subtitle": "Roles where I led modernization, product work, and full stack delivery"
     },
     "skills": {
+      "eyebrow": "Capabilities",
       "title": "Technical capabilities",
       "subtitle": "Curated capabilities for building, modernizing, and operating products with senior judgment"
     },
     "portfolio": {
-      "title": "Products",
+      "eyebrow": "Products",
+      "title": "What I've built",
       "subtitle": "Personal products and experiments that show how I think, design, and build end-to-end"
     },
     "education": {
@@ -54,14 +57,17 @@
       "subtitle": "Professional certifications and achievements"
     },
     "impact": {
-      "title": "Impact",
+      "eyebrow": "Impact",
+      "title": "Results with impact",
       "subtitle": "Concrete results connecting technical leadership, execution, and product vision"
     },
     "credentials": {
-      "title": "Credentials",
+      "eyebrow": "Credentials",
+      "title": "Education and certifications",
       "subtitle": "Education, languages, and certifications that support a career built through real delivery"
     },
     "howIWork": {
+      "eyebrow": "Process",
       "title": "How I work",
       "subtitle": "Principles that guide my product, architecture, and delivery decisions"
     }
@@ -95,6 +101,7 @@
     "lightMode": "Switch to Light Mode",
     "openMenu": "Open mobile menu",
     "closeMenu": "Close mobile menu",
+    "mobileNavigation": "Mobile navigation",
     "languageToggle": "Toggle language"
   },
   "contact": {

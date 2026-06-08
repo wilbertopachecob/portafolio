@@ -38,10 +38,6 @@ export default defineConfig({
           if (id.includes('@fortawesome')) {
             return 'fontawesome';
           }
-          // Bootstrap chunk
-          if (id.includes('node_modules/bootstrap')) {
-            return 'bootstrap';
-          }
           // Other node_modules go to vendor
           if (id.includes('node_modules')) {
             return 'vendor';

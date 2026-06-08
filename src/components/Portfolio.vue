@@ -1,16 +1,13 @@
 <template>
-  <div class="portfolio" role="region" aria-labelledby="portfolio-heading">
-    <h2 id="portfolio-heading" class="sr-only">{{ $t('sections.portfolio.title') }}</h2>
-
+  <div class="portfolio">
     <p class="portfolio-intro">{{ $t('portfolio.intro') }}</p>
 
-    <div class="portfolio-featured" role="list" :aria-label="$t('portfolio.featured')">
-      <div
+    <ul class="portfolio-featured" :aria-label="$t('portfolio.featured')">
+      <li
         v-for="project in featuredProjects"
         :key="project.name"
         class="portfolio-card"
         :class="{ 'portfolio-card--featured': project.featured }"
-        role="listitem"
       >
         <div class="portfolio-card-header">
           <div class="portfolio-card-meta">
@@ -32,30 +29,30 @@
 
         <p class="portfolio-card-description">{{ project.description }}</p>
 
-        <div
+        <ul
           v-if="project.screenshots && project.screenshots.length"
           class="portfolio-screenshots"
           :class="`portfolio-screenshots--${project.type === 'mobile' ? 'mobile' : 'desktop'}`"
-          role="list"
           :aria-label="$t('portfolio.screenshots', { name: project.name })"
         >
-          <figure
+          <li
             v-for="(screenshot, screenshotIndex) in project.screenshots"
             :key="`${project.name}-${screenshotIndex}`"
             class="portfolio-screenshot"
-            role="listitem"
           >
-            <img
-              :src="getScreenshotSrc(screenshot.src)"
-              :alt="screenshot.alt"
-              class="portfolio-screenshot-image"
-              width="360"
-              height="780"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </div>
+            <figure class="portfolio-screenshot-frame">
+              <img
+                :src="getScreenshotSrc(screenshot.src)"
+                :alt="screenshot.alt"
+                class="portfolio-screenshot-image"
+                width="360"
+                height="780"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </li>
+        </ul>
 
         <div
           v-if="getCaseStudyFields(project).length"
@@ -75,42 +72,38 @@
         <ul
           v-if="project.highlights && project.highlights.length"
           class="portfolio-highlights"
-          role="list"
           :aria-label="$t('portfolio.highlights')"
         >
           <li
             v-for="(highlight, highlightIndex) in project.highlights"
             :key="highlightIndex"
-            role="listitem"
           >
             {{ highlight }}
           </li>
         </ul>
 
-        <div v-if="project.tags && project.tags.length" class="portfolio-tags" role="list" :aria-label="$t('portfolio.technologies')">
-          <span
+        <ul v-if="project.tags && project.tags.length" class="portfolio-tags" :aria-label="$t('portfolio.technologies')">
+          <li
             v-for="(tag, tagIndex) in project.tags"
             :key="tagIndex"
             class="portfolio-tag"
-            role="listitem"
           >
             {{ tag }}
-          </span>
-        </div>
-      </div>
-    </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
 
     <section v-if="experimentProjects.length" class="portfolio-experiments" :aria-labelledby="'portfolio-experiments-heading'">
       <h3 id="portfolio-experiments-heading" class="portfolio-subsection-title">
         {{ $t('portfolio.experiments') }}
       </h3>
 
-      <div class="portfolio-grid" role="list" :aria-label="$t('portfolio.experiments')">
-        <div
+      <ul class="portfolio-grid" :aria-label="$t('portfolio.experiments')">
+        <li
           v-for="project in experimentProjects"
           :key="project.name"
           class="portfolio-card portfolio-card--compact"
-          role="listitem"
         >
           <div class="portfolio-card-header">
             <div class="portfolio-card-meta">
@@ -131,18 +124,17 @@
 
           <p class="portfolio-card-description">{{ project.description }}</p>
 
-          <div v-if="project.tags && project.tags.length" class="portfolio-tags" role="list" :aria-label="$t('portfolio.technologies')">
-            <span
+          <ul v-if="project.tags && project.tags.length" class="portfolio-tags" :aria-label="$t('portfolio.technologies')">
+            <li
               v-for="(tag, tagIndex) in project.tags"
               :key="tagIndex"
               class="portfolio-tag"
-              role="listitem"
             >
               {{ tag }}
-            </span>
-          </div>
-        </div>
-      </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </section>
 
     <p class="portfolio-infra">
@@ -156,6 +148,11 @@
 import { getPortfolioProjects } from '@/i18n/content'
 
 const screenshotModules = import.meta.glob('@/assets/img/portfolio/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+})
+
+const screenshotWebpModules = import.meta.glob('@/assets/img/portfolio/*.webp', {
   eager: true,
   import: 'default',
 })
@@ -189,6 +186,10 @@ export default {
       return this.caseStudyFields.filter((field) => project[field.key])
     },
     getScreenshotSrc(filename) {
+      const webpName = filename.replace(/\.(png|jpe?g)$/i, '.webp')
+      const webpMatch = Object.entries(screenshotWebpModules).find(([path]) => path.endsWith(`/${webpName}`))
+      if (webpMatch) return webpMatch[1]
+
       const match = Object.entries(screenshotModules).find(([path]) => path.endsWith(`/${filename}`))
       if (match) return match[1]
       return `${import.meta.env.BASE_URL}img/${filename}`
@@ -228,19 +229,18 @@ export default {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  padding: var(--space-xl);
+  padding: var(--card-padding-editorial);
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
   min-width: 0;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-primary));
   box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
 }
 
 .portfolio-card--featured {
@@ -280,8 +280,8 @@ export default {
   font-weight: 600;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
-  color: var(--primary-color);
+  background: color-mix(in srgb, var(--accent-color) 16%, transparent);
+  color: var(--accent-color);
 }
 
 .portfolio-card-title {
@@ -328,6 +328,37 @@ export default {
   display: grid;
   gap: var(--space-lg);
   margin: var(--space-sm) 0 var(--space-md);
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-screenshot {
+  min-width: 0;
+}
+
+.portfolio-screenshot-frame {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+}
+
+.portfolio-screenshot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portfolio-screenshots--mobile .portfolio-screenshot-image {
+  aspect-ratio: 9 / 19.5;
+}
+
+.portfolio-screenshots--desktop .portfolio-screenshot-image {
+  aspect-ratio: 16 / 9;
 }
 
 .portfolio-screenshots--mobile {
@@ -336,33 +367,6 @@ export default {
 
 .portfolio-screenshots--desktop {
   grid-template-columns: 1fr;
-}
-
-.portfolio-screenshot {
-  margin: 0;
-  min-width: 0;
-}
-
-.portfolio-screenshot-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  background: var(--bg-secondary);
-}
-
-.portfolio-screenshots--mobile .portfolio-screenshot-image {
-  max-height: 520px;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.portfolio-screenshots--desktop .portfolio-screenshot-image {
-  max-height: 420px;
-  object-fit: cover;
-  object-position: top center;
 }
 
 .portfolio-case-study {
@@ -428,6 +432,8 @@ export default {
   flex-wrap: wrap;
   gap: var(--space-sm);
   margin-top: auto;
+  list-style: none;
+  padding: 0;
 }
 
 .portfolio-tag {
@@ -477,18 +483,14 @@ export default {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-screenshots--mobile .portfolio-screenshot-image {
-    max-height: none;
-    object-fit: contain;
-  }
-
+  .portfolio-screenshots--mobile .portfolio-screenshot-image,
   .portfolio-screenshots--desktop .portfolio-screenshot-image {
-    max-height: none;
+    aspect-ratio: auto;
     object-fit: contain;
   }
 
   .portfolio-card {
-    padding: var(--space-lg);
+    padding: var(--card-padding-dense);
   }
 
   .portfolio-card-title {

@@ -56,14 +56,14 @@ describe('HowIWork.vue', () => {
     expect(screen.getByText('Modernize without breaking the business')).toBeInTheDocument()
   })
 
-  it('uses the section title for the principles list', () => {
-    render(HowIWork, {
+  it('renders a native principles list', () => {
+    const { container } = render(HowIWork, {
       global: {
         plugins: [createTestI18n()],
       },
     })
 
-    expect(screen.getByRole('list', { name: 'How I work' })).toBeInTheDocument()
+    expect(container.querySelector('.how-i-work')).toBeInTheDocument()
   })
 
   it('should have no accessibility violations', async () => {

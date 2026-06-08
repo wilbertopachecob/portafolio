@@ -3,7 +3,6 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import LanguageToggle from '@/components/LanguageToggle.vue'
 
-// Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
   return createI18n({
     legacy: false,
@@ -11,15 +10,15 @@ const createTestI18n = (locale = 'en') => {
     messages: {
       en: {
         accessibility: {
-          languageToggle: 'Toggle language'
-        }
+          languageToggle: 'Toggle language',
+        },
       },
       es: {
         accessibility: {
-          languageToggle: 'Cambiar idioma'
-        }
-      }
-    }
+          languageToggle: 'Cambiar idioma',
+        },
+      },
+    },
   })
 }
 
@@ -27,162 +26,82 @@ describe('LanguageToggle.vue', () => {
   let i18n
 
   beforeEach(() => {
-    // Reset localStorage mock
     localStorage.clear()
+    document.documentElement.lang = 'en'
     i18n = createTestI18n('en')
   })
 
-  it('renders the language toggle button', () => {
+  it('renders ES and EN options', () => {
     render(LanguageToggle, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
 
-    const toggleButton = screen.getByRole('switch')
-    expect(toggleButton).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: 'Toggle language' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'ES' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'EN' })).toBeInTheDocument()
   })
 
-  it('displays language code EN when locale is English', () => {
+  it('marks EN as active when locale is English', () => {
     render(LanguageToggle, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
 
-    expect(screen.getByText('EN')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'ES' })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('displays language code ES when locale is Spanish', () => {
+  it('marks ES as active when locale is Spanish', () => {
     const spanishI18n = createTestI18n('es')
     render(LanguageToggle, {
       global: {
-        plugins: [spanishI18n]
-      }
+        plugins: [spanishI18n],
+      },
     })
 
-    expect(screen.getByText('ES')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'ES' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('has proper accessibility attributes', () => {
+  it('switches locale when ES is clicked', async () => {
     render(LanguageToggle, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
 
-    const toggleButton = screen.getByRole('switch')
-    expect(toggleButton).toHaveAttribute('aria-label')
-    expect(toggleButton).toHaveAttribute('aria-checked')
-    expect(toggleButton).toHaveAttribute('title')
+    await fireEvent.click(screen.getByRole('button', { name: 'ES' }))
+
+    expect(i18n.global.locale.value).toBe('es')
+    expect(document.documentElement.lang).toBe('es')
   })
 
-  it('calls toggleLanguage when clicked', async () => {
-    render(LanguageToggle, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-
-    const toggleButton = screen.getByRole('switch')
-    await fireEvent.click(toggleButton)
-
-    // The component should handle the click internally
-    expect(toggleButton).toBeInTheDocument()
-  })
-
-  it('updates aria-checked attribute based on current locale', () => {
-    // Test with English locale
-    const englishI18n = createTestI18n('en')
-    const { unmount } = render(LanguageToggle, {
-      global: {
-        plugins: [englishI18n]
-      }
-    })
-
-    const englishToggleButton = screen.getByRole('switch')
-    expect(englishToggleButton).toHaveAttribute('aria-checked', 'false') // English is not Spanish
-
-    // Clean up and test with Spanish locale
-    unmount()
-
+  it('switches locale when EN is clicked from Spanish', async () => {
     const spanishI18n = createTestI18n('es')
     render(LanguageToggle, {
       global: {
-        plugins: [spanishI18n]
-      }
+        plugins: [spanishI18n],
+      },
     })
 
-    const spanishToggleButton = screen.getByRole('switch')
-    expect(spanishToggleButton).toHaveAttribute('aria-checked', 'true') // Spanish is Spanish
+    await fireEvent.click(screen.getByRole('button', { name: 'EN' }))
+
+    expect(spanishI18n.global.locale.value).toBe('en')
+    expect(document.documentElement.lang).toBe('en')
   })
 
-  it('has proper CSS classes for styling', () => {
+  it('supports keyboard focus on language options', () => {
     render(LanguageToggle, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
 
-    const toggleButton = screen.getByRole('switch')
-    expect(toggleButton).toHaveClass('language-btn')
-
-    const languageToggle = screen.getByRole('switch').closest('.language-toggle')
-    expect(languageToggle).toBeInTheDocument()
-  })
-
-  it('displays correct tooltip text', () => {
-    render(LanguageToggle, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-
-    const toggleButton = screen.getByRole('switch')
-    expect(toggleButton).toHaveAttribute('title', 'Toggle language')
-  })
-
-  it('displays Spanish tooltip when locale is Spanish', () => {
-    const spanishI18n = createTestI18n('es')
-    render(LanguageToggle, {
-      global: {
-        plugins: [spanishI18n]
-      }
-    })
-
-    const toggleButton = screen.getByRole('switch')
-    expect(toggleButton).toHaveAttribute('title', 'Cambiar idioma')
-  })
-
-  it('has proper focus management', () => {
-    render(LanguageToggle, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-
-    const toggleButton = screen.getByRole('switch')
-    toggleButton.focus()
-
-    expect(toggleButton).toHaveFocus()
-  })
-
-  it('supports keyboard navigation', async () => {
-    render(LanguageToggle, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-
-    const toggleButton = screen.getByRole('switch')
-    toggleButton.focus()
-
-    // Test Enter key
-    await fireEvent.keyDown(toggleButton, { key: 'Enter' })
-    expect(toggleButton).toBeInTheDocument()
-
-    // Test Space key
-    await fireEvent.keyDown(toggleButton, { key: ' ' })
-    expect(toggleButton).toBeInTheDocument()
+    const englishButton = screen.getByRole('button', { name: 'EN' })
+    englishButton.focus()
+    expect(englishButton).toHaveFocus()
   })
 })

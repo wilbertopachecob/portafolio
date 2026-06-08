@@ -14,7 +14,7 @@
       <!-- Hero Title - Full name in H1 for SEO (Wilberto Pacheco Batista) -->
       <h1 class="hero-title" id="hero-title" itemprop="name">
         {{ $t('hero.title') }}
-        <span class="text-primary">Batista</span>
+        <span class="hero-title-accent">Batista</span>
       </h1>
       
       <!-- Hero Subtitle -->
@@ -123,16 +123,12 @@ export default {
 }
 
 .hero-title {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: var(--space-lg);
 }
 
-.text-primary {
+.hero-title-accent {
   color: var(--primary-color);
-  -webkit-text-fill-color: var(--primary-color);
 }
 
 .hero-subtitle {
@@ -147,7 +143,7 @@ export default {
   font-size: 1.125rem;
   color: var(--text-secondary);
   margin-bottom: var(--space-2xl);
-  max-width: 700px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
@@ -179,7 +175,6 @@ export default {
 .social-link:hover {
   background: var(--primary-color);
   color: white;
-  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
   border-color: var(--primary-color);
 }
@@ -215,7 +210,6 @@ export default {
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
@@ -228,7 +222,6 @@ export default {
 .btn-secondary:hover {
   background: transparent;
   color: var(--primary-color);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
   border-width: 2px;

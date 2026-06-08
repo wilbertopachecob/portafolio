@@ -184,7 +184,7 @@ describe('i18n Configuration', () => {
       expect(i18n.global.t('nav.about')).toBe('Home')
       expect(i18n.global.t('nav.impact')).toBe('Impact')
       expect(i18n.global.t('hero.title')).toBe('Wilberto Pacheco')
-      expect(i18n.global.t('sections.experience.title')).toBe('Experience')
+      expect(i18n.global.t('sections.experience.title')).toBe('Professional trajectory')
     })
   })
 

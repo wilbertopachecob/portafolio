@@ -33,7 +33,7 @@ const createTestI18n = () => createI18n({
     en: {
       sections: {
         credentials: {
-          title: 'Credentials',
+          title: 'Education and certifications',
         },
       },
       credentials: {
@@ -62,7 +62,7 @@ describe('Credentials.vue', () => {
       },
     })
 
-    expect(screen.getByRole('region', { name: 'Credentials' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Education and certifications' })).toBeInTheDocument()
     expect(screen.getByText('University of Informatic Sciences')).toBeInTheDocument()
     expect(screen.getByText(/Native Spanish and professional \/ bilingual English/)).toBeInTheDocument()
     expect(screen.getByText('AWS Certified Cloud Practitioner')).toBeInTheDocument()

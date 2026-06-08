@@ -119,7 +119,7 @@ describe('Portfolio.vue', () => {
       },
     })
 
-    const experiments = screen.getByRole('region', { name: 'Experiments and smaller projects' })
+    const experiments = screen.getByRole('heading', { name: 'Experiments and smaller projects' }).closest('section')
     expect(within(experiments).getByText('paint.wilbertopachecob.dev')).toBeInTheDocument()
     expect(within(experiments).queryByText('Problem')).not.toBeInTheDocument()
   })

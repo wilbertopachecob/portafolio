@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Navigation from '@/components/Navigation.vue'
-import { NAV_ITEMS } from '@/config/sections'
+import { PRIMARY_NAV_IDS } from '@/config/sections'
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 import { setupNavigationDom, teardownNavigationDom } from './helpers/navigationDom'
 
@@ -39,6 +39,7 @@ const createTestI18n = (locale = 'en') => {
           darkMode: 'Switch to Dark Mode',
           openMenu: 'Open mobile menu',
           closeMenu: 'Close mobile menu',
+          mobileNavigation: 'Mobile navigation',
           languageToggle: 'Toggle language'
         }
       },
@@ -68,6 +69,7 @@ const createTestI18n = (locale = 'en') => {
           darkMode: 'Cambiar a Modo Oscuro',
           openMenu: 'Abrir menú móvil',
           closeMenu: 'Cerrar menú móvil',
+          mobileNavigation: 'Navegación móvil',
           languageToggle: 'Cambiar idioma'
         }
       }
@@ -126,14 +128,14 @@ describe('Navigation.vue', () => {
 
     it('renders primary desktop navigation links', () => {
       renderNavigation()
-      expect(screen.getByRole('menuitem', { name: 'Impact' })).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Products' })).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Experience' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Impact' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Products' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Experience' })).toBeInTheDocument()
       expect(screen.getByText('Skills')).toBeInTheDocument()
       expect(screen.getByText('Process')).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Contact' })).toBeInTheDocument()
-      expect(screen.queryByRole('menuitem', { name: 'About' })).not.toBeInTheDocument()
-      expect(screen.queryByRole('menuitem', { name: 'Credentials' })).not.toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'About' })).not.toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'Credentials' })).not.toBeInTheDocument()
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
       expect(screen.queryByText('Languages')).not.toBeInTheDocument()
       expect(screen.queryByText('Certifications')).not.toBeInTheDocument()
@@ -159,19 +161,19 @@ describe('Navigation.vue', () => {
 
     it('has proper navigation menu structure', () => {
       renderNavigation()
-      expect(screen.getByRole('menubar')).toBeInTheDocument()
+      expect(document.querySelector('.navbar-nav')).toBeInTheDocument()
     })
 
     it('has proper accessibility attributes', () => {
       renderNavigation()
       const nav = screen.getByRole('navigation')
       expect(nav).toHaveAttribute('aria-label', 'Main navigation')
-      expect(screen.getByRole('menubar')).toBeInTheDocument()
+      expect(document.querySelector('.navbar-nav')).toBeInTheDocument()
     })
 
     it('has active section highlighting functionality', () => {
       renderNavigation()
-      const impactLink = screen.getByRole('menuitem', { name: 'Impact' })
+      const impactLink = screen.getByRole('link', { name: 'Impact' })
       expect(impactLink).toHaveClass('nav-link')
       expect(impactLink).not.toHaveClass('active')
     })
@@ -245,6 +247,7 @@ describe('Navigation.vue', () => {
       expect(toggle).toHaveAttribute('aria-expanded', 'true')
       expect(document.body.style.overflow).toBe('hidden')
       expect(document.querySelector('.mobile-menu-drawer')).toBeTruthy()
+      expect(screen.getByRole('complementary', { name: 'Mobile navigation' })).toBeInTheDocument()
 
       await fireEvent.click(toggle)
       expect(toggle).toHaveAttribute('aria-expanded', 'false')
@@ -302,39 +305,40 @@ describe('Navigation.vue', () => {
       expect(getMobileToggle()).toHaveAttribute('aria-expanded', 'true')
     })
 
-    it('renders all drawer navigation links', async () => {
+    it('renders primary drawer navigation links matching desktop', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const drawerLinks = document.querySelectorAll('.mm-link')
-      expect(drawerLinks).toHaveLength(NAV_ITEMS.length + 1)
+      const drawerLinks = document.querySelectorAll('.mm-nav .mm-link')
+      expect(drawerLinks).toHaveLength(PRIMARY_NAV_IDS.length)
+      expect(screen.queryByRole('link', { name: 'About' })).not.toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'Credentials' })).not.toBeInTheDocument()
     })
 
-    it('renders resume download link in the mobile drawer', async () => {
+    it('renders resume download as a footer action in the mobile drawer', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const resumeLink = document.querySelector('.mm-resume-link')
+      const resumeLink = document.querySelector('.mm-resume-btn')
       expect(resumeLink).toBeTruthy()
       expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
-      expect(resumeLink).toHaveAttribute('aria-label', 'Download Resume')
+      expect(resumeLink).toHaveTextContent('Download Resume')
+      expect(resumeLink).not.toHaveAttribute('target')
+      expect(document.querySelectorAll('.mm-nav .mm-link')).toHaveLength(PRIMARY_NAV_IDS.length)
     })
 
-    it('keeps drawer links ordered around impact and products first', async () => {
+    it('keeps drawer links aligned with desktop labels and order', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const drawerLabels = [...document.querySelectorAll('.mm-label')].map((link) => link.textContent)
+      const drawerLabels = [...document.querySelectorAll('.mm-nav .mm-label')].map((link) => link.textContent)
       expect(drawerLabels).toEqual([
-        'About',
         'Impact',
         'Products',
         'Experience',
-        'Technical capabilities',
-        'How I work',
-        'Credentials',
+        'Skills',
+        'Process',
         'Contact',
-        'Download Resume',
       ])
     })
   })

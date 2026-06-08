@@ -30,15 +30,18 @@
       "jobTitle": "Ingeniero de Software y Desarrollador Full Stack"
     },
     "experience": {
-      "title": "Experiencia",
+      "eyebrow": "Experiencia",
+      "title": "Trayectoria profesional",
       "subtitle": "Roles donde lideré modernización, producto y entrega full stack"
     },
     "skills": {
+      "eyebrow": "Capacidades",
       "title": "Capacidades técnicas",
       "subtitle": "Capacidades curadas para construir, modernizar y operar productos con criterio senior"
     },
     "portfolio": {
-      "title": "Productos",
+      "eyebrow": "Productos",
+      "title": "Lo que he construido",
       "subtitle": "Productos propios y experimentos que muestran cómo pienso, diseño y construyo end-to-end"
     },
     "education": {
@@ -54,14 +57,17 @@
       "subtitle": "Certificaciones profesionales y logros"
     },
     "impact": {
-      "title": "Impacto",
+      "eyebrow": "Impacto",
+      "title": "Resultados con impacto",
       "subtitle": "Resultados concretos que conectan liderazgo técnico, ejecución y visión de producto"
     },
     "credentials": {
-      "title": "Credenciales",
+      "eyebrow": "Credenciales",
+      "title": "Formación y certificaciones",
       "subtitle": "Formación, idiomas y certificaciones que complementan una trayectoria construida en entrega real"
     },
     "howIWork": {
+      "eyebrow": "Proceso",
       "title": "Cómo trabajo",
       "subtitle": "Principios que guían mis decisiones de producto, arquitectura y entrega"
     }
@@ -95,6 +101,7 @@
     "lightMode": "Cambiar a modo claro",
     "openMenu": "Abrir menú móvil",
     "closeMenu": "Cerrar menú móvil",
+    "mobileNavigation": "Navegación móvil",
     "languageToggle": "Cambiar idioma"
   },
   "contact": {

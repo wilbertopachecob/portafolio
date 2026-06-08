@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 .contact-closing {
-  padding: var(--space-3xl) var(--space-lg);
+  padding: var(--section-gap) var(--space-lg);
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 8%, var(--bg-secondary)) 0%, var(--bg-primary) 100%);
   border-top: 1px solid var(--border-color);
@@ -109,7 +109,6 @@ export default {
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
@@ -122,14 +121,13 @@ export default {
 .btn-secondary:hover {
   background: transparent;
   color: var(--primary-color);
-  transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
   border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
   .contact-closing {
-    padding: var(--space-2xl) var(--space-md);
+    padding: var(--section-gap-mobile) var(--space-md);
   }
 
   .contact-closing-actions {
