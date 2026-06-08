@@ -133,13 +133,15 @@
       {
         "company": "Included Health",
         "position": "Ingeniero de Software II",
-        "period": "Mayo 2021 - Presente",
+        "period": "Mayo 2021 - Abril 2026",
         "location": "San Francisco, California",
         "responsibilities": [
-          "Rol principal en campañas de Dependabot y mitigación de seguridad, mejorando significativamente la mantenibilidad de nuestra aplicación monolítica y contribuyendo a asegurar un acuerdo importante con un cliente.",
-          "Participé en el desarrollo de una extensión de Chrome para coordinadores de atención (CCs), liderando una refactorización sustancial del código. Logré mejoras en legibilidad, cobertura de pruebas, optimización de flujo de trabajo, estándares de linting y reducción del tamaño del bundle de JavaScript.",
-          "Desarrollo Full Stack en una aplicación web (Node.js, Redis, React y Elastic Search) que aceleró los tiempos de respuesta para CCs en un 5% y eliminó la dependencia de una herramienta externa, reduciendo costos operativos.",
-          "Migré AngularJS a componentes Vue.js en la aplicación web orientada a miembros, refactoricé código para reducir deuda técnica, mejorar la organización del código y optimizar la implementación de feature flags."
+          "Asumí responsabilidades de nivel senior y liderazgo técnico en múltiples iniciativas como Team Lead, desde nuevas funcionalidades para clientes estratégicos hasta modernización de servicios deprecated y mejoras de arquitectura.",
+          "Lideré campañas de Dependabot y mitigación de vulnerabilidades que elevaron la mantenibilidad de nuestro monolito y fortalecieron la postura de seguridad, contribuyendo a cerrar un acuerdo clave con un cliente empresarial.",
+          "Contribuí al desarrollo de una extensión de Chrome para Care Coordinators (CCs), guiando una refactorización profunda que mejoró legibilidad, cobertura de pruebas, estándares de linting, flujo de desarrollo y redujo el tamaño del bundle de JavaScript.",
+          "Desarrollé soluciones full stack end-to-end en una aplicación web con Node.js, Redis, React y Elasticsearch, reduciendo tiempos de respuesta para CCs en 5% y eliminando la dependencia de una herramienta externa para bajar costos operativos.",
+          "Ejecuté migraciones críticas de stack y plataforma (Ruby a Go, Snowplow a Amplitude y Elasticsearch a capacidades internas basadas en LLM), facilitando escalabilidad, observabilidad y evolución tecnológica del producto.",
+          "Migré módulos de AngularJS a componentes Vue.js en la aplicación orientada a miembros, reduciendo deuda técnica, mejorando organización del código y optimizando la estrategia de feature flags."
         ]
       },
       {
@@ -201,7 +203,14 @@
           "Audio CarPlay y Android Auto para estudiar en movimiento (Pro)",
           "Suscripciones Pro con RevenueCat y backend en Supabase — React Native y Expo"
         ],
-        "tags": ["React Native", "Expo", "iOS", "Android", "TypeScript", "Supabase"]
+        "tags": [
+          "React Native",
+          "Expo",
+          "iOS",
+          "Android",
+          "TypeScript",
+          "Supabase"
+        ]
       },
       {
         "name": "Renderlog",
@@ -214,7 +223,13 @@
           "Temas del trabajo real: React, Next.js, Vue.js, rendimiento y arquitectura",
           "Auto-hospedado en una Raspberry Pi 5 con Cloudflare Tunnel"
         ],
-        "tags": ["Next.js", "React", "Vue.js", "Escritura Técnica", "i18n"]
+        "tags": [
+          "Next.js",
+          "React",
+          "Vue.js",
+          "Escritura Técnica",
+          "i18n"
+        ]
       },
       {
         "name": "micalpacheco.com",
@@ -223,7 +238,9 @@
         "type": "landing",
         "description": "Landing page profesional para mi esposa, enfermera psiquiátrica certificada en Broken Arrow, OK — el único objetivo era que le encantara cómo quedó. Le encantó.",
         "highlights": [],
-        "tags": ["Personal"]
+        "tags": [
+          "Personal"
+        ]
       },
       {
         "name": "paint.wilbertopachecob.dev",
@@ -232,7 +249,10 @@
         "type": "web",
         "description": "App de dibujo en el navegador que empezó como experimento con Canvas API y fue la actividad favorita de mi hija… por unos cinco minutos.",
         "highlights": [],
-        "tags": ["Canvas API", "JavaScript"]
+        "tags": [
+          "Canvas API",
+          "JavaScript"
+        ]
       },
       {
         "name": "tictactoe.wilbertopachecob.dev",
@@ -241,7 +261,10 @@
         "type": "web",
         "description": "Tres en raya clásico — limpio, simple, funciona en cualquier dispositivo. Mi hija aún no entiende las reglas pero adora tocar la pantalla.",
         "highlights": [],
-        "tags": ["JavaScript", "Responsive"]
+        "tags": [
+          "JavaScript",
+          "Responsive"
+        ]
       },
       {
         "name": "weather-ai.wilbertopachecob.dev",
@@ -250,7 +273,11 @@
         "type": "web",
         "description": "App del clima con IA integrada — nacida de pura curiosidad y del clima genuinamente impredecible de Oklahoma.",
         "highlights": [],
-        "tags": ["IA", "Weather API", "JavaScript"]
+        "tags": [
+          "IA",
+          "Weather API",
+          "JavaScript"
+        ]
       }
     ],
     "certifications": [
@@ -283,4 +310,4 @@
       }
     ]
   }
-} 
+}

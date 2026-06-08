@@ -136,10 +136,12 @@
         "period": "May 2021 - April 2026",
         "location": "San Francisco, California",
         "responsibilities": [
-          "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
-          "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
-          "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
-          "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation."
+          "Took on senior-level scope and technical leadership across multiple initiatives as Team Lead, from shipping new features for strategic clients to modernizing deprecated services and architecture.",
+          "Led Dependabot campaigns and security mitigation efforts that significantly improved monolith maintainability and security posture, helping support a major enterprise client deal.",
+          "Contributed to a Chrome extension for Care Coordinators (CCs), driving a substantial refactor that improved readability, test coverage, linting standards, developer workflows, and JavaScript bundle size.",
+          "Delivered end-to-end full stack work in a Node.js, Redis, React, and Elasticsearch web application, improving CC response times by 5% and removing dependency on a third-party tool to reduce operating costs.",
+          "Executed critical platform migrations (Ruby to Go, Snowplow to Amplitude, and Elasticsearch to internal LLM-powered capabilities), improving scalability, observability, and long-term product evolution.",
+          "Migrated AngularJS modules to Vue.js components in the member-facing app, reducing technical debt, improving code organization, and strengthening feature-flag implementation."
         ]
       },
       {
@@ -201,7 +203,14 @@
           "CarPlay and Android Auto audio for studying on the go (Pro)",
           "Pro subscriptions via RevenueCat with a Supabase backend — React Native and Expo"
         ],
-        "tags": ["React Native", "Expo", "iOS", "Android", "TypeScript", "Supabase"]
+        "tags": [
+          "React Native",
+          "Expo",
+          "iOS",
+          "Android",
+          "TypeScript",
+          "Supabase"
+        ]
       },
       {
         "name": "Renderlog",
@@ -214,7 +223,13 @@
           "Topics drawn from real work: React, Next.js, Vue.js, performance, and architecture",
           "Self-hosted on a Raspberry Pi 5 with Cloudflare Tunnel"
         ],
-        "tags": ["Next.js", "React", "Vue.js", "Technical Writing", "i18n"]
+        "tags": [
+          "Next.js",
+          "React",
+          "Vue.js",
+          "Technical Writing",
+          "i18n"
+        ]
       },
       {
         "name": "micalpacheco.com",
@@ -223,7 +238,9 @@
         "type": "landing",
         "description": "A professional landing page for my wife, a board-certified psychiatric nurse practitioner in Broken Arrow, OK — the only goal was that she'd love how it turned out. She did.",
         "highlights": [],
-        "tags": ["Personal"]
+        "tags": [
+          "Personal"
+        ]
       },
       {
         "name": "paint.wilbertopachecob.dev",
@@ -232,7 +249,10 @@
         "type": "web",
         "description": "A browser-based drawing app that started as a Canvas API experiment and briefly became my daughter's favorite activity.",
         "highlights": [],
-        "tags": ["Canvas API", "JavaScript"]
+        "tags": [
+          "Canvas API",
+          "JavaScript"
+        ]
       },
       {
         "name": "tictactoe.wilbertopachecob.dev",
@@ -241,7 +261,10 @@
         "type": "web",
         "description": "Classic tic-tac-toe — clean, simple, works on any device. My daughter doesn't understand the rules yet but loves tapping the screen.",
         "highlights": [],
-        "tags": ["JavaScript", "Responsive"]
+        "tags": [
+          "JavaScript",
+          "Responsive"
+        ]
       },
       {
         "name": "weather-ai.wilbertopachecob.dev",
@@ -250,7 +273,11 @@
         "type": "web",
         "description": "A weather app with AI baked in — born from pure curiosity and the genuinely unpredictable nature of Oklahoma weather.",
         "highlights": [],
-        "tags": ["AI", "Weather API", "JavaScript"]
+        "tags": [
+          "AI",
+          "Weather API",
+          "JavaScript"
+        ]
       }
     ],
     "certifications": [
