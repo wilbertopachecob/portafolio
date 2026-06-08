@@ -214,6 +214,7 @@ describe('i18n Configuration', () => {
       expect(en.content.education.length).toBe(es.content.education.length)
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
       expect(en.content.impactHighlights.length).toBe(es.content.impactHighlights.length)
+      expect(en.content.howIWorkPrinciples.length).toBe(es.content.howIWorkPrinciples.length)
       expect(en.content.portfolioProjects.length).toBe(es.content.portfolioProjects.length)
     })
   })

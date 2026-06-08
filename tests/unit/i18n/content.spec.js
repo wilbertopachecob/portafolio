@@ -5,6 +5,7 @@ import {
   getEducation,
   getCertifications,
   getPortfolioProjects,
+  getHowIWorkPrinciples,
   getImpactHighlights,
   getCredentials,
 } from '@/i18n/content'
@@ -189,6 +190,18 @@ describe('i18n Content Helpers', () => {
     })
   })
 
+  describe('getHowIWorkPrinciples', () => {
+    it('returns five engineering principles', () => {
+      const principles = getHowIWorkPrinciples('en')
+
+      expect(principles).toHaveLength(5)
+      principles.forEach((principle) => {
+        expect(principle).toHaveProperty('title')
+        expect(principle).toHaveProperty('description')
+      })
+    })
+  })
+
   describe('getCredentials', () => {
     it('aggregates education, certifications, and compact languages', () => {
       const credentials = getCredentials('es')
@@ -246,6 +259,16 @@ describe('i18n Content Helpers', () => {
       expect(enHighlights.length).toBe(esHighlights.length)
       enHighlights.forEach((item, index) => {
         expect(Object.keys(item)).toEqual(Object.keys(esHighlights[index]))
+      })
+    })
+
+    it('ensures how I work principles have consistent structure across languages', () => {
+      const enPrinciples = getHowIWorkPrinciples('en')
+      const esPrinciples = getHowIWorkPrinciples('es')
+
+      expect(enPrinciples.length).toBe(esPrinciples.length)
+      enPrinciples.forEach((item, index) => {
+        expect(Object.keys(item)).toEqual(Object.keys(esPrinciples[index]))
       })
     })
 

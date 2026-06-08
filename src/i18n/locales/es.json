@@ -8,7 +8,8 @@
     "languages": "Idiomas",
     "certifications": "Certificaciones",
     "impact": "Impacto",
-    "credentials": "Credenciales"
+    "credentials": "Credenciales",
+    "contact": "Contacto"
   },
   "hero": {
     "title": "Wilberto Pacheco",
@@ -53,6 +54,10 @@
     "credentials": {
       "title": "Credenciales",
       "subtitle": "Formación, idiomas y certificaciones que complementan una trayectoria construida en entrega real"
+    },
+    "howIWork": {
+      "title": "Cómo trabajo",
+      "subtitle": "Principios que guían mis decisiones de producto, arquitectura y entrega"
     }
   },
   "experience": {
@@ -90,7 +95,12 @@
   },
   "contact": {
     "email": "Correo electrónico",
-    "location": "Ubicación"
+    "location": "Ubicación",
+    "headline": "Busco equipos donde pueda ayudar a convertir sistemas complejos en productos claros, rápidos y mantenibles.",
+    "letsTalk": "Hablemos",
+    "viewLinkedIn": "Ver LinkedIn",
+    "linkedInUrl": "https://www.linkedin.com/in/wilberto-pacheco-batista/",
+    "actions": "Opciones de contacto"
   },
   "education": {
     "period": "Período",
@@ -444,6 +454,28 @@
         "metric": "Shipped",
         "title": "Productos propios en iOS, Android y web",
         "description": "CiudadanoUSA, Renderlog y proyectos auto-hospedados demuestran ejecución end-to-end más allá del trabajo formal."
+      }
+    ],
+    "howIWorkPrinciples": [
+      {
+        "title": "Entregar en iteraciones pequeñas",
+        "description": "Prefiero ship small, learn fast: validar con usuarios reales antes de acumular deuda o complejidad innecesaria."
+      },
+      {
+        "title": "Sistemas simples, observables y mantenibles",
+        "description": "Elijo arquitecturas que el equipo puede operar, depurar y evolucionar sin depender de héroes ni conocimiento tribal."
+      },
+      {
+        "title": "Modernizar sin romper el negocio",
+        "description": "Migro plataformas heredadas con pragmatismo: feature flags, entregas incrementales y riesgo controlado."
+      },
+      {
+        "title": "Producto bilingüe con contexto real",
+        "description": "Diseño experiencias en español e inglés pensando en usuarios, tono y restricciones culturales, no solo en traducción."
+      },
+      {
+        "title": "IA y automatización con propósito",
+        "description": "Uso herramientas nuevas cuando reducen fricción real para usuarios o equipos, no por moda ni por reemplazar criterio."
       }
     ],
     "credentials": {

@@ -20,6 +20,7 @@ const createTestI18n = (locale = 'en') => {
           portfolio: 'Products',
           skills: 'Capabilities',
           credentials: 'Credentials',
+          contact: 'Contact',
           education: 'Education',
           languages: 'Languages',
           certifications: 'Certifications'
@@ -40,6 +41,7 @@ const createTestI18n = (locale = 'en') => {
           portfolio: 'Productos',
           skills: 'Capacidades',
           credentials: 'Credenciales',
+          contact: 'Contacto',
           education: 'Educación',
           languages: 'Idiomas',
           certifications: 'Certificaciones'
@@ -113,6 +115,7 @@ describe('Navigation.vue', () => {
       expect(screen.getAllByText('Products').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Capabilities').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Credentials').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Contact').length).toBeGreaterThan(0)
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
       expect(screen.queryByText('Languages')).not.toBeInTheDocument()
       expect(screen.queryByText('Certifications')).not.toBeInTheDocument()

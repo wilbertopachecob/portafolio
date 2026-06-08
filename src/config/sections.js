@@ -5,7 +5,9 @@ export const SECTION_IDS = [
   'experience',
   'portfolio',
   'skills',
+  'howIWork',
   'credentials',
+  'contact',
 ]
 
 /** Mobile drawer nav items (icon + i18n key share the same id) */
@@ -16,4 +18,5 @@ export const NAV_ITEMS = [
   { id: 'portfolio', icon: ['fas', 'folder-open'] },
   { id: 'skills', icon: ['fas', 'code'] },
   { id: 'credentials', icon: ['fas', 'certificate'] },
+  { id: 'contact', icon: ['fas', 'envelope'] },
 ]

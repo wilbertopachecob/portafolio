@@ -8,7 +8,8 @@
     "languages": "Languages",
     "certifications": "Certifications",
     "impact": "Impact",
-    "credentials": "Credentials"
+    "credentials": "Credentials",
+    "contact": "Contact"
   },
   "hero": {
     "title": "Wilberto Pacheco",
@@ -53,6 +54,10 @@
     "credentials": {
       "title": "Credentials",
       "subtitle": "Education, languages, and certifications that support a career built through real delivery"
+    },
+    "howIWork": {
+      "title": "How I work",
+      "subtitle": "Principles that guide my product, architecture, and delivery decisions"
     }
   },
   "experience": {
@@ -90,7 +95,12 @@
   },
   "contact": {
     "email": "Email",
-    "location": "Location"
+    "location": "Location",
+    "headline": "I'm looking for teams where I can help turn complex systems into clear, fast, maintainable products.",
+    "letsTalk": "Let's talk",
+    "viewLinkedIn": "View LinkedIn",
+    "linkedInUrl": "https://www.linkedin.com/in/wilberto-pacheco-batista/",
+    "actions": "Contact actions"
   },
   "education": {
     "period": "Period",
@@ -444,6 +454,28 @@
         "metric": "Shipped",
         "title": "Personal products on iOS, Android, and web",
         "description": "CiudadanoUSA, Renderlog, and self-hosted projects demonstrate end-to-end execution beyond formal work."
+      }
+    ],
+    "howIWorkPrinciples": [
+      {
+        "title": "Ship small, learn fast",
+        "description": "I validate with real users before adding debt or unnecessary complexity."
+      },
+      {
+        "title": "Simple, observable, maintainable systems",
+        "description": "I choose architectures teams can operate, debug, and evolve without heroics or tribal knowledge."
+      },
+      {
+        "title": "Modernize without breaking the business",
+        "description": "I migrate legacy platforms pragmatically with feature flags, incremental delivery, and controlled risk."
+      },
+      {
+        "title": "Bilingual product with real context",
+        "description": "I design Spanish and English experiences around users, tone, and cultural constraints—not translation alone."
+      },
+      {
+        "title": "AI and automation with purpose",
+        "description": "I adopt new tools when they remove real friction for users or teams, not because of hype or to replace judgment."
       }
     ],
     "credentials": {

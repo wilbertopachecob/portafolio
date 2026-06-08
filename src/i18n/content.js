@@ -68,6 +68,14 @@ export function getImpactHighlights(locale = 'en') {
 }
 
 /**
+ * @param {string} locale - Vue i18n locale code.
+ * @returns {Array<Record<string, string>>} Engineering principles for the how-I-work section.
+ */
+export function getHowIWorkPrinciples(locale = 'en') {
+  return getContent(locale).howIWorkPrinciples || []
+}
+
+/**
  * Returns compact credential data for the support-level credentials section.
  *
  * Education and certifications still use their established arrays so legacy

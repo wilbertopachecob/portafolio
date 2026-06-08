@@ -12,7 +12,7 @@
         v-for="section in pageSections"
         :key="section.id"
         :id="section.id"
-        class="section"
+        :class="['section', { 'section--compact': section.compact }]"
         role="region"
         :aria-labelledby="section.showHeader ? `${section.id}-section-heading` : undefined"
       >
@@ -50,6 +50,8 @@ import Experience from './components/Experience.vue'
 import Skills from './components/Skills.vue'
 import Portfolio from './components/Portfolio.vue'
 import Credentials from './components/Credentials.vue'
+import HowIWork from './components/HowIWork.vue'
+import ContactClosing from './components/ContactClosing.vue'
 
 const PAGE_SECTIONS = [
   { id: 'about', component: markRaw(About), showHeader: false },
@@ -57,7 +59,9 @@ const PAGE_SECTIONS = [
   { id: 'experience', component: markRaw(Experience), showHeader: true },
   { id: 'portfolio', component: markRaw(Portfolio), showHeader: true },
   { id: 'skills', component: markRaw(Skills), showHeader: true },
+  { id: 'howIWork', component: markRaw(HowIWork), showHeader: true },
   { id: 'credentials', component: markRaw(Credentials), showHeader: true },
+  { id: 'contact', component: markRaw(ContactClosing), showHeader: false, compact: true },
 ]
 
 export default {
@@ -70,6 +74,8 @@ export default {
     Skills,
     Portfolio,
     Credentials,
+    HowIWork,
+    ContactClosing,
   },
   data() {
     return {
@@ -125,6 +131,10 @@ export default {
 
 .section:first-of-type {
   padding-top: 0;
+}
+
+.section--compact {
+  padding: 0;
 }
 
 /* Container max-width for better readability */
