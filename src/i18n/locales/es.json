@@ -1,20 +1,23 @@
 {
   "nav": {
-    "about": "Acerca de",
+    "about": "Inicio",
     "experience": "Experiencia",
-    "skills": "Habilidades",
-    "portfolio": "Portafolio",
+    "skills": "Capacidades",
+    "portfolio": "Productos",
     "education": "Educación",
     "languages": "Idiomas",
-    "certifications": "Certificaciones"
+    "certifications": "Certificaciones",
+    "impact": "Impacto",
+    "credentials": "Credenciales",
+    "contact": "Contacto"
   },
   "hero": {
     "title": "Wilberto Pacheco",
-    "subtitle": "Ingeniero de Software",
-    "description": "Desarrollador Web Full Stack bilingüe con un título en Ciencias de la Computación (2010) y una pasión por resolver desafíos técnicos complejos. Mi objetivo es sobresalir en mi trabajo entregando soluciones impactantes que aumenten el rendimiento de la empresa y contribuyan a mi crecimiento personal.",
-    "viewExperience": "Ver Experiencia",
-    "viewSkills": "Ver Habilidades",
-    "downloadResume": "Descargar CV"
+    "subtitle": "Software Engineer enfocado en producto, modernización y entrega end-to-end",
+    "description": "Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas en health tech, web y mobile. Combino criterio de producto, arquitectura pragmática y ejecución end-to-end para convertir sistemas complejos en experiencias claras, rápidas y mantenibles.",
+    "downloadResume": "Descargar CV",
+    "viewImpact": "Ver impacto profesional",
+    "viewProducts": "Ver productos construidos"
   },
   "sections": {
     "about": {
@@ -22,15 +25,15 @@
     },
     "experience": {
       "title": "Experiencia",
-      "subtitle": "Mi trayectoria profesional y experiencia laboral"
+      "subtitle": "Roles donde lideré modernización, producto y entrega full stack"
     },
     "skills": {
-      "title": "Habilidades",
-      "subtitle": "Habilidades técnicas y tecnologías con las que trabajo"
+      "title": "Capacidades",
+      "subtitle": "Problemas técnicos y de producto que puedo resolver con criterio senior"
     },
     "portfolio": {
-      "title": "Portafolio",
-      "subtitle": "Proyectos que construyo fuera del trabajo — desde una app de ciudadanía hasta un blog técnico bilingüe"
+      "title": "Productos",
+      "subtitle": "Productos propios y experimentos que muestran cómo pienso, diseño y construyo end-to-end"
     },
     "education": {
       "title": "Educación",
@@ -43,24 +46,40 @@
     "certifications": {
       "title": "Certificaciones",
       "subtitle": "Certificaciones profesionales y logros"
+    },
+    "impact": {
+      "title": "Impacto",
+      "subtitle": "Resultados concretos que conectan liderazgo técnico, ejecución y visión de producto"
+    },
+    "credentials": {
+      "title": "Credenciales",
+      "subtitle": "Formación, idiomas y certificaciones que complementan una trayectoria construida en entrega real"
+    },
+    "howIWork": {
+      "title": "Cómo trabajo",
+      "subtitle": "Principios que guían mis decisiones de producto, arquitectura y entrega"
     }
   },
   "experience": {
-    "present": "Presente",
-    "responsibilities": "Responsabilidades"
+    "period": "Período",
+    "location": "Ubicación",
+    "achievements": "Logros clave",
+    "scope": "Alcance",
+    "stack": "Stack"
   },
   "skills": {
-    "frontend": "Desarrollo Frontend",
-    "backend": "Desarrollo Backend",
-    "databases": "Bases de Datos",
-    "devops": "DevOps y Herramientas",
-    "languages": "Lenguajes de Programación"
+    "programmingLanguages": "Lenguajes de Programación",
+    "frameworksLibraries": "Frameworks y Librerías",
+    "databasesTools": "Bases de Datos y Herramientas",
+    "cloudDevops": "Cloud y DevOps",
+    "contentManagement": "Gestión de Contenido",
+    "developmentTools": "Herramientas de Desarrollo"
   },
   "languages": {
-    "native": "Nativo",
-    "fluent": "Fluido",
-    "intermediate": "Intermedio",
-    "basic": "Básico"
+    "spanish": "Español",
+    "english": "Inglés",
+    "flagAlt": "Bandera de {language}",
+    "flagLabel": "Bandera que representa el idioma {language}"
   },
   "footer": {
     "copyright": "Todos los derechos reservados.",
@@ -76,30 +95,16 @@
   },
   "contact": {
     "email": "Correo electrónico",
-    "location": "Ubicación"
-  },
-  "experience": {
-    "period": "Período",
     "location": "Ubicación",
-    "achievements": "Logros clave y responsabilidades"
-  },
-  "skills": {
-    "programmingLanguages": "Lenguajes de Programación",
-    "frameworksLibraries": "Frameworks y Librerías",
-    "databasesTools": "Bases de Datos y Herramientas",
-    "cloudDevops": "Cloud y DevOps",
-    "contentManagement": "Gestión de Contenido",
-    "developmentTools": "Herramientas de Desarrollo"
+    "headline": "Busco equipos donde pueda ayudar a convertir sistemas complejos en productos claros, rápidos y mantenibles.",
+    "letsTalk": "Hablemos",
+    "viewLinkedIn": "Ver LinkedIn",
+    "linkedInUrl": "https://www.linkedin.com/in/wilberto-pacheco-batista/",
+    "actions": "Opciones de contacto"
   },
   "education": {
     "period": "Período",
     "visitWebsite": "Visitar sitio web de {institution}"
-  },
-  "languages": {
-    "spanish": "Español",
-    "english": "Inglés",
-    "flagAlt": "Bandera de {language}",
-    "flagLabel": "Bandera que representa el idioma {language}"
   },
   "certifications": {
     "issued": "Emitido",
@@ -109,17 +114,25 @@
     "badgeLabel": "Insignia para certificación {title} de {issuer}"
   },
   "portfolio": {
-    "intro": "Proyectos personales nacidos de ideas a las 11pm, necesidades familiares y el clásico \"¿por qué esto no existe en español?\". Varios corren en una Raspberry Pi 5 en casa, expuestos a internet con Cloudflare Tunnel.",
-    "featured": "Destacado",
+    "intro": "Productos y experimentos nacidos de necesidades reales, ideas nocturnas y la pregunta recurrente: ¿por qué esto no existe mejor en español? Los destacados muestran ownership de producto, diseño, ingeniería, lanzamiento y operación.",
+    "featured": "Producto destacado",
+    "experiments": "Experimentos y proyectos pequeños",
+    "caseStudy": "Caso de producto",
+    "problem": "Problema",
+    "user": "Usuario",
+    "solution": "Solución",
+    "role": "Mi rol",
+    "outcome": "Resultado",
     "highlights": "Aspectos clave",
     "technologies": "Tecnologías",
     "visitProject": "Visitar {name}",
+    "screenshots": "Capturas de {name}",
     "infrastructure": "Los proyectos personales y renderlog.dev corren en una Raspberry Pi 5 en casa, expuestos con Cloudflare Tunnel.",
     "types": {
-      "mobile": "App Móvil",
+      "mobile": "App móvil",
       "blog": "Blog",
-      "web": "App Web",
-      "landing": "Landing Page"
+      "web": "App web",
+      "landing": "Landing page"
     }
   },
   "common": {
@@ -135,6 +148,27 @@
         "position": "Ingeniero de Software II",
         "period": "Mayo 2021 - Abril 2026",
         "location": "San Francisco, California",
+        "summary": "Rol de liderazgo técnico en iniciativas de plataforma, seguridad y producto para herramientas internas y experiencias orientadas a miembros en health tech.",
+        "scopeTags": [
+          "Liderazgo técnico",
+          "Modernización de plataforma",
+          "Seguridad",
+          "Producto interno"
+        ],
+        "achievements": [
+          "Lideré mejoras de seguridad y campañas Dependabot que elevaron la mantenibilidad del monolito y ayudaron a desbloquear un acuerdo enterprise clave.",
+          "Modernicé flujos internos para Care Coordinators con Node.js, React, Redis y Elasticsearch, reduciendo tiempos de respuesta en 5% y dependencia de herramientas externas.",
+          "Ejecuté migraciones críticas de Ruby a Go, Snowplow a Amplitude y AngularJS a Vue, reduciendo deuda técnica y mejorando la evolución del producto."
+        ],
+        "stack": [
+          "Node.js",
+          "React",
+          "Vue.js",
+          "Go",
+          "Redis",
+          "Elasticsearch",
+          "Amplitude"
+        ],
         "responsibilities": [
           "Asumí responsabilidades de nivel senior y liderazgo técnico en múltiples iniciativas como Team Lead, desde nuevas funcionalidades para clientes estratégicos hasta modernización de servicios deprecated y mejoras de arquitectura.",
           "Lideré campañas de Dependabot y mitigación de vulnerabilidades que elevaron la mantenibilidad de nuestro monolito y fortalecieron la postura de seguridad, contribuyendo a cerrar un acuerdo clave con un cliente empresarial.",
@@ -149,6 +183,24 @@
         "position": "Desarrollador de Software",
         "period": "Marzo 2020 - Febrero 2021",
         "location": "Tulsa, Oklahoma",
+        "summary": "Trabajo full stack con foco en modernizar sistemas empresariales, reportes operativos y servicios internos con Go.",
+        "scopeTags": [
+          "Modernización web",
+          "APIs REST",
+          "Mentoría",
+          "Reporting"
+        ],
+        "achievements": [
+          "Migré el cliente principal de Microsoft Dynamics NAV 2009 a una interfaz web moderna, mejorando rendimiento, visibilidad y comunicación.",
+          "Diseñé una arquitectura RESTful con Golang para extraer metadatos de Jira y generar reportes dinámicos para usuarios finales.",
+          "Mentoricé a un desarrollador junior y contribuí a mejorar la calidad del código en 30%."
+        ],
+        "stack": [
+          "Golang",
+          "REST APIs",
+          "Jira",
+          "Mailchimp API"
+        ],
         "responsibilities": [
           "Migré nuestro cliente principal de Microsoft Dynamics NAV 2009 a una interfaz web moderna, mejorando significativamente el rendimiento, visibilidad y comunicación.",
           "Diseñé e implementé una arquitectura RESTful con Golang para extraer metadatos de Jira y generar reportes dinámicos para usuarios finales.",
@@ -161,6 +213,26 @@
         "position": "Desarrollador Web",
         "period": "Febrero 2019 - Marzo 2020",
         "location": "Tulsa, Oklahoma",
+        "summary": "Desarrollo web orientado a modernizar plataformas PHP, mejorar analítica operativa e internacionalizar herramientas administrativas.",
+        "scopeTags": [
+          "Vue migration",
+          "Data visualization",
+          "i18n",
+          "Operaciones"
+        ],
+        "achievements": [
+          "Lideré la conversión de partes significativas de dos plataformas Laravel a componentes Vue.js, mejorando velocidad de carga y mantenibilidad.",
+          "Diseñé reportes, APIs y visualizaciones con Google Maps, Google Charts, Highcharts y vue-chartjs para análisis en tiempo real.",
+          "Impulsé internacionalización y localización de una plataforma administrativa, aumentando el alcance de audiencia en 8%."
+        ],
+        "stack": [
+          "Vue.js",
+          "Laravel",
+          "PHP",
+          "Google Charts",
+          "Highcharts",
+          "jQuery"
+        ],
         "responsibilities": [
           "Lideré la conversión de porciones significativas de dos plataformas principales de PHP (Laravel) a componentes Vue.js, resultando en velocidades de carga mejoradas.",
           "Diseñé e implementé reportes, un servicio web RESTful y APIs para varios departamentos usando Google Maps, Google Charts, Highcharts JS, vue-chartjs y jQuery para aumentar la respuesta de acción y análisis de datos en tiempo real.",
@@ -173,6 +245,25 @@
         "position": "Desarrollador Web / Webmaster",
         "period": "Septiembre 2010 - Junio 2017",
         "location": "La Habana, Cuba",
+        "summary": "Rol full stack temprano con ownership de portal público, herramientas internas, SEO, soporte y procesos operativos.",
+        "scopeTags": [
+          "Full stack",
+          "WordPress",
+          "SEO",
+          "Procesos internos"
+        ],
+        "achievements": [
+          "Atendí solicitudes de servicio en menos de 30 minutos y resolví tickets de alta prioridad en 24h con 90% de éxito.",
+          "Diseñé temas y plugins WordPress personalizados, aplicando SEO para aumentar la visibilidad en 50%.",
+          "Mejoré comunicación interna en 80% y reduje tiempo de resolución de mantenimiento en 17% mediante APIs y visualizaciones."
+        ],
+        "stack": [
+          "PHP",
+          "WordPress",
+          "MySQL",
+          "jQuery",
+          "SEO"
+        ],
         "responsibilities": [
           "Asumí un rol FullStack en el Portal web usando PHP, jQuery y MYSQL. Atendí solicitudes de servicio al cliente en menos de 30 min y resolví tickets de alta prioridad en 24h con una tasa de éxito del 90%.",
           "Diseñé y mantuve temas y plugins personalizados de Wordpress para el sitio web público. Apliqué técnicas de SEO para atraer clientes a comprar nuestros productos y aumenté nuestra visibilidad en un 50%.",
@@ -186,7 +277,8 @@
         "institution": "Universidad de Ciencias Informáticas",
         "degree": "Ingeniero en Ciencias de la Computación",
         "period": "2005 - 2010",
-        "link": "https://www.uci.cu/"
+        "link": "https://www.uci.cu/",
+        "logo": "UCI.jpg"
       }
     ],
     "portfolioProjects": [
@@ -195,7 +287,12 @@
         "url": "https://ciudadanousa.com/es/home",
         "featured": true,
         "type": "mobile",
-        "description": "App móvil en español primero para preparar la entrevista de ciudadanía de EE. UU. — pensada para quienes estudian en español y responden en inglés. Disponible en iOS y Android, con sitio de marketing bilingüe.",
+        "description": "App móvil español-first para preparar la entrevista de ciudadanía de EE. UU., diseñada para personas que estudian en español y necesitan responder con confianza en inglés.",
+        "problem": "La preparación para ciudadanía está fragmentada: materiales oficiales, respuestas que cambian por ubicación y poca ayuda para cruzar de estudiar en español a responder en inglés.",
+        "user": "Inmigrantes hispanohablantes que preparan civics, entrevista N-400, lectura y escritura en inglés desde un contexto de alta ansiedad.",
+        "solution": "Una app bilingüe con estudio cívico, entrevista simulada, ensayo N-400, práctica de lectura/escritura, audio y búsqueda de autoridades por código postal.",
+        "role": "Producto, diseño, React Native/Expo, backend Supabase, monetización RevenueCat, lanzamiento y sitio bilingüe.",
+        "outcome": "Producto publicado en iOS y Android con flujo Pro, contenido alineado a USCIS y experiencia diseñada para un usuario bilingüe real.",
         "highlights": [
           "Bancos de estudio cívica 2025 (128 preguntas) y 2008 (100 preguntas) alineados con USCIS",
           "Entrevista simulada, ensayo N-400, práctica de lectura y escritura en inglés",
@@ -210,6 +307,20 @@
           "Android",
           "TypeScript",
           "Supabase"
+        ],
+        "screenshots": [
+          {
+            "src": "portfolio/ciudadanousa-home.png",
+            "alt": "Pantalla de inicio de CiudadanoUSA con progreso de estudio, racha y cuenta regresiva a la entrevista"
+          },
+          {
+            "src": "portfolio/ciudadanousa-n400.png",
+            "alt": "Ensayo N-400 con progreso por secciones del formulario de naturalización"
+          },
+          {
+            "src": "portfolio/ciudadanousa-writing.png",
+            "alt": "Práctica de escritura en inglés con retroalimentación palabra por palabra y traducción al español"
+          }
         ]
       },
       {
@@ -217,7 +328,12 @@
         "url": "https://renderlog.dev/en/about",
         "featured": true,
         "type": "blog",
-        "description": "Blog técnico bilingüe sobre ingeniería frontend — criterio construido con más de una década de deploys, refactors y lecciones que escribiría distinto con la experiencia. Publicado en inglés y español.",
+        "description": "Blog técnico bilingüe sobre ingeniería frontend, escrito desde la experiencia de producción, refactors y decisiones que solo aparecen después de años manteniendo software real.",
+        "problem": "Mucho contenido frontend en español es superficial, traducido sin contexto o desconectado de decisiones reales de producción.",
+        "user": "Desarrolladores frontend y full stack que buscan criterio práctico sobre React, Next.js, Vue, rendimiento, arquitectura e i18n.",
+        "solution": "Un blog bilingüe con artículos escritos desde experiencia directa, enfoque editorial propio y temas que conectan código con juicio técnico.",
+        "role": "Estrategia editorial, escritura técnica, frontend, i18n, despliegue y operación auto-hospedada.",
+        "outcome": "Plataforma propia que demuestra comunicación técnica, criterio senior y capacidad de operar infraestructura ligera con Raspberry Pi y Cloudflare Tunnel.",
         "highlights": [
           "Contenido frontend de calidad en español, sin traducciones automáticas vacías",
           "Temas del trabajo real: React, Next.js, Vue.js, rendimiento y arquitectura",
@@ -229,6 +345,12 @@
           "Vue.js",
           "Escritura Técnica",
           "i18n"
+        ],
+        "screenshots": [
+          {
+            "src": "portfolio/renderlog-home.png",
+            "alt": "Inicio de Renderlog con artículos técnicos recientes en inglés y búsqueda integrada"
+          }
         ]
       },
       {
@@ -236,10 +358,11 @@
         "url": "https://micalpacheco.com",
         "featured": false,
         "type": "landing",
-        "description": "Landing page profesional para mi esposa, enfermera psiquiátrica certificada en Broken Arrow, OK — el único objetivo era que le encantara cómo quedó. Le encantó.",
+        "description": "Landing page profesional para una enfermera psiquiátrica certificada en Broken Arrow, OK, enfocada en claridad, confianza y presencia local.",
         "highlights": [],
         "tags": [
-          "Personal"
+          "Personal",
+          "Landing page"
         ]
       },
       {
@@ -247,7 +370,7 @@
         "url": "https://paint.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "App de dibujo en el navegador que empezó como experimento con Canvas API y fue la actividad favorita de mi hija… por unos cinco minutos.",
+        "description": "Experimento de dibujo en Canvas API para explorar interacciones táctiles simples, controles grandes y respuesta inmediata en navegador.",
         "highlights": [],
         "tags": [
           "Canvas API",
@@ -259,7 +382,7 @@
         "url": "https://tictactoe.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "Tres en raya clásico — limpio, simple, funciona en cualquier dispositivo. Mi hija aún no entiende las reglas pero adora tocar la pantalla.",
+        "description": "Tres en raya clásico, simple y responsive, construido como ejercicio de reglas de juego, estado de UI e interacción rápida.",
         "highlights": [],
         "tags": [
           "JavaScript",
@@ -271,7 +394,7 @@
         "url": "https://weather-ai.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "App del clima con IA integrada — nacida de pura curiosidad y del clima genuinamente impredecible de Oklahoma.",
+        "description": "App del clima con IA integrada para explorar cómo una capa conversacional puede hacer más útil una consulta cotidiana.",
         "highlights": [],
         "tags": [
           "IA",
@@ -292,7 +415,8 @@
           "Computación en la Nube",
           "Plataforma en la Nube",
           "Servicios en la Nube"
-        ]
+        ],
+        "conciseDescription": "Base formal para comprender servicios cloud, costos, seguridad compartida y arquitectura inicial en AWS."
       },
       {
         "issuer": "Centro para el Desarrollo de Computación Avanzada",
@@ -306,8 +430,59 @@
           "Tecnología de Diseño Web",
           "Computación Avanzada",
           "Medios Digitales"
-        ]
+        ],
+        "conciseDescription": "Formación internacional temprana en diseño multimedia y web que conectó ingeniería con experiencia visual."
+      }
+    ],
+    "impactHighlights": [
+      {
+        "metric": "15+ años",
+        "title": "Construyendo software full stack",
+        "description": "Trayectoria desde portales PHP y WordPress hasta productos modernos con Vue, React, Node.js, Go, mobile y cloud."
+      },
+      {
+        "metric": "Lead scope",
+        "title": "Liderazgo técnico en iniciativas enterprise",
+        "description": "Ownership de features estratégicas, seguridad, mentoring, refactors y decisiones de arquitectura en health tech."
+      },
+      {
+        "metric": "Modernización",
+        "title": "Migraciones y reducción de deuda técnica",
+        "description": "Ruby a Go, AngularJS a Vue, Snowplow a Amplitude y reemplazos de capacidades legacy por plataformas internas."
+      },
+      {
+        "metric": "Shipped",
+        "title": "Productos propios en iOS, Android y web",
+        "description": "CiudadanoUSA, Renderlog y proyectos auto-hospedados demuestran ejecución end-to-end más allá del trabajo formal."
+      }
+    ],
+    "howIWorkPrinciples": [
+      {
+        "title": "Entregar en iteraciones pequeñas",
+        "description": "Prefiero ship small, learn fast: validar con usuarios reales antes de acumular deuda o complejidad innecesaria."
+      },
+      {
+        "title": "Sistemas simples, observables y mantenibles",
+        "description": "Elijo arquitecturas que el equipo puede operar, depurar y evolucionar sin depender de héroes ni conocimiento tribal."
+      },
+      {
+        "title": "Modernizar sin romper el negocio",
+        "description": "Migro plataformas heredadas con pragmatismo: feature flags, entregas incrementales y riesgo controlado."
+      },
+      {
+        "title": "Producto bilingüe con contexto real",
+        "description": "Diseño experiencias en español e inglés pensando en usuarios, tono y restricciones culturales, no solo en traducción."
+      },
+      {
+        "title": "IA y automatización con propósito",
+        "description": "Uso herramientas nuevas cuando reducen fricción real para usuarios o equipos, no por moda ni por reemplazar criterio."
       }
     ]
+  },
+  "credentials": {
+    "educationTitle": "Educación",
+    "languagesTitle": "Idiomas aplicados a producto",
+    "certificationsTitle": "Certificaciones",
+    "languageNote": "Español nativo e inglés profesional / bilingüe. Construyo y escribo productos en ambos idiomas, con sensibilidad por usuarios bilingües y contextos multiculturales."
   }
 }

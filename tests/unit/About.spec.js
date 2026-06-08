@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
@@ -13,20 +14,20 @@ const createTestI18n = (locale = 'en') => {
       en: {
         hero: {
           title: 'Wilberto Pacheco',
-          subtitle: 'Software Engineer',
-          description: 'Bilingual Full Stack Web Developer with a degree in Computer Science (2010) and a passion for solving complex technical challenges. My goal is to excel at my job by delivering impactful solutions that increase company performance and contribute to my personal growth.',
-          viewExperience: 'View Experience',
-          viewSkills: 'View Skills',
+          subtitle: 'Software Engineer focused on product, modernization, and end-to-end delivery',
+          description: 'Bilingual software engineer with 15+ years building full stack products, modernizing legacy platforms, and leading technical initiatives across health tech, web, and mobile.',
+          viewImpact: 'View professional impact',
+          viewProducts: 'View shipped products',
           downloadResume: 'Download Resume'
         }
       },
       es: {
         hero: {
           title: 'Wilberto Pacheco',
-          subtitle: 'Ingeniero de Software',
-          description: 'Desarrollador Web Full Stack Bilingüe con un título en Ciencias de la Computación (2010) y una pasión por resolver desafíos técnicos complejos. Mi objetivo es sobresalir en mi trabajo entregando soluciones impactantes que aumenten el rendimiento de la empresa y contribuyan a mi crecimiento personal.',
-          viewExperience: 'Ver Experiencia',
-          viewSkills: 'Ver Habilidades',
+          subtitle: 'Software Engineer enfocado en producto, modernización y entrega end-to-end',
+          description: 'Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas.',
+          viewImpact: 'Ver impacto profesional',
+          viewProducts: 'Ver productos construidos',
           downloadResume: 'Descargar CV'
         }
       }
@@ -53,7 +54,7 @@ describe('About.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText('Software Engineer')).toBeInTheDocument()
+    expect(screen.getByText('Software Engineer focused on product, modernization, and end-to-end delivery')).toBeInTheDocument()
   })
 
   it('renders the hero description', () => {
@@ -63,7 +64,7 @@ describe('About.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Bilingual Full Stack Web Developer/)).toBeInTheDocument()
+    expect(screen.getByText(/Bilingual software engineer with 15\+ years/)).toBeInTheDocument()
   })
 
   it('renders contact information', () => {
@@ -97,8 +98,9 @@ describe('About.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByRole('link', { name: /View Experience/ })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /View Skills/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /View professional impact/ })).toHaveAttribute('href', '#impact')
+    expect(screen.getByRole('link', { name: /View shipped products/ })).toHaveAttribute('href', '#portfolio')
+    expect(screen.getByRole('link', { name: /Download Resume/ })).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
   })
 
   it('has proper accessibility attributes', () => {
@@ -138,4 +140,4 @@ describe('About.vue', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
-}) 
+})

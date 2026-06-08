@@ -1,5 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { getContent, getWorkExperience, getEducation, getCertifications } from '@/i18n/content'
+import {
+  getContent,
+  getWorkExperience,
+  getEducation,
+  getCertifications,
+  getPortfolioProjects,
+  getHowIWorkPrinciples,
+  getImpactHighlights,
+  getCredentials,
+} from '@/i18n/content'
 
 describe('i18n Content Helpers', () => {
   describe('getContent', () => {
@@ -44,7 +53,14 @@ describe('i18n Content Helpers', () => {
       expect(firstItem).toHaveProperty('position')
       expect(firstItem).toHaveProperty('period')
       expect(firstItem).toHaveProperty('location')
+      expect(firstItem).toHaveProperty('summary')
+      expect(firstItem).toHaveProperty('scopeTags')
+      expect(firstItem).toHaveProperty('achievements')
+      expect(firstItem).toHaveProperty('stack')
       expect(firstItem).toHaveProperty('responsibilities')
+      expect(Array.isArray(firstItem.scopeTags)).toBe(true)
+      expect(Array.isArray(firstItem.achievements)).toBe(true)
+      expect(Array.isArray(firstItem.stack)).toBe(true)
       expect(Array.isArray(firstItem.responsibilities)).toBe(true)
     })
 
@@ -115,6 +131,7 @@ describe('i18n Content Helpers', () => {
       expect(firstItem).toHaveProperty('date')
       expect(firstItem).toHaveProperty('link')
       expect(firstItem).toHaveProperty('description')
+      expect(firstItem).toHaveProperty('conciseDescription')
       expect(firstItem).toHaveProperty('skills')
       expect(Array.isArray(firstItem.skills)).toBe(true)
     })
@@ -133,6 +150,64 @@ describe('i18n Content Helpers', () => {
       const certifications = getCertifications('fr')
       expect(Array.isArray(certifications)).toBe(true)
       expect(certifications.length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('getImpactHighlights', () => {
+    it('returns aligned senior proof points across locales', () => {
+      const enHighlights = getImpactHighlights('en')
+      const esHighlights = getImpactHighlights('es')
+
+      expect(enHighlights).toHaveLength(4)
+      expect(esHighlights).toHaveLength(4)
+      enHighlights.forEach((item, index) => {
+        expect(Object.keys(item)).toEqual(Object.keys(esHighlights[index]))
+        expect(item).toHaveProperty('metric')
+        expect(item).toHaveProperty('title')
+        expect(item).toHaveProperty('description')
+      })
+    })
+  })
+
+  describe('getPortfolioProjects', () => {
+    it('returns featured projects with case study fields', () => {
+      const projects = getPortfolioProjects('en')
+      const featured = projects.filter((project) => project.featured)
+
+      expect(featured.length).toBeGreaterThan(0)
+      featured.forEach((project) => {
+        expect(project).toHaveProperty('problem')
+        expect(project).toHaveProperty('user')
+        expect(project).toHaveProperty('solution')
+        expect(project).toHaveProperty('role')
+        expect(project).toHaveProperty('outcome')
+        expect(project.screenshots?.length).toBeGreaterThan(0)
+        project.screenshots.forEach((screenshot) => {
+          expect(screenshot).toHaveProperty('src')
+          expect(screenshot).toHaveProperty('alt')
+        })
+      })
+    })
+  })
+
+  describe('getHowIWorkPrinciples', () => {
+    it('returns five engineering principles', () => {
+      const principles = getHowIWorkPrinciples('en')
+
+      expect(principles).toHaveLength(5)
+      principles.forEach((principle) => {
+        expect(principle).toHaveProperty('title')
+        expect(principle).toHaveProperty('description')
+      })
+    })
+  })
+
+  describe('getCredentials', () => {
+    it('aggregates education and certifications', () => {
+      const credentials = getCredentials('es')
+
+      expect(credentials.education.length).toBeGreaterThan(0)
+      expect(credentials.certifications.length).toBeGreaterThan(0)
     })
   })
 
@@ -172,5 +247,35 @@ describe('i18n Content Helpers', () => {
         expect(Object.keys(item)).toEqual(Object.keys(spanishItem))
       })
     })
+
+    it('ensures impact highlights have consistent structure across languages', () => {
+      const enHighlights = getImpactHighlights('en')
+      const esHighlights = getImpactHighlights('es')
+
+      expect(enHighlights.length).toBe(esHighlights.length)
+      enHighlights.forEach((item, index) => {
+        expect(Object.keys(item)).toEqual(Object.keys(esHighlights[index]))
+      })
+    })
+
+    it('ensures how I work principles have consistent structure across languages', () => {
+      const enPrinciples = getHowIWorkPrinciples('en')
+      const esPrinciples = getHowIWorkPrinciples('es')
+
+      expect(enPrinciples.length).toBe(esPrinciples.length)
+      enPrinciples.forEach((item, index) => {
+        expect(Object.keys(item)).toEqual(Object.keys(esPrinciples[index]))
+      })
+    })
+
+    it('ensures portfolio projects have consistent structure across languages', () => {
+      const enProjects = getPortfolioProjects('en')
+      const esProjects = getPortfolioProjects('es')
+
+      expect(enProjects.length).toBe(esProjects.length)
+      enProjects.forEach((item, index) => {
+        expect(Object.keys(item)).toEqual(Object.keys(esProjects[index]))
+      })
+    })
   })
-}) 
+})

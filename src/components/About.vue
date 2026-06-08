@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" id="about" role="banner" aria-labelledby="hero-title">
+  <section class="hero" role="banner" aria-labelledby="hero-title">
     <div class="hero-content">
       <!-- Hero Title - Full name in H1 for SEO (Wilberto Pacheco Batista) -->
       <h1 class="hero-title" id="hero-title" itemprop="name">
@@ -66,18 +66,18 @@
       <!-- Call to Action -->
       <div class="hero-actions" role="region" aria-labelledby="actions-heading">
         <h3 id="actions-heading" class="sr-only">Call to Action</h3>
-        <a href="#experience" class="btn btn-primary" :aria-label="$t('hero.viewExperience')">
-          <font-awesome-icon :icon="['fas', 'briefcase']" aria-hidden="true" />
-          {{ $t('hero.viewExperience') }}
+        <a href="#impact" class="btn btn-primary" :aria-label="$t('hero.viewImpact')">
+          <font-awesome-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
+          {{ $t('hero.viewImpact') }}
         </a>
-        <a href="#skills" class="btn btn-secondary" :aria-label="$t('hero.viewSkills')">
-          <font-awesome-icon :icon="['fas', 'code']" aria-hidden="true" />
-          {{ $t('hero.viewSkills') }}
+        <a href="#portfolio" class="btn btn-secondary" :aria-label="$t('hero.viewProducts')">
+          <font-awesome-icon :icon="['fas', 'folder-open']" aria-hidden="true" />
+          {{ $t('hero.viewProducts') }}
         </a>
-        <a 
-          href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
-          class="btn btn-outline" 
-          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+        <a
+          :href="resumeUrl"
+          class="btn btn-outline"
+          :download="resumeFilename"
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
           rel="noopener noreferrer"
@@ -91,8 +91,18 @@
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+
 export default {
   name: "About",
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+  },
 };
 </script>
 

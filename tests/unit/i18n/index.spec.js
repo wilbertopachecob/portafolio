@@ -33,12 +33,12 @@ describe('i18n Configuration', () => {
       expect(en.content).toBeDefined()
       
       // Check navigation keys
-      expect(en.nav.about).toBe('About')
+      expect(en.nav.about).toBe('Home')
+      expect(en.nav.impact).toBe('Impact')
       expect(en.nav.experience).toBe('Experience')
-      expect(en.nav.skills).toBe('Skills')
-      expect(en.nav.education).toBe('Education')
-      expect(en.nav.languages).toBe('Languages')
-      expect(en.nav.certifications).toBe('Certifications')
+      expect(en.nav.portfolio).toBe('Products')
+      expect(en.nav.skills).toBe('Capabilities')
+      expect(en.nav.credentials).toBe('Credentials')
     })
 
     it('has Spanish translations with all required keys', () => {
@@ -49,12 +49,12 @@ describe('i18n Configuration', () => {
       expect(es.content).toBeDefined()
       
       // Check navigation keys
-      expect(es.nav.about).toBe('Acerca de')
+      expect(es.nav.about).toBe('Inicio')
+      expect(es.nav.impact).toBe('Impacto')
       expect(es.nav.experience).toBe('Experiencia')
-      expect(es.nav.skills).toBe('Habilidades')
-      expect(es.nav.education).toBe('Educación')
-      expect(es.nav.languages).toBe('Idiomas')
-      expect(es.nav.certifications).toBe('Certificaciones')
+      expect(es.nav.portfolio).toBe('Productos')
+      expect(es.nav.skills).toBe('Capacidades')
+      expect(es.nav.credentials).toBe('Credenciales')
     })
 
     it('has consistent structure between English and Spanish', () => {
@@ -83,7 +83,14 @@ describe('i18n Configuration', () => {
       expect(firstJob).toHaveProperty('position')
       expect(firstJob).toHaveProperty('period')
       expect(firstJob).toHaveProperty('location')
+      expect(firstJob).toHaveProperty('summary')
+      expect(firstJob).toHaveProperty('scopeTags')
+      expect(firstJob).toHaveProperty('achievements')
+      expect(firstJob).toHaveProperty('stack')
       expect(firstJob).toHaveProperty('responsibilities')
+      expect(Array.isArray(firstJob.scopeTags)).toBe(true)
+      expect(Array.isArray(firstJob.achievements)).toBe(true)
+      expect(Array.isArray(firstJob.stack)).toBe(true)
       expect(Array.isArray(firstJob.responsibilities)).toBe(true)
     })
 
@@ -97,7 +104,14 @@ describe('i18n Configuration', () => {
       expect(firstJob).toHaveProperty('position')
       expect(firstJob).toHaveProperty('period')
       expect(firstJob).toHaveProperty('location')
+      expect(firstJob).toHaveProperty('summary')
+      expect(firstJob).toHaveProperty('scopeTags')
+      expect(firstJob).toHaveProperty('achievements')
+      expect(firstJob).toHaveProperty('stack')
       expect(firstJob).toHaveProperty('responsibilities')
+      expect(Array.isArray(firstJob.scopeTags)).toBe(true)
+      expect(Array.isArray(firstJob.achievements)).toBe(true)
+      expect(Array.isArray(firstJob.stack)).toBe(true)
       expect(Array.isArray(firstJob.responsibilities)).toBe(true)
     })
 
@@ -117,6 +131,13 @@ describe('i18n Configuration', () => {
       expect(Array.isArray(es.content.certifications)).toBe(true)
       
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
+    })
+
+    it('has impact content and language note in both languages', () => {
+      expect(en.content.impactHighlights).toHaveLength(4)
+      expect(es.content.impactHighlights).toHaveLength(4)
+      expect(en.credentials.languageNote).toContain('Native Spanish')
+      expect(es.credentials.languageNote).toContain('Español nativo')
     })
   })
 
@@ -156,7 +177,8 @@ describe('i18n Configuration', () => {
       })
       
       // Test that all required keys are accessible
-      expect(i18n.global.t('nav.about')).toBe('About')
+      expect(i18n.global.t('nav.about')).toBe('Home')
+      expect(i18n.global.t('nav.impact')).toBe('Impact')
       expect(i18n.global.t('hero.title')).toBe('Wilberto Pacheco')
       expect(i18n.global.t('sections.experience.title')).toBe('Experience')
     })
@@ -191,6 +213,9 @@ describe('i18n Configuration', () => {
       expect(en.content.workExperience.length).toBe(es.content.workExperience.length)
       expect(en.content.education.length).toBe(es.content.education.length)
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
+      expect(en.content.impactHighlights.length).toBe(es.content.impactHighlights.length)
+      expect(en.content.howIWorkPrinciples.length).toBe(es.content.howIWorkPrinciples.length)
+      expect(en.content.portfolioProjects.length).toBe(es.content.portfolioProjects.length)
     })
   })
-}) 
+})

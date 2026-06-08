@@ -11,10 +11,10 @@
       
       <!-- Footer links -->
       <div class="footer-links">
-        <a 
-          href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
+        <a
+          :href="resumeUrl"
           class="footer-link"
-          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+          :download="resumeFilename"
           :title="$t('hero.downloadResume')"
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
@@ -34,12 +34,22 @@
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+
 export default {
   name: "Footer",
   data() {
     return {
       currentYear: new Date().getFullYear(),
     };
+  },
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
   },
   methods: {
     /**

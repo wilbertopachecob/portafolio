@@ -226,7 +226,11 @@ export default {
           && scrollPosition < position.top + position.height;
       }) ?? 'about';
 
-      this.activeSection = currentSection;
+      this.activeSection = this.getNavigationSectionId(currentSection);
+    },
+
+    getNavigationSectionId(sectionId) {
+      return this.navItems.some((item) => item.id === sectionId) ? sectionId : 'skills';
     },
 
     cacheSectionPositions() {
@@ -778,4 +782,4 @@ export default {
     height: 28px !important;
   }
 }
-</style> 
+</style>
