@@ -112,14 +112,6 @@
           </span>
         </div>
       </div>
-
-      <!-- Inline proof bar — reuses impact highlights (metric + title) -->
-      <ul class="hero-proofbar" :aria-label="$t('sections.impact.title')">
-        <li v-for="item in proofPoints" :key="item.title" class="proof">
-          <span class="proof-num">{{ item.metric }}</span>
-          <span class="proof-lbl">{{ item.title }}</span>
-        </li>
-      </ul>
     </div>
   </section>
 </template>
@@ -127,7 +119,6 @@
 <script>
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 import { track } from '@/utils/analytics'
-import { getImpactHighlights } from '@/i18n/content'
 
 export default {
   name: "About",
@@ -137,9 +128,6 @@ export default {
     },
     resumeUrl() {
       return getPublicAssetUrl(RESUME_FILENAME)
-    },
-    proofPoints() {
-      return getImpactHighlights(this.$i18n.locale).slice(0, 4)
     },
   },
   methods: {
@@ -306,44 +294,6 @@ export default {
   color: var(--text-secondary);
 }
 
-/* Proof bar */
-.hero-proofbar {
-  list-style: none;
-  margin: clamp(2.75rem, 6vw, 4.5rem) 0 0;
-  padding: 0;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.proof {
-  padding: 1.6rem;
-  border-right: 1px solid var(--border-light);
-}
-
-.proof:last-child {
-  border-right: 0;
-}
-
-.proof-num {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-  color: var(--primary-color);
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.proof-lbl {
-  display: block;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 0.65rem;
-  line-height: 1.4;
-}
-
 /* Responsive */
 @media (max-width: 880px) {
   .hero-grid {
@@ -356,22 +306,6 @@ export default {
     order: -1;
   }
 
-  .hero-proofbar {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .proof:nth-child(2) {
-    border-right: 0;
-  }
-
-  .proof {
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .proof:nth-child(3),
-  .proof:nth-child(4) {
-    border-bottom: 0;
-  }
 }
 
 @media (max-width: 540px) {
@@ -388,18 +322,5 @@ export default {
     justify-content: center;
   }
 
-  .hero-proofbar {
-    grid-template-columns: 1fr;
-  }
-
-  .proof {
-    border-right: 0;
-    border-bottom: 1px solid var(--border-light);
-    padding: 1.25rem 0;
-  }
-
-  .proof:last-child {
-    border-bottom: 0;
-  }
 }
 </style>

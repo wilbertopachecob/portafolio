@@ -1,6 +1,6 @@
 # Plan de ejecución — Rediseño visual del portafolio
 
-> **Estado:** Dirección visual APROBADA por el dueño (Wilberto). 
+> **Estado:** Dirección visual APROBADA por el dueño (Wilberto).
 > **Alcance:** Re-skin visual del sitio Vue existente. **No** se reescribe contenido, arquitectura de información, ni lógica.
 > **Mockup de referencia (fuente de verdad visual):** `redesign/Portfolio Redesign Mockup.html` + `redesign/assets/mockup.css`
 > **Repo objetivo:** proyecto Vue 3 + Vite (`portafolio/`).
