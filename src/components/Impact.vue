@@ -34,6 +34,7 @@ export default {
 }
 
 .impact-card {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -54,15 +55,19 @@ export default {
 
 .impact-metric {
   margin: 0;
+  min-width: 0;
+  max-width: 100%;
   color: var(--primary-color);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.125rem, 7cqi, 2.5rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .impact-title {
   margin: 0;
+  min-width: 0;
   color: var(--text-primary);
   font-size: 1.125rem;
   font-weight: 600;
@@ -70,6 +75,7 @@ export default {
 
 .impact-description {
   margin: 0;
+  min-width: 0;
   color: var(--text-secondary);
   line-height: 1.65;
 }
