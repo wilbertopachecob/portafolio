@@ -23,10 +23,7 @@ const createTestI18n = (locale = 'en') => {
           skills: 'Technical capabilities',
           howIWork: 'How I work',
           credentials: 'Credentials',
-          contact: 'Contact',
-          education: 'Education',
-          languages: 'Languages',
-          certifications: 'Certifications'
+          contact: 'Contact'
         },
         navShort: {
           skills: 'Skills',

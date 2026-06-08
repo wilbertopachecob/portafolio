@@ -20,13 +20,11 @@ import IconXTwitter from '~icons/fa6-brands/x-twitter'
 
 import IconArrowUpRightFromSquare from '~icons/fa6-solid/arrow-up-right-from-square'
 import IconBriefcase from '~icons/fa6-solid/briefcase'
-import IconCalendarDays from '~icons/fa6-solid/calendar-days'
 import IconCertificate from '~icons/fa6-solid/certificate'
 import IconChartLine from '~icons/fa6-solid/chart-line'
 import IconChevronLeft from '~icons/fa6-solid/chevron-left'
 import IconChevronRight from '~icons/fa6-solid/chevron-right'
 import IconCircleCheck from '~icons/fa6-solid/circle-check'
-import IconCircleUp from '~icons/fa6-solid/circle-up'
 import IconCode from '~icons/fa6-solid/code'
 import IconDatabase from '~icons/fa6-solid/database'
 import IconDownload from '~icons/fa6-solid/download'
@@ -55,9 +53,7 @@ const ICONS = {
   'fab/x-twitter': IconXTwitter,
 
   'fas/arrow-up-right-from-square': IconArrowUpRightFromSquare,
-  'fas/arrow-alt-circle-up': IconCircleUp,
   'fas/briefcase': IconBriefcase,
-  'fas/calendar-alt': IconCalendarDays,
   'fas/certificate': IconCertificate,
   'fas/chart-line': IconChartLine,
   'fas/chevron-left': IconChevronLeft,

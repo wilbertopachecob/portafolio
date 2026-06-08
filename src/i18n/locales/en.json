@@ -4,9 +4,6 @@
     "experience": "Experience",
     "skills": "Technical capabilities",
     "portfolio": "Products",
-    "education": "Education",
-    "languages": "Languages",
-    "certifications": "Certifications",
     "impact": "Impact",
     "howIWork": "How I work",
     "credentials": "Credentials",
@@ -46,18 +43,6 @@
       "title": "What I've built",
       "subtitle": "Personal products and experiments that show how I think, design, and build end-to-end"
     },
-    "education": {
-      "title": "Education",
-      "subtitle": "My academic background and qualifications"
-    },
-    "languages": {
-      "title": "Languages",
-      "subtitle": "Languages I speak and write"
-    },
-    "certifications": {
-      "title": "Certifications",
-      "subtitle": "Professional certifications and achievements"
-    },
     "impact": {
       "eyebrow": "Impact",
       "title": "Results with impact",
@@ -89,9 +74,7 @@
   },
   "languages": {
     "spanish": "Spanish",
-    "english": "English",
-    "flagAlt": "Flag of {language}",
-    "flagLabel": "Flag representing {language} language"
+    "english": "English"
   },
   "footer": {
     "copyright": "All rights reserved.",
@@ -116,15 +99,10 @@
     "actions": "Contact actions"
   },
   "education": {
-    "period": "Period",
     "visitWebsite": "Visit {institution} website"
   },
   "certifications": {
-    "issued": "Issued",
-    "skillsCovered": "Skills Covered",
-    "visitWebsite": "Visit {issuer} website",
-    "badgeAlt": "{issuer} certification badge",
-    "badgeLabel": "Badge for {title} certification from {issuer}"
+    "visitWebsite": "Visit {issuer} website"
   },
   "portfolio": {
     "intro": "Products and experiments born from real needs, late-night ideas, and the recurring question: why does this not exist better in Spanish? Featured work shows product ownership, design, engineering, launch, and operations.",

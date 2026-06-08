@@ -2,8 +2,6 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import {
   getContent,
   getWorkExperience,
-  getEducation,
-  getCertifications,
   getPortfolioProjects,
   getHowIWorkPrinciples,
   getImpactHighlights,
@@ -87,72 +85,6 @@ describe('i18n Content Helpers', () => {
     })
   })
 
-  describe('getEducation', () => {
-    it('returns English education when locale is "en"', () => {
-      const education = getEducation('en')
-      expect(Array.isArray(education)).toBe(true)
-      expect(education.length).toBeGreaterThan(0)
-      
-      // Check first education item structure
-      const firstItem = education[0]
-      expect(firstItem).toHaveProperty('institution')
-      expect(firstItem).toHaveProperty('degree')
-      expect(firstItem).toHaveProperty('period')
-      expect(firstItem).toHaveProperty('link')
-    })
-
-    it('returns Spanish education when locale is "es"', () => {
-      const education = getEducation('es')
-      expect(Array.isArray(education)).toBe(true)
-      expect(education.length).toBeGreaterThan(0)
-      
-      // Check that content is actually in Spanish
-      const firstItem = education[0]
-      expect(firstItem.institution).toContain('Universidad') // Should contain Spanish text
-    })
-
-    it('returns English education as fallback for unknown locale', () => {
-      const education = getEducation('fr')
-      expect(Array.isArray(education)).toBe(true)
-      expect(education.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe('getCertifications', () => {
-    it('returns English certifications when locale is "en"', () => {
-      const certifications = getCertifications('en')
-      expect(Array.isArray(certifications)).toBe(true)
-      expect(certifications.length).toBeGreaterThan(0)
-      
-      // Check first certification item structure
-      const firstItem = certifications[0]
-      expect(firstItem).toHaveProperty('issuer')
-      expect(firstItem).toHaveProperty('title')
-      expect(firstItem).toHaveProperty('date')
-      expect(firstItem).toHaveProperty('link')
-      expect(firstItem).toHaveProperty('description')
-      expect(firstItem).toHaveProperty('conciseDescription')
-      expect(firstItem).toHaveProperty('skills')
-      expect(Array.isArray(firstItem.skills)).toBe(true)
-    })
-
-    it('returns Spanish certifications when locale is "es"', () => {
-      const certifications = getCertifications('es')
-      expect(Array.isArray(certifications)).toBe(true)
-      expect(certifications.length).toBeGreaterThan(0)
-      
-      // Check that content is actually in Spanish
-      const firstItem = certifications[0]
-      expect(firstItem.description).toContain('certificación') // Should contain Spanish text
-    })
-
-    it('returns English certifications as fallback for unknown locale', () => {
-      const certifications = getCertifications('fr')
-      expect(Array.isArray(certifications)).toBe(true)
-      expect(certifications.length).toBeGreaterThan(0)
-    })
-  })
-
   describe('getImpactHighlights', () => {
     it('returns aligned senior proof points across locales', () => {
       const enHighlights = getImpactHighlights('en')
@@ -209,6 +141,53 @@ describe('i18n Content Helpers', () => {
       expect(credentials.education.length).toBeGreaterThan(0)
       expect(credentials.certifications.length).toBeGreaterThan(0)
     })
+
+    it('returns English education when locale is "en"', () => {
+      const { education } = getCredentials('en')
+      expect(Array.isArray(education)).toBe(true)
+      expect(education.length).toBeGreaterThan(0)
+
+      const firstItem = education[0]
+      expect(firstItem).toHaveProperty('institution')
+      expect(firstItem).toHaveProperty('degree')
+      expect(firstItem).toHaveProperty('period')
+      expect(firstItem).toHaveProperty('link')
+    })
+
+    it('returns Spanish education when locale is "es"', () => {
+      const { education } = getCredentials('es')
+      expect(education[0].institution).toContain('Universidad')
+    })
+
+    it('returns English education as fallback for unknown locale', () => {
+      const { education } = getCredentials('fr')
+      expect(education.length).toBeGreaterThan(0)
+    })
+
+    it('returns English certifications when locale is "en"', () => {
+      const { certifications } = getCredentials('en')
+      expect(certifications.length).toBeGreaterThan(0)
+
+      const firstItem = certifications[0]
+      expect(firstItem).toHaveProperty('issuer')
+      expect(firstItem).toHaveProperty('title')
+      expect(firstItem).toHaveProperty('date')
+      expect(firstItem).toHaveProperty('link')
+      expect(firstItem).toHaveProperty('description')
+      expect(firstItem).toHaveProperty('conciseDescription')
+      expect(firstItem).toHaveProperty('skills')
+      expect(Array.isArray(firstItem.skills)).toBe(true)
+    })
+
+    it('returns Spanish certifications when locale is "es"', () => {
+      const { certifications } = getCredentials('es')
+      expect(certifications[0].description).toContain('certificación')
+    })
+
+    it('returns English certifications as fallback for unknown locale', () => {
+      const { certifications } = getCredentials('fr')
+      expect(certifications.length).toBeGreaterThan(0)
+    })
   })
 
   describe('Content Structure Validation', () => {
@@ -225,11 +204,11 @@ describe('i18n Content Helpers', () => {
     })
 
     it('ensures education has consistent structure across languages', () => {
-      const enEducation = getEducation('en')
-      const esEducation = getEducation('es')
-      
+      const enEducation = getCredentials('en').education
+      const esEducation = getCredentials('es').education
+
       expect(enEducation.length).toBe(esEducation.length)
-      
+
       enEducation.forEach((item, index) => {
         const spanishItem = esEducation[index]
         expect(Object.keys(item)).toEqual(Object.keys(spanishItem))
@@ -237,11 +216,11 @@ describe('i18n Content Helpers', () => {
     })
 
     it('ensures certifications have consistent structure across languages', () => {
-      const enCertifications = getCertifications('en')
-      const esCertifications = getCertifications('es')
-      
+      const enCertifications = getCredentials('en').certifications
+      const esCertifications = getCredentials('es').certifications
+
       expect(enCertifications.length).toBe(esCertifications.length)
-      
+
       enCertifications.forEach((item, index) => {
         const spanishItem = esCertifications[index]
         expect(Object.keys(item)).toEqual(Object.keys(spanishItem))
