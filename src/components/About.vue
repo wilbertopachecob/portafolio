@@ -3,7 +3,7 @@
     <div class="hero-content">
       <img
         class="hero-avatar"
-        src="@/assets/img/profile_cropped.jpg"
+        src="@/assets/img/profile.png"
         :alt="$t('hero.profileAlt')"
         width="128"
         height="128"
