@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style scoped>
+/* 3+2 centered layout — requires exactly 5 cards (items 1-3 span 2, items 4-5 span 3) */
 .how-i-work {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
