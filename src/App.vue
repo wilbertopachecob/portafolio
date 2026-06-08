@@ -8,63 +8,23 @@
     
     <!-- Main Content -->
     <main id="main-content" class="main-content" role="main">
-      <!-- About Section -->
-      <section id="about" class="section" role="region" aria-labelledby="about-section-heading">
-        <About />
-      </section>
-      
-      <!-- Experience Section -->
-      <section id="experience" class="section" role="region" aria-labelledby="experience-section-heading">
-        <div class="container">
+      <section
+        v-for="section in pageSections"
+        :key="section.id"
+        :id="section.id"
+        class="section"
+        role="region"
+        :aria-labelledby="section.showHeader ? `${section.id}-section-heading` : undefined"
+      >
+        <component :is="section.component" v-if="!section.showHeader" />
+        <div v-else class="container">
           <div class="section-header">
-            <h2 id="experience-section-heading" class="section-title">{{ $t('sections.experience.title') }}</h2>
-            <p class="section-subtitle">{{ $t('sections.experience.subtitle') }}</p>
+            <h2 :id="`${section.id}-section-heading`" class="section-title">
+              {{ $t(`sections.${section.id}.title`) }}
+            </h2>
+            <p class="section-subtitle">{{ $t(`sections.${section.id}.subtitle`) }}</p>
           </div>
-          <Experience />
-        </div>
-      </section>
-      
-      <!-- Skills Section -->
-      <section id="skills" class="section" role="region" aria-labelledby="skills-section-heading">
-        <div class="container">
-          <div class="section-header">
-            <h2 id="skills-section-heading" class="section-title">{{ $t('sections.skills.title') }}</h2>
-            <p class="section-subtitle">{{ $t('sections.skills.subtitle') }}</p>
-          </div>
-          <Skills />
-        </div>
-      </section>
-      
-      <!-- Education Section -->
-      <section id="education" class="section" role="region" aria-labelledby="education-section-heading">
-        <div class="container">
-          <div class="section-header">
-            <h2 id="education-section-heading" class="section-title">{{ $t('sections.education.title') }}</h2>
-            <p class="section-subtitle">{{ $t('sections.education.subtitle') }}</p>
-          </div>
-          <Education />
-        </div>
-      </section>
-      
-      <!-- Languages Section -->
-      <section id="languages" class="section" role="region" aria-labelledby="languages-section-heading">
-        <div class="container">
-          <div class="section-header">
-            <h2 id="languages-section-heading" class="section-title">{{ $t('sections.languages.title') }}</h2>
-            <p class="section-subtitle">{{ $t('sections.languages.subtitle') }}</p>
-          </div>
-          <Languages />
-        </div>
-      </section>
-      
-      <!-- Certifications Section -->
-      <section id="certifications" class="section" role="region" aria-labelledby="certifications-section-heading">
-        <div class="container">
-          <div class="section-header">
-            <h2 id="certifications-section-heading" class="section-title">{{ $t('sections.certifications.title') }}</h2>
-            <p class="section-subtitle">{{ $t('sections.certifications.subtitle') }}</p>
-          </div>
-          <Certifications />
+          <component :is="section.component" />
         </div>
       </section>
     </main>
@@ -90,6 +50,15 @@ import Education from './components/Education.vue'
 import Languages from './components/Languages.vue'
 import Certifications from './components/Certifications.vue'
 
+const PAGE_SECTIONS = [
+  { id: 'about', component: About, showHeader: false },
+  { id: 'experience', component: Experience, showHeader: true },
+  { id: 'skills', component: Skills, showHeader: true },
+  { id: 'education', component: Education, showHeader: true },
+  { id: 'languages', component: Languages, showHeader: true },
+  { id: 'certifications', component: Certifications, showHeader: true },
+]
+
 export default {
   name: 'App',
   components: {
@@ -104,14 +73,11 @@ export default {
   data() {
     return {
       currentYear: new Date().getFullYear(),
+      pageSections: PAGE_SECTIONS,
     }
   },
   mounted() {
-    // Set document title based on current locale
     this.updateDocumentTitle()
-    
-    // Add smooth scrolling behavior
-    document.documentElement.style.scrollBehavior = 'smooth'
   },
   methods: {
     updateDocumentTitle() {

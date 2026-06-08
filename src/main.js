@@ -7,6 +7,7 @@ import i18n from './i18n'
 
 // Import application configuration
 import { APP_CONFIG } from './config/constants'
+import { deferWhenIdle } from './utils/defer'
 
 // FontAwesome configuration
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -55,13 +56,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 
-// Add FontAwesome icons to the library
-// Note: We don't import the full CSS file - only SVG icons are used via tree-shaking
-library.add(
-  faEnvelope, 
-  faMapMarkerAlt, 
-  faBriefcase, 
-  faCode, 
+const solidIcons = [
+  faEnvelope,
+  faMapMarkerAlt,
+  faBriefcase,
+  faCode,
   faCalendarAlt,
   faArrowAltCircleUp,
   faServer,
@@ -78,8 +77,11 @@ library.add(
   faGraduationCap,
   faCertificate,
   faDownload,
-  faLinkedin, 
-  faGithub, 
+]
+
+const brandIcons = [
+  faLinkedin,
+  faGithub,
   faXTwitter,
   faJs,
   faPhp,
@@ -96,8 +98,12 @@ library.add(
   faDocker,
   faLinux,
   faWordpress,
-  faDrupal
-)
+  faDrupal,
+]
+
+// Add FontAwesome icons to the library
+// Note: We don't import the full CSS file - only SVG icons are used via tree-shaking
+library.add(...solidIcons, ...brandIcons)
 
 // Create and configure Vue app
 const app = createApp(App)
@@ -117,68 +123,44 @@ app.mount('#app')
 // Defer registration using requestIdleCallback to avoid blocking main thread
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
   const registerServiceWorker = () => {
-    // Use dynamic path based on environment
-    const swPath = APP_CONFIG.SERVICE_WORKER.PROD_PATH;
-    const swScope = APP_CONFIG.SERVICE_WORKER.PROD_SCOPE;
+    const { PROD_PATH: swPath, PROD_SCOPE: swScope } = APP_CONFIG.SERVICE_WORKER
     navigator.serviceWorker.register(swPath, { scope: swScope })
       .then((registration) => {
-        console.log('Service Worker registered successfully:', registration.scope);
-        
-        // Check for updates
+        console.log('Service Worker registered successfully:', registration.scope)
+
         registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
+          const newWorker = registration.installing
           newWorker.addEventListener('statechange', () => {
             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              // New content is available, prompt user to refresh
               if (confirm('New version available! Refresh to update?')) {
-                window.location.reload();
+                window.location.reload()
               }
             }
-          });
-        });
+          })
+        })
       })
       .catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
-  };
-  
-  // Use requestIdleCallback if available, otherwise defer with setTimeout
-  if ('requestIdleCallback' in window) {
-    window.addEventListener('load', () => {
-      requestIdleCallback(registerServiceWorker, { timeout: 2000 });
-    });
-  } else {
-    window.addEventListener('load', () => {
-      setTimeout(registerServiceWorker, 2000);
-    });
+        console.log('Service Worker registration failed:', error)
+      })
   }
-  
-  // Listen for service worker messages
+
+  window.addEventListener('load', () => {
+    deferWhenIdle(registerServiceWorker, 2000)
+  })
+
   navigator.serviceWorker.addEventListener('message', (event) => {
-    console.log('Message from service worker:', event.data);
-  });
+    console.log('Message from service worker:', event.data)
+  })
 } else if ('serviceWorker' in navigator && import.meta.env.DEV) {
-  // In development, unregister any existing service workers to prevent conflicts
-  // Defer this as well to avoid blocking
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        for (const registration of registrations) {
-          registration.unregister().then(() => {
-            console.log('Service Worker unregistered for development mode');
-          });
-        }
-      });
-    }, { timeout: 1000 });
-  } else {
-    setTimeout(() => {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        for (const registration of registrations) {
-          registration.unregister().then(() => {
-            console.log('Service Worker unregistered for development mode');
-          });
-        }
-      });
-    }, 1000);
+  const unregisterServiceWorkers = () => {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister().then(() => {
+          console.log('Service Worker unregistered for development mode')
+        })
+      }
+    })
   }
+
+  deferWhenIdle(unregisterServiceWorkers, 1000)
 }

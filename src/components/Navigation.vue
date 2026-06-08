@@ -23,34 +23,21 @@
       
       <!-- Navigation Links -->
       <ul class="navbar-nav" role="menubar">
-        <li class="nav-item" role="none">
-          <a href="#about" class="nav-link" :class="{ 'active': activeSection === 'about' }" @click="scrollToSection('about')" role="menuitem" :aria-label="$t('nav.about')">
-            {{ $t('nav.about') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#experience" class="nav-link" :class="{ 'active': activeSection === 'experience' }" @click="scrollToSection('experience')" role="menuitem" :aria-label="$t('nav.experience')">
-            {{ $t('nav.experience') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#skills" class="nav-link" :class="{ 'active': activeSection === 'skills' }" @click="scrollToSection('skills')" role="menuitem" :aria-label="$t('nav.skills')">
-            {{ $t('nav.skills') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#education" class="nav-link" :class="{ 'active': activeSection === 'education' }" @click="scrollToSection('education')" role="menuitem" :aria-label="$t('nav.education')">
-            {{ $t('nav.education') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#languages" class="nav-link" :class="{ 'active': activeSection === 'languages' }" @click="scrollToSection('languages')" role="menuitem" :aria-label="$t('nav.languages')">
-            {{ $t('nav.languages') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#certifications" class="nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="scrollToSection('certifications')" role="menuitem" :aria-label="$t('nav.certifications')">
-            {{ $t('nav.certifications') }}
+        <li
+          v-for="item in navItems"
+          :key="item.id"
+          class="nav-item"
+          role="none"
+        >
+          <a
+            :href="'#' + item.id"
+            class="nav-link"
+            :class="{ active: activeSection === item.id }"
+            role="menuitem"
+            :aria-label="$t('nav.' + item.id)"
+            @click="scrollToSection(item.id)"
+          >
+            {{ $t('nav.' + item.id) }}
           </a>
         </li>
       </ul>
@@ -139,6 +126,7 @@
 
 <script>
 import LanguageToggle from './LanguageToggle.vue'
+import { NAV_ITEMS, SECTION_IDS } from '@/config/sections'
 
 export default {
   name: "Navigation",
@@ -154,15 +142,7 @@ export default {
       scrollTimeout: null,
       rafId: null,
       sectionPositions: null, // Cache section positions to avoid forced reflows
-      // Drawer nav items (icon + i18n key share the same id)
-      navItems: [
-        { id: 'about', icon: ['fas', 'user'] },
-        { id: 'experience', icon: ['fas', 'briefcase'] },
-        { id: 'skills', icon: ['fas', 'code'] },
-        { id: 'education', icon: ['fas', 'graduation-cap'] },
-        { id: 'languages', icon: ['fas', 'globe'] },
-        { id: 'certifications', icon: ['fas', 'certificate'] },
-      ],
+      navItems: NAV_ITEMS,
     };
   },
   watch: {
@@ -172,10 +152,8 @@ export default {
     },
   },
   mounted() {
-    // Check for saved theme preference or default to light mode
-    this.isDarkMode = localStorage.getItem('theme') === 'dark' || 
-                     (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    this.applyTheme();
+    this.isDarkMode = this.getInitialDarkMode()
+    this.applyTheme()
     
     // Add scroll listener
     window.addEventListener('scroll', this.handleScroll);
@@ -209,6 +187,12 @@ export default {
     }
   },
   methods: {
+    getInitialDarkMode() {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) return savedTheme === 'dark'
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    },
+
     handleScroll() {
       this.isScrolled = window.scrollY > 50;
       
@@ -224,50 +208,38 @@ export default {
     },
     
     updateActiveSection() {
-      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
       const scrollPosition = window.scrollY + 150; // Offset for navbar height and some buffer
-      
-      // Cache section positions on first call or if cache is invalid
+
       if (!this.sectionPositions) {
         this.cacheSectionPositions();
       }
-      
-      // Find the section that is currently in view using cached positions
-      let currentSection = 'about';
-      
-      for (let i = 0; i < sections.length; i++) {
-        const sectionId = sections[i];
-        const position = this.sectionPositions[sectionId];
-        
-        if (position && scrollPosition >= position.top && scrollPosition < position.top + position.height) {
-          currentSection = sectionId;
-          break;
-        }
-      }
-      
-      // If we're at the very top, default to about section
+
       if (scrollPosition < 200) {
-        currentSection = 'about';
+        this.activeSection = 'about';
+        return;
       }
-      
+
+      const currentSection = SECTION_IDS.find((sectionId) => {
+        const position = this.sectionPositions[sectionId];
+        return position
+          && scrollPosition >= position.top
+          && scrollPosition < position.top + position.height;
+      }) ?? 'about';
+
       this.activeSection = currentSection;
     },
-    
+
     cacheSectionPositions() {
-      // Batch all DOM reads together to avoid forced reflows
-      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
-      this.sectionPositions = {};
-      
-      for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
+      this.sectionPositions = SECTION_IDS.reduce((positions, sectionId) => {
+        const section = document.getElementById(sectionId);
         if (section) {
-          // Read all layout properties together
-          this.sectionPositions[sections[i]] = {
+          positions[sectionId] = {
             top: section.offsetTop,
             height: section.offsetHeight,
           };
         }
-      }
+        return positions;
+      }, {});
     },
     
     getNavbarOffset() {

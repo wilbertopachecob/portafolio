@@ -1,11 +1,4 @@
-const SECTION_IDS = [
-  'about',
-  'experience',
-  'skills',
-  'education',
-  'languages',
-  'certifications',
-]
+import { SECTION_IDS } from '@/config/sections'
 
 export function setupNavigationDom() {
   SECTION_IDS.forEach((id, index) => {
