@@ -85,14 +85,19 @@
               <i></i><i></i><i></i>
               <span class="url">{{ displayHost(project.url) }}</span>
             </div>
-            <img
-              :src="getScreenshotSrc(project.screenshots[0].src)"
-              :alt="project.screenshots[0].alt"
-              width="1024"
-              height="822"
-              loading="lazy"
-              decoding="async"
-            />
+            <div
+              class="browser-viewport"
+              :style="browserViewportStyle(project.screenshots[0])"
+            >
+              <img
+                :src="getScreenshotSrc(project.screenshots[0].src)"
+                :alt="project.screenshots[0].alt"
+                :width="project.screenshots[0].width || 1024"
+                :height="project.screenshots[0].height || 822"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </figure>
         </div>
       </li>
@@ -182,6 +187,11 @@ export default {
       const match = Object.entries(screenshotModules).find(([path]) => path.endsWith(`/${filename}`))
       if (match) return match[1]
       return `${import.meta.env.BASE_URL}img/${filename}`
+    },
+    browserViewportStyle(screenshot) {
+      const width = screenshot.width || 1024
+      const height = screenshot.height || 822
+      return { '--browser-aspect': `${width} / ${height}` }
     },
   },
 }
@@ -395,9 +405,17 @@ export default {
   color: var(--text-muted);
 }
 
-.browser img {
+.browser-viewport {
+  overflow: hidden;
+  aspect-ratio: var(--browser-aspect, 16 / 10);
+}
+
+.browser-viewport img {
   width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: top center;
 }
 
 /* Experiments */

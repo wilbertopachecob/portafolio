@@ -358,7 +358,9 @@
         "screenshots": [
           {
             "src": "portfolio/renderlog-home.webp",
-            "alt": "Renderlog home page with recent technical articles in English and integrated search"
+            "alt": "Renderlog home page with recent technical articles in English and integrated search",
+            "width": 690,
+            "height": 804
           }
         ]
       },

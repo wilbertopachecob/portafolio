@@ -112,12 +112,23 @@ export default {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 1.375rem;
+  align-items: stretch;
 }
 
 .cred-col {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1.375rem;
-  align-content: start;
+}
+
+@media (min-width: 881px) {
+  .cred-col:nth-child(2) .cred-card {
+    flex: 1;
+  }
+
+  .cred-col:nth-child(1) .cred-card + .cred-card {
+    flex: 1;
+  }
 }
 
 .cred-card {
