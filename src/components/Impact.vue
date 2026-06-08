@@ -1,5 +1,5 @@
 <template>
-  <ul class="impact-grid">
+  <ul class="impact-grid" :aria-label="$t('sections.impact.title')">
     <li
       v-for="highlight in highlights"
       :key="highlight.title"

@@ -43,6 +43,9 @@ export default {
       locale.value = newLocale
       localStorage.setItem('locale', newLocale)
       document.documentElement.lang = newLocale
+      document.title = newLocale === 'en'
+        ? 'Wilberto Pacheco Batista | Software Engineer'
+        : 'Wilberto Pacheco Batista | Ingeniero de Software'
     }
 
     return {

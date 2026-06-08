@@ -1,5 +1,5 @@
 <template>
-  <ul class="how-i-work">
+  <ul class="how-i-work" :aria-label="$t('sections.howIWork.title')">
     <li
       v-for="principle in principles"
       :key="principle.title"
