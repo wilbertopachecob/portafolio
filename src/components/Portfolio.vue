@@ -444,6 +444,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .exp-name {
@@ -451,12 +453,16 @@ export default {
   font-size: 0.82rem;
   color: var(--text-primary);
   font-weight: 500;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .exp-arrow {
   color: var(--text-muted);
   width: 0.8rem;
   height: 0.8rem;
+  flex-shrink: 0;
 }
 
 .exp-card:hover .exp-arrow {

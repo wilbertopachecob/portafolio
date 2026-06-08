@@ -318,16 +318,12 @@ export default {
 }
 
 .proof {
-  padding: 1.6rem 1.6rem 1.6rem 0;
+  padding: 1.6rem;
   border-right: 1px solid var(--border-light);
 }
 
 .proof:last-child {
   border-right: 0;
-}
-
-.proof:not(:first-child) {
-  padding-left: 1.6rem;
 }
 
 .proof-num {
