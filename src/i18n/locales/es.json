@@ -317,15 +317,15 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/ciudadanousa-home.png",
+            "src": "portfolio/ciudadanousa-home.webp",
             "alt": "Pantalla de inicio de CiudadanoUSA con progreso de estudio, racha y cuenta regresiva a la entrevista"
           },
           {
-            "src": "portfolio/ciudadanousa-n400.png",
+            "src": "portfolio/ciudadanousa-n400.webp",
             "alt": "Ensayo N-400 con progreso por secciones del formulario de naturalización"
           },
           {
-            "src": "portfolio/ciudadanousa-writing.png",
+            "src": "portfolio/ciudadanousa-writing.webp",
             "alt": "Práctica de escritura en inglés con retroalimentación palabra por palabra y traducción al español"
           }
         ]
@@ -354,7 +354,7 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/renderlog-home.png",
+            "src": "portfolio/renderlog-home.webp",
             "alt": "Inicio de Renderlog con artículos técnicos recientes en inglés y búsqueda integrada"
           }
         ]

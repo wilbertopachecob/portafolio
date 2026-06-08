@@ -317,15 +317,15 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/ciudadanousa-home.png",
+            "src": "portfolio/ciudadanousa-home.webp",
             "alt": "CiudadanoUSA home screen with study progress, streak, and interview countdown"
           },
           {
-            "src": "portfolio/ciudadanousa-n400.png",
+            "src": "portfolio/ciudadanousa-n400.webp",
             "alt": "N-400 practice screen with progress by naturalization form section"
           },
           {
-            "src": "portfolio/ciudadanousa-writing.png",
+            "src": "portfolio/ciudadanousa-writing.webp",
             "alt": "English writing practice with word-by-word feedback and Spanish translation"
           }
         ]
@@ -354,7 +354,7 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/renderlog-home.png",
+            "src": "portfolio/renderlog-home.webp",
             "alt": "Renderlog home page with recent technical articles in English and integrated search"
           }
         ]
