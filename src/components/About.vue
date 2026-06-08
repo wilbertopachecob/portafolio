@@ -352,6 +352,7 @@ export default {
 
   .hero-portrait {
     max-width: 320px;
+    margin-inline: auto;
     order: -1;
   }
 

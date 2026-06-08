@@ -137,7 +137,12 @@ export default {
 
 .btn-primary:hover {
   background: var(--primary-dark);
+  color: #fff;
   transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  color: #0b0d12;
 }
 
 .btn-secondary {

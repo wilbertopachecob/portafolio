@@ -194,14 +194,14 @@ p {
   color: var(--text-secondary);
 }
 
-/* Links */
-a {
+/* Links — exclude .btn so global hover color does not override button text */
+a:not(.btn) {
   color: var(--primary-color);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-a:hover {
+a:not(.btn):hover {
   color: var(--primary-dark);
 }
 
@@ -410,7 +410,12 @@ a:focus-visible {
 
 .btn-primary:hover {
   background: var(--primary-dark);
+  color: #fff;
   transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  color: #0b0d12;
 }
 
 .btn-secondary,
