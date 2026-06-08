@@ -20,3 +20,7 @@ export function getEducation(locale = 'en') {
 export function getCertifications(locale = 'en') {
   return getContent(locale).certifications || []
 }
+
+export function getPortfolioProjects(locale = 'en') {
+  return getContent(locale).portfolioProjects || []
+}

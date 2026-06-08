@@ -3,6 +3,7 @@
     "about": "Acerca de",
     "experience": "Experiencia",
     "skills": "Habilidades",
+    "portfolio": "Portafolio",
     "education": "Educación",
     "languages": "Idiomas",
     "certifications": "Certificaciones"
@@ -26,6 +27,10 @@
     "skills": {
       "title": "Habilidades",
       "subtitle": "Habilidades técnicas y tecnologías con las que trabajo"
+    },
+    "portfolio": {
+      "title": "Portafolio",
+      "subtitle": "Proyectos que construyo fuera del trabajo — desde una app de ciudadanía hasta un blog técnico bilingüe"
     },
     "education": {
       "title": "Educación",
@@ -103,6 +108,19 @@
     "badgeAlt": "Insignia de certificación de {issuer}",
     "badgeLabel": "Insignia para certificación {title} de {issuer}"
   },
+  "portfolio": {
+    "intro": "Proyectos personales nacidos de ideas a las 11pm, necesidades familiares y el clásico \"¿por qué esto no existe en español?\". Varios corren en una Raspberry Pi 5 en casa, expuestos a internet con Cloudflare Tunnel.",
+    "featured": "Destacado",
+    "highlights": "Aspectos clave",
+    "technologies": "Tecnologías",
+    "visitProject": "Visitar {name}",
+    "infrastructure": "Los proyectos personales y renderlog.dev corren en una Raspberry Pi 5 en casa, expuestos con Cloudflare Tunnel.",
+    "types": {
+      "mobile": "App Móvil",
+      "blog": "Blog",
+      "web": "App Web"
+    }
+  },
   "common": {
     "scrollToTop": "Ir al Inicio",
     "loading": "Cargando...",
@@ -166,6 +184,72 @@
         "degree": "Ingeniero en Ciencias de la Computación",
         "period": "2005 - 2010",
         "link": "https://www.uci.cu/"
+      }
+    ],
+    "portfolioProjects": [
+      {
+        "name": "CiudadanoUSA",
+        "url": "https://ciudadanousa.com/es/home",
+        "featured": true,
+        "type": "mobile",
+        "description": "App móvil en español primero para preparar la entrevista de ciudadanía de EE. UU. — pensada para quienes estudian en español y responden en inglés. Disponible en iOS y Android, con sitio de marketing bilingüe.",
+        "highlights": [
+          "Bancos de estudio cívica 2025 (128 preguntas) y 2008 (100 preguntas) alineados con USCIS",
+          "Entrevista simulada, ensayo N-400, práctica de lectura y escritura en inglés",
+          "Consulta de autoridades electas por código postal para respuestas que cambian por ubicación",
+          "Audio CarPlay y Android Auto para estudiar en movimiento (Pro)",
+          "Construida con React Native, Expo SDK 55, Supabase y RevenueCat"
+        ],
+        "tags": ["React Native", "Expo", "iOS", "Android", "TypeScript", "Supabase"]
+      },
+      {
+        "name": "Renderlog",
+        "url": "https://renderlog.dev/en/about",
+        "featured": true,
+        "type": "blog",
+        "description": "Blog técnico bilingüe sobre ingeniería frontend — criterio construido con más de una década de deploys, refactors y lecciones que escribiría distinto con la experiencia. Publicado en inglés y español.",
+        "highlights": [
+          "Contenido frontend de calidad en español, sin traducciones automáticas vacías",
+          "Temas del trabajo real: React, Next.js, Vue.js, rendimiento y arquitectura",
+          "Auto-hospedado en una Raspberry Pi 5 con Cloudflare Tunnel"
+        ],
+        "tags": ["Next.js", "React", "Vue.js", "Escritura Técnica", "i18n"]
+      },
+      {
+        "name": "micalpacheco.com",
+        "url": "https://micalpacheco.com",
+        "featured": false,
+        "type": "web",
+        "description": "Landing page para mi esposa — el único objetivo era que le encantara cómo quedó. Le encantó.",
+        "highlights": [],
+        "tags": ["Landing Page", "Personal"]
+      },
+      {
+        "name": "paint.wilbertopachecob.dev",
+        "url": "https://paint.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "App de dibujo en el navegador que empezó como experimento con Canvas API y fue la actividad favorita de mi hija… por unos cinco minutos.",
+        "highlights": [],
+        "tags": ["Canvas API", "JavaScript"]
+      },
+      {
+        "name": "tictactoe.wilbertopachecob.dev",
+        "url": "https://tictactoe.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "Tres en raya clásico — limpio, simple, funciona en cualquier dispositivo. Mi hija aún no entiende las reglas pero adora tocar la pantalla.",
+        "highlights": [],
+        "tags": ["JavaScript", "Responsive"]
+      },
+      {
+        "name": "weather-ai.wilbertopachecob.dev",
+        "url": "https://weather-ai.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "App del clima con IA integrada — nacida de pura curiosidad y del clima genuinamente impredecible de Oklahoma.",
+        "highlights": [],
+        "tags": ["IA", "Weather API", "JavaScript"]
       }
     ],
     "certifications": [

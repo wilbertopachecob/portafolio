@@ -19,7 +19,8 @@
     "lint:fix": "eslint --config eslint.config.mjs src/**/*.js --fix",
     "lint:check": "eslint --config eslint.config.mjs src/**/*.js --max-warnings 0",
     "seo:optimize": "node scripts/seo-optimizer.js",
-    "build:seo": "npm run seo:optimize && npm run build"
+    "build:seo": "npm run seo:optimize && npm run build",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@babel/core": "^7.29.0",

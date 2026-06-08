@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Navigation from '@/components/Navigation.vue'
+import { NAV_ITEMS } from '@/config/sections'
 import { setupNavigationDom, teardownNavigationDom } from './helpers/navigationDom'
 
 const createTestI18n = (locale = 'en') => {
@@ -16,6 +17,7 @@ const createTestI18n = (locale = 'en') => {
           about: 'About',
           experience: 'Experience',
           skills: 'Skills',
+          portfolio: 'Portfolio',
           education: 'Education',
           languages: 'Languages',
           certifications: 'Certifications'
@@ -33,6 +35,7 @@ const createTestI18n = (locale = 'en') => {
           about: 'Acerca de',
           experience: 'Experiencia',
           skills: 'Habilidades',
+          portfolio: 'Portafolio',
           education: 'Educación',
           languages: 'Idiomas',
           certifications: 'Certificaciones'
@@ -271,7 +274,7 @@ describe('Navigation.vue', () => {
       await fireEvent.click(getMobileToggle())
 
       const drawerLinks = document.querySelectorAll('.mm-link')
-      expect(drawerLinks).toHaveLength(6)
+      expect(drawerLinks).toHaveLength(NAV_ITEMS.length)
     })
   })
 
