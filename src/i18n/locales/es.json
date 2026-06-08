@@ -31,7 +31,7 @@
     },
     "experience": {
       "eyebrow": "Experiencia",
-      "title": "Experiencia",
+      "title": "Trayectoria profesional",
       "subtitle": "Roles donde lideré modernización, producto y entrega full stack"
     },
     "skills": {
@@ -41,7 +41,7 @@
     },
     "portfolio": {
       "eyebrow": "Productos",
-      "title": "Productos",
+      "title": "Lo que he construido",
       "subtitle": "Productos propios y experimentos que muestran cómo pienso, diseño y construyo end-to-end"
     },
     "education": {
@@ -58,12 +58,12 @@
     },
     "impact": {
       "eyebrow": "Impacto",
-      "title": "Impacto",
+      "title": "Resultados con impacto",
       "subtitle": "Resultados concretos que conectan liderazgo técnico, ejecución y visión de producto"
     },
     "credentials": {
       "eyebrow": "Credenciales",
-      "title": "Credenciales",
+      "title": "Formación y certificaciones",
       "subtitle": "Formación, idiomas y certificaciones que complementan una trayectoria construida en entrega real"
     },
     "howIWork": {

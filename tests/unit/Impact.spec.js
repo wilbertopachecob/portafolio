@@ -36,7 +36,7 @@ const createTestI18n = () => createI18n({
     en: {
       sections: {
         impact: {
-          title: 'Impact',
+          title: 'Results with impact',
         },
       },
     },

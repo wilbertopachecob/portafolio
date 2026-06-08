@@ -31,7 +31,7 @@
     },
     "experience": {
       "eyebrow": "Experience",
-      "title": "Experience",
+      "title": "Professional trajectory",
       "subtitle": "Roles where I led modernization, product work, and full stack delivery"
     },
     "skills": {
@@ -41,7 +41,7 @@
     },
     "portfolio": {
       "eyebrow": "Products",
-      "title": "Products",
+      "title": "What I've built",
       "subtitle": "Personal products and experiments that show how I think, design, and build end-to-end"
     },
     "education": {
@@ -58,12 +58,12 @@
     },
     "impact": {
       "eyebrow": "Impact",
-      "title": "Impact",
+      "title": "Results with impact",
       "subtitle": "Concrete results connecting technical leadership, execution, and product vision"
     },
     "credentials": {
       "eyebrow": "Credentials",
-      "title": "Credentials",
+      "title": "Education and certifications",
       "subtitle": "Education, languages, and certifications that support a career built through real delivery"
     },
     "howIWork": {
