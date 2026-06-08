@@ -14,20 +14,6 @@ vi.mock('@/i18n/content', () => ({
         link: 'https://www.uci.cu/',
       },
     ],
-    languages: [
-      {
-        name: 'Spanish',
-        level: 'Native',
-        description: 'Primary language.',
-        flag: 'spanish_flag.png',
-      },
-      {
-        name: 'English',
-        level: 'Professional / bilingual',
-        description: 'Professional language.',
-        flag: 'english_flag.png',
-      },
-    ],
     certifications: [
       {
         issuer: 'Amazon Web Services (AWS)',
@@ -54,7 +40,7 @@ const createTestI18n = () => createI18n({
         educationTitle: 'Education',
         languagesTitle: 'Languages applied to product',
         certificationsTitle: 'Certifications',
-        languageNote: 'I build in Spanish and English.',
+        languageNote: 'Native Spanish and professional / bilingual English. I build and write products in both languages.',
       },
       education: {
         period: 'Period',
@@ -63,9 +49,6 @@ const createTestI18n = () => createI18n({
       certifications: {
         issued: 'Issued',
         visitWebsite: 'Visit {issuer} website',
-      },
-      languages: {
-        flagAlt: 'Flag of {language}',
       },
     },
   },
@@ -81,8 +64,7 @@ describe('Credentials.vue', () => {
 
     expect(screen.getByRole('region', { name: 'Credentials' })).toBeInTheDocument()
     expect(screen.getByText('University of Informatic Sciences')).toBeInTheDocument()
-    expect(screen.getByText('Spanish')).toBeInTheDocument()
-    expect(screen.getByText('Professional / bilingual')).toBeInTheDocument()
+    expect(screen.getByText(/Native Spanish and professional \/ bilingual English/)).toBeInTheDocument()
     expect(screen.getByText('AWS Certified Cloud Practitioner')).toBeInTheDocument()
   })
 

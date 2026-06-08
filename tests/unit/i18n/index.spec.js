@@ -133,11 +133,11 @@ describe('i18n Configuration', () => {
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
     })
 
-    it('has impact and compact credentials content in both languages', () => {
+    it('has impact content and language note in both languages', () => {
       expect(en.content.impactHighlights).toHaveLength(4)
       expect(es.content.impactHighlights).toHaveLength(4)
-      expect(en.content.credentials.languages).toHaveLength(2)
-      expect(es.content.credentials.languages).toHaveLength(2)
+      expect(en.credentials.languageNote).toContain('Native Spanish')
+      expect(es.credentials.languageNote).toContain('Español nativo')
     })
   })
 

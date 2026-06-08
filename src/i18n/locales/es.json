@@ -477,28 +477,12 @@
         "title": "IA y automatización con propósito",
         "description": "Uso herramientas nuevas cuando reducen fricción real para usuarios o equipos, no por moda ni por reemplazar criterio."
       }
-    ],
-    "credentials": {
-      "languages": [
-        {
-          "name": "Español",
-          "level": "Nativo",
-          "description": "Idioma principal para producto, contenido y comunicación con usuarios hispanohablantes.",
-          "flag": "spanish_flag.png"
-        },
-        {
-          "name": "Inglés",
-          "level": "Profesional / bilingüe",
-          "description": "Trabajo diario con equipos, documentación técnica y productos orientados a EE. UU.",
-          "flag": "english_flag.png"
-        }
-      ]
-    }
+    ]
   },
   "credentials": {
     "educationTitle": "Educación",
     "languagesTitle": "Idiomas aplicados a producto",
     "certificationsTitle": "Certificaciones",
-    "languageNote": "Construyo y escribo productos en español e inglés, con sensibilidad por usuarios bilingües y contextos multiculturales."
+    "languageNote": "Español nativo e inglés profesional / bilingüe. Construyo y escribo productos en ambos idiomas, con sensibilidad por usuarios bilingües y contextos multiculturales."
   }
 }

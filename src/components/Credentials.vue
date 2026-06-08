@@ -39,27 +39,6 @@
         {{ $t('credentials.languagesTitle') }}
       </h3>
       <p class="credential-note">{{ $t('credentials.languageNote') }}</p>
-      <div class="language-chip-list" role="list">
-        <div
-          v-for="language in credentials.languages"
-          :key="language.name"
-          class="language-chip"
-          role="listitem"
-        >
-          <img
-            :src="getAssetImage(language.flag)"
-            :alt="$t('languages.flagAlt', { language: language.name })"
-            class="language-chip-flag"
-            width="36"
-            height="24"
-            loading="lazy"
-          />
-          <div>
-            <h4>{{ language.name }}</h4>
-            <p>{{ language.level }}</p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="credential-panel" :aria-labelledby="'credentials-certifications-heading'">
@@ -192,44 +171,6 @@ export default {
   color: var(--text-muted);
   font-size: 0.8125rem;
   font-weight: 600;
-}
-
-.language-chip-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.language-chip {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-}
-
-.language-chip-flag {
-  width: 36px;
-  height: 24px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-}
-
-.language-chip h4 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.language-chip p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.8125rem;
 }
 
 @media (max-width: 992px) {

@@ -82,13 +82,12 @@ export function getHowIWorkPrinciples(locale = 'en') {
  * components can keep rendering independently if needed.
  *
  * @param {string} locale - Vue i18n locale code.
- * @returns {{education: Array, certifications: Array, languages: Array}} Aggregated credentials.
+ * @returns {{education: Array, certifications: Array}} Aggregated credentials.
  */
 export function getCredentials(locale = 'en') {
   const content = getContent(locale)
   return {
     education: content.education || [],
     certifications: content.certifications || [],
-    languages: content.credentials?.languages || [],
   }
 }

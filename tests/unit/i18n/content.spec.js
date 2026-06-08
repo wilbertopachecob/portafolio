@@ -203,15 +203,11 @@ describe('i18n Content Helpers', () => {
   })
 
   describe('getCredentials', () => {
-    it('aggregates education, certifications, and compact languages', () => {
+    it('aggregates education and certifications', () => {
       const credentials = getCredentials('es')
 
       expect(credentials.education.length).toBeGreaterThan(0)
       expect(credentials.certifications.length).toBeGreaterThan(0)
-      expect(credentials.languages).toHaveLength(2)
-      expect(credentials.languages[0]).toHaveProperty('level')
-      expect(credentials.languages[0]).toHaveProperty('description')
-      expect(credentials.languages[0]).toHaveProperty('flag')
     })
   })
 

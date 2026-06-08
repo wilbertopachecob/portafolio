@@ -477,28 +477,12 @@
         "title": "AI and automation with purpose",
         "description": "I adopt new tools when they remove real friction for users or teams, not because of hype or to replace judgment."
       }
-    ],
-    "credentials": {
-      "languages": [
-        {
-          "name": "Spanish",
-          "level": "Native",
-          "description": "Primary language for product, content, and communication with Spanish-speaking users.",
-          "flag": "spanish_flag.png"
-        },
-        {
-          "name": "English",
-          "level": "Professional / bilingual",
-          "description": "Daily work with teams, technical documentation, and U.S.-oriented products.",
-          "flag": "english_flag.png"
-        }
-      ]
-    }
+    ]
   },
   "credentials": {
     "educationTitle": "Education",
     "languagesTitle": "Languages applied to product",
     "certificationsTitle": "Certifications",
-    "languageNote": "I build and write products in Spanish and English, with sensitivity for bilingual users and multicultural contexts."
+    "languageNote": "Native Spanish and professional / bilingual English. I build and write products in both languages, with sensitivity for bilingual users and multicultural contexts."
   }
 }
