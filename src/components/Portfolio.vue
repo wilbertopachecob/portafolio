@@ -33,6 +33,31 @@
         <p class="portfolio-card-description">{{ project.description }}</p>
 
         <div
+          v-if="project.screenshots && project.screenshots.length"
+          class="portfolio-screenshots"
+          :class="`portfolio-screenshots--${project.type === 'mobile' ? 'mobile' : 'desktop'}`"
+          role="list"
+          :aria-label="$t('portfolio.screenshots', { name: project.name })"
+        >
+          <figure
+            v-for="(screenshot, screenshotIndex) in project.screenshots"
+            :key="`${project.name}-${screenshotIndex}`"
+            class="portfolio-screenshot"
+            role="listitem"
+          >
+            <img
+              :src="getScreenshotSrc(screenshot.src)"
+              :alt="screenshot.alt"
+              class="portfolio-screenshot-image"
+              width="360"
+              height="780"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+
+        <div
           v-if="getCaseStudyFields(project).length"
           class="portfolio-case-study"
           :aria-label="$t('portfolio.caseStudy')"
@@ -130,6 +155,11 @@
 <script>
 import { getPortfolioProjects } from '@/i18n/content'
 
+const screenshotModules = import.meta.glob('@/assets/img/**/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+})
+
 export default {
   name: 'Portfolio',
   data() {
@@ -157,6 +187,11 @@ export default {
   methods: {
     getCaseStudyFields(project) {
       return this.caseStudyFields.filter((field) => project[field.key])
+    },
+    getScreenshotSrc(filename) {
+      const match = Object.entries(screenshotModules).find(([path]) => path.endsWith(`/${filename}`))
+      if (match) return match[1]
+      return `${import.meta.env.BASE_URL}img/${filename}`
     },
   },
 }
@@ -289,6 +324,47 @@ export default {
   flex: 1;
 }
 
+.portfolio-screenshots {
+  display: grid;
+  gap: var(--space-lg);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.portfolio-screenshots--mobile {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-screenshots--desktop {
+  grid-template-columns: 1fr;
+}
+
+.portfolio-screenshot {
+  margin: 0;
+  min-width: 0;
+}
+
+.portfolio-screenshot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+}
+
+.portfolio-screenshots--mobile .portfolio-screenshot-image {
+  max-height: 520px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portfolio-screenshots--desktop .portfolio-screenshot-image {
+  max-height: 420px;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .portfolio-case-study {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -395,6 +471,20 @@ export default {
   .portfolio-featured,
   .portfolio-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-screenshots--mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-screenshots--mobile .portfolio-screenshot-image {
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .portfolio-screenshots--desktop .portfolio-screenshot-image {
+    max-height: none;
+    object-fit: contain;
   }
 
   .portfolio-card {

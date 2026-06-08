@@ -180,6 +180,11 @@ describe('i18n Content Helpers', () => {
         expect(project).toHaveProperty('solution')
         expect(project).toHaveProperty('role')
         expect(project).toHaveProperty('outcome')
+        expect(project.screenshots?.length).toBeGreaterThan(0)
+        project.screenshots.forEach((screenshot) => {
+          expect(screenshot).toHaveProperty('src')
+          expect(screenshot).toHaveProperty('alt')
+        })
       })
     })
   })

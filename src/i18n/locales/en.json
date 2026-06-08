@@ -116,6 +116,7 @@
     "highlights": "Key highlights",
     "technologies": "Technologies",
     "visitProject": "Visit {name}",
+    "screenshots": "{name} screenshots",
     "infrastructure": "Side projects and renderlog.dev run on a Raspberry Pi 5 at home, exposed through Cloudflare Tunnel.",
     "types": {
       "mobile": "Mobile app",
@@ -296,6 +297,20 @@
           "Android",
           "TypeScript",
           "Supabase"
+        ],
+        "screenshots": [
+          {
+            "src": "portfolio/ciudadanousa-home.png",
+            "alt": "CiudadanoUSA home screen with study progress, streak, and interview countdown"
+          },
+          {
+            "src": "portfolio/ciudadanousa-n400.png",
+            "alt": "N-400 practice screen with progress by naturalization form section"
+          },
+          {
+            "src": "portfolio/ciudadanousa-writing.png",
+            "alt": "English writing practice with word-by-word feedback and Spanish translation"
+          }
         ]
       },
       {
@@ -320,6 +335,12 @@
           "Vue.js",
           "Technical Writing",
           "i18n"
+        ],
+        "screenshots": [
+          {
+            "src": "portfolio/renderlog-home.png",
+            "alt": "Renderlog home page with recent technical articles in English and integrated search"
+          }
         ]
       },
       {

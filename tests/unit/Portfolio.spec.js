@@ -19,6 +19,16 @@ vi.mock('@/i18n/content', () => ({
       outcome: 'Published on iOS and Android.',
       highlights: ['USCIS-aligned study banks'],
       tags: ['React Native', 'Supabase'],
+      screenshots: [
+        {
+          src: 'portfolio/ciudadanousa-home.png',
+          alt: 'CiudadanoUSA home screen with study progress.',
+        },
+        {
+          src: 'portfolio/ciudadanousa-n400.png',
+          alt: 'N-400 practice screen.',
+        },
+      ],
     },
     {
       name: 'Renderlog',
@@ -33,6 +43,12 @@ vi.mock('@/i18n/content', () => ({
       outcome: 'Self-hosted publishing platform.',
       highlights: ['Real production topics'],
       tags: ['Next.js', 'i18n'],
+      screenshots: [
+        {
+          src: 'portfolio/renderlog-home.png',
+          alt: 'Renderlog home page preview.',
+        },
+      ],
     },
     {
       name: 'paint.wilbertopachecob.dev',
@@ -69,6 +85,7 @@ const createTestI18n = () => createI18n({
         highlights: 'Key highlights',
         technologies: 'Technologies',
         visitProject: 'Visit {name}',
+        screenshots: '{name} screenshots',
         infrastructure: 'Self-hosted infrastructure note.',
         types: {
           mobile: 'Mobile app',
@@ -105,6 +122,19 @@ describe('Portfolio.vue', () => {
     const experiments = screen.getByRole('region', { name: 'Experiments and smaller projects' })
     expect(within(experiments).getByText('paint.wilbertopachecob.dev')).toBeInTheDocument()
     expect(within(experiments).queryByText('Problem')).not.toBeInTheDocument()
+  })
+
+  it('renders product screenshots for featured projects', () => {
+    render(Portfolio, {
+      global: {
+        plugins: [createTestI18n()],
+      },
+    })
+
+    expect(screen.getByRole('list', { name: 'CiudadanoUSA screenshots' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'CiudadanoUSA home screen with study progress.' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Renderlog home page preview.' })).toBeInTheDocument()
+    expect(screen.queryByRole('img', { name: /Canvas experiment/ })).not.toBeInTheDocument()
   })
 
   it('keeps project links accessible', () => {
