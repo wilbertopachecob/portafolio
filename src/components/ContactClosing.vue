@@ -10,6 +10,7 @@
           href="mailto:wilbertopachecob@gmail.com"
           class="btn btn-primary"
           :aria-label="$t('contact.letsTalk')"
+          @click="track('cta_email', { location: 'contact' })"
         >
           <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
           {{ $t('contact.letsTalk') }}
@@ -20,6 +21,7 @@
           target="_blank"
           rel="noopener noreferrer"
           :aria-label="$t('contact.viewLinkedIn')"
+          @click="track('cta_linkedin', { location: 'contact' })"
         >
           <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
           {{ $t('contact.viewLinkedIn') }}
@@ -31,6 +33,7 @@
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
           rel="noopener noreferrer"
+          @click="track('cta_cv_download', { location: 'contact' })"
         >
           <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
           {{ $t('hero.downloadResume') }}
@@ -42,6 +45,7 @@
 
 <script>
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+import { track } from '@/utils/analytics'
 
 export default {
   name: 'ContactClosing',
@@ -52,6 +56,9 @@ export default {
     resumeUrl() {
       return getPublicAssetUrl(RESUME_FILENAME)
     },
+  },
+  methods: {
+    track,
   },
 }
 </script>

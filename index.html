@@ -66,11 +66,17 @@
     <!-- Google Fonts - Load CSS with display=swap (non-blocking, uses fallback fonts until loaded) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="all">
     
+    <!--
+      Conversion analytics (optional, privacy-friendly, no cookies/PII).
+      src/utils/analytics.js no-ops until a provider is loaded. To enable,
+      uncomment and set your domain (Plausible-compatible global expected):
+      <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script>
+    -->
+
     <!-- Critical CSS - Inline above-the-fold styles -->
     <style>
       /* Critical CSS for initial render */
       *{box-sizing:border-box}
-      html{scroll-behavior:smooth}
       body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#0f172a;background:#fff;line-height:1.6}
       #app{min-height:100vh;display:flex;flex-direction:column}
       .main-content{flex:1;padding-top:64px}
