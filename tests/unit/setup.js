@@ -1,4 +1,5 @@
 // Vitest setup file
+import { vi } from 'vitest'
 import '@testing-library/jest-dom'
 import { config } from '@vue/test-utils'
 import { toHaveNoViolations } from 'jest-axe'

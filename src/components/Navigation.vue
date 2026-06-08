@@ -23,34 +23,21 @@
       
       <!-- Navigation Links -->
       <ul class="navbar-nav" role="menubar">
-        <li class="nav-item" role="none">
-          <a href="#about" class="nav-link" :class="{ 'active': activeSection === 'about' }" @click="scrollToSection('about')" role="menuitem" :aria-label="$t('nav.about')">
-            {{ $t('nav.about') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#experience" class="nav-link" :class="{ 'active': activeSection === 'experience' }" @click="scrollToSection('experience')" role="menuitem" :aria-label="$t('nav.experience')">
-            {{ $t('nav.experience') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#skills" class="nav-link" :class="{ 'active': activeSection === 'skills' }" @click="scrollToSection('skills')" role="menuitem" :aria-label="$t('nav.skills')">
-            {{ $t('nav.skills') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#education" class="nav-link" :class="{ 'active': activeSection === 'education' }" @click="scrollToSection('education')" role="menuitem" :aria-label="$t('nav.education')">
-            {{ $t('nav.education') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#languages" class="nav-link" :class="{ 'active': activeSection === 'languages' }" @click="scrollToSection('languages')" role="menuitem" :aria-label="$t('nav.languages')">
-            {{ $t('nav.languages') }}
-          </a>
-        </li>
-        <li class="nav-item" role="none">
-          <a href="#certifications" class="nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="scrollToSection('certifications')" role="menuitem" :aria-label="$t('nav.certifications')">
-            {{ $t('nav.certifications') }}
+        <li
+          v-for="item in navItems"
+          :key="item.id"
+          class="nav-item"
+          role="none"
+        >
+          <a
+            :href="'#' + item.id"
+            class="nav-link"
+            :class="{ active: activeSection === item.id }"
+            role="menuitem"
+            :aria-label="$t('nav.' + item.id)"
+            @click="scrollToSection(item.id)"
+          >
+            {{ $t('nav.' + item.id) }}
           </a>
         </li>
       </ul>
@@ -77,53 +64,69 @@
       </div>
     </div>
     
-    <!-- Mobile Menu -->
-    <div 
-      class="mobile-menu" 
-      :class="{ 'active': isMobileMenuOpen }"
-      id="mobile-menu"
-      role="menu"
-      :aria-hidden="!isMobileMenuOpen"
-    >
-      <ul class="mobile-nav" role="menubar">
-        <li class="mobile-nav-item" role="none">
-          <a href="#about" class="mobile-nav-link" :class="{ 'active': activeSection === 'about' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.about')">
-            {{ $t('nav.about') }}
-          </a>
-        </li>
-        <li class="mobile-nav-item" role="none">
-          <a href="#experience" class="mobile-nav-link" :class="{ 'active': activeSection === 'experience' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.experience')">
-            {{ $t('nav.experience') }}
-          </a>
-        </li>
-        <li class="mobile-nav-item" role="none">
-          <a href="#skills" class="mobile-nav-link" :class="{ 'active': activeSection === 'skills' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.skills')">
-            {{ $t('nav.skills') }}
-          </a>
-        </li>
-        <li class="mobile-nav-item" role="none">
-          <a href="#education" class="mobile-nav-link" :class="{ 'active': activeSection === 'education' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.education')">
-            {{ $t('nav.education') }}
-          </a>
-        </li>
-        <li class="mobile-nav-item" role="none">
-          <a href="#languages" class="mobile-nav-link" :class="{ 'active': activeSection === 'languages' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.languages')">
-            {{ $t('nav.languages') }}
-          </a>
-        </li>
-        <li class="mobile-nav-item" role="none">
-          <a href="#certifications" class="mobile-nav-link" :class="{ 'active': activeSection === 'certifications' }" @click="closeMobileMenu" role="menuitem" :aria-label="$t('nav.certifications')">
-            {{ $t('nav.certifications') }}
-          </a>
-        </li>
+    <!--
+      Mobile Menu — teleported to <body> so it escapes the navbar's
+      backdrop-filter, which would otherwise become the containing block for
+      these position:fixed elements (collapsing the panel and letting page
+      content bleed through). Rendered as an opaque slide-in drawer + scrim.
+    -->
+    <Teleport to="body">
+      <Transition name="mm-fade">
+        <div
+          v-if="isMobileMenuOpen"
+          class="mobile-menu-backdrop"
+          @click="closeMobileMenu"
+          aria-hidden="true"
+        ></div>
+      </Transition>
 
-      </ul>
-    </div>
+      <Transition name="mm-slide">
+        <aside
+          v-if="isMobileMenuOpen"
+          class="mobile-menu-drawer"
+          id="mobile-menu"
+          role="menu"
+          :aria-label="$t('accessibility.openMenu')"
+        >
+          <div class="mm-header">
+            <span class="mm-title">Wilberto Pacheco</span>
+            <button
+              class="mm-close"
+              @click="closeMobileMenu"
+              :aria-label="$t('accessibility.closeMenu')"
+            >
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <nav class="mm-nav">
+            <a
+              v-for="item in navItems"
+              :key="item.id"
+              :href="'#' + item.id"
+              class="mm-link"
+              :class="{ 'active': activeSection === item.id }"
+              role="menuitem"
+              :aria-label="$t('nav.' + item.id)"
+              @click.prevent="goToSection(item.id)"
+            >
+              <span class="mm-icon" aria-hidden="true">
+                <font-awesome-icon :icon="item.icon" />
+              </span>
+              <span class="mm-label">{{ $t('nav.' + item.id) }}</span>
+              <span class="mm-chevron" aria-hidden="true">›</span>
+            </a>
+          </nav>
+        </aside>
+      </Transition>
+    </Teleport>
   </nav>
 </template>
 
 <script>
 import LanguageToggle from './LanguageToggle.vue'
+import { NAV_ITEMS, SECTION_IDS } from '@/config/sections'
 
 export default {
   name: "Navigation",
@@ -139,13 +142,18 @@ export default {
       scrollTimeout: null,
       rafId: null,
       sectionPositions: null, // Cache section positions to avoid forced reflows
+      navItems: NAV_ITEMS,
     };
   },
+  watch: {
+    // Lock background scroll while the drawer is open
+    isMobileMenuOpen(open) {
+      document.body.style.overflow = open ? 'hidden' : '';
+    },
+  },
   mounted() {
-    // Check for saved theme preference or default to light mode
-    this.isDarkMode = localStorage.getItem('theme') === 'dark' || 
-                     (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    this.applyTheme();
+    this.isDarkMode = this.getInitialDarkMode()
+    this.applyTheme()
     
     // Add scroll listener
     window.addEventListener('scroll', this.handleScroll);
@@ -163,6 +171,8 @@ export default {
     window.addEventListener('resize', this.handleResize);
   },
   beforeUnmount() {
+    // Make sure scroll is restored if the component unmounts while open
+    document.body.style.overflow = '';
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('click', this.handleClickOutside);
@@ -177,6 +187,12 @@ export default {
     }
   },
   methods: {
+    getInitialDarkMode() {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) return savedTheme === 'dark'
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    },
+
     handleScroll() {
       this.isScrolled = window.scrollY > 50;
       
@@ -192,67 +208,72 @@ export default {
     },
     
     updateActiveSection() {
-      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
       const scrollPosition = window.scrollY + 150; // Offset for navbar height and some buffer
-      
-      // Cache section positions on first call or if cache is invalid
+
       if (!this.sectionPositions) {
         this.cacheSectionPositions();
       }
-      
-      // Find the section that is currently in view using cached positions
-      let currentSection = 'about';
-      
-      for (let i = 0; i < sections.length; i++) {
-        const sectionId = sections[i];
-        const position = this.sectionPositions[sectionId];
-        
-        if (position && scrollPosition >= position.top && scrollPosition < position.top + position.height) {
-          currentSection = sectionId;
-          break;
-        }
-      }
-      
-      // If we're at the very top, default to about section
+
       if (scrollPosition < 200) {
-        currentSection = 'about';
+        this.activeSection = 'about';
+        return;
       }
-      
+
+      const currentSection = SECTION_IDS.find((sectionId) => {
+        const position = this.sectionPositions[sectionId];
+        return position
+          && scrollPosition >= position.top
+          && scrollPosition < position.top + position.height;
+      }) ?? 'about';
+
       this.activeSection = currentSection;
     },
-    
+
     cacheSectionPositions() {
-      // Batch all DOM reads together to avoid forced reflows
-      const sections = ['about', 'experience', 'skills', 'education', 'languages', 'certifications'];
-      this.sectionPositions = {};
-      
-      for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
+      this.sectionPositions = SECTION_IDS.reduce((positions, sectionId) => {
+        const section = document.getElementById(sectionId);
         if (section) {
-          // Read all layout properties together
-          this.sectionPositions[sections[i]] = {
+          positions[sectionId] = {
             top: section.offsetTop,
             height: section.offsetHeight,
           };
         }
-      }
+        return positions;
+      }, {});
     },
     
+    getNavbarOffset() {
+      const navbar = document.querySelector('.navbar');
+      return navbar ? navbar.offsetHeight : 64;
+    },
+
     scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        // Focus the section for screen readers (make focusable if needed)
-        if (!element.hasAttribute('tabindex')) {
-          element.setAttribute('tabindex', '-1');
-        }
-        element.focus();
-        // Invalidate cache after scrolling to ensure accurate positions
-        this.sectionPositions = null;
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const offset = this.getNavbarOffset();
+      // Prefer the visible section title over the full section block (avoids landing mid-section)
+      const scrollTarget =
+        section.querySelector('.section-header, .hero-content, h1, h2') || section;
+      const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: 'smooth',
+      });
+
+      // Move focus for screen readers without triggering a second scroll on mobile
+      const focusTarget =
+        section.querySelector('[id$="-heading"], h1, h2') || section;
+      if (!focusTarget.hasAttribute('tabindex')) {
+        focusTarget.setAttribute('tabindex', '-1');
       }
+      const focusDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 500;
+      setTimeout(() => {
+        focusTarget.focus({ preventScroll: true });
+      }, focusDelay);
+
+      this.sectionPositions = null;
     },
     
     handleResize() {
@@ -285,12 +306,24 @@ export default {
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
     },
-    
+
+    // Drawer link: close the drawer first, then scroll once layout is stable
+    goToSection(sectionId) {
+      this.closeMobileMenu();
+      this.$nextTick(() => {
+        requestAnimationFrame(() => {
+          this.scrollToSection(sectionId);
+        });
+      });
+    },
+
     handleClickOutside(event) {
-      const navbar = event.target.closest('.navbar');
-      const mobileToggle = event.target.closest('.mobile-menu-toggle');
-      
-      if (!navbar && !mobileToggle && this.isMobileMenuOpen) {
+      if (!this.isMobileMenuOpen) return;
+      // The drawer is teleported to <body>, so it is NOT inside .navbar.
+      // Close only when the click is outside both the drawer and the toggle.
+      const insideToggle = event.target.closest('.mobile-menu-toggle');
+      const insideDrawer = event.target.closest('.mobile-menu-drawer');
+      if (!insideToggle && !insideDrawer) {
         this.closeMobileMenu();
       }
     },
@@ -514,98 +547,184 @@ export default {
   transform: rotate(-45deg) translate(5px, -5px) !important;
 }
 
-/* Mobile Menu */
-.mobile-menu {
+/* ============================================================
+   Mobile Menu — Slide-in Drawer (teleported to <body>)
+   ============================================================ */
+
+/* Scrim behind the drawer */
+.mobile-menu-backdrop {
   position: fixed;
-  top: 64px;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1100;
+}
+
+/* The drawer panel itself */
+.mobile-menu-drawer {
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
+  width: min(86vw, 360px);
   background: var(--bg-primary);
-  background-color: var(--bg-primary);
-  z-index: 999;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: var(--space-xl);
-  box-shadow: var(--shadow-md);
-}
-
-[data-theme="dark"] .mobile-menu {
-  background: var(--bg-primary);
-  background-color: var(--bg-primary);
-  box-shadow: var(--shadow-lg);
-}
-
-.mobile-menu.active {
+  border-right: 1px solid var(--border-color);
+  box-shadow: 8px 0 40px rgba(0, 0, 0, 0.28);
+  z-index: 1101;
   display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
-.mobile-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-  max-width: 400px;
+[data-theme="dark"] .mobile-menu-drawer {
+  box-shadow: 8px 0 48px rgba(0, 0, 0, 0.55);
 }
 
-.mobile-nav-item {
-  margin: var(--radius-lg) 0;
-  list-style: none;
+/* Drawer header */
+.mm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
-.mobile-nav-link {
-  font-size: 1.125rem;
-  font-weight: 500;
+.mm-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  padding: 0.875rem var(--space-lg);
-  display: block;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  margin: var(--space-xs) var(--space-sm);
+}
+
+.mm-close {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-[data-theme="dark"] .mobile-nav-link {
-  color: var(--text-primary);
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-}
-
-.mobile-nav-link:hover {
-  color: var(--primary-color);
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-[data-theme="dark"] .mobile-nav-link:hover {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
-  box-shadow: var(--shadow-md);
-}
-
-/* Active Mobile Navigation Link Styles */
-.mobile-nav-link.active {
-  color: var(--primary-color);
-  font-weight: 600;
+.mm-close:hover {
+  border-color: var(--primary-color);
   background: var(--bg-tertiary);
-  border-color: var(--primary-color);
 }
 
-[data-theme="dark"] .mobile-nav-link.active {
+.mm-close span {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text-primary);
+}
+
+.mm-close span:first-child { transform: rotate(45deg); }
+.mm-close span:last-child  { transform: rotate(-45deg); }
+
+/* Nav list */
+.mm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-md);
+}
+
+.mm-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.85rem var(--space-md);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.02rem;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.mm-link:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.mm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
   color: var(--primary-color);
-  background: var(--primary-dark);
-  border-color: var(--primary-color);
+  font-size: 0.95rem;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
+.mm-label {
+  flex: 1;
+}
 
+.mm-chevron {
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  opacity: 0.45;
+}
 
+/* Active item */
+.mm-link.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.mm-link.active .mm-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.mm-link.active .mm-chevron {
+  color: #fff;
+  opacity: 0.85;
+}
+
+/* Enter / leave transitions */
+.mm-fade-enter-active,
+.mm-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.mm-fade-enter-from,
+.mm-fade-leave-to {
+  opacity: 0;
+}
+
+.mm-slide-enter-active,
+.mm-slide-leave-active {
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mm-slide-enter-from,
+.mm-slide-leave-to {
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-fade-enter-active,
+  .mm-fade-leave-active,
+  .mm-slide-enter-active,
+  .mm-slide-leave-active {
+    transition: none;
+  }
+}
 
 
 /* Responsive Design */
@@ -641,17 +760,6 @@ export default {
   .navbar-brand {
     font-size: 1.125rem !important;
   }
-  
-  .mobile-menu {
-    top: 56px;
-    background: var(--bg-primary);
-    background-color: var(--bg-primary);
-  }
-  
-  [data-theme="dark"] .mobile-menu {
-    background: var(--bg-primary);
-    background-color: var(--bg-primary);
-  }
 }
 
 @media (max-width: 480px) {
@@ -663,10 +771,6 @@ export default {
   
   .navbar-brand {
     font-size: 1rem !important;
-  }
-  
-  .mobile-nav-link {
-    font-size: 1.125rem !important;
   }
   
   .theme-toggle {

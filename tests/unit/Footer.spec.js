@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/vue'
+import { render, screen, fireEvent } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { axe } from 'jest-axe'
 import Footer from '@/components/Footer.vue'
@@ -83,6 +83,34 @@ describe('Footer.vue', () => {
     const icons = screen.getAllByTestId('font-awesome-icon')
     const downloadIcon = icons[1] // Second icon is the download icon
     expect(downloadIcon).toBeInTheDocument()
+  })
+
+  it('scrolls to about section when scroll-to-top button is clicked', async () => {
+    const scrollIntoView = vi.fn()
+    const aboutSection = document.createElement('section')
+    aboutSection.id = 'about'
+    aboutSection.scrollIntoView = scrollIntoView
+    document.body.appendChild(aboutSection)
+
+    renderFooter()
+    const scrollButton = screen.getAllByTestId('font-awesome-icon')[0]
+    await fireEvent.click(scrollButton)
+
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      block: 'start',
+    })
+
+    aboutSection.remove()
+  })
+
+  it('does not throw when about section is missing', async () => {
+    const existingAbout = document.getElementById('about')
+    if (existingAbout) existingAbout.remove()
+
+    renderFooter()
+    const scrollButton = screen.getAllByTestId('font-awesome-icon')[0]
+    await expect(fireEvent.click(scrollButton)).resolves.not.toThrow()
   })
 
   it('should have no accessibility violations', async () => {

@@ -34,76 +34,16 @@
 </template>
 
 <script>
+import { SKILL_CATEGORIES } from '@/config/skills'
+
 export default {
   name: "Skills",
   computed: {
     skillCategories() {
-      return [
-        {
-          title: this.$t('skills.programmingLanguages'),
-          skills: [
-            { name: "JavaScript", icon: ["fab", "js"], iconColor: "#F7DF1E" },
-            { name: "TypeScript", icon: ["fab", "js"], iconColor: "#3178C6" },
-            { name: "PHP", icon: ["fab", "php"], iconColor: "#8892BF" },
-            { name: "Golang", icon: ["fas", "code"], iconColor: "#00ADD8" },
-            { name: "HTML5", icon: ["fab", "html5"], iconColor: "#E44D26" },
-            { name: "CSS3", icon: ["fab", "css3-alt"], iconColor: "#254BDD" },
-          ],
-        },
-        {
-          title: this.$t('skills.frameworksLibraries'),
-          skills: [
-            { name: "Vue.js", icon: ["fab", "vuejs"], iconColor: "#41B883" },
-            { name: "React", icon: ["fab", "react"], iconColor: "#61DAFB" },
-            { name: "Angular", icon: ["fab", "angular"], iconColor: "#D6002F" },
-            { name: "Laravel", icon: ["fab", "laravel"], iconColor: "#F72C1F" },
-            { name: "Node.js", icon: ["fab", "node"], iconColor: "#74AA63" },
-            { name: "Express.js", icon: ["fas", "server"], iconColor: "#000000" },
-            { name: "Bootstrap", icon: ["fab", "bootstrap"], iconColor: "#533B78" },
-            { name: "jQuery", icon: ["fas", "code"], iconColor: "#0769AD" },
-          ],
-        },
-        {
-          title: this.$t('skills.databasesTools'),
-          skills: [
-            { name: "MySQL", icon: ["fas", "database"], iconColor: "#4479A1" },
-            { name: "MongoDB", icon: ["fas", "database"], iconColor: "#47A248" },
-            { name: "Microsoft SQL Server", icon: ["fas", "database"], iconColor: "#CC2927" },
-            { name: "Redis", icon: ["fas", "database"], iconColor: "#DC382D" },
-            { name: "Git", icon: ["fab", "git"], iconColor: "#E84E31" },
-            { name: "GitHub", icon: ["fab", "github"], iconColor: "#333333" },
-          ],
-        },
-        {
-          title: this.$t('skills.cloudDevops'),
-          skills: [
-            { name: "AWS", icon: ["fab", "aws"], iconColor: "#FF9900" },
-            { name: "Docker", icon: ["fab", "docker"], iconColor: "#2496ED" },
-            { name: "Linux", icon: ["fab", "linux"], iconColor: "#FCC624" },
-            { name: "Apache", icon: ["fas", "server"], iconColor: "#D22128" },
-            { name: "Nginx", icon: ["fas", "server"], iconColor: "#009639" },
-          ],
-        },
-        {
-          title: this.$t('skills.contentManagement'),
-          skills: [
-            { name: "WordPress", icon: ["fab", "wordpress"], iconColor: "#207196" },
-            { name: "Drupal", icon: ["fab", "drupal"], iconColor: "#0097D7" },
-            { name: "SEO", icon: ["fas", "search"], iconColor: "#4285F4" },
-          ],
-        },
-        {
-          title: this.$t('skills.developmentTools'),
-          skills: [
-            { name: "VS Code", icon: ["fas", "code"], iconColor: "#007ACC" },
-            { name: "Webpack", icon: ["fas", "cog"], iconColor: "#8DD6F9" },
-            { name: "ESLint", icon: ["fas", "check-circle"], iconColor: "#4B32C3" },
-            { name: "Jest", icon: ["fas", "vial"], iconColor: "#C21325" },
-            { name: "GraphQL", icon: ["fas", "code"], iconColor: "#E10098" },
-            { name: "REST APIs", icon: ["fas", "plug"], iconColor: "#FF6B6B" },
-          ],
-        },
-      ];
+      return SKILL_CATEGORIES.map(({ titleKey, skills }) => ({
+        title: this.$t(titleKey),
+        skills,
+      }))
     },
   },
 };
@@ -162,6 +102,8 @@ export default {
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
   transition: all var(--transition-normal);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .skill-item:hover {
@@ -188,7 +130,9 @@ export default {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-primary);
-  white-space: nowrap;
+  min-width: 0;
+  line-height: 1.3;
+  overflow-wrap: break-word;
 }
 
 /* Responsive Design */
@@ -203,7 +147,7 @@ export default {
   }
   
   .skill-items {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
   }
   
