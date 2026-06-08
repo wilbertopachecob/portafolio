@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { markRaw } from 'vue'
 import Navigation from './components/Navigation.vue'
 import About from './components/About.vue'
 import Experience from './components/Experience.vue'
@@ -51,12 +52,12 @@ import Languages from './components/Languages.vue'
 import Certifications from './components/Certifications.vue'
 
 const PAGE_SECTIONS = [
-  { id: 'about', component: About, showHeader: false },
-  { id: 'experience', component: Experience, showHeader: true },
-  { id: 'skills', component: Skills, showHeader: true },
-  { id: 'education', component: Education, showHeader: true },
-  { id: 'languages', component: Languages, showHeader: true },
-  { id: 'certifications', component: Certifications, showHeader: true },
+  { id: 'about', component: markRaw(About), showHeader: false },
+  { id: 'experience', component: markRaw(Experience), showHeader: true },
+  { id: 'skills', component: markRaw(Skills), showHeader: true },
+  { id: 'education', component: markRaw(Education), showHeader: true },
+  { id: 'languages', component: markRaw(Languages), showHeader: true },
+  { id: 'certifications', component: markRaw(Certifications), showHeader: true },
 ]
 
 export default {
