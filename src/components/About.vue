@@ -74,10 +74,10 @@
           <font-awesome-icon :icon="['fas', 'folder-open']" aria-hidden="true" />
           {{ $t('hero.viewProducts') }}
         </a>
-        <a 
-          href="/Engineer_Wilberto_Pacheco_Batista.pdf" 
-          class="btn btn-outline" 
-          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+        <a
+          :href="resumeUrl"
+          class="btn btn-outline"
+          :download="resumeFilename"
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
           rel="noopener noreferrer"
@@ -91,8 +91,18 @@
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+
 export default {
   name: "About",
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+  },
 };
 </script>
 

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/vue'
 import { describe, it, expect, vi } from 'vitest'
 import { axe } from 'jest-axe'
 import Footer from '@/components/Footer.vue'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 // Mock FontAwesome components
 vi.mock('@fortawesome/vue-fontawesome', () => ({
@@ -74,7 +75,7 @@ describe('Footer.vue', () => {
     renderFooter()
     const downloadLink = screen.getByText('hero.downloadResume')
     expect(downloadLink).toBeInTheDocument()
-    expect(downloadLink.closest('a')).toHaveAttribute('href', '/Engineer_Wilberto_Pacheco_Batista.pdf')
+    expect(downloadLink.closest('a')).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
     expect(downloadLink.closest('a')).toHaveAttribute('download', 'Engineer_Wilberto_Pacheco_Batista.pdf')
   })
 
@@ -118,4 +119,4 @@ describe('Footer.vue', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
-}) 
+})

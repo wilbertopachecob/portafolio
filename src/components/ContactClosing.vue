@@ -25,9 +25,9 @@
           {{ $t('contact.viewLinkedIn') }}
         </a>
         <a
-          href="/Engineer_Wilberto_Pacheco_Batista.pdf"
+          :href="resumeUrl"
           class="btn btn-outline"
-          download="Engineer_Wilberto_Pacheco_Batista.pdf"
+          :download="resumeFilename"
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
           rel="noopener noreferrer"
@@ -41,8 +41,18 @@
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+
 export default {
   name: 'ContactClosing',
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+  },
 }
 </script>
 

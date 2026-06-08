@@ -155,7 +155,7 @@
 <script>
 import { getPortfolioProjects } from '@/i18n/content'
 
-const screenshotModules = import.meta.glob('@/assets/img/**/*.{png,jpg,jpeg,webp}', {
+const screenshotModules = import.meta.glob('@/assets/img/portfolio/*.{png,jpg,jpeg,webp}', {
   eager: true,
   import: 'default',
 })

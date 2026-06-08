@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
@@ -99,6 +100,7 @@ describe('About.vue', () => {
     })
     expect(screen.getByRole('link', { name: /View professional impact/ })).toHaveAttribute('href', '#impact')
     expect(screen.getByRole('link', { name: /View shipped products/ })).toHaveAttribute('href', '#portfolio')
+    expect(screen.getByRole('link', { name: /Download Resume/ })).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
   })
 
   it('has proper accessibility attributes', () => {

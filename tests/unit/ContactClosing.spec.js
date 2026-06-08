@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import ContactClosing from '@/components/ContactClosing.vue'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 const createTestI18n = () => createI18n({
   legacy: false,
@@ -34,7 +35,7 @@ describe('ContactClosing.vue', () => {
     expect(screen.getByRole('heading', { level: 2, name: /complex systems/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: "Let's talk" })).toHaveAttribute('href', 'mailto:wilbertopachecob@gmail.com')
     expect(screen.getByRole('link', { name: 'View LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/wilberto-pacheco-batista/')
-    expect(screen.getByRole('link', { name: 'Download Resume' })).toHaveAttribute('href', '/Engineer_Wilberto_Pacheco_Batista.pdf')
+    expect(screen.getByRole('link', { name: 'Download Resume' })).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
   })
 
   it('should have no accessibility violations', async () => {

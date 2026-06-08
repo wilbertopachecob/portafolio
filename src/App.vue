@@ -13,7 +13,7 @@
         :key="section.id"
         :id="section.id"
         :class="['section', { 'section--compact': section.compact }]"
-        role="region"
+        :role="section.showHeader ? 'region' : undefined"
         :aria-labelledby="section.showHeader ? `${section.id}-section-heading` : undefined"
       >
         <component :is="section.component" v-if="!section.showHeader" />

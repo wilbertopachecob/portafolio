@@ -311,6 +311,17 @@ describe('Navigation.vue', () => {
       })
     })
 
+    it('maps non-nav howIWork section to the capabilities nav item', async () => {
+      renderNavigation()
+
+      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 2400 })
+      window.dispatchEvent(new Event('scroll'))
+
+      await vi.waitFor(() => {
+        expect(getDesktopNavLink('skills')).toHaveClass('active')
+      })
+    })
+
     it('scrolls to a section when a desktop nav link is clicked', async () => {
       vi.useFakeTimers()
       const scrollTo = vi.fn()
