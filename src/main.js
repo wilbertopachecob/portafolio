@@ -27,6 +27,9 @@ import {
   faSun,
   faMoon,
   faGlobe,
+  faUser,
+  faGraduationCap,
+  faCertificate,
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import { 
@@ -71,6 +74,9 @@ library.add(
   faSun,
   faMoon,
   faGlobe,
+  faUser,
+  faGraduationCap,
+  faCertificate,
   faDownload,
   faLinkedin, 
   faGithub, 

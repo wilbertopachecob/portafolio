@@ -153,6 +153,7 @@ export default {
 /* Ensure sections have proper spacing */
 .section {
   padding: var(--space-3xl) 0;
+  scroll-margin-top: 64px; /* fixed navbar offset for anchor / programmatic scroll */
 }
 
 .section:first-of-type {
@@ -174,6 +175,7 @@ export default {
   
   .section {
     padding: var(--space-2xl) 0;
+    scroll-margin-top: 56px;
   }
   
   .container {

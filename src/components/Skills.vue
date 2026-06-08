@@ -162,6 +162,8 @@ export default {
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
   transition: all var(--transition-normal);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .skill-item:hover {
@@ -188,7 +190,9 @@ export default {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-primary);
-  white-space: nowrap;
+  min-width: 0;
+  line-height: 1.3;
+  overflow-wrap: break-word;
 }
 
 /* Responsive Design */
@@ -203,7 +207,7 @@ export default {
   }
   
   .skill-items {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
   }
   

@@ -16,7 +16,8 @@ const createTestI18n = (locale = 'en') => {
           subtitle: 'Software Engineer',
           description: 'Bilingual Full Stack Web Developer with a degree in Computer Science (2010) and a passion for solving complex technical challenges. My goal is to excel at my job by delivering impactful solutions that increase company performance and contribute to my personal growth.',
           viewExperience: 'View Experience',
-          viewSkills: 'View Skills'
+          viewSkills: 'View Skills',
+          downloadResume: 'Download Resume'
         }
       },
       es: {
@@ -25,7 +26,8 @@ const createTestI18n = (locale = 'en') => {
           subtitle: 'Ingeniero de Software',
           description: 'Desarrollador Web Full Stack Bilingüe con un título en Ciencias de la Computación (2010) y una pasión por resolver desafíos técnicos complejos. Mi objetivo es sobresalir en mi trabajo entregando soluciones impactantes que aumenten el rendimiento de la empresa y contribuyan a mi crecimiento personal.',
           viewExperience: 'Ver Experiencia',
-          viewSkills: 'Ver Habilidades'
+          viewSkills: 'Ver Habilidades',
+          downloadResume: 'Descargar CV'
         }
       }
     }
