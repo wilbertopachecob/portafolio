@@ -3,6 +3,7 @@
     "about": "Acerca de",
     "experience": "Experiencia",
     "skills": "Habilidades",
+    "portfolio": "Portafolio",
     "education": "Educación",
     "languages": "Idiomas",
     "certifications": "Certificaciones"
@@ -26,6 +27,10 @@
     "skills": {
       "title": "Habilidades",
       "subtitle": "Habilidades técnicas y tecnologías con las que trabajo"
+    },
+    "portfolio": {
+      "title": "Portafolio",
+      "subtitle": "Proyectos que construyo fuera del trabajo — desde una app de ciudadanía hasta un blog técnico bilingüe"
     },
     "education": {
       "title": "Educación",
@@ -103,6 +108,20 @@
     "badgeAlt": "Insignia de certificación de {issuer}",
     "badgeLabel": "Insignia para certificación {title} de {issuer}"
   },
+  "portfolio": {
+    "intro": "Proyectos personales nacidos de ideas a las 11pm, necesidades familiares y el clásico \"¿por qué esto no existe en español?\". Varios corren en una Raspberry Pi 5 en casa, expuestos a internet con Cloudflare Tunnel.",
+    "featured": "Destacado",
+    "highlights": "Aspectos clave",
+    "technologies": "Tecnologías",
+    "visitProject": "Visitar {name}",
+    "infrastructure": "Los proyectos personales y renderlog.dev corren en una Raspberry Pi 5 en casa, expuestos con Cloudflare Tunnel.",
+    "types": {
+      "mobile": "App Móvil",
+      "blog": "Blog",
+      "web": "App Web",
+      "landing": "Landing Page"
+    }
+  },
   "common": {
     "scrollToTop": "Ir al Inicio",
     "loading": "Cargando...",
@@ -114,13 +133,15 @@
       {
         "company": "Included Health",
         "position": "Ingeniero de Software II",
-        "period": "Mayo 2021 - Presente",
+        "period": "Mayo 2021 - Abril 2026",
         "location": "San Francisco, California",
         "responsibilities": [
-          "Rol principal en campañas de Dependabot y mitigación de seguridad, mejorando significativamente la mantenibilidad de nuestra aplicación monolítica y contribuyendo a asegurar un acuerdo importante con un cliente.",
-          "Participé en el desarrollo de una extensión de Chrome para coordinadores de atención (CCs), liderando una refactorización sustancial del código. Logré mejoras en legibilidad, cobertura de pruebas, optimización de flujo de trabajo, estándares de linting y reducción del tamaño del bundle de JavaScript.",
-          "Desarrollo Full Stack en una aplicación web (Node.js, Redis, React y Elastic Search) que aceleró los tiempos de respuesta para CCs en un 5% y eliminó la dependencia de una herramienta externa, reduciendo costos operativos.",
-          "Migré AngularJS a componentes Vue.js en la aplicación web orientada a miembros, refactoricé código para reducir deuda técnica, mejorar la organización del código y optimizar la implementación de feature flags."
+          "Asumí responsabilidades de nivel senior y liderazgo técnico en múltiples iniciativas como Team Lead, desde nuevas funcionalidades para clientes estratégicos hasta modernización de servicios deprecated y mejoras de arquitectura.",
+          "Lideré campañas de Dependabot y mitigación de vulnerabilidades que elevaron la mantenibilidad de nuestro monolito y fortalecieron la postura de seguridad, contribuyendo a cerrar un acuerdo clave con un cliente empresarial.",
+          "Contribuí al desarrollo de una extensión de Chrome para Care Coordinators (CCs), guiando una refactorización profunda que mejoró legibilidad, cobertura de pruebas, estándares de linting, flujo de desarrollo y redujo el tamaño del bundle de JavaScript.",
+          "Desarrollé soluciones full stack end-to-end en una aplicación web con Node.js, Redis, React y Elasticsearch, reduciendo tiempos de respuesta para CCs en 5% y eliminando la dependencia de una herramienta externa para bajar costos operativos.",
+          "Ejecuté migraciones críticas de stack y plataforma (Ruby a Go, Snowplow a Amplitude y Elasticsearch a capacidades internas basadas en LLM), facilitando escalabilidad, observabilidad y evolución tecnológica del producto.",
+          "Migré módulos de AngularJS a componentes Vue.js en la aplicación orientada a miembros, reduciendo deuda técnica, mejorando organización del código y optimizando la estrategia de feature flags."
         ]
       },
       {
@@ -168,6 +189,97 @@
         "link": "https://www.uci.cu/"
       }
     ],
+    "portfolioProjects": [
+      {
+        "name": "CiudadanoUSA",
+        "url": "https://ciudadanousa.com/es/home",
+        "featured": true,
+        "type": "mobile",
+        "description": "App móvil en español primero para preparar la entrevista de ciudadanía de EE. UU. — pensada para quienes estudian en español y responden en inglés. Disponible en iOS y Android, con sitio de marketing bilingüe.",
+        "highlights": [
+          "Bancos de estudio cívica 2025 (128 preguntas) y 2008 (100 preguntas) alineados con USCIS",
+          "Entrevista simulada, ensayo N-400, práctica de lectura y escritura en inglés",
+          "Consulta de autoridades electas por código postal para respuestas que cambian por ubicación",
+          "Audio CarPlay y Android Auto para estudiar en movimiento (Pro)",
+          "Suscripciones Pro con RevenueCat y backend en Supabase — React Native y Expo"
+        ],
+        "tags": [
+          "React Native",
+          "Expo",
+          "iOS",
+          "Android",
+          "TypeScript",
+          "Supabase"
+        ]
+      },
+      {
+        "name": "Renderlog",
+        "url": "https://renderlog.dev/en/about",
+        "featured": true,
+        "type": "blog",
+        "description": "Blog técnico bilingüe sobre ingeniería frontend — criterio construido con más de una década de deploys, refactors y lecciones que escribiría distinto con la experiencia. Publicado en inglés y español.",
+        "highlights": [
+          "Contenido frontend de calidad en español, sin traducciones automáticas vacías",
+          "Temas del trabajo real: React, Next.js, Vue.js, rendimiento y arquitectura",
+          "Auto-hospedado en una Raspberry Pi 5 con Cloudflare Tunnel"
+        ],
+        "tags": [
+          "Next.js",
+          "React",
+          "Vue.js",
+          "Escritura Técnica",
+          "i18n"
+        ]
+      },
+      {
+        "name": "micalpacheco.com",
+        "url": "https://micalpacheco.com",
+        "featured": false,
+        "type": "landing",
+        "description": "Landing page profesional para mi esposa, enfermera psiquiátrica certificada en Broken Arrow, OK — el único objetivo era que le encantara cómo quedó. Le encantó.",
+        "highlights": [],
+        "tags": [
+          "Personal"
+        ]
+      },
+      {
+        "name": "paint.wilbertopachecob.dev",
+        "url": "https://paint.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "App de dibujo en el navegador que empezó como experimento con Canvas API y fue la actividad favorita de mi hija… por unos cinco minutos.",
+        "highlights": [],
+        "tags": [
+          "Canvas API",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "tictactoe.wilbertopachecob.dev",
+        "url": "https://tictactoe.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "Tres en raya clásico — limpio, simple, funciona en cualquier dispositivo. Mi hija aún no entiende las reglas pero adora tocar la pantalla.",
+        "highlights": [],
+        "tags": [
+          "JavaScript",
+          "Responsive"
+        ]
+      },
+      {
+        "name": "weather-ai.wilbertopachecob.dev",
+        "url": "https://weather-ai.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "App del clima con IA integrada — nacida de pura curiosidad y del clima genuinamente impredecible de Oklahoma.",
+        "highlights": [],
+        "tags": [
+          "IA",
+          "Weather API",
+          "JavaScript"
+        ]
+      }
+    ],
     "certifications": [
       {
         "issuer": "Amazon Web Services (AWS)",
@@ -198,4 +310,4 @@
       }
     ]
   }
-} 
+}

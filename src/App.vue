@@ -50,11 +50,13 @@ import Skills from './components/Skills.vue'
 import Education from './components/Education.vue'
 import Languages from './components/Languages.vue'
 import Certifications from './components/Certifications.vue'
+import Portfolio from './components/Portfolio.vue'
 
 const PAGE_SECTIONS = [
   { id: 'about', component: markRaw(About), showHeader: false },
   { id: 'experience', component: markRaw(Experience), showHeader: true },
   { id: 'skills', component: markRaw(Skills), showHeader: true },
+  { id: 'portfolio', component: markRaw(Portfolio), showHeader: true },
   { id: 'education', component: markRaw(Education), showHeader: true },
   { id: 'languages', component: markRaw(Languages), showHeader: true },
   { id: 'certifications', component: markRaw(Certifications), showHeader: true },
@@ -70,6 +72,7 @@ export default {
     Education,
     Languages,
     Certifications,
+    Portfolio,
   },
   data() {
     return {

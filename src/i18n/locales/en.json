@@ -3,6 +3,7 @@
     "about": "About",
     "experience": "Experience",
     "skills": "Skills",
+    "portfolio": "Portfolio",
     "education": "Education",
     "languages": "Languages",
     "certifications": "Certifications"
@@ -26,6 +27,10 @@
     "skills": {
       "title": "Skills",
       "subtitle": "Technical skills and technologies I work with"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "subtitle": "Projects I build outside work — from a citizenship prep app to a bilingual tech blog"
     },
     "education": {
       "title": "Education",
@@ -103,6 +108,20 @@
     "badgeAlt": "{issuer} certification badge",
     "badgeLabel": "Badge for {title} certification from {issuer}"
   },
+  "portfolio": {
+    "intro": "Side projects born from late-night ideas, family needs, and the occasional \"why doesn't this exist in Spanish?\" moment. Several run on a Raspberry Pi 5 at home, exposed through Cloudflare Tunnel.",
+    "featured": "Featured",
+    "highlights": "Key highlights",
+    "technologies": "Technologies",
+    "visitProject": "Visit {name}",
+    "infrastructure": "Side projects and renderlog.dev run on a Raspberry Pi 5 at home, exposed through Cloudflare Tunnel.",
+    "types": {
+      "mobile": "Mobile App",
+      "blog": "Blog",
+      "web": "Web App",
+      "landing": "Landing Page"
+    }
+  },
   "common": {
     "scrollToTop": "Scroll to Top",
     "loading": "Loading...",
@@ -117,10 +136,12 @@
         "period": "May 2021 - April 2026",
         "location": "San Francisco, California",
         "responsibilities": [
-          "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
-          "Participated in a Chrome extension development for care coordinators (CCs), leading to substantial code refactoring. Achieved improvements in readability, test coverage, workflow optimization, linting standards, and reduced JavaScript bundle size.",
-          "Full Stack development on a web app (Node.js, Redis, React and Elastic Search) that accelerated response times for CCs by 5% and eliminated reliance on an external tool, reducing operational costs.",
-          "Migrated AngularJS to Vue.js components in member facing web app, refactored code to reduce technical debt, enhance code organization, and improve feature flag implementation."
+          "Took on senior-level scope and technical leadership across multiple initiatives as Team Lead, from shipping new features for strategic clients to modernizing deprecated services and architecture.",
+          "Led Dependabot campaigns and security mitigation efforts that significantly improved monolith maintainability and security posture, helping support a major enterprise client deal.",
+          "Contributed to a Chrome extension for Care Coordinators (CCs), driving a substantial refactor that improved readability, test coverage, linting standards, developer workflows, and JavaScript bundle size.",
+          "Delivered end-to-end full stack work in a Node.js, Redis, React, and Elasticsearch web application, improving CC response times by 5% and removing dependency on a third-party tool to reduce operating costs.",
+          "Executed critical platform migrations (Ruby to Go, Snowplow to Amplitude, and Elasticsearch to internal LLM-powered capabilities), improving scalability, observability, and long-term product evolution.",
+          "Migrated AngularJS modules to Vue.js components in the member-facing app, reducing technical debt, improving code organization, and strengthening feature-flag implementation."
         ]
       },
       {
@@ -166,6 +187,97 @@
         "degree": "Computer Science Engineer",
         "period": "2005 - 2010",
         "link": "https://www.uci.cu/"
+      }
+    ],
+    "portfolioProjects": [
+      {
+        "name": "CiudadanoUSA",
+        "url": "https://ciudadanousa.com/es/home",
+        "featured": true,
+        "type": "mobile",
+        "description": "A Spanish-first mobile app for U.S. citizenship interview preparation — built for immigrants who study in Spanish and answer in English. Available on iOS and Android, with a bilingual marketing site.",
+        "highlights": [
+          "Civics 2025 (128 questions) and 2008 (100 questions) study banks aligned with USCIS",
+          "Mock interview, N-400 rehearsal, English reading and writing practice",
+          "Elected officials lookup by ZIP code for location-dependent civics answers",
+          "CarPlay and Android Auto audio for studying on the go (Pro)",
+          "Pro subscriptions via RevenueCat with a Supabase backend — React Native and Expo"
+        ],
+        "tags": [
+          "React Native",
+          "Expo",
+          "iOS",
+          "Android",
+          "TypeScript",
+          "Supabase"
+        ]
+      },
+      {
+        "name": "Renderlog",
+        "url": "https://renderlog.dev/en/about",
+        "featured": true,
+        "type": "blog",
+        "description": "A bilingual technical blog about frontend engineering — judgment built over a decade of production deploys, refactors, and the lessons I'd write differently with hindsight. Published in English and Spanish.",
+        "highlights": [
+          "Quality frontend content in Spanish that isn't auto-translated fluff",
+          "Topics drawn from real work: React, Next.js, Vue.js, performance, and architecture",
+          "Self-hosted on a Raspberry Pi 5 with Cloudflare Tunnel"
+        ],
+        "tags": [
+          "Next.js",
+          "React",
+          "Vue.js",
+          "Technical Writing",
+          "i18n"
+        ]
+      },
+      {
+        "name": "micalpacheco.com",
+        "url": "https://micalpacheco.com",
+        "featured": false,
+        "type": "landing",
+        "description": "A professional landing page for my wife, a board-certified psychiatric nurse practitioner in Broken Arrow, OK — the only goal was that she'd love how it turned out. She did.",
+        "highlights": [],
+        "tags": [
+          "Personal"
+        ]
+      },
+      {
+        "name": "paint.wilbertopachecob.dev",
+        "url": "https://paint.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "A browser-based drawing app that started as a Canvas API experiment and briefly became my daughter's favorite activity.",
+        "highlights": [],
+        "tags": [
+          "Canvas API",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "tictactoe.wilbertopachecob.dev",
+        "url": "https://tictactoe.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "Classic tic-tac-toe — clean, simple, works on any device. My daughter doesn't understand the rules yet but loves tapping the screen.",
+        "highlights": [],
+        "tags": [
+          "JavaScript",
+          "Responsive"
+        ]
+      },
+      {
+        "name": "weather-ai.wilbertopachecob.dev",
+        "url": "https://weather-ai.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "A weather app with AI baked in — born from pure curiosity and the genuinely unpredictable nature of Oklahoma weather.",
+        "highlights": [],
+        "tags": [
+          "AI",
+          "Weather API",
+          "JavaScript"
+        ]
       }
     ],
     "certifications": [
