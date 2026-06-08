@@ -32,11 +32,19 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  /* Section rhythm — one gap per boundary (top padding only; avoids doubled whitespace) */
+  /* Section rhythm — total gap split: after (breathing room) + before (next section lead-in) */
   --section-gap: 4rem;
+  --section-gap-after: 1.5rem;
+  --section-gap-before: calc(var(--section-gap) - var(--section-gap-after));
   --section-gap-secondary: 3rem;
+  --section-gap-secondary-after: 1rem;
+  --section-gap-secondary-before: calc(var(--section-gap-secondary) - var(--section-gap-secondary-after));
   --section-gap-mobile: 3rem;
+  --section-gap-after-mobile: 1rem;
+  --section-gap-before-mobile: calc(var(--section-gap-mobile) - var(--section-gap-after-mobile));
   --section-gap-secondary-mobile: 2.5rem;
+  --section-gap-secondary-after-mobile: 0.75rem;
+  --section-gap-secondary-before-mobile: calc(var(--section-gap-secondary-mobile) - var(--section-gap-secondary-after-mobile));
   --section-header-gap: var(--space-xl);
   --card-padding-dense: 1.5rem;
   --card-padding-editorial: 2rem;
@@ -224,8 +232,8 @@ a:focus-visible {
 }
 
 .section {
-  padding-top: var(--section-gap);
-  padding-bottom: 0;
+  padding-top: var(--section-gap-before);
+  padding-bottom: var(--section-gap-after);
   background: var(--bg-primary);
   scroll-margin-top: 64px;
 }
@@ -233,6 +241,10 @@ a:focus-visible {
 .section:first-of-type,
 .section--compact {
   padding-top: 0;
+}
+
+.section--compact {
+  padding-bottom: 0;
 }
 
 .section--alt {
@@ -244,7 +256,8 @@ a:focus-visible {
 }
 
 .section--secondary {
-  padding-top: var(--section-gap-secondary);
+  padding-top: var(--section-gap-secondary-before);
+  padding-bottom: var(--section-gap-secondary-after);
 }
 
 .section-header {
@@ -650,11 +663,13 @@ a:focus-visible {
   }
 
   .section:not(:first-of-type):not(.section--compact) {
-    padding-top: var(--section-gap-mobile);
+    padding-top: var(--section-gap-before-mobile);
+    padding-bottom: var(--section-gap-after-mobile);
   }
 
   .section--secondary:not(:first-of-type) {
-    padding-top: var(--section-gap-secondary-mobile);
+    padding-top: var(--section-gap-secondary-before-mobile);
+    padding-bottom: var(--section-gap-secondary-after-mobile);
   }
   
   .grid-2,
