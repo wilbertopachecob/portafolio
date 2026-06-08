@@ -29,30 +29,13 @@
 
         <p class="portfolio-card-description">{{ project.description }}</p>
 
-        <ul
+        <portfolio-screenshot-gallery
           v-if="project.screenshots && project.screenshots.length"
-          class="portfolio-screenshots"
-          :class="`portfolio-screenshots--${project.type === 'mobile' ? 'mobile' : 'desktop'}`"
+          :project-name="project.name"
+          :project-type="project.type"
+          :screenshots="getResolvedScreenshots(project.screenshots)"
           :aria-label="$t('portfolio.screenshots', { name: project.name })"
-        >
-          <li
-            v-for="(screenshot, screenshotIndex) in project.screenshots"
-            :key="`${project.name}-${screenshotIndex}`"
-            class="portfolio-screenshot"
-          >
-            <figure class="portfolio-screenshot-frame">
-              <img
-                :src="getScreenshotSrc(screenshot.src)"
-                :alt="screenshot.alt"
-                class="portfolio-screenshot-image"
-                width="360"
-                height="780"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </li>
-        </ul>
+        />
 
         <div
           v-if="getCaseStudyFields(project).length"
@@ -146,6 +129,7 @@
 
 <script>
 import { getPortfolioProjects } from '@/i18n/content'
+import PortfolioScreenshotGallery from '@/components/PortfolioScreenshotGallery.vue'
 
 const screenshotModules = import.meta.glob('@/assets/img/portfolio/*.{png,jpg,jpeg,webp}', {
   eager: true,
@@ -159,6 +143,9 @@ const screenshotWebpModules = import.meta.glob('@/assets/img/portfolio/*.webp', 
 
 export default {
   name: 'Portfolio',
+  components: {
+    PortfolioScreenshotGallery,
+  },
   data() {
     return {
       caseStudyFields: [
@@ -193,6 +180,12 @@ export default {
       const match = Object.entries(screenshotModules).find(([path]) => path.endsWith(`/${filename}`))
       if (match) return match[1]
       return `${import.meta.env.BASE_URL}img/${filename}`
+    },
+    getResolvedScreenshots(screenshots) {
+      return screenshots.map((screenshot) => ({
+        alt: screenshot.alt,
+        src: this.getScreenshotSrc(screenshot.src),
+      }))
     },
   },
 }
@@ -324,51 +317,6 @@ export default {
   flex: 1;
 }
 
-.portfolio-screenshots {
-  display: grid;
-  gap: var(--space-lg);
-  margin: var(--space-sm) 0 var(--space-md);
-  list-style: none;
-  padding: 0;
-}
-
-.portfolio-screenshot {
-  min-width: 0;
-}
-
-.portfolio-screenshot-frame {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  background: var(--bg-secondary);
-}
-
-.portfolio-screenshot-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.portfolio-screenshots--mobile .portfolio-screenshot-image {
-  aspect-ratio: 9 / 19.5;
-}
-
-.portfolio-screenshots--desktop .portfolio-screenshot-image {
-  aspect-ratio: 16 / 9;
-}
-
-.portfolio-screenshots--mobile {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.portfolio-screenshots--desktop {
-  grid-template-columns: 1fr;
-}
-
 .portfolio-case-study {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -477,16 +425,6 @@ export default {
   .portfolio-featured,
   .portfolio-grid {
     grid-template-columns: 1fr;
-  }
-
-  .portfolio-screenshots--mobile {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio-screenshots--mobile .portfolio-screenshot-image,
-  .portfolio-screenshots--desktop .portfolio-screenshot-image {
-    aspect-ratio: auto;
-    object-fit: contain;
   }
 
   .portfolio-card {

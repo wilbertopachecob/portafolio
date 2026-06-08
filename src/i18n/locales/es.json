@@ -138,6 +138,10 @@
     "technologies": "Tecnologías",
     "visitProject": "Visitar {name}",
     "screenshots": "Capturas de {name}",
+    "screenshotControls": "Navegación de capturas de {name}",
+    "previousScreenshot": "Captura anterior",
+    "nextScreenshot": "Captura siguiente",
+    "goToScreenshot": "Ir a la captura {current} de {total}",
     "infrastructure": "Los proyectos personales y renderlog.dev corren en una Raspberry Pi 5 en casa, expuestos con Cloudflare Tunnel.",
     "types": {
       "mobile": "App móvil",
