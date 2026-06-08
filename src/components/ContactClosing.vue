@@ -127,20 +127,6 @@ export default {
   border-color: var(--primary-color);
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-}
-
-.btn-outline:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
-}
-
 @media (max-width: 768px) {
   .contact-closing {
     padding: var(--space-2xl) var(--space-md);

@@ -57,9 +57,9 @@
   --bg-tertiary: #334155;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --border-light: #475569;
+  --text-muted: #a8b4c4;
+  --border-color: #475569;
+  --border-light: #64748b;
 }
 
 /* Screen Reader Only - Accessibility */
@@ -233,7 +233,7 @@ a:focus-visible {
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -388,6 +388,31 @@ a:focus-visible {
   box-shadow: var(--shadow-md);
 }
 
+.btn-outline {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+[data-theme="dark"] .btn-outline {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-light);
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.btn-outline:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
 /* Cards */
 .card {
   background: var(--bg-primary);
@@ -431,29 +456,6 @@ a:focus-visible {
 
 .grid-3 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-/* Skills */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-lg);
-}
-
-.skill-item {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-  text-align: center;
-  transition: all var(--transition-normal);
-}
-
-.skill-item:hover {
-  background: var(--bg-primary);
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
 }
 
 .skill-icon {

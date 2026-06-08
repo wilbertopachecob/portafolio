@@ -5,6 +5,7 @@ import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Navigation from '@/components/Navigation.vue'
 import { NAV_ITEMS } from '@/config/sections'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 import { setupNavigationDom, teardownNavigationDom } from './helpers/navigationDom'
 
 const createTestI18n = (locale = 'en') => {
@@ -25,6 +26,9 @@ const createTestI18n = (locale = 'en') => {
           education: 'Education',
           languages: 'Languages',
           certifications: 'Certifications'
+        },
+        hero: {
+          downloadResume: 'Download Resume'
         },
         accessibility: {
           lightMode: 'Switch to Light Mode',
@@ -47,6 +51,9 @@ const createTestI18n = (locale = 'en') => {
           education: 'Educación',
           languages: 'Idiomas',
           certifications: 'Certificaciones'
+        },
+        hero: {
+          downloadResume: 'Descargar CV'
         },
         accessibility: {
           lightMode: 'Cambiar a Modo Claro',
@@ -122,6 +129,13 @@ describe('Navigation.vue', () => {
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
       expect(screen.queryByText('Languages')).not.toBeInTheDocument()
       expect(screen.queryByText('Certifications')).not.toBeInTheDocument()
+    })
+
+    it('renders resume download link in navbar controls', () => {
+      renderNavigation()
+      const resumeLink = screen.getByRole('link', { name: /Download Resume/ })
+      expect(resumeLink).toBeInTheDocument()
+      expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
     })
 
     it('renders theme toggle button', () => {
@@ -287,7 +301,17 @@ describe('Navigation.vue', () => {
       await fireEvent.click(getMobileToggle())
 
       const drawerLinks = document.querySelectorAll('.mm-link')
-      expect(drawerLinks).toHaveLength(NAV_ITEMS.length)
+      expect(drawerLinks).toHaveLength(NAV_ITEMS.length + 1)
+    })
+
+    it('renders resume download link in the mobile drawer', async () => {
+      renderNavigation()
+      await fireEvent.click(getMobileToggle())
+
+      const resumeLink = document.querySelector('.mm-resume-link')
+      expect(resumeLink).toBeTruthy()
+      expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
+      expect(resumeLink).toHaveAttribute('aria-label', 'Download Resume')
     })
 
     it('keeps drawer links ordered around impact and products first', async () => {
@@ -304,6 +328,7 @@ describe('Navigation.vue', () => {
         'How I work',
         'Credentials',
         'Contact',
+        'Download Resume',
       ])
     })
   })

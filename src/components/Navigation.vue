@@ -44,6 +44,18 @@
       
       <!-- Right side controls -->
       <div class="navbar-controls">
+        <a
+          :href="resumeUrl"
+          class="nav-resume-link"
+          :download="resumeFilename"
+          :aria-label="$t('hero.downloadResume')"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          <span class="nav-resume-label">{{ $t('hero.downloadResume') }}</span>
+        </a>
+
         <!-- Language Toggle -->
         <LanguageToggle />
         
@@ -117,6 +129,21 @@
               <span class="mm-label">{{ $t('nav.' + item.id) }}</span>
               <span class="mm-chevron" aria-hidden="true">›</span>
             </a>
+            <a
+              :href="resumeUrl"
+              class="mm-link mm-resume-link"
+              :download="resumeFilename"
+              :aria-label="$t('hero.downloadResume')"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="closeMobileMenu"
+            >
+              <span class="mm-icon" aria-hidden="true">
+                <font-awesome-icon :icon="['fas', 'download']" />
+              </span>
+              <span class="mm-label">{{ $t('hero.downloadResume') }}</span>
+              <span class="mm-chevron" aria-hidden="true">›</span>
+            </a>
           </nav>
         </aside>
       </Transition>
@@ -127,11 +154,20 @@
 <script>
 import LanguageToggle from './LanguageToggle.vue'
 import { NAV_ITEMS, SECTION_IDS } from '@/config/sections'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 export default {
   name: "Navigation",
   components: {
     LanguageToggle
+  },
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
   },
   data() {
     return {
@@ -398,6 +434,37 @@ export default {
   display: flex !important;
   align-items: center !important;
   gap: var(--space-sm) !important;
+}
+
+.nav-resume-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--space-xs) !important;
+  padding: var(--space-xs) var(--space-sm) !important;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast) !important;
+  white-space: nowrap !important;
+}
+
+.nav-resume-link:hover {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  background: rgba(37, 99, 235, 0.06) !important;
+}
+
+.nav-resume-label {
+  display: none !important;
+}
+
+@media (min-width: 1100px) {
+  .nav-resume-label {
+    display: inline !important;
+  }
 }
 
 .navbar-brand {

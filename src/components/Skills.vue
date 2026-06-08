@@ -59,7 +59,7 @@ export default {
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-2xl);
 }
 
@@ -90,7 +90,7 @@ export default {
 /* Skill Items */
 .skill-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
 }
 
@@ -101,6 +101,7 @@ export default {
   padding: var(--space-sm);
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   transition: all var(--transition-normal);
   min-width: 0;
   overflow: hidden;
@@ -159,7 +160,7 @@ export default {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 340px) {
   .skill-items {
     grid-template-columns: 1fr;
   }
