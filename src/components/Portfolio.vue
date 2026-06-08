@@ -24,7 +24,7 @@
               rel="noopener noreferrer"
               :aria-label="$t('portfolio.visitProject', { name: project.name })"
             >
-              {{ project.name }}
+              <span class="portfolio-card-title-text">{{ project.name }}</span>
               <font-awesome-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
             </a>
           </h3>
@@ -109,6 +109,7 @@ export default {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
+  min-width: 0;
 }
 
 .portfolio-card:hover {
@@ -160,9 +161,10 @@ export default {
 }
 
 .portfolio-card-title a {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   gap: var(--space-sm);
+  max-width: 100%;
   color: var(--text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -172,10 +174,17 @@ export default {
   color: var(--primary-color);
 }
 
+.portfolio-card-title-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .portfolio-card-title svg {
   width: 0.875rem;
   height: 0.875rem;
   opacity: 0.7;
+  flex-shrink: 0;
+  margin-top: 0.35em;
 }
 
 .portfolio-card-description {

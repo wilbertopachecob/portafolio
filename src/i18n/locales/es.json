@@ -118,7 +118,8 @@
     "types": {
       "mobile": "App Móvil",
       "blog": "Blog",
-      "web": "App Web"
+      "web": "App Web",
+      "landing": "Landing Page"
     }
   },
   "common": {
@@ -198,7 +199,7 @@
           "Entrevista simulada, ensayo N-400, práctica de lectura y escritura en inglés",
           "Consulta de autoridades electas por código postal para respuestas que cambian por ubicación",
           "Audio CarPlay y Android Auto para estudiar en movimiento (Pro)",
-          "Construida con React Native, Expo SDK 55, Supabase y RevenueCat"
+          "Suscripciones Pro con RevenueCat y backend en Supabase — React Native y Expo"
         ],
         "tags": ["React Native", "Expo", "iOS", "Android", "TypeScript", "Supabase"]
       },
@@ -219,10 +220,10 @@
         "name": "micalpacheco.com",
         "url": "https://micalpacheco.com",
         "featured": false,
-        "type": "web",
-        "description": "Landing page para mi esposa — el único objetivo era que le encantara cómo quedó. Le encantó.",
+        "type": "landing",
+        "description": "Landing page profesional para mi esposa, enfermera psiquiátrica certificada en Broken Arrow, OK — el único objetivo era que le encantara cómo quedó. Le encantó.",
         "highlights": [],
-        "tags": ["Landing Page", "Personal"]
+        "tags": ["Personal"]
       },
       {
         "name": "paint.wilbertopachecob.dev",
