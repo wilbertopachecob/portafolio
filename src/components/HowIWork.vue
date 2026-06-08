@@ -26,10 +26,19 @@ export default {
 </script>
 
 <style scoped>
+/* 3+2 centered layout — requires exactly 5 cards (items 1-3 span 2, items 4-5 span 3) */
 .how-i-work {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-xl);
+}
+
+.how-i-work-card:nth-child(-n+3) {
+  grid-column: span 2;
+}
+
+.how-i-work-card:nth-child(n+4) {
+  grid-column: span 3;
 }
 
 .how-i-work-card {
@@ -69,6 +78,11 @@ export default {
   .how-i-work {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
+  }
+
+  .how-i-work-card:nth-child(-n+3),
+  .how-i-work-card:nth-child(n+4) {
+    grid-column: auto;
   }
 
   .how-i-work-card {

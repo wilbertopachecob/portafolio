@@ -3,7 +3,6 @@ import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
-import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
@@ -18,7 +17,10 @@ const createTestI18n = (locale = 'en') => {
           description: 'Bilingual software engineer with 15+ years building full stack products, modernizing legacy platforms, and leading technical initiatives across health tech, web, and mobile.',
           viewImpact: 'View professional impact',
           viewProducts: 'View shipped products',
-          downloadResume: 'Download Resume'
+          profileAlt: 'Wilberto Pacheco Batista profile photo'
+        },
+        contact: {
+          letsTalk: "Let's talk"
         }
       },
       es: {
@@ -28,7 +30,10 @@ const createTestI18n = (locale = 'en') => {
           description: 'Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas.',
           viewImpact: 'Ver impacto profesional',
           viewProducts: 'Ver productos construidos',
-          downloadResume: 'Descargar CV'
+          profileAlt: 'Foto de perfil de Wilberto Pacheco Batista'
+        },
+        contact: {
+          letsTalk: 'Hablemos'
         }
       }
     }
@@ -67,16 +72,29 @@ describe('About.vue', () => {
     expect(screen.getByText(/Bilingual software engineer with 15\+ years/)).toBeInTheDocument()
   })
 
-  it('renders contact information', () => {
+  it('renders the profile photo', () => {
     const i18n = createTestI18n()
     render(About, {
       global: {
         plugins: [i18n]
       }
     })
-    const emailLink = screen.getByRole('link', { name: /wilbertopachecob@gmail.com/ })
-    expect(emailLink).toBeInTheDocument()
-    expect(emailLink).toHaveAttribute('href', 'mailto:wilbertopachecob@gmail.com')
+    const profilePhoto = screen.getByRole('img', { name: /Wilberto Pacheco Batista profile photo/ })
+    expect(profilePhoto).toBeInTheDocument()
+    expect(profilePhoto).toHaveAttribute('width', '128')
+    expect(profilePhoto).toHaveAttribute('height', '128')
+    expect(profilePhoto).toHaveAttribute('loading', 'eager')
+  })
+
+  it('does not render contact information in the hero', () => {
+    const i18n = createTestI18n()
+    render(About, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    expect(screen.queryByRole('link', { name: /wilbertopachecob@gmail.com/ })).not.toBeInTheDocument()
+    expect(screen.queryByText('Broken Arrow, OK')).not.toBeInTheDocument()
   })
 
   it('renders social links', () => {
@@ -91,7 +109,7 @@ describe('About.vue', () => {
     expect(screen.getByRole('link', { name: /X \(Twitter\)/ })).toBeInTheDocument()
   })
 
-  it('renders call to action buttons', () => {
+  it('renders two call to action buttons', () => {
     const i18n = createTestI18n()
     render(About, {
       global: {
@@ -99,8 +117,9 @@ describe('About.vue', () => {
       }
     })
     expect(screen.getByRole('link', { name: /View professional impact/ })).toHaveAttribute('href', '#impact')
-    expect(screen.getByRole('link', { name: /View shipped products/ })).toHaveAttribute('href', '#portfolio')
-    expect(screen.getByRole('link', { name: /Download Resume/ })).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
+    expect(screen.getByRole('link', { name: /Let's talk/ })).toHaveAttribute('href', 'mailto:wilbertopachecob@gmail.com')
+    expect(screen.queryByRole('link', { name: /View shipped products/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Download Resume/ })).not.toBeInTheDocument()
   })
 
   it('has proper accessibility attributes', () => {

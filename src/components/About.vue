@@ -1,6 +1,16 @@
 <template>
   <section class="hero" role="banner" aria-labelledby="hero-title">
     <div class="hero-content">
+      <img
+        class="hero-avatar"
+        src="@/assets/img/profile.png"
+        :alt="$t('hero.profileAlt')"
+        width="128"
+        height="128"
+        loading="eager"
+        decoding="async"
+      />
+
       <!-- Hero Title - Full name in H1 for SEO (Wilberto Pacheco Batista) -->
       <h1 class="hero-title" id="hero-title" itemprop="name">
         {{ $t('hero.title') }}
@@ -14,19 +24,6 @@
       <p class="hero-description">
         {{ $t('hero.description') }}
       </p>
-      
-      <!-- Contact Information -->
-      <div class="contact-info" role="region" aria-labelledby="contact-heading">
-        <h3 id="contact-heading" class="sr-only">Contact Information</h3>
-        <div class="contact-item">
-          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
-          <a href="mailto:wilbertopachecob@gmail.com" aria-label="Send email to wilbertopachecob@gmail.com">wilbertopachecob@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <font-awesome-icon :icon="['fas', 'map-marker-alt']" aria-hidden="true" />
-          <span>Broken Arrow, OK</span>
-        </div>
-      </div>
       
       <!-- Social Links -->
       <div class="social-links" role="region" aria-labelledby="social-heading">
@@ -70,20 +67,13 @@
           <font-awesome-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
           {{ $t('hero.viewImpact') }}
         </a>
-        <a href="#portfolio" class="btn btn-secondary" :aria-label="$t('hero.viewProducts')">
-          <font-awesome-icon :icon="['fas', 'folder-open']" aria-hidden="true" />
-          {{ $t('hero.viewProducts') }}
-        </a>
         <a
-          :href="resumeUrl"
-          class="btn btn-outline"
-          :download="resumeFilename"
-          :aria-label="$t('hero.downloadResume')"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="mailto:wilbertopachecob@gmail.com"
+          class="btn btn-secondary"
+          :aria-label="$t('contact.letsTalk')"
         >
-          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
-          {{ $t('hero.downloadResume') }}
+          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
+          {{ $t('contact.letsTalk') }}
         </a>
       </div>
     </div>
@@ -91,18 +81,8 @@
 </template>
 
 <script>
-import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
-
 export default {
   name: "About",
-  computed: {
-    resumeFilename() {
-      return RESUME_FILENAME
-    },
-    resumeUrl() {
-      return getPublicAssetUrl(RESUME_FILENAME)
-    },
-  },
 };
 </script>
 
@@ -129,6 +109,17 @@ export default {
 .hero-content {
   position: relative;
   z-index: 1;
+}
+
+.hero-avatar {
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto var(--space-xl);
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
 }
 
 .hero-title {
@@ -160,39 +151,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-}
-
-/* Contact Information */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  margin-bottom: var(--space-2xl);
-  align-items: center;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  color: var(--text-secondary);
-  font-size: 1rem;
-}
-
-.contact-item svg {
-  color: var(--primary-color);
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.contact-item a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.contact-item a:hover {
-  color: var(--primary-color);
 }
 
 /* Social Links Enhancement */
@@ -276,32 +234,10 @@ export default {
   border-width: 2px;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-}
-
-.btn-outline:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary-color);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero {
     padding: var(--space-2xl) 0;
-  }
-  
-  .contact-info {
-    gap: var(--space-sm);
-  }
-  
-  .contact-item {
-    font-size: 0.9rem;
   }
   
   .hero-actions {
@@ -336,12 +272,6 @@ export default {
   
   .hero-description {
     font-size: 1rem;
-  }
-  
-  .contact-item {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-sm);
   }
 }
 </style>

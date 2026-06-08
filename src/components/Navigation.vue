@@ -24,7 +24,7 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav" role="menubar">
         <li
-          v-for="item in navItems"
+          v-for="item in primaryNavItems"
           :key="item.id"
           class="nav-item"
           role="none"
@@ -37,7 +37,7 @@
             :aria-label="$t('nav.' + item.id)"
             @click="scrollToSection(item.id)"
           >
-            {{ $t('nav.' + item.id) }}
+            {{ navLabel(item.id) }}
           </a>
         </li>
       </ul>
@@ -117,6 +117,21 @@
               <span class="mm-label">{{ $t('nav.' + item.id) }}</span>
               <span class="mm-chevron" aria-hidden="true">›</span>
             </a>
+            <a
+              :href="resumeUrl"
+              class="mm-link mm-resume-link"
+              :download="resumeFilename"
+              :aria-label="$t('hero.downloadResume')"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="closeMobileMenu"
+            >
+              <span class="mm-icon" aria-hidden="true">
+                <font-awesome-icon :icon="['fas', 'download']" />
+              </span>
+              <span class="mm-label">{{ $t('hero.downloadResume') }}</span>
+              <span class="mm-chevron" aria-hidden="true">›</span>
+            </a>
           </nav>
         </aside>
       </Transition>
@@ -126,12 +141,24 @@
 
 <script>
 import LanguageToggle from './LanguageToggle.vue'
-import { NAV_ITEMS, SECTION_IDS } from '@/config/sections'
+import { NAV_ITEMS, PRIMARY_NAV_IDS, SECTION_IDS } from '@/config/sections'
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 
 export default {
   name: "Navigation",
   components: {
     LanguageToggle
+  },
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+    primaryNavItems() {
+      return NAV_ITEMS.filter((item) => PRIMARY_NAV_IDS.includes(item.id))
+    },
   },
   data() {
     return {
@@ -187,6 +214,11 @@ export default {
     }
   },
   methods: {
+    navLabel(itemId) {
+      const shortKey = `navShort.${itemId}`
+      return this.$te(shortKey) ? this.$t(shortKey) : this.$t(`nav.${itemId}`)
+    },
+
     getInitialDarkMode() {
       const savedTheme = localStorage.getItem('theme')
       if (savedTheme) return savedTheme === 'dark'
@@ -397,7 +429,8 @@ export default {
 .navbar-controls {
   display: flex !important;
   align-items: center !important;
-  gap: var(--space-sm) !important;
+  gap: var(--space-xs) !important;
+  flex-shrink: 0 !important;
 }
 
 .navbar-brand {
@@ -421,10 +454,13 @@ export default {
   display: flex !important;
   list-style: none !important;
   margin: 0 !important;
-  padding: 0 !important;
-  gap: var(--space-lg) !important;
+  padding: 0 var(--space-md) !important;
+  gap: var(--space-md) !important;
   align-items: center !important;
   flex-direction: row !important;
+  flex: 1 !important;
+  justify-content: center !important;
+  min-width: 0 !important;
 }
 
 .nav-item {
@@ -437,7 +473,7 @@ export default {
   color: var(--text-secondary) !important;
   text-decoration: none !important;
   font-weight: 500 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.875rem !important;
   transition: color var(--transition-fast) !important;
   position: relative !important;
   padding: var(--space-sm) 0 !important;
@@ -496,7 +532,6 @@ export default {
   color: var(--text-secondary) !important;
   cursor: pointer !important;
   transition: all var(--transition-normal) !important;
-  margin-left: var(--radius-lg) !important;
 }
 
 [data-theme="dark"] .theme-toggle {
@@ -732,13 +767,19 @@ export default {
 
 
 /* Responsive Design */
+@media (max-width: 992px) {
+  .navbar-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     height: 56px !important;
-  }
-  
-  .navbar-nav {
-    display: none !important;
   }
   
   .language-toggle {
@@ -746,13 +787,9 @@ export default {
   }
   
   .theme-toggle {
-    margin-left: var(--space-sm) !important;
+    margin-left: 0 !important;
     width: 32px !important;
     height: 32px !important;
-  }
-  
-  .mobile-menu-toggle {
-    display: flex !important;
   }
   
   .navbar-container {
