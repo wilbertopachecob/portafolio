@@ -686,6 +686,12 @@ a:focus-visible {
   }
 }
 
+@media (max-width: 540px) {
+  .hero {
+    padding: 1.5rem 0 0;
+  }
+}
+
 /* Utility Classes */
 .text-center { text-align: center; }
 .text-left { text-align: left; }

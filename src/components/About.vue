@@ -309,6 +309,27 @@ export default {
 }
 
 @media (max-width: 540px) {
+  .hero-portrait {
+    max-width: 240px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-avatar {
+    height: min(38vh, 260px);
+    object-position: center 22%;
+  }
+
+  .portrait-tag {
+    display: none;
+  }
+
+  .portrait-rule {
+    top: -12px;
+    right: -12px;
+    width: 48px;
+    height: 48px;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
