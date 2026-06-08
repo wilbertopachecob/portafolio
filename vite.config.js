@@ -6,6 +6,18 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/portafolio/',
+  // Define Vue feature flags so they resolve during the vite-ssg server render
+  // (esbuild inlines these, avoiding "__VUE_PROD_DEVTOOLS__ is not defined").
+  define: {
+    __VUE_OPTIONS_API__: 'true',
+    __VUE_PROD_DEVTOOLS__: 'false',
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false',
+  },
+  // Bundle vue-i18n into the server render so the Vue feature-flag defines above
+  // are inlined; otherwise it stays externalized and references them at runtime.
+  ssr: {
+    noExternal: ['vue-i18n'],
+  },
   plugins: [
     vue(),
     // Inline, tree-shaken SVG icons (replaces the @fortawesome runtime).

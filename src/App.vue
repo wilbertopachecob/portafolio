@@ -47,6 +47,7 @@
 <script>
 import Navigation from './components/Navigation.vue'
 import { getSectionClasses, PAGE_SECTIONS } from './config/sections'
+import { resolveClientLocale } from './i18n'
 
 export default {
   name: 'App',
@@ -60,11 +61,20 @@ export default {
     }
   },
   mounted() {
+    // The app is prerendered/hydrated in the default locale; switch to the
+    // visitor's preferred locale only after hydration to avoid markup mismatch.
+    this.applyClientLocale()
     this.syncDocumentLanguage()
     this.updateDocumentTitle()
   },
   methods: {
     getSectionClasses,
+    applyClientLocale() {
+      const locale = resolveClientLocale()
+      if (locale !== this.$i18n.locale) {
+        this.$i18n.locale = locale
+      }
+    },
     syncDocumentLanguage() {
       document.documentElement.lang = this.$i18n.locale
     },

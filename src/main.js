@@ -1,5 +1,6 @@
-// Main application entry point
-import { createApp } from 'vue'
+// Main application entry point (vite-ssg single-page: static HTML is rendered
+// at build time, then hydrated on the client).
+import { ViteSSG } from 'vite-ssg/single-page'
 import App from './App.vue'
 
 // Import i18n configuration
@@ -12,61 +13,66 @@ import { deferWhenIdle } from './utils/defer'
 // Inline, tree-shaken SVG icon wrapper (replaces the @fortawesome runtime)
 import AppIcon from './components/AppIcon.vue'
 
-// Create and configure Vue app
-const app = createApp(App)
+export const createApp = ViteSSG(App, ({ app, isClient }) => {
+  app.use(i18n)
+  app.component('app-icon', AppIcon)
 
-// Use i18n
-app.use(i18n)
+  // Everything below touches browser APIs and only runs in the client.
+  if (isClient) {
+    setupServiceWorker()
+  }
+})
 
-// Register the inline SVG icon component globally
-app.component('app-icon', AppIcon)
+/**
+ * Registers the service worker in production and unregisters stale workers in
+ * development. Browser-only; never executed during SSR/prerender.
+ */
+function setupServiceWorker() {
+  if (!('serviceWorker' in navigator)) {
+    return
+  }
 
-// Mount the application
-app.mount('#app')
+  if (import.meta.env.PROD) {
+    const registerServiceWorker = () => {
+      const { PROD_PATH: swPath, PROD_SCOPE: swScope } = APP_CONFIG.SERVICE_WORKER
+      navigator.serviceWorker.register(swPath, { scope: swScope })
+        .then((registration) => {
+          console.log('Service Worker registered successfully:', registration.scope)
 
-// Register Service Worker for offline functionality
-// Only register in production to avoid interfering with Vite's dev server
-// Defer registration using requestIdleCallback to avoid blocking main thread
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  const registerServiceWorker = () => {
-    const { PROD_PATH: swPath, PROD_SCOPE: swScope } = APP_CONFIG.SERVICE_WORKER
-    navigator.serviceWorker.register(swPath, { scope: swScope })
-      .then((registration) => {
-        console.log('Service Worker registered successfully:', registration.scope)
-
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              if (confirm('New version available! Refresh to update?')) {
-                window.location.reload()
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                if (confirm('New version available! Refresh to update?')) {
+                  window.location.reload()
+                }
               }
-            }
+            })
           })
         })
-      })
-      .catch((error) => {
-        console.log('Service Worker registration failed:', error)
-      })
-  }
-
-  window.addEventListener('load', () => {
-    deferWhenIdle(registerServiceWorker, 2000)
-  })
-
-  navigator.serviceWorker.addEventListener('message', (event) => {
-    console.log('Message from service worker:', event.data)
-  })
-} else if ('serviceWorker' in navigator && import.meta.env.DEV) {
-  const unregisterServiceWorkers = () => {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      for (const registration of registrations) {
-        registration.unregister().then(() => {
-          console.log('Service Worker unregistered for development mode')
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error)
         })
-      }
-    })
-  }
+    }
 
-  deferWhenIdle(unregisterServiceWorkers, 1000)
+    window.addEventListener('load', () => {
+      deferWhenIdle(registerServiceWorker, 2000)
+    })
+
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      console.log('Message from service worker:', event.data)
+    })
+  } else if (import.meta.env.DEV) {
+    const unregisterServiceWorkers = () => {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister().then(() => {
+            console.log('Service Worker unregistered for development mode')
+          })
+        }
+      })
+    }
+
+    deferWhenIdle(unregisterServiceWorkers, 1000)
+  }
 }
