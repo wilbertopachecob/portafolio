@@ -2,12 +2,13 @@
   "nav": {
     "about": "Inicio",
     "experience": "Experiencia",
-    "skills": "Capacidades",
+    "skills": "Capacidades técnicas",
     "portfolio": "Productos",
     "education": "Educación",
     "languages": "Idiomas",
     "certifications": "Certificaciones",
     "impact": "Impacto",
+    "howIWork": "Cómo trabajo",
     "credentials": "Credenciales",
     "contact": "Contacto"
   },
@@ -28,8 +29,8 @@
       "subtitle": "Roles donde lideré modernización, producto y entrega full stack"
     },
     "skills": {
-      "title": "Capacidades",
-      "subtitle": "Problemas técnicos y de producto que puedo resolver con criterio senior"
+      "title": "Capacidades técnicas",
+      "subtitle": "Capacidades curadas para construir, modernizar y operar productos con criterio senior"
     },
     "portfolio": {
       "title": "Productos",
@@ -68,12 +69,10 @@
     "stack": "Stack"
   },
   "skills": {
-    "programmingLanguages": "Lenguajes de Programación",
-    "frameworksLibraries": "Frameworks y Librerías",
-    "databasesTools": "Bases de Datos y Herramientas",
-    "cloudDevops": "Cloud y DevOps",
-    "contentManagement": "Gestión de Contenido",
-    "developmentTools": "Herramientas de Desarrollo"
+    "productEngineering": "Ingeniería de producto",
+    "modernizationArchitecture": "Modernización y arquitectura",
+    "platformData": "Plataforma y datos",
+    "cloudOperations": "Cloud y operación"
   },
   "languages": {
     "spanish": "Español",
@@ -165,8 +164,6 @@
           "React",
           "Vue.js",
           "Go",
-          "Redis",
-          "Elasticsearch",
           "Amplitude"
         ],
         "responsibilities": [
@@ -230,8 +227,7 @@
           "Laravel",
           "PHP",
           "Google Charts",
-          "Highcharts",
-          "jQuery"
+          "i18n"
         ],
         "responsibilities": [
           "Lideré la conversión de porciones significativas de dos plataformas principales de PHP (Laravel) a componentes Vue.js, resultando en velocidades de carga mejoradas.",
@@ -303,10 +299,9 @@
         "tags": [
           "React Native",
           "Expo",
-          "iOS",
-          "Android",
           "TypeScript",
-          "Supabase"
+          "Supabase",
+          "RevenueCat"
         ],
         "screenshots": [
           {
@@ -342,7 +337,6 @@
         "tags": [
           "Next.js",
           "React",
-          "Vue.js",
           "Escritura Técnica",
           "i18n"
         ],
@@ -358,7 +352,7 @@
         "url": "https://micalpacheco.com",
         "featured": false,
         "type": "landing",
-        "description": "Landing page profesional para una enfermera psiquiátrica certificada en Broken Arrow, OK, enfocada en claridad, confianza y presencia local.",
+        "description": "Landing page profesional para una enfermera psiquiátrica certificada en Broken Arrow, OK, enfocada en confianza, claridad de servicios y presencia local.",
         "highlights": [],
         "tags": [
           "Personal",
@@ -370,7 +364,7 @@
         "url": "https://paint.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "Experimento de dibujo en Canvas API para explorar interacciones táctiles simples, controles grandes y respuesta inmediata en navegador.",
+        "description": "Herramienta de dibujo en Canvas API para probar interacciones táctiles simples, controles accesibles y respuesta inmediata en navegador.",
         "highlights": [],
         "tags": [
           "Canvas API",
@@ -382,7 +376,7 @@
         "url": "https://tictactoe.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "Tres en raya clásico, simple y responsive, construido como ejercicio de reglas de juego, estado de UI e interacción rápida.",
+        "description": "Juego responsive de tres en raya construido para practicar reglas de estado, feedback inmediato y una interacción clara en pantallas pequeñas.",
         "highlights": [],
         "tags": [
           "JavaScript",
@@ -394,7 +388,7 @@
         "url": "https://weather-ai.wilbertopachecob.dev",
         "featured": false,
         "type": "web",
-        "description": "App del clima con IA integrada para explorar cómo una capa conversacional puede hacer más útil una consulta cotidiana.",
+        "description": "App del clima con IA integrada para explorar cómo una capa conversacional puede convertir una consulta cotidiana en una recomendación más útil.",
         "highlights": [],
         "tags": [
           "IA",
@@ -407,7 +401,7 @@
       {
         "issuer": "Amazon Web Services (AWS)",
         "title": "AWS Certified Cloud Practitioner",
-        "date": "14/12/2020",
+        "date": "Diciembre 2020",
         "link": "https://www.youracclaim.com/users/wilberto-pacheco-batista",
         "description": "Los ganadores de esta certificación tienen una comprensión fundamental de los servicios de TI y sus usos en la Nube AWS. Demostraron fluidez en la nube y conocimiento fundamental de AWS. Los propietarios de insignias pueden identificar servicios esenciales de AWS necesarios para configurar proyectos enfocados en AWS.",
         "skills": [
@@ -416,12 +410,12 @@
           "Plataforma en la Nube",
           "Servicios en la Nube"
         ],
-        "conciseDescription": "Base formal para comprender servicios cloud, costos, seguridad compartida y arquitectura inicial en AWS."
+        "conciseDescription": "Base formal para evaluar servicios cloud, costos, seguridad compartida y decisiones iniciales de arquitectura en AWS."
       },
       {
         "issuer": "Centro para el Desarrollo de Computación Avanzada",
         "title": "Programa de Entrenamiento Especializado en Tecnología de Diseño Multimedia y Web",
-        "date": "10/6/2016",
+        "date": "Junio 2016",
         "link": "https://www.cdac.in/",
         "certificateNumber": "Certificado No. CDAC(M)/16-17/ITEC-MWDT/7725",
         "description": "Este fue un programa intensivo de 3 meses en el Centro para el Desarrollo de Computación Avanzada en Mohali, Chandigarh, India para dominar diferentes herramientas para crear multimedia como:",
@@ -431,7 +425,7 @@
           "Computación Avanzada",
           "Medios Digitales"
         ],
-        "conciseDescription": "Formación internacional temprana en diseño multimedia y web que conectó ingeniería con experiencia visual."
+        "conciseDescription": "Formación internacional en diseño multimedia y web que conectó ingeniería, experiencia visual y comunicación digital."
       }
     ],
     "impactHighlights": [

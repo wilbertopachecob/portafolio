@@ -18,7 +18,8 @@ const createTestI18n = (locale = 'en') => {
           impact: 'Impact',
           experience: 'Experience',
           portfolio: 'Products',
-          skills: 'Capabilities',
+          skills: 'Technical capabilities',
+          howIWork: 'How I work',
           credentials: 'Credentials',
           contact: 'Contact',
           education: 'Education',
@@ -39,7 +40,8 @@ const createTestI18n = (locale = 'en') => {
           impact: 'Impacto',
           experience: 'Experiencia',
           portfolio: 'Productos',
-          skills: 'Capacidades',
+          skills: 'Capacidades técnicas',
+          howIWork: 'Cómo trabajo',
           credentials: 'Credenciales',
           contact: 'Contacto',
           education: 'Educación',
@@ -113,7 +115,8 @@ describe('Navigation.vue', () => {
       expect(screen.getAllByText('Impact').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Experience').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Products').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Capabilities').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Technical capabilities').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('How I work').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Credentials').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Contact').length).toBeGreaterThan(0)
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
@@ -286,6 +289,23 @@ describe('Navigation.vue', () => {
       const drawerLinks = document.querySelectorAll('.mm-link')
       expect(drawerLinks).toHaveLength(NAV_ITEMS.length)
     })
+
+    it('keeps drawer links ordered around impact and products first', async () => {
+      renderNavigation()
+      await fireEvent.click(getMobileToggle())
+
+      const drawerLabels = [...document.querySelectorAll('.mm-label')].map((link) => link.textContent)
+      expect(drawerLabels).toEqual([
+        'About',
+        'Impact',
+        'Products',
+        'Experience',
+        'Technical capabilities',
+        'How I work',
+        'Credentials',
+        'Contact',
+      ])
+    })
   })
 
   describe('scroll and active section', () => {
@@ -303,7 +323,7 @@ describe('Navigation.vue', () => {
     it('updates the active section based on scroll position', async () => {
       renderNavigation()
 
-      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1050 })
+      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1550 })
       window.dispatchEvent(new Event('scroll'))
 
       await vi.waitFor(() => {
@@ -311,14 +331,14 @@ describe('Navigation.vue', () => {
       })
     })
 
-    it('maps non-nav howIWork section to the capabilities nav item', async () => {
+    it('updates the active nav item for howIWork', async () => {
       renderNavigation()
 
       Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 2400 })
       window.dispatchEvent(new Event('scroll'))
 
       await vi.waitFor(() => {
-        expect(getDesktopNavLink('skills')).toHaveClass('active')
+        expect(getDesktopNavLink('howIWork')).toHaveClass('active')
       })
     })
 
@@ -366,7 +386,7 @@ describe('Navigation.vue', () => {
 
     it('recalculates section positions on resize', async () => {
       vi.useFakeTimers()
-      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1050 })
+      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1550 })
 
       const wrapper = mount(Navigation, {
         global: { plugins: [createTestI18n()] },
@@ -380,7 +400,7 @@ describe('Navigation.vue', () => {
 
       expect(wrapper.vm.activeSection).toBe('experience')
       expect(wrapper.vm.sectionPositions.experience).toEqual({
-        top: 1000,
+        top: 1500,
         height: 400,
       })
     })

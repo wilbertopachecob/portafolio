@@ -20,23 +20,29 @@ const createTestI18n = (locale = 'en') => {
     locale,
     messages: {
       en: {
+        sections: {
+          skills: {
+            title: 'Technical capabilities',
+          },
+        },
         skills: {
-          programmingLanguages: 'Programming Languages',
-          frameworksLibraries: 'Frameworks & Libraries',
-          databasesTools: 'Databases & Tools',
-          cloudDevops: 'Cloud & DevOps',
-          contentManagement: 'Content Management',
-          developmentTools: 'Development Tools'
+          productEngineering: 'Product engineering',
+          modernizationArchitecture: 'Modernization and architecture',
+          platformData: 'Platform and data',
+          cloudOperations: 'Cloud and operations',
         }
       },
       es: {
+        sections: {
+          skills: {
+            title: 'Capacidades técnicas',
+          },
+        },
         skills: {
-          programmingLanguages: 'Lenguajes de Programación',
-          frameworksLibraries: 'Frameworks y Librerías',
-          databasesTools: 'Bases de Datos y Herramientas',
-          cloudDevops: 'Cloud y DevOps',
-          contentManagement: 'Gestión de Contenido',
-          developmentTools: 'Herramientas de Desarrollo'
+          productEngineering: 'Ingeniería de producto',
+          modernizationArchitecture: 'Modernización y arquitectura',
+          platformData: 'Plataforma y datos',
+          cloudOperations: 'Cloud y operación',
         }
       }
     }
@@ -51,7 +57,7 @@ describe('Skills.vue', () => {
         plugins: [i18n]
       }
     })
-    const section = screen.getByRole('region', { name: /technical skills/i })
+    const section = screen.getByRole('region', { name: /technical capabilities/i })
     expect(section).toBeInTheDocument()
   })
 
@@ -63,7 +69,7 @@ describe('Skills.vue', () => {
       }
     })
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByText(/Technical Skills/)).toBeInTheDocument()
+    expect(screen.getByText(/Technical capabilities/)).toBeInTheDocument()
   })
 
   it('renders skills container', () => {
@@ -73,7 +79,7 @@ describe('Skills.vue', () => {
         plugins: [i18n]
       }
     })
-    const container = screen.getByRole('region', { name: /technical skills/i })
+    const container = screen.getByRole('region', { name: /technical capabilities/i })
     expect(container).toBeInTheDocument()
     expect(container).toHaveClass('skills-container')
   })
@@ -89,34 +95,34 @@ describe('Skills.vue', () => {
     expect(skillCategories.length).toBeGreaterThan(1) // At least 2 categories
   })
 
-  it('renders programming languages category', () => {
+  it('renders product engineering category', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Programming Languages/)).toBeInTheDocument()
+    expect(screen.getByText(/Product engineering/)).toBeInTheDocument()
   })
 
-  it('renders frameworks category', () => {
+  it('renders modernization category', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Frameworks & Libraries/)).toBeInTheDocument()
+    expect(screen.getByText(/Modernization and architecture/)).toBeInTheDocument()
   })
 
-  it('renders databases category', () => {
+  it('renders platform category', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Databases & Tools/)).toBeInTheDocument()
+    expect(screen.getByText(/Platform and data/)).toBeInTheDocument()
   })
 
   it('renders cloud category', () => {
@@ -126,7 +132,7 @@ describe('Skills.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Cloud & DevOps/)).toBeInTheDocument()
+    expect(screen.getByText(/Cloud and operations/)).toBeInTheDocument()
   })
 
   it('renders skill items', () => {
@@ -148,7 +154,7 @@ describe('Skills.vue', () => {
       }
     })
     // Look for common technology names
-    const techNames = screen.getAllByText(/JavaScript|Vue\.js|React|Node\.js|MySQL|AWS/i)
+    const techNames = screen.getAllByText(/TypeScript|Vue\.js|React|Node\.js|AWS/i)
     expect(techNames.length).toBeGreaterThan(0)
   })
 
@@ -191,39 +197,39 @@ describe('Skills.vue', () => {
     expect(icons.length).toBeGreaterThan(0)
   })
 
-  it('renders specific programming languages', () => {
+  it('renders specific product engineering capabilities', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText('JavaScript')).toBeInTheDocument()
     expect(screen.getByText('TypeScript')).toBeInTheDocument()
-    expect(screen.getByText('PHP')).toBeInTheDocument()
-  })
-
-  it('renders specific frameworks', () => {
-    const i18n = createTestI18n()
-    render(Skills, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    expect(screen.getByText('Vue.js')).toBeInTheDocument()
     expect(screen.getByText('React')).toBeInTheDocument()
     expect(screen.getByText('Node.js')).toBeInTheDocument()
   })
 
-  it('renders specific databases', () => {
+  it('renders specific modernization capabilities', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText('MySQL')).toBeInTheDocument()
-    expect(screen.getByText('MongoDB')).toBeInTheDocument()
+    expect(screen.getByText('Go')).toBeInTheDocument()
+    expect(screen.getByText('REST APIs')).toBeInTheDocument()
+    expect(screen.getByText('Legacy migrations')).toBeInTheDocument()
+  })
+
+  it('renders specific platform capabilities', () => {
+    const i18n = createTestI18n()
+    render(Skills, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    expect(screen.getByText('Redis')).toBeInTheDocument()
+    expect(screen.getByText('Elasticsearch')).toBeInTheDocument()
   })
 
   it('renders specific cloud services', () => {

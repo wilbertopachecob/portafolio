@@ -230,7 +230,7 @@ export default {
     },
 
     getNavigationSectionId(sectionId) {
-      return this.navItems.some((item) => item.id === sectionId) ? sectionId : 'skills';
+      return this.navItems.some((item) => item.id === sectionId) ? sectionId : 'about';
     },
 
     cacheSectionPositions() {

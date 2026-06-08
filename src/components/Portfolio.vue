@@ -231,15 +231,15 @@ export default {
   padding: var(--space-xl);
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
   min-width: 0;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
 }
 
@@ -348,7 +348,7 @@ export default {
   width: 100%;
   height: auto;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   background: var(--bg-secondary);
 }

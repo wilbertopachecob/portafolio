@@ -11,7 +11,7 @@ vi.mock('@/i18n/content', () => ({
         {
           issuer: 'Amazon Web Services (AWS)',
           title: 'AWS Certified Cloud Practitioner',
-          date: '12/14/2020',
+          date: 'December 2020',
           link: 'https://www.youracclaim.com/users/wilberto-pacheco-batista',
           description: 'Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects.',
           skills: [
@@ -24,7 +24,7 @@ vi.mock('@/i18n/content', () => ({
         {
           issuer: 'Centre for Development of Advanced Computing',
           title: 'Specialized Training Programme in Multimedia and Web Design Technology',
-          date: '6/10/2016',
+          date: 'June 2016',
           link: 'https://www.cdac.in/',
           certificateNumber: 'Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725',
           description: 'This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:',
@@ -43,7 +43,7 @@ vi.mock('@/i18n/content', () => ({
         {
           issuer: 'Amazon Web Services (AWS)',
           title: 'AWS Certified Cloud Practitioner',
-          date: '12/14/2020',
+          date: 'Diciembre 2020',
           link: 'https://www.youracclaim.com/users/wilberto-pacheco-batista',
           description: 'Los titulares de esta certificación tienen una comprensión fundamental de los servicios de TI y sus usos en AWS Cloud. Demostraron fluidez en la nube y conocimiento fundamental de AWS. Los propietarios de insignias pueden identificar servicios esenciales de AWS necesarios para configurar proyectos enfocados en AWS.',
           skills: [
@@ -56,7 +56,7 @@ vi.mock('@/i18n/content', () => ({
         {
           issuer: 'Centre for Development of Advanced Computing',
           title: 'Specialized Training Programme in Multimedia and Web Design Technology',
-          date: '6/10/2016',
+          date: 'Junio 2016',
           link: 'https://www.cdac.in/',
           certificateNumber: 'Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725',
           description: 'Este fue un programa intensivo de 3 meses en el Centre for Development of Advanced Computing en Mohali, Chandigarh, India para dominar diferentes herramientas para crear multimedia como:',
@@ -180,7 +180,7 @@ describe('Certifications.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByText(/Issued: 6\/10\/2016/)).toBeInTheDocument()
+    expect(screen.getByText(/Issued: June 2016/)).toBeInTheDocument()
   })
 
   it('renders certification descriptions', () => {

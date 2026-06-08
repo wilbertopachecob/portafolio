@@ -107,7 +107,7 @@ export default {
   padding: var(--space-xl);
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
 }
 

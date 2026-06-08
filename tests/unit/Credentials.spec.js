@@ -18,7 +18,7 @@ vi.mock('@/i18n/content', () => ({
       {
         issuer: 'Amazon Web Services (AWS)',
         title: 'AWS Certified Cloud Practitioner',
-        date: '14/12/2020',
+        date: 'December 2020',
         link: 'https://www.credly.com/',
         conciseDescription: 'Cloud foundation.',
       },
@@ -66,6 +66,7 @@ describe('Credentials.vue', () => {
     expect(screen.getByText('University of Informatic Sciences')).toBeInTheDocument()
     expect(screen.getByText(/Native Spanish and professional \/ bilingual English/)).toBeInTheDocument()
     expect(screen.getByText('AWS Certified Cloud Practitioner')).toBeInTheDocument()
+    expect(screen.getByText('Issued: December 2020')).toBeInTheDocument()
   })
 
   it('keeps credential links accessible', () => {

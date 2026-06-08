@@ -2,8 +2,8 @@
 export const SECTION_IDS = [
   'about',
   'impact',
-  'experience',
   'portfolio',
+  'experience',
   'skills',
   'howIWork',
   'credentials',
@@ -14,9 +14,10 @@ export const SECTION_IDS = [
 export const NAV_ITEMS = [
   { id: 'about', icon: ['fas', 'user'] },
   { id: 'impact', icon: ['fas', 'chart-line'] },
-  { id: 'experience', icon: ['fas', 'briefcase'] },
   { id: 'portfolio', icon: ['fas', 'folder-open'] },
+  { id: 'experience', icon: ['fas', 'briefcase'] },
   { id: 'skills', icon: ['fas', 'code'] },
+  { id: 'howIWork', icon: ['fas', 'globe'] },
   { id: 'credentials', icon: ['fas', 'certificate'] },
   { id: 'contact', icon: ['fas', 'envelope'] },
 ]

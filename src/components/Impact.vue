@@ -42,15 +42,15 @@ export default {
   padding: var(--space-xl);
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
 }
 
 .impact-card:hover {
   border-color: var(--primary-color);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .impact-metric {
