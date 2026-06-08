@@ -23,6 +23,8 @@ import IconBriefcase from '~icons/fa6-solid/briefcase'
 import IconCalendarDays from '~icons/fa6-solid/calendar-days'
 import IconCertificate from '~icons/fa6-solid/certificate'
 import IconChartLine from '~icons/fa6-solid/chart-line'
+import IconChevronLeft from '~icons/fa6-solid/chevron-left'
+import IconChevronRight from '~icons/fa6-solid/chevron-right'
 import IconCircleCheck from '~icons/fa6-solid/circle-check'
 import IconCircleUp from '~icons/fa6-solid/circle-up'
 import IconCode from '~icons/fa6-solid/code'
@@ -58,6 +60,8 @@ const ICONS = {
   'fas/calendar-alt': IconCalendarDays,
   'fas/certificate': IconCertificate,
   'fas/chart-line': IconChartLine,
+  'fas/chevron-left': IconChevronLeft,
+  'fas/chevron-right': IconChevronRight,
   'fas/check-circle': IconCircleCheck,
   'fas/code': IconCode,
   'fas/database': IconDatabase,

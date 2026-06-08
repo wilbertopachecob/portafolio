@@ -58,47 +58,16 @@
           </ul>
         </div>
 
-        <!-- Screenshots: phone frames for mobile, browser frame otherwise -->
         <div
           v-if="project.screenshots && project.screenshots.length"
           class="case-shots"
-          :aria-label="$t('portfolio.screenshots', { name: project.name })"
         >
-          <template v-if="project.type === 'mobile'">
-            <figure
-              v-for="(screenshot, si) in project.screenshots"
-              :key="si"
-              class="phone"
-            >
-              <img
-                :src="getScreenshotSrc(screenshot.src)"
-                :alt="screenshot.alt"
-                width="360"
-                height="780"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </template>
-          <figure v-else class="browser">
-            <div class="browser-bar" aria-hidden="true">
-              <i></i><i></i><i></i>
-              <span class="url">{{ displayHost(project.url) }}</span>
-            </div>
-            <div
-              class="browser-viewport"
-              :style="browserViewportStyle(project.screenshots[0])"
-            >
-              <img
-                :src="getScreenshotSrc(project.screenshots[0].src)"
-                :alt="project.screenshots[0].alt"
-                :width="project.screenshots[0].width || 1024"
-                :height="project.screenshots[0].height || 822"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </figure>
+          <portfolio-screenshot-gallery
+            :project-name="project.name"
+            :project-type="project.type"
+            :screenshots="getResolvedScreenshots(project.screenshots)"
+            :aria-label="$t('portfolio.screenshots', { name: project.name })"
+          />
         </div>
       </li>
     </ul>
@@ -138,6 +107,7 @@
 
 <script>
 import { getPortfolioProjects } from '@/i18n/content'
+import PortfolioScreenshotGallery from '@/components/PortfolioScreenshotGallery.vue'
 
 const screenshotModules = import.meta.glob('@/assets/img/portfolio/*.{png,jpg,jpeg,webp}', {
   eager: true,
@@ -151,6 +121,9 @@ const screenshotWebpModules = import.meta.glob('@/assets/img/portfolio/*.webp', 
 
 export default {
   name: 'Portfolio',
+  components: {
+    PortfolioScreenshotGallery,
+  },
   data() {
     return {
       // Case fields shown in the 2x2 grid (outcome is rendered separately)
@@ -188,10 +161,11 @@ export default {
       if (match) return match[1]
       return `${import.meta.env.BASE_URL}img/${filename}`
     },
-    browserViewportStyle(screenshot) {
-      const width = screenshot.width || 1024
-      const height = screenshot.height || 822
-      return { '--browser-aspect': `${width} / ${height}` }
+    getResolvedScreenshots(screenshots) {
+      return screenshots.map((screenshot) => ({
+        alt: screenshot.alt,
+        src: this.getScreenshotSrc(screenshot.src),
+      }))
     },
   },
 }
@@ -345,77 +319,6 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 2.5rem 1.5rem;
-  gap: 0.875rem;
-}
-
-.phone {
-  flex: 1 1 0;
-  max-width: 158px;
-  margin: 0;
-  border-radius: 22px;
-  border: 1px solid var(--border-color);
-  background: #000;
-  overflow: hidden;
-  aspect-ratio: 1280 / 2856;
-  box-shadow: var(--shadow-lg);
-}
-
-.phone:nth-child(2) {
-  transform: translateY(-18px);
-}
-
-.phone img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.browser {
-  width: 100%;
-  margin: 0;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  background: var(--bg-primary);
-}
-
-.browser-bar {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--border-light);
-  background: var(--bg-secondary);
-}
-
-.browser-bar i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--border-color);
-  display: block;
-}
-
-.browser-bar .url {
-  margin-left: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-}
-
-.browser-viewport {
-  overflow: hidden;
-  aspect-ratio: var(--browser-aspect, 16 / 10);
-}
-
-.browser-viewport img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
 }
 
 /* Experiments */
@@ -575,10 +478,6 @@ export default {
   .case-shots {
     border-left: 0;
     border-top: 1px solid var(--border-light);
-  }
-
-  .phone {
-    max-width: 140px;
   }
 
   .exp-grid {
