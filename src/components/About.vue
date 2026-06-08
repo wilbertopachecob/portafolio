@@ -3,7 +3,7 @@
     <div class="hero-content">
       <img
         class="hero-avatar"
-        src="@/assets/img/profile.png"
+        src="@/assets/img/profile.webp"
         :alt="$t('hero.profileAlt')"
         width="128"
         height="128"
@@ -28,52 +28,73 @@
       <!-- Social Links -->
       <div class="social-links" role="region" aria-labelledby="social-heading">
         <h3 id="social-heading" class="sr-only">Social Media Links</h3>
-        <a 
+        <a
           href="https://www.linkedin.com/in/wilberto-pacheco-batista/"
           class="social-link"
           title="LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit LinkedIn profile"
+          @click="track('social_click', { network: 'linkedin' })"
         >
-          <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
         </a>
-        <a 
+        <a
           href="https://github.com/wilbertopachecob"
           class="social-link"
           title="GitHub"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit GitHub profile"
+          @click="track('social_click', { network: 'github' })"
         >
-          <font-awesome-icon :icon="['fab', 'github']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'github']" aria-hidden="true" />
         </a>
-        <a 
+        <a
           href="https://twitter.com/PachecoWilberto"
           class="social-link"
           title="X (Twitter)"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit X (Twitter) profile"
+          @click="track('social_click', { network: 'x' })"
         >
-          <font-awesome-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />
         </a>
       </div>
       
       <!-- Call to Action -->
       <div class="hero-actions" role="region" aria-labelledby="actions-heading">
         <h3 id="actions-heading" class="sr-only">Call to Action</h3>
-        <a href="#impact" class="btn btn-primary" :aria-label="$t('hero.viewImpact')">
-          <font-awesome-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
+        <a
+          href="#impact"
+          class="btn btn-primary"
+          :aria-label="$t('hero.viewImpact')"
+          @click="track('cta_view_impact', { location: 'hero' })"
+        >
+          <app-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
           {{ $t('hero.viewImpact') }}
         </a>
         <a
           href="mailto:wilbertopachecob@gmail.com"
           class="btn btn-secondary"
           :aria-label="$t('contact.letsTalk')"
+          @click="track('cta_email', { location: 'hero' })"
         >
-          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'envelope']" aria-hidden="true" />
           {{ $t('contact.letsTalk') }}
+        </a>
+        <a
+          :href="resumeUrl"
+          class="btn btn-outline"
+          :download="resumeFilename"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="$t('hero.downloadResume')"
+          @click="track('cta_cv_download', { location: 'hero' })"
+        >
+          <app-icon :icon="['fas', 'download']" aria-hidden="true" />
+          {{ $t('hero.downloadResume') }}
         </a>
       </div>
     </div>
@@ -81,8 +102,22 @@
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+import { track } from '@/utils/analytics'
+
 export default {
   name: "About",
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+  },
+  methods: {
+    track,
+  },
 };
 </script>
 

@@ -16,8 +16,6 @@ export const SKILL_CATEGORIES = [
     skills: [
       { name: 'React Native', icon: ['fab', 'react'], iconColor: '#61DAFB' },
       { name: 'Expo', icon: ['fas', 'code'], iconColor: '#0f172a' },
-      { name: 'i18n', icon: ['fas', 'globe'], iconColor: '#2563eb' },
-      { name: 'Accessibility', icon: ['fas', 'check-circle'], iconColor: '#64748b' },
     ],
   },
   {

@@ -7,7 +7,7 @@ import Skills from '@/components/Skills.vue'
 vi.mock('@fortawesome/vue-fontawesome', () => ({
   FontAwesomeIcon: {
     name: 'FontAwesomeIcon',
-    template: '<span data-testid="font-awesome-icon"></span>',
+    template: '<span data-testid="app-icon"></span>',
     props: ['icon', 'aria-label', 'aria-hidden'],
   },
 }))
@@ -144,7 +144,7 @@ describe('Skills.vue', () => {
       },
     })
 
-    const icons = screen.getAllByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('app-icon')
     expect(icons.length).toBeGreaterThan(0)
   })
 

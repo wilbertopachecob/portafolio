@@ -22,7 +22,7 @@
               :aria-label="$t('portfolio.visitProject', { name: project.name })"
             >
               <span class="portfolio-card-title-text">{{ project.name }}</span>
-              <font-awesome-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
+              <app-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
             </a>
           </h3>
         </div>
@@ -117,7 +117,7 @@
                 :aria-label="$t('portfolio.visitProject', { name: project.name })"
               >
                 <span class="portfolio-card-title-text">{{ project.name }}</span>
-                <font-awesome-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
+                <app-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
               </a>
             </h3>
           </div>
@@ -138,7 +138,7 @@
     </section>
 
     <p class="portfolio-infra">
-      <font-awesome-icon :icon="['fas', 'server']" aria-hidden="true" />
+      <app-icon :icon="['fas', 'server']" aria-hidden="true" />
       {{ $t('portfolio.infrastructure') }}
     </p>
   </div>

@@ -15,7 +15,7 @@
             :style="{ '--item-delay': `${skillIndex * 0.05}s` }"
           >
             <span class="skill-icon" v-if="skill.icon" aria-hidden="true">
-              <font-awesome-icon
+              <app-icon
                 :icon="skill.icon"
                 :style="{ color: skill.iconColor || 'var(--primary-color)' }"
               />

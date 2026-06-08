@@ -35,11 +35,11 @@ export default {
       return [
         {
           name: this.$t('languages.spanish'),
-          flagImage: this.getFlagImage('spanish_flag.png'),
+          flagImage: this.getFlagImage('spanish_flag.webp'),
         },
         {
           name: this.$t('languages.english'),
-          flagImage: this.getFlagImage('english_flag.png'),
+          flagImage: this.getFlagImage('english_flag.webp'),
         },
       ];
     },

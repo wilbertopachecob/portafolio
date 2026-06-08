@@ -40,7 +40,7 @@
             <div class="degree-title">{{ education.degree }}</div>
             
             <div class="education-period">
-              <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+              <app-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
               <span>{{ $t('education.period') }}: {{ education.period }}</span>
             </div>
           </div>

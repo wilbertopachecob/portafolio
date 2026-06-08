@@ -73,6 +73,11 @@
 <script>
 import { getCredentials } from '@/i18n/content'
 
+const assetModules = import.meta.glob('@/assets/img/*.{jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+})
+
 export default {
   name: 'Credentials',
   computed: {
@@ -82,11 +87,8 @@ export default {
   },
   methods: {
     getAssetImage(filename) {
-      try {
-        return require(`@/assets/img/${filename}`)
-      } catch (error) {
-        return `${import.meta.env.BASE_URL}img/${filename}`
-      }
+      const match = Object.entries(assetModules).find(([path]) => path.endsWith(`/${filename}`))
+      return match ? match[1] : `${import.meta.env.BASE_URL}img/${filename}`
     },
   },
 }

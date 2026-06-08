@@ -1,12 +1,27 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import Icons from 'unplugin-icons/vite'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/portafolio/',
+  // Define Vue feature flags so they resolve during the vite-ssg server render
+  // (esbuild inlines these, avoiding "__VUE_PROD_DEVTOOLS__ is not defined").
+  define: {
+    __VUE_OPTIONS_API__: 'true',
+    __VUE_PROD_DEVTOOLS__: 'false',
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false',
+  },
+  // Bundle vue-i18n into the server render so the Vue feature-flag defines above
+  // are inlined; otherwise it stays externalized and references them at runtime.
+  ssr: {
+    noExternal: ['vue-i18n'],
+  },
   plugins: [
     vue(),
+    // Inline, tree-shaken SVG icons (replaces the @fortawesome runtime).
+    Icons({ compiler: 'vue3', autoInstall: false }),
   ],
   resolve: {
     alias: {
@@ -33,10 +48,6 @@ export default defineConfig({
           // Vendor chunk for Vue
           if (id.includes('node_modules/vue')) {
             return 'vendor';
-          }
-          // FontAwesome chunk
-          if (id.includes('@fortawesome')) {
-            return 'fontawesome';
           }
           // Other node_modules go to vendor
           if (id.includes('node_modules')) {

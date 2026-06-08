@@ -45,7 +45,7 @@
             <div class="certification-title">{{ certification.title }}</div>
             
             <div class="certification-date">
-              <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+              <app-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
               <span>{{ $t('certifications.issued') }}: {{ certification.date }}</span>
             </div>
             
@@ -80,7 +80,7 @@ export default {
       const certificationsData = getCertifications(this.$i18n.locale);
       return certificationsData.map((cert, index) => {
         const badgeImages = [
-          this.getCertificationImage('AWS-CloudPractitioner-2020.004d50ea.png'),
+          this.getCertificationImage('AWS-CloudPractitioner-2020.004d50ea.webp'),
           this.getCertificationImage('ITEC.jpg')
         ];
         return {

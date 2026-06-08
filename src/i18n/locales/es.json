@@ -19,7 +19,7 @@
   "hero": {
     "title": "Wilberto Pacheco",
     "subtitle": "Software Engineer enfocado en producto, modernización y entrega end-to-end",
-    "description": "Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas en health tech, web y mobile. Combino criterio de producto, arquitectura pragmática y ejecución end-to-end para convertir sistemas complejos en experiencias claras, rápidas y mantenibles.",
+    "description": "15+ años convirtiendo sistemas complejos en productos claros, rápidos y mantenibles. Full stack bilingüe en health tech, web y mobile, de la arquitectura al envío.",
     "downloadResume": "Descargar CV",
     "viewImpact": "Ver impacto profesional",
     "viewProducts": "Ver productos construidos",
@@ -317,15 +317,15 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/ciudadanousa-home.png",
+            "src": "portfolio/ciudadanousa-home.webp",
             "alt": "Pantalla de inicio de CiudadanoUSA con progreso de estudio, racha y cuenta regresiva a la entrevista"
           },
           {
-            "src": "portfolio/ciudadanousa-n400.png",
+            "src": "portfolio/ciudadanousa-n400.webp",
             "alt": "Ensayo N-400 con progreso por secciones del formulario de naturalización"
           },
           {
-            "src": "portfolio/ciudadanousa-writing.png",
+            "src": "portfolio/ciudadanousa-writing.webp",
             "alt": "Práctica de escritura en inglés con retroalimentación palabra por palabra y traducción al español"
           }
         ]
@@ -354,7 +354,7 @@
         ],
         "screenshots": [
           {
-            "src": "portfolio/renderlog-home.png",
+            "src": "portfolio/renderlog-home.webp",
             "alt": "Inicio de Renderlog con artículos técnicos recientes en inglés y búsqueda integrada"
           }
         ]
@@ -443,23 +443,23 @@
     "impactHighlights": [
       {
         "metric": "15+ años",
-        "title": "Construyendo software full stack",
-        "description": "Trayectoria desde portales PHP y WordPress hasta productos modernos con Vue, React, Node.js, Go, mobile y cloud."
+        "title": "Full stack en producción",
+        "description": "De portales PHP y WordPress a productos modernos con Vue, React, Node.js, Go, mobile y cloud."
       },
       {
-        "metric": "Lead scope",
-        "title": "Liderazgo técnico en iniciativas enterprise",
-        "description": "Ownership de features estratégicas, seguridad, mentoring, refactors y decisiones de arquitectura en health tech."
+        "metric": "4 ingenieros",
+        "title": "Liderazgo técnico en health tech",
+        "description": "Ownership de features estratégicas, seguridad, refactors y decisiones de arquitectura, con mentoring de equipo."
       },
       {
-        "metric": "Modernización",
-        "title": "Migraciones y reducción de deuda técnica",
-        "description": "Ruby a Go, AngularJS a Vue, Snowplow a Amplitude y reemplazos de capacidades legacy por plataformas internas."
+        "metric": "3 migraciones",
+        "title": "Modernización sin romper el negocio",
+        "description": "Ruby → Go, AngularJS → Vue y Snowplow → Amplitude, reemplazando capacidades legacy por plataformas internas."
       },
       {
-        "metric": "Shipped",
-        "title": "Productos propios en iOS, Android y web",
-        "description": "CiudadanoUSA, Renderlog y proyectos auto-hospedados demuestran ejecución end-to-end más allá del trabajo formal."
+        "metric": "3 productos",
+        "title": "Enviados a iOS, Android y web",
+        "description": "CiudadanoUSA, Renderlog y proyectos auto-hospedados: ejecución end-to-end más allá del trabajo formal."
       }
     ],
     "howIWorkPrinciples": [

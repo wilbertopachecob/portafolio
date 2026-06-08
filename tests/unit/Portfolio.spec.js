@@ -21,11 +21,11 @@ vi.mock('@/i18n/content', () => ({
       tags: ['React Native', 'Supabase'],
       screenshots: [
         {
-          src: 'portfolio/ciudadanousa-home.png',
+          src: 'portfolio/ciudadanousa-home.webp',
           alt: 'CiudadanoUSA home screen with study progress.',
         },
         {
-          src: 'portfolio/ciudadanousa-n400.png',
+          src: 'portfolio/ciudadanousa-n400.webp',
           alt: 'N-400 practice screen.',
         },
       ],
@@ -45,7 +45,7 @@ vi.mock('@/i18n/content', () => ({
       tags: ['Next.js', 'i18n'],
       screenshots: [
         {
-          src: 'portfolio/renderlog-home.png',
+          src: 'portfolio/renderlog-home.webp',
           alt: 'Renderlog home page preview.',
         },
       ],

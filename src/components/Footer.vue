@@ -2,7 +2,7 @@
   <footer class="bg-primary f-container">
     <div class="my-auto w-100">
       <!-- Scroll to top button -->
-      <font-awesome-icon
+      <app-icon
         :icon="['fas', 'arrow-alt-circle-up']"
         class="mt-3 to-top-button bounce"
         @click="scrollToTop"
@@ -20,7 +20,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'download']" aria-hidden="true" />
           {{ $t('hero.downloadResume') }}
         </a>
       </div>

@@ -53,7 +53,7 @@
           role="switch"
           :aria-checked="isDarkMode"
         >
-          <font-awesome-icon 
+          <app-icon 
             :icon="isDarkMode ? ['fas', 'sun'] : ['fas', 'moon']" 
             :aria-hidden="true"
           />
@@ -106,7 +106,7 @@
               @click.prevent="goToSection(item.id)"
             >
               <span class="mm-icon" aria-hidden="true">
-                <font-awesome-icon :icon="item.icon" />
+                <app-icon :icon="item.icon" />
               </span>
               <span class="mm-label">{{ navLabel(item.id) }}</span>
               <span class="mm-chevron" aria-hidden="true">›</span>
@@ -120,7 +120,7 @@
               :download="resumeFilename"
               @click="closeMobileMenu"
             >
-              <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+              <app-icon :icon="['fas', 'download']" aria-hidden="true" />
               {{ $t('hero.downloadResume') }}
             </a>
           </div>
