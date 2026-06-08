@@ -15,9 +15,11 @@ const createTestI18n = (locale = 'en') => {
       en: {
         nav: {
           about: 'About',
+          impact: 'Impact',
           experience: 'Experience',
-          skills: 'Skills',
-          portfolio: 'Portfolio',
+          portfolio: 'Products',
+          skills: 'Capabilities',
+          credentials: 'Credentials',
           education: 'Education',
           languages: 'Languages',
           certifications: 'Certifications'
@@ -33,9 +35,11 @@ const createTestI18n = (locale = 'en') => {
       es: {
         nav: {
           about: 'Acerca de',
+          impact: 'Impacto',
           experience: 'Experiencia',
-          skills: 'Habilidades',
-          portfolio: 'Portafolio',
+          portfolio: 'Productos',
+          skills: 'Capacidades',
+          credentials: 'Credenciales',
           education: 'Educación',
           languages: 'Idiomas',
           certifications: 'Certificaciones'
@@ -104,11 +108,14 @@ describe('Navigation.vue', () => {
     it('renders navigation links', () => {
       renderNavigation()
       expect(screen.getAllByText('About').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Impact').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Experience').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Skills').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Education').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Languages').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Certifications').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Products').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Capabilities').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('Credentials').length).toBeGreaterThan(0)
+      expect(screen.queryByText('Education')).not.toBeInTheDocument()
+      expect(screen.queryByText('Languages')).not.toBeInTheDocument()
+      expect(screen.queryByText('Certifications')).not.toBeInTheDocument()
     })
 
     it('renders theme toggle button', () => {
@@ -293,7 +300,7 @@ describe('Navigation.vue', () => {
     it('updates the active section based on scroll position', async () => {
       renderNavigation()
 
-      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 550 })
+      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1050 })
       window.dispatchEvent(new Event('scroll'))
 
       await vi.waitFor(() => {
@@ -345,7 +352,7 @@ describe('Navigation.vue', () => {
 
     it('recalculates section positions on resize', async () => {
       vi.useFakeTimers()
-      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 550 })
+      Object.defineProperty(window, 'scrollY', { configurable: true, writable: true, value: 1050 })
 
       const wrapper = mount(Navigation, {
         global: { plugins: [createTestI18n()] },
@@ -359,7 +366,7 @@ describe('Navigation.vue', () => {
 
       expect(wrapper.vm.activeSection).toBe('experience')
       expect(wrapper.vm.sectionPositions.experience).toEqual({
-        top: 500,
+        top: 1000,
         height: 400,
       })
     })

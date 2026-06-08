@@ -22,17 +22,44 @@
           </div>
         </div>
         
-        <div class="timeline-description">
+        <p v-if="job.summary" class="timeline-summary">{{ job.summary }}</p>
+
+        <div v-if="job.scopeTags && job.scopeTags.length" class="timeline-tags" role="list" :aria-label="$t('experience.scope')">
+          <span
+            v-for="tag in job.scopeTags"
+            :key="tag"
+            class="timeline-tag"
+            role="listitem"
+          >
+            {{ tag }}
+          </span>
+        </div>
+
+        <div v-if="getDisplayAchievements(job).length" class="timeline-description">
           <ul class="timeline-achievements" role="list" :aria-label="$t('experience.achievements')">
             <li 
-              v-for="(responsibility, respIndex) in job.responsibilities" 
-              :key="respIndex"
+              v-for="(achievement, achievementIndex) in getDisplayAchievements(job)"
+              :key="achievementIndex"
               class="timeline-achievement"
               role="listitem"
             >
-              {{ responsibility }}
+              {{ achievement }}
             </li>
           </ul>
+        </div>
+
+        <div v-if="job.stack && job.stack.length" class="timeline-stack">
+          <span class="timeline-stack-label">{{ $t('experience.stack') }}</span>
+          <div class="timeline-stack-items" role="list" :aria-label="$t('experience.stack')">
+            <span
+              v-for="technology in job.stack"
+              :key="technology"
+              class="timeline-stack-item"
+              role="listitem"
+            >
+              {{ technology }}
+            </span>
+          </div>
         </div>
       </div>
       </li>
@@ -48,6 +75,13 @@ export default {
   computed: {
     workExperience() {
       return getWorkExperience(this.$i18n.locale);
+    },
+  },
+  methods: {
+    getDisplayAchievements(job) {
+      return (job.achievements && job.achievements.length)
+        ? job.achievements.slice(0, 3)
+        : (job.responsibilities || []).slice(0, 3);
     },
   },
 };
@@ -157,6 +191,28 @@ export default {
   line-height: 1.6;
 }
 
+.timeline-summary {
+  margin: 0 0 var(--space-lg);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.timeline-tag {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  color: var(--primary-color);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
 .timeline-achievements {
   list-style: none;
   padding: 0;
@@ -183,6 +239,40 @@ export default {
 
 .timeline-achievement:last-child {
   margin-bottom: 0;
+}
+
+.timeline-stack {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-light);
+}
+
+.timeline-stack-label {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.timeline-stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.timeline-stack-item {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
 }
 
 /* Responsive Design */
@@ -222,6 +312,11 @@ export default {
   .timeline-location {
     margin-left: 0;
   }
+
+  .timeline-stack {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
 }
 
 @media (max-width: 480px) {
@@ -239,4 +334,3 @@ export default {
   }
 }
 </style>
-

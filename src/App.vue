@@ -45,21 +45,19 @@
 import { markRaw } from 'vue'
 import Navigation from './components/Navigation.vue'
 import About from './components/About.vue'
+import Impact from './components/Impact.vue'
 import Experience from './components/Experience.vue'
 import Skills from './components/Skills.vue'
-import Education from './components/Education.vue'
-import Languages from './components/Languages.vue'
-import Certifications from './components/Certifications.vue'
 import Portfolio from './components/Portfolio.vue'
+import Credentials from './components/Credentials.vue'
 
 const PAGE_SECTIONS = [
   { id: 'about', component: markRaw(About), showHeader: false },
+  { id: 'impact', component: markRaw(Impact), showHeader: true },
   { id: 'experience', component: markRaw(Experience), showHeader: true },
-  { id: 'skills', component: markRaw(Skills), showHeader: true },
   { id: 'portfolio', component: markRaw(Portfolio), showHeader: true },
-  { id: 'education', component: markRaw(Education), showHeader: true },
-  { id: 'languages', component: markRaw(Languages), showHeader: true },
-  { id: 'certifications', component: markRaw(Certifications), showHeader: true },
+  { id: 'skills', component: markRaw(Skills), showHeader: true },
+  { id: 'credentials', component: markRaw(Credentials), showHeader: true },
 ]
 
 export default {
@@ -67,12 +65,11 @@ export default {
   components: {
     Navigation,
     About,
+    Impact,
     Experience,
     Skills,
-    Education,
-    Languages,
-    Certifications,
     Portfolio,
+    Credentials,
   },
   data() {
     return {
@@ -87,8 +84,8 @@ export default {
     updateDocumentTitle() {
       // Keep full name + role for SEO when people search "Wilberto Pacheco Batista"
       const title = this.$i18n.locale === 'es' 
-        ? 'Wilberto Pacheco Batista - Ingeniero de Software y Desarrollador Full Stack'
-        : 'Wilberto Pacheco Batista - Software Engineer & Full Stack Developer'
+        ? 'Wilberto Pacheco Batista - Software Engineer de Producto y Modernización'
+        : 'Wilberto Pacheco Batista - Product-Minded Software Engineer'
       document.title = title
     }
   },

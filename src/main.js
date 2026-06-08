@@ -33,7 +33,8 @@ import {
   faCertificate,
   faDownload,
   faArrowUpRightFromSquare,
-  faFolderOpen
+  faFolderOpen,
+  faChartLine
 } from '@fortawesome/free-solid-svg-icons'
 import { 
   faLinkedin, 
@@ -81,6 +82,7 @@ const solidIcons = [
   faDownload,
   faArrowUpRightFromSquare,
   faFolderOpen,
+  faChartLine,
 ]
 
 const brandIcons = [
