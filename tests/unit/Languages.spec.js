@@ -3,10 +3,6 @@ import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import Languages from '@/components/Languages.vue'
 
-// Mock require for image assets
-vi.mock('@/assets/img/english_flag.webp', () => ({ default: 'english-flag-mock' }))
-vi.mock('@/assets/img/spanish_flag.webp', () => ({ default: 'spanish-flag-mock' }))
-
 // Mock require function globally for test environment
 const originalRequire = require
 vi.stubGlobal('require', (path) => {
