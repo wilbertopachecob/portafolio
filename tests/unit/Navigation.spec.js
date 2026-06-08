@@ -7,6 +7,7 @@ import Navigation from '@/components/Navigation.vue'
 import { PRIMARY_NAV_IDS } from '@/config/sections'
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 import { setupNavigationDom, teardownNavigationDom } from './helpers/navigationDom'
+import { Theme, THEME_ATTRIBUTE, THEME_STORAGE_KEY } from '@/config/theme'
 
 const createTestI18n = (locale = 'en') => {
   return createI18n({
@@ -95,7 +96,7 @@ describe('Navigation.vue', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     localStorage.getItem.mockImplementation(() => null)
-    document.documentElement.removeAttribute('data-theme')
+    document.documentElement.removeAttribute(THEME_ATTRIBUTE)
     document.body.style.overflow = ''
     setupNavigationDom()
   })
@@ -106,7 +107,7 @@ describe('Navigation.vue', () => {
     })
     teardownNavigationDom()
     document.body.style.overflow = ''
-    document.documentElement.removeAttribute('data-theme')
+    document.documentElement.removeAttribute(THEME_ATTRIBUTE)
     vi.useRealTimers()
     vi.unstubAllGlobals()
   })
@@ -188,19 +189,21 @@ describe('Navigation.vue', () => {
   describe('theme', () => {
     it('initializes light mode by default', () => {
       renderNavigation()
-      expect(document.documentElement.getAttribute('data-theme')).toBe('light')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.LIGHT)
       expect(screen.getByRole('switch', { name: /Switch to Dark Mode/ })).toBeInTheDocument()
     })
 
     it('initializes dark mode from localStorage', async () => {
-      localStorage.getItem.mockImplementation((key) => (key === 'theme' ? 'dark' : null))
+      localStorage.getItem.mockImplementation((key) =>
+        key === THEME_STORAGE_KEY ? Theme.DARK : null,
+      )
       const wrapper = mount(Navigation, {
         global: { plugins: [createTestI18n()] },
       })
       await flushPromises()
 
       expect(wrapper.vm.isDarkMode).toBe(true)
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.DARK)
       expect(wrapper.find('.theme-toggle').attributes('aria-label')).toBe('Switch to Light Mode')
     })
 
@@ -210,14 +213,14 @@ describe('Navigation.vue', () => {
 
       await fireEvent.click(themeToggle)
 
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
-      expect(localStorage.setItem).toHaveBeenCalledWith('theme', 'dark')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.DARK)
+      expect(localStorage.setItem).toHaveBeenCalledWith(THEME_STORAGE_KEY, Theme.DARK)
       expect(themeToggle).toHaveAttribute('aria-checked', 'true')
 
       await fireEvent.click(themeToggle)
 
-      expect(document.documentElement.getAttribute('data-theme')).toBe('light')
-      expect(localStorage.setItem).toHaveBeenCalledWith('theme', 'light')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.LIGHT)
+      expect(localStorage.setItem).toHaveBeenCalledWith(THEME_STORAGE_KEY, Theme.LIGHT)
     })
 
     it('toggles theme on Ctrl+T keyboard shortcut', async () => {
@@ -225,8 +228,8 @@ describe('Navigation.vue', () => {
 
       await fireEvent.keyDown(document, { key: 't', ctrlKey: true })
 
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
-      expect(localStorage.setItem).toHaveBeenCalledWith('theme', 'dark')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.DARK)
+      expect(localStorage.setItem).toHaveBeenCalledWith(THEME_STORAGE_KEY, Theme.DARK)
     })
 
     it('toggles theme on Meta+T keyboard shortcut', async () => {
@@ -234,7 +237,7 @@ describe('Navigation.vue', () => {
 
       await fireEvent.keyDown(document, { key: 't', metaKey: true })
 
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+      expect(document.documentElement.getAttribute(THEME_ATTRIBUTE)).toBe(Theme.DARK)
     })
   })
 

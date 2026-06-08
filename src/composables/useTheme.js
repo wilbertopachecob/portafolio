@@ -1,30 +1,29 @@
 import { ref, onMounted } from 'vue'
-
-function readInitialDarkMode() {
-  const savedTheme = localStorage.getItem('theme')
-  if (savedTheme) {
-    return savedTheme === 'dark'
-  }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-}
+import {
+  THEME_ATTRIBUTE,
+  THEME_STORAGE_KEY,
+  readInitialDarkMode,
+  themeFromBoolean,
+} from '@/config/theme'
 
 /**
  * Theme preference synced to `data-theme` on `<html>` and localStorage.
+ * @returns {{ isDarkMode: import('vue').Ref<boolean>, toggleTheme: () => void }}
  */
 export function useTheme() {
   const isDarkMode = ref(false)
 
   const applyTheme = () => {
     document.documentElement.setAttribute(
-      'data-theme',
-      isDarkMode.value ? 'dark' : 'light',
+      THEME_ATTRIBUTE,
+      themeFromBoolean(isDarkMode.value),
     )
   }
 
   const toggleTheme = () => {
     isDarkMode.value = !isDarkMode.value
     applyTheme()
-    localStorage.setItem('theme', isDarkMode.value ? 'dark' : 'light')
+    localStorage.setItem(THEME_STORAGE_KEY, themeFromBoolean(isDarkMode.value))
   }
 
   onMounted(() => {

@@ -23,8 +23,15 @@ This portfolio is a Vue 3, Vite, and Vue i18n personal site. Any AI tool working
 - Use semantic HTML, keyboard-friendly interactions, accessible names, and existing `jest-axe` patterns.
 - Prefer scoped component styles and existing CSS variables (`--space-*`, `--text-*`, `--bg-*`, `--primary-color`, etc.).
 - Do not add dependencies unless the change clearly requires them and the decision is documented.
-- Document new helpers, non-obvious data shapes, and product/design decisions with succinct JSDoc or Markdown.
 - Preserve backwards-compatible fallbacks when evolving i18n content structures used by existing components or tests.
+
+## Code Style and Quality
+
+- Prefer shared enums/constants over repeated string literals for domain values (for example theme modes in `src/config/theme.js`). Export frozen objects with `@enum` JSDoc and colocate related keys such as storage keys and DOM attributes in the same module.
+- Add succinct JSDoc for new helpers, composables, non-obvious data shapes, and exported config. Document params/returns when behavior is not obvious from the name alone.
+- Always add or update unit tests when introducing or changing helpers, composables, utilities, or config modules. Cover happy paths and meaningful edge cases; reuse existing test helpers when available.
+- Keep composable logic in `src/composables/`, shared non-Vue helpers in `src/utils/`, and domain constants/enums in `src/config/`.
+- Document new helpers, non-obvious data shapes, and product/design decisions with succinct JSDoc or Markdown when AGENTS rules alone are not enough.
 
 ## Product and Design Direction
 
