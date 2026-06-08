@@ -109,7 +109,6 @@ export default {
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
@@ -122,7 +121,6 @@ export default {
 .btn-secondary:hover {
   background: transparent;
   color: var(--primary-color);
-  transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
   border-color: var(--primary-color);
 }

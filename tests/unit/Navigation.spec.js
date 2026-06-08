@@ -126,14 +126,14 @@ describe('Navigation.vue', () => {
 
     it('renders primary desktop navigation links', () => {
       renderNavigation()
-      expect(screen.getByRole('menuitem', { name: 'Impact' })).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Products' })).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Experience' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Impact' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Products' })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Experience' })).toBeInTheDocument()
       expect(screen.getByText('Skills')).toBeInTheDocument()
       expect(screen.getByText('Process')).toBeInTheDocument()
-      expect(screen.getByRole('menuitem', { name: 'Contact' })).toBeInTheDocument()
-      expect(screen.queryByRole('menuitem', { name: 'About' })).not.toBeInTheDocument()
-      expect(screen.queryByRole('menuitem', { name: 'Credentials' })).not.toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'About' })).not.toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'Credentials' })).not.toBeInTheDocument()
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
       expect(screen.queryByText('Languages')).not.toBeInTheDocument()
       expect(screen.queryByText('Certifications')).not.toBeInTheDocument()
@@ -159,19 +159,19 @@ describe('Navigation.vue', () => {
 
     it('has proper navigation menu structure', () => {
       renderNavigation()
-      expect(screen.getByRole('menubar')).toBeInTheDocument()
+      expect(document.querySelector('.navbar-nav')).toBeInTheDocument()
     })
 
     it('has proper accessibility attributes', () => {
       renderNavigation()
       const nav = screen.getByRole('navigation')
       expect(nav).toHaveAttribute('aria-label', 'Main navigation')
-      expect(screen.getByRole('menubar')).toBeInTheDocument()
+      expect(document.querySelector('.navbar-nav')).toBeInTheDocument()
     })
 
     it('has active section highlighting functionality', () => {
       renderNavigation()
-      const impactLink = screen.getByRole('menuitem', { name: 'Impact' })
+      const impactLink = screen.getByRole('link', { name: 'Impact' })
       expect(impactLink).toHaveClass('nav-link')
       expect(impactLink).not.toHaveClass('active')
     })

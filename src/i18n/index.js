@@ -14,6 +14,8 @@ const getDefaultLocale = () => {
   return ['en', 'es'].includes(browserLang) ? browserLang : 'en'
 }
 
+document.documentElement.lang = getDefaultLocale()
+
 const i18n = createI18n({
   legacy: false, // Use Composition API
   locale: getDefaultLocale(),

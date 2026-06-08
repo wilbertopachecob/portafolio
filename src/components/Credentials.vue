@@ -104,10 +104,10 @@ export default {
   flex-direction: column;
   gap: var(--space-lg);
   min-width: 0;
-  padding: var(--space-xl);
+  padding: var(--card-padding-dense);
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
 
@@ -136,7 +136,7 @@ export default {
   object-fit: contain;
   flex-shrink: 0;
   padding: var(--space-xs);
-  background: var(--bg-secondary);
+  background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
 }

@@ -1,47 +1,41 @@
 <template>
-  <div class="timeline" role="region" aria-labelledby="experience-heading">
-    <h2 id="experience-heading" class="sr-only">Work Experience Timeline</h2>
-    <ul class="timeline-list" role="list">
-      <li 
+  <div class="timeline">
+    <ul class="timeline-list">
+      <li
         class="timeline-item"
         v-for="(job, index) in workExperience"
         :key="index"
-        role="listitem"
       >
       <div class="timeline-content">
         <div class="timeline-header">
           <h3 class="timeline-company">{{ job.company }}</h3>
           <div class="timeline-position">{{ job.position }}</div>
           <div class="timeline-period">
-            <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
             <span>{{ $t('experience.period') }}: {{ job.period }}</span>
             <span v-if="job.location" class="timeline-location">
-              <font-awesome-icon :icon="['fas', 'map-marker-alt']" aria-hidden="true" />
-              <span>{{ $t('experience.location') }}: {{ job.location }}</span>
+              {{ $t('experience.location') }}: {{ job.location }}
             </span>
           </div>
         </div>
         
         <p v-if="job.summary" class="timeline-summary">{{ job.summary }}</p>
 
-        <div v-if="job.scopeTags && job.scopeTags.length" class="timeline-tags" role="list" :aria-label="$t('experience.scope')">
+        <div v-if="job.scopeTags && job.scopeTags.length" class="timeline-tags">
           <span
             v-for="tag in job.scopeTags"
             :key="tag"
             class="timeline-tag"
-            role="listitem"
           >
             {{ tag }}
           </span>
         </div>
 
         <div v-if="getDisplayAchievements(job).length" class="timeline-description">
-          <ul class="timeline-achievements" role="list" :aria-label="$t('experience.achievements')">
-            <li 
+          <ul class="timeline-achievements" :aria-label="$t('experience.achievements')">
+            <li
               v-for="(achievement, achievementIndex) in getDisplayAchievements(job)"
               :key="achievementIndex"
               class="timeline-achievement"
-              role="listitem"
             >
               {{ achievement }}
             </li>
@@ -50,16 +44,15 @@
 
         <div v-if="job.stack && job.stack.length" class="timeline-stack">
           <span class="timeline-stack-label">{{ $t('experience.stack') }}</span>
-          <div class="timeline-stack-items" role="list" :aria-label="$t('experience.stack')">
-            <span
+          <ul class="timeline-stack-items" :aria-label="$t('experience.stack')">
+            <li
               v-for="technology in job.stack"
               :key="technology"
               class="timeline-stack-item"
-              role="listitem"
             >
               {{ technology }}
-            </span>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
       </li>
@@ -140,9 +133,8 @@ export default {
 }
 
 .timeline-content:hover {
-  transform: translateX(4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
+  background: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-primary));
 }
 
 .timeline-header {
@@ -173,17 +165,7 @@ export default {
 }
 
 .timeline-location {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
   margin-left: var(--space-md);
-}
-
-.timeline-period svg,
-.timeline-location svg {
-  color: var(--text-muted);
-  width: 0.875rem;
-  height: 0.875rem;
 }
 
 .timeline-description {
@@ -263,6 +245,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .timeline-stack-item {
@@ -273,6 +258,12 @@ export default {
   color: var(--text-secondary);
   font-size: 0.8125rem;
   font-weight: 500;
+}
+
+.timeline-summary {
+  margin: 0 0 var(--space-lg);
+  color: var(--text-secondary);
+  line-height: 1.65;
 }
 
 /* Responsive Design */

@@ -68,49 +68,26 @@ const createTestI18n = (locale = 'en') => {
 }
 
 describe('Experience.vue', () => {
-  it('renders the experience section', () => {
+  it('renders the experience timeline container', () => {
     const i18n = createTestI18n()
-    render(Experience, {
+    const { container } = render(Experience, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
-    const section = screen.getByRole('region', { name: /work experience/i })
-    expect(section).toBeInTheDocument()
-  })
 
-  it('renders the section title', () => {
-    const i18n = createTestI18n()
-    render(Experience, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    expect(screen.getByText(/Work Experience/)).toBeInTheDocument()
-  })
-
-  it('renders the section subtitle', () => {
-    const i18n = createTestI18n()
-    render(Experience, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    // The component renders "Work Experience Timeline" as the heading
-    expect(screen.getByText(/Work Experience Timeline/)).toBeInTheDocument()
+    expect(container.querySelector('.timeline')).toBeInTheDocument()
   })
 
   it('renders experience timeline', () => {
     const i18n = createTestI18n()
-    render(Experience, {
+    const { container } = render(Experience, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
-    const timeline = screen.getByRole('region')
-    expect(timeline).toBeInTheDocument()
-    expect(timeline).toHaveClass('timeline')
+
+    expect(container.querySelector('.timeline-list')).toBeInTheDocument()
   })
 
   it('renders multiple experience items', () => {
@@ -172,56 +149,27 @@ describe('Experience.vue', () => {
     expect(screen.getByText('Secondary achievement')).toBeInTheDocument()
   })
 
-  it('has proper accessibility attributes', () => {
-    const i18n = createTestI18n()
-    render(Experience, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    const section = screen.getByRole('region')
-    expect(section).toHaveAttribute('aria-labelledby')
-    
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toHaveAttribute('id')
-  })
-
   it('has proper semantic structure', () => {
     const i18n = createTestI18n()
     render(Experience, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
-    expect(screen.getByRole('region')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
-    const lists = screen.getAllByRole('list')
-    expect(lists.length).toBeGreaterThan(0)
-  })
 
-  it('has proper accessibility attributes', () => {
-    const i18n = createTestI18n()
-    render(Experience, {
-      global: {
-        plugins: [i18n]
-      }
-    })
-    const experienceSection = screen.getByRole('region')
-    expect(experienceSection).toHaveAttribute('aria-labelledby', 'experience-heading')
-    
-    const heading = screen.getByRole('heading', { level: 2 })
-    expect(heading).toHaveAttribute('id', 'experience-heading')
+    expect(screen.getAllByRole('heading', { level: 3 }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('list').length).toBeGreaterThan(0)
   })
 
   it('renders timeline with proper styling', () => {
     const i18n = createTestI18n()
-    render(Experience, {
+    const { container } = render(Experience, {
       global: {
-        plugins: [i18n]
-      }
+        plugins: [i18n],
+      },
     })
-    const timeline = screen.getByRole('region')
-    expect(timeline).toHaveClass('timeline')
+
+    expect(container.querySelector('.timeline')).toHaveClass('timeline')
   })
 
   it('displays English content when locale is English', () => {

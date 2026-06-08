@@ -22,18 +22,16 @@
       </a>
       
       <!-- Navigation Links -->
-      <ul class="navbar-nav" role="menubar">
+      <ul class="navbar-nav">
         <li
           v-for="item in primaryNavItems"
           :key="item.id"
           class="nav-item"
-          role="none"
         >
           <a
             :href="'#' + item.id"
             class="nav-link"
             :class="{ active: activeSection === item.id }"
-            role="menuitem"
             :aria-label="$t('nav.' + item.id)"
             @click="scrollToSection(item.id)"
           >
@@ -85,7 +83,6 @@
           v-if="isMobileMenuOpen"
           class="mobile-menu-drawer"
           id="mobile-menu"
-          role="menu"
           :aria-label="$t('accessibility.openMenu')"
         >
           <div class="mm-header">
@@ -107,7 +104,6 @@
               :href="'#' + item.id"
               class="mm-link"
               :class="{ 'active': activeSection === item.id }"
-              role="menuitem"
               :aria-label="$t('nav.' + item.id)"
               @click.prevent="goToSection(item.id)"
             >
@@ -386,211 +382,178 @@ export default {
 </script>
 
 <style scoped>
-/* Navigation Styles */
 .navbar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  background: rgba(255, 255, 255, 0.9) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color) !important;
-  z-index: 1000 !important;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
   transition: all var(--transition-normal);
-  height: 64px !important;
-  width: 100% !important;
+  height: 64px;
+  width: 100%;
 }
 
 [data-theme="dark"] .navbar {
-  background: rgba(15, 23, 42, 0.9) !important;
-  border-bottom-color: var(--border-color) !important;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom-color: var(--border-color);
 }
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: var(--shadow-md) !important;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .navbar-scrolled {
-  background: rgba(15, 23, 42, 0.95) !important;
+  background: rgba(15, 23, 42, 0.95);
 }
 
 .navbar-container {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  height: 100% !important;
-  padding: 0 var(--space-lg) !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .navbar-controls {
-  display: flex !important;
-  align-items: center !important;
-  gap: var(--space-xs) !important;
-  flex-shrink: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
 }
 
 .navbar-brand {
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  color: var(--text-primary) !important;
-  text-decoration: none !important;
-  transition: color var(--transition-fast) !important;
-  white-space: nowrap !important;
-}
-
-[data-theme="dark"] .navbar-brand {
-  color: var(--text-primary) !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .navbar-brand:hover {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 .navbar-nav {
-  display: flex !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 var(--space-md) !important;
-  gap: var(--space-md) !important;
-  align-items: center !important;
-  flex-direction: row !important;
-  flex: 1 !important;
-  justify-content: center !important;
-  min-width: 0 !important;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-md);
+  gap: var(--space-md);
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
 }
 
 .nav-item {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-  color: var(--text-secondary) !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-  font-size: 0.875rem !important;
-  transition: color var(--transition-fast) !important;
-  position: relative !important;
-  padding: var(--space-sm) 0 !important;
-  white-space: nowrap !important;
-  display: block !important;
-}
-
-[data-theme="dark"] .nav-link {
-  color: var(--text-secondary) !important;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding: var(--space-sm) 0;
+  white-space: nowrap;
+  display: block;
 }
 
 .nav-link:hover {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 .nav-link::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: -4px !important;
-  left: 0 !important;
-  width: 0 !important;
-  height: 2px !important;
-  background: var(--primary-color) !important;
-  transition: width var(--transition-normal) !important;
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width var(--transition-normal);
 }
 
 .nav-link:hover::after {
-  width: 100% !important;
+  width: 100%;
 }
 
-/* Active Navigation Link Styles */
 .nav-link.active {
-  color: var(--primary-color) !important;
-}
-
-[data-theme="dark"] .nav-link.active {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 .nav-link.active::after {
-  width: 100% !important;
+  width: 100%;
 }
 
-
-
-/* Theme Toggle */
 .theme-toggle {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 32px !important;
-  height: 32px !important;
-  background: var(--bg-secondary) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: var(--radius-md) !important;
-  color: var(--text-secondary) !important;
-  cursor: pointer !important;
-  transition: all var(--transition-normal) !important;
-}
-
-[data-theme="dark"] .theme-toggle {
-  background: var(--bg-secondary) !important;
-  border-color: var(--border-color) !important;
-  color: var(--text-secondary) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-normal), color var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 .theme-toggle:hover {
-  background: var(--primary-color) !important;
-  color: white !important;
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-md) !important;
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
 }
 
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
-  display: none !important;
-  flex-direction: column !important;
-  justify-content: space-around !important;
-  width: 28px !important;
-  height: 28px !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  z-index: 10 !important;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
 }
 
 .mobile-menu-toggle span {
-  width: 100% !important;
-  height: 2px !important;
-  background: var(--text-primary) !important;
-  border-radius: 1px !important;
-  transition: all var(--transition-normal) !important;
-  transform-origin: center !important;
-}
-
-[data-theme="dark"] .mobile-menu-toggle span {
-  background: var(--text-primary) !important;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: all var(--transition-normal);
+  transform-origin: center;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px) !important;
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
-  opacity: 0 !important;
+  opacity: 0;
 }
 
 .mobile-menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px) !important;
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ============================================================
-   Mobile Menu — Slide-in Drawer (teleported to <body>)
-   ============================================================ */
-
-/* Scrim behind the drawer */
 .mobile-menu-backdrop {
   position: fixed;
   inset: 0;
@@ -600,13 +563,12 @@ export default {
   z-index: 1100;
 }
 
-/* The drawer panel itself */
 .mobile-menu-drawer {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: min(86vw, 360px);
+  width: min(80vw, 320px);
   background: var(--bg-primary);
   border-right: 1px solid var(--border-color);
   box-shadow: 8px 0 40px rgba(0, 0, 0, 0.28);
@@ -622,7 +584,6 @@ export default {
   box-shadow: 8px 0 48px rgba(0, 0, 0, 0.55);
 }
 
-/* Drawer header */
 .mm-header {
   display: flex;
   align-items: center;
@@ -670,7 +631,6 @@ export default {
 .mm-close span:first-child { transform: rotate(45deg); }
 .mm-close span:last-child  { transform: rotate(-45deg); }
 
-/* Nav list */
 .mm-nav {
   display: flex;
   flex-direction: column;
@@ -721,7 +681,6 @@ export default {
   opacity: 0.45;
 }
 
-/* Active item */
 .mm-link.active {
   background: var(--primary-color);
   color: #fff;
@@ -737,7 +696,6 @@ export default {
   opacity: 0.85;
 }
 
-/* Enter / leave transitions */
 .mm-fade-enter-active,
 .mm-fade-leave-active {
   transition: opacity 0.25s ease;
@@ -765,58 +723,48 @@ export default {
   }
 }
 
-
-/* Responsive Design */
 @media (max-width: 992px) {
   .navbar-nav {
-    display: none !important;
+    display: none;
   }
 
   .mobile-menu-toggle {
-    display: flex !important;
+    display: flex;
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
-    height: 56px !important;
+    height: 56px;
   }
-  
-  .language-toggle {
-    margin-left: var(--space-md) !important;
-  }
-  
+
   .theme-toggle {
-    margin-left: 0 !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: 32px;
+    height: 32px;
   }
-  
+
   .navbar-container {
-    padding: 0 var(--space-md) !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    padding: 0 var(--space-md);
+    max-width: 100%;
   }
-  
+
   .navbar-brand {
-    font-size: 1.125rem !important;
+    font-size: 1.125rem;
   }
 }
 
 @media (max-width: 480px) {
   .navbar-container {
-    padding: 0 var(--space-sm) !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    padding: 0 var(--space-sm);
   }
-  
+
   .navbar-brand {
-    font-size: 1rem !important;
+    font-size: 1rem;
   }
-  
+
   .theme-toggle {
-    width: 28px !important;
-    height: 28px !important;
+    width: 28px;
+    height: 28px;
   }
 }
 </style>

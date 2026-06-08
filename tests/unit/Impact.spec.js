@@ -57,14 +57,14 @@ describe('Impact.vue', () => {
     expect(screen.getByText('Personal products')).toBeInTheDocument()
   })
 
-  it('uses the impact label for the proof point list', () => {
-    render(Impact, {
+  it('renders a native impact list', () => {
+    const { container } = render(Impact, {
       global: {
         plugins: [createTestI18n()],
       },
     })
 
-    expect(screen.getByRole('list', { name: 'Impact' })).toBeInTheDocument()
+    expect(container.querySelector('.impact-grid')).toBeInTheDocument()
   })
 
   it('should have no accessibility violations', async () => {

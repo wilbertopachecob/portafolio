@@ -12,13 +12,16 @@
         v-for="section in pageSections"
         :key="section.id"
         :id="section.id"
-        :class="['section', { 'section--compact': section.compact }]"
+        :class="sectionClasses(section)"
         :role="section.showHeader ? 'region' : undefined"
         :aria-labelledby="section.showHeader ? `${section.id}-section-heading` : undefined"
       >
         <component :is="section.component" v-if="!section.showHeader" />
         <div v-else class="container">
           <div class="section-header">
+            <p v-if="$te(`sections.${section.id}.eyebrow`)" class="section-eyebrow">
+              {{ $t(`sections.${section.id}.eyebrow`) }}
+            </p>
             <h2 :id="`${section.id}-section-heading`" class="section-title">
               {{ $t(`sections.${section.id}.title`) }}
             </h2>
@@ -54,13 +57,13 @@ import HowIWork from './components/HowIWork.vue'
 import ContactClosing from './components/ContactClosing.vue'
 
 const PAGE_SECTIONS = [
-  { id: 'about', component: markRaw(About), showHeader: false },
+  { id: 'about', component: markRaw(About), showHeader: false, tone: 'elevated' },
   { id: 'impact', component: markRaw(Impact), showHeader: true },
-  { id: 'portfolio', component: markRaw(Portfolio), showHeader: true },
+  { id: 'portfolio', component: markRaw(Portfolio), showHeader: true, tone: 'alt' },
   { id: 'experience', component: markRaw(Experience), showHeader: true },
-  { id: 'skills', component: markRaw(Skills), showHeader: true },
-  { id: 'howIWork', component: markRaw(HowIWork), showHeader: true },
-  { id: 'credentials', component: markRaw(Credentials), showHeader: true },
+  { id: 'skills', component: markRaw(Skills), showHeader: true, tone: 'alt' },
+  { id: 'howIWork', component: markRaw(HowIWork), showHeader: true, secondary: true },
+  { id: 'credentials', component: markRaw(Credentials), showHeader: true, tone: 'alt', secondary: true },
   { id: 'contact', component: markRaw(ContactClosing), showHeader: false, compact: true },
 ]
 
@@ -84,9 +87,23 @@ export default {
     }
   },
   mounted() {
+    this.syncDocumentLanguage()
     this.updateDocumentTitle()
   },
   methods: {
+    sectionClasses(section) {
+      return [
+        'section',
+        section.tone && `section--${section.tone}`,
+        {
+          'section--compact': section.compact,
+          'section--secondary': section.secondary,
+        },
+      ]
+    },
+    syncDocumentLanguage() {
+      document.documentElement.lang = this.$i18n.locale
+    },
     updateDocumentTitle() {
       // Keep full name + role for SEO when people search "Wilberto Pacheco Batista"
       const title = this.$i18n.locale === 'es' 
@@ -97,6 +114,7 @@ export default {
   },
   watch: {
     '$i18n.locale'() {
+      this.syncDocumentLanguage()
       this.updateDocumentTitle()
     }
   }
@@ -104,9 +122,6 @@ export default {
 </script>
 
 <style>
-/* Import Bootstrap CSS */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
 /* Import custom CSS */
 @import './assets/css/main.css';
 /* Note: FontAwesome CSS removed - using SVG icons only via tree-shaking */
@@ -120,41 +135,15 @@ export default {
 
 .main-content {
   flex: 1;
-  padding-top: 64px; /* Account for fixed navbar */
-}
-
-/* Ensure sections have proper spacing */
-.section {
-  padding: var(--space-3xl) 0;
-  scroll-margin-top: 64px; /* fixed navbar offset for anchor / programmatic scroll */
-}
-
-.section:first-of-type {
-  padding-top: 0;
-}
-
-.section--compact {
-  padding: 0;
-}
-
-/* Container max-width for better readability */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding-top: 64px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 56px; /* Smaller navbar height on mobile */
+    padding-top: 56px;
   }
-  
-  .section {
-    padding: var(--space-2xl) 0;
-    scroll-margin-top: 56px;
-  }
-  
+
   .container {
     padding: 0 var(--space-md);
   }
@@ -180,11 +169,6 @@ html {
   
   .main-content {
     padding-top: 0;
-  }
-  
-  .section {
-    page-break-inside: avoid;
-    padding: var(--space-lg) 0;
   }
 }
 </style>

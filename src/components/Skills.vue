@@ -1,43 +1,45 @@
 <template>
-  <div class="skills-container" role="region" aria-labelledby="skills-heading">
-    <h2 id="skills-heading" class="sr-only">{{ $t('sections.skills.title') }}</h2>
-    <!-- Skills Grid -->
-    <div class="skills-grid" role="list" :aria-label="$t('sections.skills.title')">
-      <div 
-        class="skill-category"
+  <div ref="skillsRoot" class="skills-container" :class="{ 'is-visible': isVisible }">
+    <ul class="skills-grid">
+      <li
         v-for="(category, index) in skillCategories"
         :key="index"
-        role="listitem"
+        class="skill-category"
       >
         <h3 class="skill-category-title" v-html="category.title"></h3>
-        <div class="skill-items" role="list" :aria-label="category.title">
-          <div 
-            class="skill-item"
+        <ul class="skill-items">
+          <li
             v-for="(skill, skillIndex) in category.skills"
             :key="skillIndex"
-            role="listitem"
+            class="skill-item"
+            :style="{ '--item-delay': `${skillIndex * 0.05}s` }"
           >
-            <div class="skill-icon" v-if="skill.icon">
-              <font-awesome-icon 
-                :icon="skill.icon" 
+            <span class="skill-icon" v-if="skill.icon" aria-hidden="true">
+              <font-awesome-icon
+                :icon="skill.icon"
                 :style="{ color: skill.iconColor || 'var(--primary-color)' }"
-                :aria-label="`${skill.name} icon`"
-                aria-hidden="true"
               />
-            </div>
+            </span>
             <span class="skill-name">{{ skill.name }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { SKILL_CATEGORIES } from '@/config/skills'
+import { observeInView } from '@/utils/inView'
 
 export default {
-  name: "Skills",
+  name: 'Skills',
+  data() {
+    return {
+      isVisible: false,
+      cleanupInView: null,
+    }
+  },
   computed: {
     skillCategories() {
       return SKILL_CATEGORIES.map(({ titleKey, skills }) => ({
@@ -46,36 +48,45 @@ export default {
       }))
     },
   },
-};
+  mounted() {
+    this.cleanupInView = observeInView(this.$refs.skillsRoot, () => {
+      this.isVisible = true
+    })
+  },
+  beforeUnmount() {
+    if (this.cleanupInView) {
+      this.cleanupInView()
+    }
+  },
+}
 </script>
 
 <style scoped>
-/* Skills Container */
 .skills-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Skills Grid */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-2xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Skill Category */
 .skill-category {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--space-xl);
-  transition: all var(--transition-normal);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding-editorial);
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .skill-category:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
+  background: color-mix(in srgb, var(--bg-secondary) 35%, var(--bg-primary));
+  box-shadow: var(--shadow-sm);
 }
 
 .skill-category-title {
@@ -87,11 +98,13 @@ export default {
   border-bottom: 2px solid var(--border-light);
 }
 
-/* Skill Items */
 .skill-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .skill-item {
@@ -102,9 +115,16 @@ export default {
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  transition: all var(--transition-normal);
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
   min-width: 0;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.skills-container.is-visible .skill-item {
+  animation: skillFadeIn 0.45s ease-out forwards;
+  animation-delay: var(--item-delay, 0s);
 }
 
 .skill-item:hover {
@@ -116,14 +136,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
-.skill-icon svg {
-  width: 1.25rem;
-  height: 1.25rem;
+.skill-icon :deep(svg) {
+  width: 1rem;
+  height: 1rem;
 }
 
 .skill-name {
@@ -135,26 +155,40 @@ export default {
   overflow-wrap: break-word;
 }
 
-/* Responsive Design */
+@keyframes skillFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-item {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
   }
-  
+
   .skill-category {
-    padding: var(--space-lg);
+    padding: var(--card-padding-dense);
   }
-  
+
   .skill-items {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
   }
-  
+
   .skill-item {
     padding: var(--space-xs) var(--space-sm);
   }
-  
+
   .skill-name {
     font-size: 0.8rem;
   }
@@ -164,37 +198,9 @@ export default {
   .skill-items {
     grid-template-columns: 1fr;
   }
-  
-  .skill-item {
-    justify-content: flex-start;
-  }
-  
+
   .skill-category-title {
     font-size: 1.125rem;
-  }
-}
-
-/* Animation for skill items */
-.skill-item {
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-.skill-item:nth-child(1) { animation-delay: 0.1s; }
-.skill-item:nth-child(2) { animation-delay: 0.2s; }
-.skill-item:nth-child(3) { animation-delay: 0.3s; }
-.skill-item:nth-child(4) { animation-delay: 0.4s; }
-.skill-item:nth-child(5) { animation-delay: 0.5s; }
-.skill-item:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 </style>
