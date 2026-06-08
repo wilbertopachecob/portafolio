@@ -45,7 +45,7 @@
             <div class="certification-title">{{ certification.title }}</div>
             
             <div class="certification-date">
-              <font-awesome-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
+              <app-icon :icon="['fas', 'calendar-alt']" aria-hidden="true" />
               <span>{{ $t('certifications.issued') }}: {{ certification.date }}</span>
             </div>
             

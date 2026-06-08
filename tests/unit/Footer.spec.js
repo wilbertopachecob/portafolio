@@ -8,7 +8,7 @@ import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 vi.mock('@fortawesome/vue-fontawesome', () => ({
   FontAwesomeIcon: {
     name: 'FontAwesomeIcon',
-    template: '<span data-testid="font-awesome-icon" :title="$attrs.title" @click="$emit(\'click\')"></span>',
+    template: '<span data-testid="app-icon" :title="$attrs.title" @click="$emit(\'click\')"></span>',
     props: ['icon', 'title'],
     emits: ['click']
   }
@@ -40,7 +40,7 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button', () => {
     renderFooter()
-    const icons = screen.getAllByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('app-icon')
     const scrollButton = icons[0] // First icon is the scroll-to-top button
     expect(scrollButton).toBeInTheDocument()
     expect(scrollButton).toHaveAttribute('title', 'Scroll to Top')
@@ -66,7 +66,7 @@ describe('Footer.vue', () => {
 
   it('renders scroll to top button with proper styling', () => {
     renderFooter()
-    const icons = screen.getAllByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('app-icon')
     const scrollButton = icons[0] // First icon is the scroll-to-top button
     expect(scrollButton).toHaveClass('mt-3', 'to-top-button', 'bounce')
   })
@@ -81,7 +81,7 @@ describe('Footer.vue', () => {
 
   it('renders download icon', () => {
     renderFooter()
-    const icons = screen.getAllByTestId('font-awesome-icon')
+    const icons = screen.getAllByTestId('app-icon')
     const downloadIcon = icons[1] // Second icon is the download icon
     expect(downloadIcon).toBeInTheDocument()
   })
@@ -94,7 +94,7 @@ describe('Footer.vue', () => {
     document.body.appendChild(aboutSection)
 
     renderFooter()
-    const scrollButton = screen.getAllByTestId('font-awesome-icon')[0]
+    const scrollButton = screen.getAllByTestId('app-icon')[0]
     await fireEvent.click(scrollButton)
 
     expect(scrollIntoView).toHaveBeenCalledWith({
@@ -110,7 +110,7 @@ describe('Footer.vue', () => {
     if (existingAbout) existingAbout.remove()
 
     renderFooter()
-    const scrollButton = screen.getAllByTestId('font-awesome-icon')[0]
+    const scrollButton = screen.getAllByTestId('app-icon')[0]
     await expect(fireEvent.click(scrollButton)).resolves.not.toThrow()
   })
 

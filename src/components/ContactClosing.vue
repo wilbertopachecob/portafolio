@@ -12,7 +12,7 @@
           :aria-label="$t('contact.letsTalk')"
           @click="track('cta_email', { location: 'contact' })"
         >
-          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'envelope']" aria-hidden="true" />
           {{ $t('contact.letsTalk') }}
         </a>
         <a
@@ -23,7 +23,7 @@
           :aria-label="$t('contact.viewLinkedIn')"
           @click="track('cta_linkedin', { location: 'contact' })"
         >
-          <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
           {{ $t('contact.viewLinkedIn') }}
         </a>
         <a
@@ -35,7 +35,7 @@
           rel="noopener noreferrer"
           @click="track('cta_cv_download', { location: 'contact' })"
         >
-          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'download']" aria-hidden="true" />
           {{ $t('hero.downloadResume') }}
         </a>
       </div>

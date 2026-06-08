@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import Icons from 'unplugin-icons/vite'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
@@ -7,6 +8,8 @@ export default defineConfig({
   base: '/portafolio/',
   plugins: [
     vue(),
+    // Inline, tree-shaken SVG icons (replaces the @fortawesome runtime).
+    Icons({ compiler: 'vue3', autoInstall: false }),
   ],
   resolve: {
     alias: {
@@ -33,10 +36,6 @@ export default defineConfig({
           // Vendor chunk for Vue
           if (id.includes('node_modules/vue')) {
             return 'vendor';
-          }
-          // FontAwesome chunk
-          if (id.includes('@fortawesome')) {
-            return 'fontawesome';
           }
           // Other node_modules go to vendor
           if (id.includes('node_modules')) {

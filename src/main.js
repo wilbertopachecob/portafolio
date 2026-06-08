@@ -9,107 +9,8 @@ import i18n from './i18n'
 import { APP_CONFIG } from './config/constants'
 import { deferWhenIdle } from './utils/defer'
 
-// FontAwesome configuration
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { 
-  faEnvelope, 
-  faMapMarkerAlt, 
-  faBriefcase, 
-  faCode, 
-  faCalendarAlt,
-  faArrowAltCircleUp,
-  faServer,
-  faDatabase,
-  faSearch,
-  faCog,
-  faCheckCircle,
-  faVial,
-  faPlug,
-  faSun,
-  faMoon,
-  faGlobe,
-  faUser,
-  faGraduationCap,
-  faCertificate,
-  faDownload,
-  faArrowUpRightFromSquare,
-  faFolderOpen,
-  faChartLine
-} from '@fortawesome/free-solid-svg-icons'
-import { 
-  faLinkedin, 
-  faGithub, 
-  faXTwitter,
-  faJs,
-  faPhp,
-  faHtml5,
-  faCss3Alt,
-  faVuejs,
-  faReact,
-  faAngular,
-  faLaravel,
-  faNode,
-  faBootstrap,
-  faGit,
-  faAws,
-  faDocker,
-  faLinux,
-  faWordpress,
-  faDrupal
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
-
-const solidIcons = [
-  faEnvelope,
-  faMapMarkerAlt,
-  faBriefcase,
-  faCode,
-  faCalendarAlt,
-  faArrowAltCircleUp,
-  faServer,
-  faDatabase,
-  faSearch,
-  faCog,
-  faCheckCircle,
-  faVial,
-  faPlug,
-  faSun,
-  faMoon,
-  faGlobe,
-  faUser,
-  faGraduationCap,
-  faCertificate,
-  faDownload,
-  faArrowUpRightFromSquare,
-  faFolderOpen,
-  faChartLine,
-]
-
-const brandIcons = [
-  faLinkedin,
-  faGithub,
-  faXTwitter,
-  faJs,
-  faPhp,
-  faHtml5,
-  faCss3Alt,
-  faVuejs,
-  faReact,
-  faAngular,
-  faLaravel,
-  faNode,
-  faBootstrap,
-  faGit,
-  faAws,
-  faDocker,
-  faLinux,
-  faWordpress,
-  faDrupal,
-]
-
-// Add FontAwesome icons to the library
-// Note: We don't import the full CSS file - only SVG icons are used via tree-shaking
-library.add(...solidIcons, ...brandIcons)
+// Inline, tree-shaken SVG icon wrapper (replaces the @fortawesome runtime)
+import AppIcon from './components/AppIcon.vue'
 
 // Create and configure Vue app
 const app = createApp(App)
@@ -117,9 +18,8 @@ const app = createApp(App)
 // Use i18n
 app.use(i18n)
 
-// Register FontAwesome components globally
-app.component('font-awesome-icon', FontAwesomeIcon)
-app.component('font-awesome-layers', FontAwesomeLayers)
+// Register the inline SVG icon component globally
+app.component('app-icon', AppIcon)
 
 // Mount the application
 app.mount('#app')

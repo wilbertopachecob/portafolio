@@ -37,7 +37,7 @@
           aria-label="Visit LinkedIn profile"
           @click="track('social_click', { network: 'linkedin' })"
         >
-          <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
         </a>
         <a
           href="https://github.com/wilbertopachecob"
@@ -48,7 +48,7 @@
           aria-label="Visit GitHub profile"
           @click="track('social_click', { network: 'github' })"
         >
-          <font-awesome-icon :icon="['fab', 'github']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'github']" aria-hidden="true" />
         </a>
         <a
           href="https://twitter.com/PachecoWilberto"
@@ -59,7 +59,7 @@
           aria-label="Visit X (Twitter) profile"
           @click="track('social_click', { network: 'x' })"
         >
-          <font-awesome-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />
+          <app-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />
         </a>
       </div>
       
@@ -72,7 +72,7 @@
           :aria-label="$t('hero.viewImpact')"
           @click="track('cta_view_impact', { location: 'hero' })"
         >
-          <font-awesome-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'chart-line']" aria-hidden="true" />
           {{ $t('hero.viewImpact') }}
         </a>
         <a
@@ -81,7 +81,7 @@
           :aria-label="$t('contact.letsTalk')"
           @click="track('cta_email', { location: 'hero' })"
         >
-          <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'envelope']" aria-hidden="true" />
           {{ $t('contact.letsTalk') }}
         </a>
         <a
@@ -93,7 +93,7 @@
           :aria-label="$t('hero.downloadResume')"
           @click="track('cta_cv_download', { location: 'hero' })"
         >
-          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          <app-icon :icon="['fas', 'download']" aria-hidden="true" />
           {{ $t('hero.downloadResume') }}
         </a>
       </div>
