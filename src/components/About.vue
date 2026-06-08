@@ -75,14 +75,35 @@
           <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true" />
           {{ $t('contact.letsTalk') }}
         </a>
+        <a
+          :href="resumeUrl"
+          class="btn btn-outline"
+          :download="resumeFilename"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="$t('hero.downloadResume')"
+        >
+          <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+          {{ $t('hero.downloadResume') }}
+        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
+
 export default {
   name: "About",
+  computed: {
+    resumeFilename() {
+      return RESUME_FILENAME
+    },
+    resumeUrl() {
+      return getPublicAssetUrl(RESUME_FILENAME)
+    },
+  },
 };
 </script>
 

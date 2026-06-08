@@ -19,7 +19,7 @@
   "hero": {
     "title": "Wilberto Pacheco",
     "subtitle": "Software Engineer focused on product, modernization, and end-to-end delivery",
-    "description": "Bilingual software engineer with 15+ years building full stack products, modernizing legacy platforms, and leading technical initiatives across health tech, web, and mobile. I combine product judgment, pragmatic architecture, and end-to-end execution to turn complex systems into clear, fast, maintainable experiences.",
+    "description": "15+ years turning complex systems into clear, fast, maintainable products. Bilingual full stack across health tech, web, and mobile, from architecture to shipping.",
     "downloadResume": "Download Resume",
     "viewImpact": "View professional impact",
     "viewProducts": "View shipped products",
@@ -443,23 +443,23 @@
     "impactHighlights": [
       {
         "metric": "15+ years",
-        "title": "Building full stack software",
-        "description": "A path from PHP and WordPress portals to modern products with Vue, React, Node.js, Go, mobile, and cloud."
+        "title": "Full stack in production",
+        "description": "From PHP and WordPress portals to modern products with Vue, React, Node.js, Go, mobile, and cloud."
       },
       {
-        "metric": "Lead scope",
-        "title": "Technical leadership on enterprise initiatives",
-        "description": "Ownership across strategic features, security, mentoring, refactors, and architecture decisions in health tech."
+        "metric": "<<N>> engineers",
+        "title": "Technical leadership in health tech",
+        "description": "Ownership across strategic features, security, refactors, and architecture decisions, plus team mentoring."
       },
       {
-        "metric": "Modernization",
-        "title": "Migrations and technical debt reduction",
-        "description": "Ruby to Go, AngularJS to Vue, Snowplow to Amplitude, and legacy capability replacement with internal platforms."
+        "metric": "3 migrations",
+        "title": "Modernization without breaking the business",
+        "description": "Ruby → Go, AngularJS → Vue, and Snowplow → Amplitude, replacing legacy capabilities with internal platforms."
       },
       {
-        "metric": "Shipped",
-        "title": "Personal products on iOS, Android, and web",
-        "description": "CiudadanoUSA, Renderlog, and self-hosted projects demonstrate end-to-end execution beyond formal work."
+        "metric": "3 products",
+        "title": "Shipped to iOS, Android, and web",
+        "description": "CiudadanoUSA, Renderlog, and self-hosted projects: end-to-end execution beyond formal work."
       }
     ],
     "howIWorkPrinciples": [

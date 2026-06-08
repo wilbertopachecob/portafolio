@@ -17,6 +17,7 @@ const createTestI18n = (locale = 'en') => {
           description: 'Bilingual software engineer with 15+ years building full stack products, modernizing legacy platforms, and leading technical initiatives across health tech, web, and mobile.',
           viewImpact: 'View professional impact',
           viewProducts: 'View shipped products',
+          downloadResume: 'Download Resume',
           profileAlt: 'Wilberto Pacheco Batista profile photo'
         },
         contact: {
@@ -30,6 +31,7 @@ const createTestI18n = (locale = 'en') => {
           description: 'Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas.',
           viewImpact: 'Ver impacto profesional',
           viewProducts: 'Ver productos construidos',
+          downloadResume: 'Descargar CV',
           profileAlt: 'Foto de perfil de Wilberto Pacheco Batista'
         },
         contact: {
@@ -109,7 +111,7 @@ describe('About.vue', () => {
     expect(screen.getByRole('link', { name: /X \(Twitter\)/ })).toBeInTheDocument()
   })
 
-  it('renders two call to action buttons', () => {
+  it('renders the primary call to action buttons', () => {
     const i18n = createTestI18n()
     render(About, {
       global: {
@@ -119,7 +121,18 @@ describe('About.vue', () => {
     expect(screen.getByRole('link', { name: /View professional impact/ })).toHaveAttribute('href', '#impact')
     expect(screen.getByRole('link', { name: /Let's talk/ })).toHaveAttribute('href', 'mailto:wilbertopachecob@gmail.com')
     expect(screen.queryByRole('link', { name: /View shipped products/ })).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /Download Resume/ })).not.toBeInTheDocument()
+  })
+
+  it('renders a resume download in the hero', () => {
+    const i18n = createTestI18n()
+    render(About, {
+      global: {
+        plugins: [i18n]
+      }
+    })
+    const resumeLink = screen.getByRole('link', { name: /Download Resume/ })
+    expect(resumeLink).toHaveAttribute('href', expect.stringContaining('Engineer_Wilberto_Pacheco_Batista.pdf'))
+    expect(resumeLink).toHaveAttribute('download', 'Engineer_Wilberto_Pacheco_Batista.pdf')
   })
 
   it('has proper accessibility attributes', () => {
