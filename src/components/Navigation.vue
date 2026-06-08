@@ -99,7 +99,7 @@
 
           <nav class="mm-nav">
             <a
-              v-for="item in navItems"
+              v-for="item in primaryNavItems"
               :key="item.id"
               :href="'#' + item.id"
               class="mm-link"
@@ -110,25 +110,25 @@
               <span class="mm-icon" aria-hidden="true">
                 <font-awesome-icon :icon="item.icon" />
               </span>
-              <span class="mm-label">{{ $t('nav.' + item.id) }}</span>
+              <span class="mm-label">{{ navLabel(item.id) }}</span>
               <span class="mm-chevron" aria-hidden="true">›</span>
             </a>
+          </nav>
+
+          <div class="mm-footer">
             <a
               :href="resumeUrl"
-              class="mm-link mm-resume-link"
+              class="mm-resume-btn"
               :download="resumeFilename"
               :aria-label="$t('hero.downloadResume')"
               target="_blank"
               rel="noopener noreferrer"
               @click="closeMobileMenu"
             >
-              <span class="mm-icon" aria-hidden="true">
-                <font-awesome-icon :icon="['fas', 'download']" />
-              </span>
-              <span class="mm-label">{{ $t('hero.downloadResume') }}</span>
-              <span class="mm-chevron" aria-hidden="true">›</span>
+              <font-awesome-icon :icon="['fas', 'download']" aria-hidden="true" />
+              {{ $t('hero.downloadResume') }}
             </a>
-          </nav>
+          </div>
         </aside>
       </Transition>
     </Teleport>
@@ -165,7 +165,6 @@ export default {
       scrollTimeout: null,
       rafId: null,
       sectionPositions: null, // Cache section positions to avoid forced reflows
-      navItems: NAV_ITEMS,
     };
   },
   watch: {
@@ -258,7 +257,7 @@ export default {
     },
 
     getNavigationSectionId(sectionId) {
-      return this.navItems.some((item) => item.id === sectionId) ? sectionId : 'about';
+      return this.primaryNavItems.some((item) => item.id === sectionId) ? sectionId : 'about';
     },
 
     cacheSectionPositions() {
@@ -694,6 +693,36 @@ export default {
 .mm-link.active .mm-chevron {
   color: #fff;
   opacity: 0.85;
+}
+
+.mm-footer {
+  margin-top: auto;
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.mm-resume-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.75rem var(--space-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mm-resume-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .mm-fade-enter-active,

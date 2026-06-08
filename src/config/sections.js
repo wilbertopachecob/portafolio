@@ -20,7 +20,7 @@ export const SECTION_IDS = [
   'contact',
 ]
 
-/** Mobile drawer nav items (icon + i18n key share the same id) */
+/** Section nav metadata (icons); primary nav uses PRIMARY_NAV_IDS filter */
 export const NAV_ITEMS = [
   { id: 'about', icon: ['fas', 'user'] },
   { id: 'impact', icon: ['fas', 'chart-line'] },

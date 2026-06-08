@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Navigation from '@/components/Navigation.vue'
-import { NAV_ITEMS } from '@/config/sections'
+import { PRIMARY_NAV_IDS } from '@/config/sections'
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
 import { setupNavigationDom, teardownNavigationDom } from './helpers/navigationDom'
 
@@ -302,39 +302,39 @@ describe('Navigation.vue', () => {
       expect(getMobileToggle()).toHaveAttribute('aria-expanded', 'true')
     })
 
-    it('renders all drawer navigation links', async () => {
+    it('renders primary drawer navigation links matching desktop', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const drawerLinks = document.querySelectorAll('.mm-link')
-      expect(drawerLinks).toHaveLength(NAV_ITEMS.length + 1)
+      const drawerLinks = document.querySelectorAll('.mm-nav .mm-link')
+      expect(drawerLinks).toHaveLength(PRIMARY_NAV_IDS.length)
+      expect(screen.queryByRole('link', { name: 'About' })).not.toBeInTheDocument()
+      expect(screen.queryByRole('link', { name: 'Credentials' })).not.toBeInTheDocument()
     })
 
-    it('renders resume download link in the mobile drawer', async () => {
+    it('renders resume download as a footer action in the mobile drawer', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const resumeLink = document.querySelector('.mm-resume-link')
+      const resumeLink = document.querySelector('.mm-resume-btn')
       expect(resumeLink).toBeTruthy()
       expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
       expect(resumeLink).toHaveAttribute('aria-label', 'Download Resume')
+      expect(document.querySelectorAll('.mm-nav .mm-link')).toHaveLength(PRIMARY_NAV_IDS.length)
     })
 
-    it('keeps drawer links ordered around impact and products first', async () => {
+    it('keeps drawer links aligned with desktop labels and order', async () => {
       renderNavigation()
       await fireEvent.click(getMobileToggle())
 
-      const drawerLabels = [...document.querySelectorAll('.mm-label')].map((link) => link.textContent)
+      const drawerLabels = [...document.querySelectorAll('.mm-nav .mm-label')].map((link) => link.textContent)
       expect(drawerLabels).toEqual([
-        'About',
         'Impact',
         'Products',
         'Experience',
-        'Technical capabilities',
-        'How I work',
-        'Credentials',
+        'Skills',
+        'Process',
         'Contact',
-        'Download Resume',
       ])
     })
   })
