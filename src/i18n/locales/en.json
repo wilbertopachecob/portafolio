@@ -4,9 +4,6 @@
     "experience": "Experience",
     "skills": "Technical capabilities",
     "portfolio": "Products",
-    "education": "Education",
-    "languages": "Languages",
-    "certifications": "Certifications",
     "impact": "Impact",
     "howIWork": "How I work",
     "credentials": "Credentials",
@@ -23,7 +20,9 @@
     "downloadResume": "Download Resume",
     "viewImpact": "View professional impact",
     "viewProducts": "View shipped products",
-    "profileAlt": "Wilberto Pacheco Batista profile photo"
+    "profileAlt": "Wilberto Pacheco Batista profile photo",
+    "status": "Open to senior roles · Remote / US",
+    "locationTag": "Broken Arrow · Bilingual"
   },
   "sections": {
     "about": {
@@ -43,18 +42,6 @@
       "eyebrow": "Products",
       "title": "What I've built",
       "subtitle": "Personal products and experiments that show how I think, design, and build end-to-end"
-    },
-    "education": {
-      "title": "Education",
-      "subtitle": "My academic background and qualifications"
-    },
-    "languages": {
-      "title": "Languages",
-      "subtitle": "Languages I speak and write"
-    },
-    "certifications": {
-      "title": "Certifications",
-      "subtitle": "Professional certifications and achievements"
     },
     "impact": {
       "eyebrow": "Impact",
@@ -87,9 +74,7 @@
   },
   "languages": {
     "spanish": "Spanish",
-    "english": "English",
-    "flagAlt": "Flag of {language}",
-    "flagLabel": "Flag representing {language} language"
+    "english": "English"
   },
   "footer": {
     "copyright": "All rights reserved.",
@@ -114,15 +99,10 @@
     "actions": "Contact actions"
   },
   "education": {
-    "period": "Period",
     "visitWebsite": "Visit {institution} website"
   },
   "certifications": {
-    "issued": "Issued",
-    "skillsCovered": "Skills Covered",
-    "visitWebsite": "Visit {issuer} website",
-    "badgeAlt": "{issuer} certification badge",
-    "badgeLabel": "Badge for {title} certification from {issuer}"
+    "visitWebsite": "Visit {issuer} website"
   },
   "portfolio": {
     "intro": "Products and experiments born from real needs, late-night ideas, and the recurring question: why does this not exist better in Spanish? Featured work shows product ownership, design, engineering, launch, and operations.",
@@ -360,7 +340,9 @@
         "screenshots": [
           {
             "src": "portfolio/renderlog-home.webp",
-            "alt": "Renderlog home page with recent technical articles in English and integrated search"
+            "alt": "Renderlog home page with recent technical articles in English and integrated search",
+            "width": 690,
+            "height": 804
           }
         ]
       },

@@ -1,6 +1,7 @@
 <template>
   <section class="contact-closing" role="region" aria-labelledby="contact-closing-heading">
-    <div class="contact-closing-content">
+    <div class="container">
+      <span class="contact-eyebrow">{{ $t('nav.contact') }}</span>
       <h2 id="contact-closing-heading" class="contact-closing-headline">
         {{ $t('contact.headline') }}
       </h2>
@@ -28,7 +29,7 @@
         </a>
         <a
           :href="resumeUrl"
-          class="btn btn-outline"
+          class="btn-text-link"
           :download="resumeFilename"
           :aria-label="$t('hero.downloadResume')"
           target="_blank"
@@ -65,86 +66,126 @@ export default {
 
 <style scoped>
 .contact-closing {
-  padding: var(--section-gap) var(--space-lg);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 8%, var(--bg-secondary)) 0%, var(--bg-primary) 100%);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  padding: clamp(4rem, 9vw, 6.5rem) 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-light);
 }
 
-.contact-closing-content {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 1.125rem;
+}
+
+.contact-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--primary-color);
+  display: inline-block;
 }
 
 .contact-closing-headline {
-  margin: 0 0 var(--space-2xl);
+  margin: 0 0 1.875rem;
   color: var(--text-primary);
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
   font-weight: 600;
-  line-height: 1.45;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 20ch;
 }
 
 .contact-closing-actions {
   display: flex;
-  gap: var(--space-lg);
-  justify-content: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-md) var(--space-xl);
-  font-size: 1rem;
+  gap: 0.55em;
+  padding: 0.82rem 1.35rem;
+  font-family: var(--font-primary);
+  font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;
-  border: none;
-  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-normal);
-  gap: var(--space-sm);
-  min-width: 160px;
 }
 
 .btn-primary {
   background: var(--primary-color);
-  color: white;
+  color: #fff;
+}
+
+[data-theme="dark"] .btn-primary {
+  color: #0b0d12;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  box-shadow: var(--shadow-md);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  color: #0b0d12;
 }
 
 .btn-secondary {
-  background: var(--bg-secondary);
+  background: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background: transparent;
-  color: var(--primary-color);
-  box-shadow: var(--shadow-sm);
   border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: var(--accent-tint);
 }
 
-@media (max-width: 768px) {
-  .contact-closing {
-    padding: var(--section-gap-mobile) var(--space-md);
-  }
+.btn-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.82rem 0.4rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--border-color);
+  text-underline-offset: 4px;
+  transition: color var(--transition-fast);
+}
 
+.btn-text-link:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 540px) {
   .contact-closing-actions {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
-  .btn {
+  .contact-closing-actions .btn {
     width: 100%;
-    max-width: 280px;
+  }
+
+  .btn-text-link {
+    justify-content: center;
   }
 }
 </style>

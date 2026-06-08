@@ -37,22 +37,6 @@ export function getWorkExperience(locale = 'en') {
 
 /**
  * @param {string} locale - Vue i18n locale code.
- * @returns {Array<Record<string, unknown>>} Education entries.
- */
-export function getEducation(locale = 'en') {
-  return getContent(locale).education || []
-}
-
-/**
- * @param {string} locale - Vue i18n locale code.
- * @returns {Array<Record<string, unknown>>} Certification entries.
- */
-export function getCertifications(locale = 'en') {
-  return getContent(locale).certifications || []
-}
-
-/**
- * @param {string} locale - Vue i18n locale code.
  * @returns {Array<Record<string, unknown>>} Portfolio product/project entries.
  */
 export function getPortfolioProjects(locale = 'en') {
@@ -78,11 +62,8 @@ export function getHowIWorkPrinciples(locale = 'en') {
 /**
  * Returns compact credential data for the support-level credentials section.
  *
- * Education and certifications still use their established arrays so legacy
- * components can keep rendering independently if needed.
- *
  * @param {string} locale - Vue i18n locale code.
- * @returns {{education: Array, certifications: Array}} Aggregated credentials.
+ * @returns {{education: Array<Record<string, unknown>>, certifications: Array<Record<string, unknown>>}} Aggregated credentials.
  */
 export function getCredentials(locale = 'en') {
   const content = getContent(locale)

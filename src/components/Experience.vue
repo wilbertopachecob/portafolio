@@ -1,60 +1,42 @@
 <template>
-  <div class="timeline">
-    <ul class="timeline-list">
+  <div class="experience">
+    <ul class="role-list">
       <li
-        class="timeline-item"
+        class="role"
         v-for="(job, index) in workExperience"
         :key="index"
       >
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <h3 class="timeline-company">{{ job.company }}</h3>
-          <div class="timeline-position">{{ job.position }}</div>
-          <div class="timeline-period">
-            <span>{{ $t('experience.period') }}: {{ job.period }}</span>
-            <span v-if="job.location" class="timeline-location">
-              {{ $t('experience.location') }}: {{ job.location }}
-            </span>
+        <div class="role-aside">
+          <div class="role-period">{{ job.period }}</div>
+          <div class="role-company">{{ job.company }}</div>
+          <div v-if="job.location" class="role-loc">{{ job.location }}</div>
+        </div>
+
+        <div class="role-main">
+          <div class="role-pos">{{ job.position }}</div>
+          <p v-if="job.summary" class="role-summary">{{ job.summary }}</p>
+
+          <div v-if="job.scopeTags && job.scopeTags.length" class="role-scope">
+            <span v-for="tag in job.scopeTags" :key="tag" class="chip chip--accent">{{ tag }}</span>
           </div>
-        </div>
-        
-        <p v-if="job.summary" class="timeline-summary">{{ job.summary }}</p>
 
-        <div v-if="job.scopeTags && job.scopeTags.length" class="timeline-tags">
-          <span
-            v-for="tag in job.scopeTags"
-            :key="tag"
-            class="timeline-tag"
+          <ul
+            v-if="getDisplayAchievements(job).length"
+            class="role-achievements"
+            :aria-label="$t('experience.achievements')"
           >
-            {{ tag }}
-          </span>
-        </div>
-
-        <div v-if="getDisplayAchievements(job).length" class="timeline-description">
-          <ul class="timeline-achievements" :aria-label="$t('experience.achievements')">
             <li
               v-for="(achievement, achievementIndex) in getDisplayAchievements(job)"
               :key="achievementIndex"
-              class="timeline-achievement"
             >
               {{ achievement }}
             </li>
           </ul>
-        </div>
 
-        <div v-if="job.stack && job.stack.length" class="timeline-stack">
-          <span class="timeline-stack-label">{{ $t('experience.stack') }}</span>
-          <ul class="timeline-stack-items" :aria-label="$t('experience.stack')">
-            <li
-              v-for="technology in job.stack"
-              :key="technology"
-              class="timeline-stack-item"
-            >
-              {{ technology }}
-            </li>
-          </ul>
+          <div v-if="job.stack && job.stack.length" class="role-stack" :aria-label="$t('experience.stack')">
+            <span v-for="technology in job.stack" :key="technology" class="tag">{{ technology }}</span>
+          </div>
         </div>
-      </div>
       </li>
     </ul>
   </div>
@@ -81,247 +63,161 @@ export default {
 </script>
 
 <style scoped>
-/* Timeline Styles */
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.timeline-list {
+.role-list {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: 1.125rem;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--border-color);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: var(--space-2xl);
-  padding-left: 60px;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 11px;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  border: 4px solid var(--bg-primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.timeline-content {
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
+.role {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.75rem;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: var(--space-xl);
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  padding: 1.875rem;
+  background: var(--bg-primary);
+  transition: border-color var(--transition-normal);
 }
 
-.timeline-content:hover {
-  box-shadow: var(--shadow-md);
-  background: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-primary));
+.role:hover {
+  border-color: var(--border-color);
 }
 
-.timeline-header {
-  margin-bottom: var(--space-lg);
+.role-period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--primary-color);
+  letter-spacing: 0.04em;
 }
 
-.timeline-company {
-  font-size: 1.5rem;
+.role-company {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: var(--space-sm);
+  margin-top: 0.75rem;
+  letter-spacing: -0.01em;
 }
 
-.timeline-position {
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 1.125rem;
-  margin-bottom: var(--space-sm);
-}
-
-.timeline-period {
+.role-loc {
+  font-size: 0.84rem;
   color: var(--text-muted);
-  font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
+  margin-top: 0.375rem;
 }
 
-.timeline-location {
-  margin-left: var(--space-md);
-}
-
-.timeline-description {
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.timeline-summary {
-  margin: 0 0 var(--space-lg);
-  color: var(--text-secondary);
-  line-height: 1.65;
-}
-
-.timeline-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-}
-
-.timeline-tag {
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
-  color: var(--primary-color);
-  font-size: 0.8125rem;
+.role-pos {
   font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.02rem;
+  margin-bottom: 0.375rem;
 }
 
-.timeline-achievements {
+.role-summary {
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  margin: 0 0 1.125rem;
+}
+
+.role-scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.role-achievements {
   list-style: none;
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
   padding: 0;
-  margin: 0;
 }
 
-.timeline-achievement {
+.role-achievements li {
   position: relative;
-  padding-left: var(--space-lg);
-  margin-bottom: var(--space-md);
-  line-height: 1.6;
+  padding-left: 1.375rem;
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
 }
 
-.timeline-achievement::before {
+.role-achievements li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.5rem;
-  width: 6px;
-  height: 6px;
-  background: var(--primary-color);
-  border-radius: 50%;
+  top: 0.45rem;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--primary-color);
+  border-radius: 2px;
+  transform: rotate(45deg);
 }
 
-.timeline-achievement:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-stack {
+.role-stack {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
-  padding-top: var(--space-lg);
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-light);
 }
 
-.timeline-stack-label {
-  color: var(--text-muted);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+/* Shared chip / tag tokens (kept local so component is self-contained) */
+.chip {
   white-space: nowrap;
-}
-
-.timeline-stack-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.timeline-stack-item {
-  padding: 0.25rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
   border: 1px solid var(--border-color);
   border-radius: 999px;
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  font-size: 0.8125rem;
-  font-weight: 500;
+  padding: 5px 11px;
 }
 
-.timeline-summary {
-  margin: 0 0 var(--space-lg);
-  color: var(--text-secondary);
-  line-height: 1.65;
+.chip--accent {
+  color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 35%, var(--border-color));
+  background: var(--accent-tint);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 15px;
-  }
-  
-  .timeline-item {
-    padding-left: 45px;
-  }
-  
-  .timeline-item::before {
-    left: 6px;
-    width: 18px;
-    height: 18px;
-  }
-  
-  .timeline-content {
-    padding: var(--space-lg);
-  }
-  
-  .timeline-company {
-    font-size: 1.25rem;
-  }
-  
-  .timeline-position {
-    font-size: 1rem;
-  }
-  
-  .timeline-period {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-xs);
-  }
-  
-  .timeline-location {
-    margin-left: 0;
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+}
+
+@media (max-width: 980px) {
+  .role {
+    grid-template-columns: 1fr;
+    gap: 1.125rem;
   }
 
-  .timeline-stack {
-    flex-direction: column;
-    gap: var(--space-sm);
+  .role-aside {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.375rem 0.875rem;
+  }
+
+  .role-company {
+    margin-top: 0;
+  }
+
+  .role-loc {
+    margin-top: 0;
   }
 }
 
 @media (max-width: 480px) {
-  .timeline-content {
-    padding: var(--space-md);
-  }
-  
-  .timeline-company {
-    font-size: 1.125rem;
-  }
-  
-  .timeline-achievement {
-    padding-left: var(--space-md);
-    font-size: 0.9rem;
+  .role {
+    padding: 1.375rem;
   }
 }
 </style>

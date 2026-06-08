@@ -4,9 +4,6 @@
     "experience": "Experiencia",
     "skills": "Capacidades técnicas",
     "portfolio": "Productos",
-    "education": "Educación",
-    "languages": "Idiomas",
-    "certifications": "Certificaciones",
     "impact": "Impacto",
     "howIWork": "Cómo trabajo",
     "credentials": "Credenciales",
@@ -23,7 +20,9 @@
     "downloadResume": "Descargar CV",
     "viewImpact": "Ver impacto profesional",
     "viewProducts": "Ver productos construidos",
-    "profileAlt": "Foto de perfil de Wilberto Pacheco Batista"
+    "profileAlt": "Foto de perfil de Wilberto Pacheco Batista",
+    "status": "Abierto a roles senior · Remoto / US",
+    "locationTag": "Broken Arrow · Bilingüe"
   },
   "sections": {
     "about": {
@@ -43,18 +42,6 @@
       "eyebrow": "Productos",
       "title": "Lo que he construido",
       "subtitle": "Productos propios y experimentos que muestran cómo pienso, diseño y construyo end-to-end"
-    },
-    "education": {
-      "title": "Educación",
-      "subtitle": "Mi formación académica y calificaciones"
-    },
-    "languages": {
-      "title": "Idiomas",
-      "subtitle": "Idiomas que hablo y escribo"
-    },
-    "certifications": {
-      "title": "Certificaciones",
-      "subtitle": "Certificaciones profesionales y logros"
     },
     "impact": {
       "eyebrow": "Impacto",
@@ -87,9 +74,7 @@
   },
   "languages": {
     "spanish": "Español",
-    "english": "Inglés",
-    "flagAlt": "Bandera de {language}",
-    "flagLabel": "Bandera que representa el idioma {language}"
+    "english": "Inglés"
   },
   "footer": {
     "copyright": "Todos los derechos reservados.",
@@ -114,15 +99,10 @@
     "actions": "Opciones de contacto"
   },
   "education": {
-    "period": "Período",
     "visitWebsite": "Visitar sitio web de {institution}"
   },
   "certifications": {
-    "issued": "Emitido",
-    "skillsCovered": "Habilidades Cubiertas",
-    "visitWebsite": "Visitar sitio web de {issuer}",
-    "badgeAlt": "Insignia de certificación de {issuer}",
-    "badgeLabel": "Insignia para certificación {title} de {issuer}"
+    "visitWebsite": "Visitar sitio web de {issuer}"
   },
   "portfolio": {
     "intro": "Productos y experimentos nacidos de necesidades reales, ideas nocturnas y la pregunta recurrente: ¿por qué esto no existe mejor en español? Los destacados muestran ownership de producto, diseño, ingeniería, lanzamiento y operación.",
@@ -360,7 +340,9 @@
         "screenshots": [
           {
             "src": "portfolio/renderlog-home.webp",
-            "alt": "Inicio de Renderlog con artículos técnicos recientes en inglés y búsqueda integrada"
+            "alt": "Inicio de Renderlog con artículos técnicos recientes en inglés y búsqueda integrada",
+            "width": 690,
+            "height": 804
           }
         ]
       },

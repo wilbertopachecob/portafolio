@@ -1,72 +1,85 @@
 <template>
-  <div class="credentials" role="region" :aria-label="$t('sections.credentials.title')">
-    <section class="credential-panel" :aria-labelledby="'credentials-education-heading'">
-      <h3 id="credentials-education-heading" class="credential-panel-title">
-        {{ $t('credentials.educationTitle') }}
-      </h3>
-      <article
-        v-for="item in credentials.education"
-        :key="item.institution"
-        class="credential-item credential-item--with-media"
-      >
-        <img
-          :src="getAssetImage(item.logo || 'UCI.jpg')"
-          :alt="`${item.institution} logo`"
-          class="credential-media"
-          width="56"
-          height="56"
-          loading="lazy"
-        />
-        <div>
-          <h4 class="credential-title">
-            <a
-              :href="item.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="$t('education.visitWebsite', { institution: item.institution })"
-            >
-              {{ item.institution }}
-            </a>
-          </h4>
-          <p class="credential-description">{{ item.degree }}</p>
-          <p class="credential-meta">{{ $t('education.period') }}: {{ item.period }}</p>
+  <div class="cred-grid" role="region" :aria-label="$t('sections.credentials.title')">
+    <!-- Column A: education + languages -->
+    <div class="cred-col">
+      <section class="cred-card" :aria-labelledby="'credentials-education-heading'">
+        <h3 id="credentials-education-heading" class="cred-card-title">
+          {{ $t('credentials.educationTitle') }}
+        </h3>
+        <article
+          v-for="item in credentials.education"
+          :key="item.institution"
+          class="cred-row"
+        >
+          <img
+            :src="getAssetImage(item.logo || 'UCI.jpg')"
+            :alt="`${item.institution} logo`"
+            class="cred-logo"
+            width="44"
+            height="44"
+            loading="lazy"
+          />
+          <div>
+            <h4 class="cred-row-title">
+              <a
+                :href="item.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="$t('education.visitWebsite', { institution: item.institution })"
+              >
+                {{ item.degree }}
+              </a>
+            </h4>
+            <p class="cred-meta">{{ item.institution }} · {{ item.period }}</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="cred-card" :aria-labelledby="'credentials-languages-heading'">
+        <h3 id="credentials-languages-heading" class="cred-card-title">
+          {{ $t('credentials.languagesTitle') }}
+        </h3>
+        <p class="cred-note">{{ $t('credentials.languageNote') }}</p>
+        <div class="cred-chips">
+          <span class="chip chip--accent">{{ $t('languages.spanish') }}</span>
+          <span class="chip chip--accent">{{ $t('languages.english') }}</span>
         </div>
-      </article>
-    </section>
+      </section>
+    </div>
 
-    <section class="credential-panel" :aria-labelledby="'credentials-languages-heading'">
-      <h3 id="credentials-languages-heading" class="credential-panel-title">
-        {{ $t('credentials.languagesTitle') }}
-      </h3>
-      <p class="credential-note">{{ $t('credentials.languageNote') }}</p>
-    </section>
-
-    <section class="credential-panel" :aria-labelledby="'credentials-certifications-heading'">
-      <h3 id="credentials-certifications-heading" class="credential-panel-title">
-        {{ $t('credentials.certificationsTitle') }}
-      </h3>
-      <article
-        v-for="certification in credentials.certifications"
-        :key="certification.title"
-        class="credential-item"
-      >
-        <h4 class="credential-title">
-          <a
-            :href="certification.link"
-            target="_blank"
-            rel="noopener noreferrer"
-            :aria-label="$t('certifications.visitWebsite', { issuer: certification.issuer })"
-          >
-            {{ certification.title }}
-          </a>
-        </h4>
-        <p class="credential-description">{{ certification.issuer }}</p>
-        <p class="credential-meta">{{ $t('certifications.issued') }}: {{ certification.date }}</p>
-        <p v-if="certification.conciseDescription" class="credential-description">
-          {{ certification.conciseDescription }}
-        </p>
-      </article>
-    </section>
+    <!-- Column B: certifications -->
+    <div class="cred-col">
+      <section class="cred-card" :aria-labelledby="'credentials-certifications-heading'">
+        <h3 id="credentials-certifications-heading" class="cred-card-title">
+          {{ $t('credentials.certificationsTitle') }}
+        </h3>
+        <article
+          v-for="certification in credentials.certifications"
+          :key="certification.title"
+          class="cred-row"
+        >
+          <span class="cred-badge" aria-hidden="true">
+            <app-icon :icon="['fas', 'certificate']" />
+          </span>
+          <div>
+            <h4 class="cred-row-title">
+              <a
+                :href="certification.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="$t('certifications.visitWebsite', { issuer: certification.issuer })"
+              >
+                {{ certification.title }}
+              </a>
+            </h4>
+            <p class="cred-meta">{{ certification.issuer }} · {{ certification.date }}</p>
+            <p v-if="certification.conciseDescription" class="cred-desc">
+              {{ certification.conciseDescription }}
+            </p>
+          </div>
+        </article>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -95,99 +108,147 @@ export default {
 </script>
 
 <style scoped>
-.credentials {
+.cred-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.375rem;
+  align-items: stretch;
 }
 
-.credential-panel {
+.cred-col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
-  min-width: 0;
-  padding: var(--card-padding-dense);
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  gap: 1.375rem;
 }
 
-.credential-panel-title {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 1.25rem;
+@media (min-width: 881px) {
+  .cred-col:nth-child(2) .cred-card {
+    flex: 1;
+  }
+
+  .cred-col:nth-child(1) .cred-card + .cred-card {
+    flex: 1;
+  }
 }
 
-.credential-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  min-width: 0;
-}
-
-.credential-item--with-media {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: var(--space-md);
-}
-
-.credential-media {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  flex-shrink: 0;
-  padding: var(--space-xs);
-  background: #ffffff;
-  border: 1px solid var(--border-color);
+.cred-card {
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
+  padding: 1.75rem;
+  background: var(--bg-primary);
 }
 
-.credential-title {
+.cred-card-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 1.125rem;
+  font-weight: 500;
+}
+
+.cred-row {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  padding: 0.875rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.cred-row:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.cred-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+  padding: 3px;
+}
+
+.cred-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  background: var(--accent-tint);
+  color: var(--primary-color);
+  flex-shrink: 0;
+  font-size: 1.05rem;
+}
+
+.cred-row-title {
   margin: 0;
-  color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 600;
+  color: var(--text-primary);
   line-height: 1.35;
 }
 
-.credential-title a {
+.cred-row-title a {
   color: var(--text-primary);
   text-decoration: none;
 }
 
-.credential-title a:hover {
+.cred-row-title a:hover {
   color: var(--primary-color);
 }
 
-.credential-description,
-.credential-meta,
-.credential-note {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.55;
-}
-
-.credential-meta {
+.cred-meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.84rem;
   color: var(--text-muted);
-  font-size: 0.8125rem;
-  font-weight: 600;
 }
 
-@media (max-width: 992px) {
-  .credentials {
+.cred-desc {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cred-note {
+  margin: 0;
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.cred-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.chip {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+.chip--accent {
+  color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 35%, var(--border-color));
+  background: var(--accent-tint);
+}
+
+@media (max-width: 880px) {
+  .cred-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .credential-panel {
-    padding: var(--space-lg);
-  }
-
-  .credential-item--with-media {
-    flex-direction: column;
   }
 }
 </style>

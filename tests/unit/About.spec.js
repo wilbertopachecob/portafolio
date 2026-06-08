@@ -13,12 +13,14 @@ const createTestI18n = (locale = 'en') => {
       en: {
         hero: {
           title: 'Wilberto Pacheco',
+          status: 'Available for senior product engineering roles',
           subtitle: 'Software Engineer focused on product, modernization, and end-to-end delivery',
           description: 'Bilingual software engineer with 15+ years building full stack products, modernizing legacy platforms, and leading technical initiatives across health tech, web, and mobile.',
           viewImpact: 'View professional impact',
           viewProducts: 'View shipped products',
           downloadResume: 'Download Resume',
-          profileAlt: 'Wilberto Pacheco Batista profile photo'
+          profileAlt: 'Wilberto Pacheco Batista profile photo',
+          locationTag: 'Based in Oklahoma, USA',
         },
         contact: {
           letsTalk: "Let's talk"
@@ -27,12 +29,14 @@ const createTestI18n = (locale = 'en') => {
       es: {
         hero: {
           title: 'Wilberto Pacheco',
+          status: 'Disponible para roles senior de ingeniería de producto',
           subtitle: 'Software Engineer enfocado en producto, modernización y entrega end-to-end',
           description: 'Ingeniero de software bilingüe con 15+ años construyendo productos full stack, modernizando plataformas heredadas y liderando iniciativas técnicas.',
           viewImpact: 'Ver impacto profesional',
           viewProducts: 'Ver productos construidos',
           downloadResume: 'Descargar CV',
-          profileAlt: 'Foto de perfil de Wilberto Pacheco Batista'
+          profileAlt: 'Foto de perfil de Wilberto Pacheco Batista',
+          locationTag: 'Basado en Oklahoma, USA',
         },
         contact: {
           letsTalk: 'Hablemos'
@@ -83,8 +87,8 @@ describe('About.vue', () => {
     })
     const profilePhoto = screen.getByRole('img', { name: /Wilberto Pacheco Batista profile photo/ })
     expect(profilePhoto).toBeInTheDocument()
-    expect(profilePhoto).toHaveAttribute('width', '128')
-    expect(profilePhoto).toHaveAttribute('height', '128')
+    expect(profilePhoto).toHaveAttribute('width', '420')
+    expect(profilePhoto).toHaveAttribute('height', '483')
     expect(profilePhoto).toHaveAttribute('loading', 'eager')
   })
 
@@ -159,7 +163,7 @@ describe('About.vue', () => {
     })
     expect(screen.getByRole('banner')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { level: 2 }).length).toBeGreaterThan(0)
   })
 
   it('should have no accessibility violations', async () => {

@@ -28,8 +28,8 @@ export default {
 <style scoped>
 .impact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.125rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -37,31 +37,49 @@ export default {
 
 .impact-card {
   container-type: inline-size;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 0.875rem;
   min-width: 0;
-  padding: var(--card-padding-editorial);
+  padding: 1.75rem 1.5rem;
   background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+/* Accent rule on hover (flat, editorial — no shadow) */
+.impact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 2px;
+  background: var(--primary-color);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .impact-card:hover {
-  background: color-mix(in srgb, var(--bg-secondary) 35%, var(--bg-primary));
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-color);
+  transform: translateY(-3px);
+}
+
+.impact-card:hover::before {
+  opacity: 1;
 }
 
 .impact-metric {
   margin: 0;
   min-width: 0;
   max-width: 100%;
-  color: var(--accent-color);
-  font-size: clamp(1.125rem, 7cqi, 2.5rem);
-  font-weight: 700;
-  line-height: 1.15;
+  font-family: var(--font-display);
+  color: var(--primary-color);
+  font-size: clamp(1.125rem, 7cqi, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
 }
@@ -70,7 +88,7 @@ export default {
   margin: 0;
   min-width: 0;
   color: var(--text-primary);
-  font-size: 1.125rem;
+  font-size: 1.08rem;
   font-weight: 600;
 }
 
@@ -78,17 +96,20 @@ export default {
   margin: 0;
   min-width: 0;
   color: var(--text-secondary);
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 880px) {
+  .impact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 540px) {
   .impact-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
-  .impact-card {
-    padding: var(--card-padding-dense);
+    gap: 1rem;
   }
 }
 </style>

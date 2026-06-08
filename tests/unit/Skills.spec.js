@@ -4,14 +4,6 @@ import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Skills from '@/components/Skills.vue'
 
-vi.mock('@fortawesome/vue-fontawesome', () => ({
-  FontAwesomeIcon: {
-    name: 'FontAwesomeIcon',
-    template: '<span data-testid="app-icon"></span>',
-    props: ['icon', 'aria-label', 'aria-hidden'],
-  },
-}))
-
 const createTestI18n = (locale = 'en') => {
   return createI18n({
     legacy: false,
@@ -56,7 +48,7 @@ describe('Skills.vue', () => {
       },
     })
 
-    expect(container.querySelector('.skills-container')).toBeInTheDocument()
+    expect(container.querySelector('.cap-wrap')).toBeInTheDocument()
   })
 
   it('renders multiple skill categories', () => {
@@ -136,7 +128,7 @@ describe('Skills.vue', () => {
     expect(screen.getAllByRole('heading', { level: 3 }).length).toBeGreaterThan(0)
   })
 
-  it('renders skill icons', () => {
+  it('renders capability index labels', () => {
     const i18n = createTestI18n()
     render(Skills, {
       global: {
@@ -144,8 +136,8 @@ describe('Skills.vue', () => {
       },
     })
 
-    const icons = screen.getAllByTestId('app-icon')
-    expect(icons.length).toBeGreaterThan(0)
+    expect(screen.getByText('01')).toBeInTheDocument()
+    expect(screen.getByText('02')).toBeInTheDocument()
   })
 
   it('renders specific product engineering capabilities', () => {

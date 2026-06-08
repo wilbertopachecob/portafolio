@@ -42,6 +42,10 @@ const createTestI18n = () => createI18n({
         certificationsTitle: 'Certifications',
         languageNote: 'Native Spanish and professional / bilingual English. I build and write products in both languages.',
       },
+      languages: {
+        spanish: 'Spanish native',
+        english: 'English professional',
+      },
       education: {
         period: 'Period',
         visitWebsite: 'Visit {institution} website',
@@ -63,10 +67,11 @@ describe('Credentials.vue', () => {
     })
 
     expect(screen.getByRole('region', { name: 'Education and certifications' })).toBeInTheDocument()
-    expect(screen.getByText('University of Informatic Sciences')).toBeInTheDocument()
+    expect(screen.getByText('Computer Science Engineer')).toBeInTheDocument()
+    expect(screen.getByText('University of Informatic Sciences · 2005 - 2010')).toBeInTheDocument()
     expect(screen.getByText(/Native Spanish and professional \/ bilingual English/)).toBeInTheDocument()
     expect(screen.getByText('AWS Certified Cloud Practitioner')).toBeInTheDocument()
-    expect(screen.getByText('Issued: December 2020')).toBeInTheDocument()
+    expect(screen.getByText('Amazon Web Services (AWS) · December 2020')).toBeInTheDocument()
   })
 
   it('keeps credential links accessible', () => {

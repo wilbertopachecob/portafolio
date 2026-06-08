@@ -13,7 +13,6 @@
     >
       ES
     </button>
-    <span class="language-divider" aria-hidden="true">|</span>
     <button
       type="button"
       class="language-option"
@@ -57,37 +56,37 @@ export default {
 .language-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.2rem 0.45rem;
+  gap: 0.25rem;
+  padding: 0.2rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: 999px;
 }
 
 .language-option {
-  min-width: 2rem;
-  padding: 0.2rem 0.35rem;
+  min-width: 2.2rem;
+  padding: 0.28rem 0.45rem;
   border: none;
-  border-radius: calc(var(--radius-md) - 2px);
+  border-radius: 999px;
   background: transparent;
   color: var(--text-muted);
-  font-family: var(--font-primary);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .language-option:hover {
   color: var(--text-primary);
-  background: color-mix(in srgb, var(--bg-tertiary) 70%, transparent);
+  background: color-mix(in srgb, var(--bg-tertiary) 72%, transparent);
 }
 
 .language-option--active {
-  color: var(--text-primary);
-  background: var(--bg-primary);
-  box-shadow: var(--shadow-sm);
+  color: var(--primary-color);
+  background: var(--accent-tint);
 }
 
 .language-option:focus-visible {
@@ -95,21 +94,14 @@ export default {
   outline-offset: 2px;
 }
 
-.language-divider {
-  color: var(--border-light);
-  font-size: 0.75rem;
-  line-height: 1;
-  user-select: none;
-}
-
 @media (max-width: 768px) {
   .language-toggle {
-    padding: 0.15rem 0.35rem;
+    padding: 0.18rem;
   }
 
   .language-option {
-    min-width: 1.75rem;
-    font-size: 0.75rem;
+    min-width: 2rem;
+    font-size: 0.68rem;
   }
 }
 </style>
