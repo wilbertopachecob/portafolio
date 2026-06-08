@@ -12,6 +12,10 @@
     "credentials": "Credentials",
     "contact": "Contact"
   },
+  "navShort": {
+    "skills": "Skills",
+    "howIWork": "Process"
+  },
   "hero": {
     "title": "Wilberto Pacheco",
     "subtitle": "Software Engineer focused on product, modernization, and end-to-end delivery",

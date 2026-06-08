@@ -21,3 +21,13 @@ export const NAV_ITEMS = [
   { id: 'credentials', icon: ['fas', 'certificate'] },
   { id: 'contact', icon: ['fas', 'envelope'] },
 ]
+
+/** Desktop nav — conversion-focused; brand covers home, credentials stay in-page only */
+export const PRIMARY_NAV_IDS = [
+  'impact',
+  'portfolio',
+  'experience',
+  'skills',
+  'howIWork',
+  'contact',
+]

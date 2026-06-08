@@ -27,6 +27,10 @@ const createTestI18n = (locale = 'en') => {
           languages: 'Languages',
           certifications: 'Certifications'
         },
+        navShort: {
+          skills: 'Skills',
+          howIWork: 'Process'
+        },
         hero: {
           downloadResume: 'Download Resume'
         },
@@ -51,6 +55,10 @@ const createTestI18n = (locale = 'en') => {
           education: 'Educación',
           languages: 'Idiomas',
           certifications: 'Certificaciones'
+        },
+        navShort: {
+          skills: 'Capacidades',
+          howIWork: 'Proceso'
         },
         hero: {
           downloadResume: 'Descargar CV'
@@ -116,26 +124,24 @@ describe('Navigation.vue', () => {
       expect(brand).toHaveTextContent('Wilberto Pacheco')
     })
 
-    it('renders navigation links', () => {
+    it('renders primary desktop navigation links', () => {
       renderNavigation()
-      expect(screen.getAllByText('About').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Impact').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Experience').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Products').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Technical capabilities').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('How I work').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Credentials').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('Contact').length).toBeGreaterThan(0)
+      expect(screen.getByRole('menuitem', { name: 'Impact' })).toBeInTheDocument()
+      expect(screen.getByRole('menuitem', { name: 'Products' })).toBeInTheDocument()
+      expect(screen.getByRole('menuitem', { name: 'Experience' })).toBeInTheDocument()
+      expect(screen.getByText('Skills')).toBeInTheDocument()
+      expect(screen.getByText('Process')).toBeInTheDocument()
+      expect(screen.getByRole('menuitem', { name: 'Contact' })).toBeInTheDocument()
+      expect(screen.queryByRole('menuitem', { name: 'About' })).not.toBeInTheDocument()
+      expect(screen.queryByRole('menuitem', { name: 'Credentials' })).not.toBeInTheDocument()
       expect(screen.queryByText('Education')).not.toBeInTheDocument()
       expect(screen.queryByText('Languages')).not.toBeInTheDocument()
       expect(screen.queryByText('Certifications')).not.toBeInTheDocument()
     })
 
-    it('renders resume download link in navbar controls', () => {
+    it('does not render resume download in desktop navbar controls', () => {
       renderNavigation()
-      const resumeLink = screen.getByRole('link', { name: /Download Resume/ })
-      expect(resumeLink).toBeInTheDocument()
-      expect(resumeLink).toHaveAttribute('href', getPublicAssetUrl(RESUME_FILENAME))
+      expect(screen.queryByRole('link', { name: /Download Resume/ })).not.toBeInTheDocument()
     })
 
     it('renders theme toggle button', () => {
@@ -165,9 +171,9 @@ describe('Navigation.vue', () => {
 
     it('has active section highlighting functionality', () => {
       renderNavigation()
-      const aboutLink = screen.getByRole('menuitem', { name: 'About' })
-      expect(aboutLink).toHaveClass('nav-link')
-      expect(aboutLink).toHaveClass('active')
+      const impactLink = screen.getByRole('menuitem', { name: 'Impact' })
+      expect(impactLink).toHaveClass('nav-link')
+      expect(impactLink).not.toHaveClass('active')
     })
 
     it('should have no accessibility violations', async () => {
