@@ -26,6 +26,10 @@ export default [
         __filename: 'readonly',
         localStorage: 'readonly',
         navigator: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        requestAnimationFrame: 'readonly',
+        cancelAnimationFrame: 'readonly',
       },
     },
     rules: {
