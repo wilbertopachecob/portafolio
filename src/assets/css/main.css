@@ -32,11 +32,12 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  /* Section rhythm */
-  --section-padding-main: 6rem;
-  --section-padding-main-mobile: 4rem;
-  --section-padding-secondary: 4.5rem;
-  --section-padding-secondary-mobile: 3rem;
+  /* Section rhythm — one gap per boundary (top padding only; avoids doubled whitespace) */
+  --section-gap: 4rem;
+  --section-gap-secondary: 3rem;
+  --section-gap-mobile: 3rem;
+  --section-gap-secondary-mobile: 2.5rem;
+  --section-header-gap: var(--space-xl);
   --card-padding-dense: 1.5rem;
   --card-padding-editorial: 2rem;
   
@@ -223,17 +224,15 @@ a:focus-visible {
 }
 
 .section {
-  padding: var(--section-padding-main) 0;
+  padding-top: var(--section-gap);
+  padding-bottom: 0;
   background: var(--bg-primary);
   scroll-margin-top: 64px;
 }
 
-.section:first-of-type {
-  padding-top: 0;
-}
-
+.section:first-of-type,
 .section--compact {
-  padding: 0;
+  padding-top: 0;
 }
 
 .section--alt {
@@ -245,12 +244,12 @@ a:focus-visible {
 }
 
 .section--secondary {
-  padding: var(--section-padding-secondary) 0;
+  padding-top: var(--section-gap-secondary);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--section-header-gap);
 }
 
 .section-eyebrow {
@@ -647,12 +646,15 @@ a:focus-visible {
   }
   
   .section {
-    padding: var(--section-padding-main-mobile) 0;
     scroll-margin-top: 56px;
   }
 
-  .section--secondary {
-    padding: var(--section-padding-secondary-mobile) 0;
+  .section:not(:first-of-type):not(.section--compact) {
+    padding-top: var(--section-gap-mobile);
+  }
+
+  .section--secondary:not(:first-of-type) {
+    padding-top: var(--section-gap-secondary-mobile);
   }
   
   .grid-2,

@@ -12,7 +12,7 @@
         v-for="section in pageSections"
         :key="section.id"
         :id="section.id"
-        :class="sectionClasses(section)"
+        :class="getSectionClasses(section)"
         :role="section.showHeader ? 'region' : undefined"
         :aria-labelledby="section.showHeader ? `${section.id}-section-heading` : undefined"
       >
@@ -45,40 +45,13 @@
 </template>
 
 <script>
-import { markRaw } from 'vue'
 import Navigation from './components/Navigation.vue'
-import About from './components/About.vue'
-import Impact from './components/Impact.vue'
-import Experience from './components/Experience.vue'
-import Skills from './components/Skills.vue'
-import Portfolio from './components/Portfolio.vue'
-import Credentials from './components/Credentials.vue'
-import HowIWork from './components/HowIWork.vue'
-import ContactClosing from './components/ContactClosing.vue'
-
-const PAGE_SECTIONS = [
-  { id: 'about', component: markRaw(About), showHeader: false, tone: 'elevated' },
-  { id: 'impact', component: markRaw(Impact), showHeader: true },
-  { id: 'portfolio', component: markRaw(Portfolio), showHeader: true, tone: 'alt' },
-  { id: 'experience', component: markRaw(Experience), showHeader: true },
-  { id: 'skills', component: markRaw(Skills), showHeader: true, tone: 'alt' },
-  { id: 'howIWork', component: markRaw(HowIWork), showHeader: true, secondary: true },
-  { id: 'credentials', component: markRaw(Credentials), showHeader: true, tone: 'alt', secondary: true },
-  { id: 'contact', component: markRaw(ContactClosing), showHeader: false, compact: true },
-]
+import { getSectionClasses, PAGE_SECTIONS } from './config/sections'
 
 export default {
   name: 'App',
   components: {
     Navigation,
-    About,
-    Impact,
-    Experience,
-    Skills,
-    Portfolio,
-    Credentials,
-    HowIWork,
-    ContactClosing,
   },
   data() {
     return {
@@ -91,16 +64,7 @@ export default {
     this.updateDocumentTitle()
   },
   methods: {
-    sectionClasses(section) {
-      return [
-        'section',
-        section.tone && `section--${section.tone}`,
-        {
-          'section--compact': section.compact,
-          'section--secondary': section.secondary,
-        },
-      ]
-    },
+    getSectionClasses,
     syncDocumentLanguage() {
       document.documentElement.lang = this.$i18n.locale
     },
