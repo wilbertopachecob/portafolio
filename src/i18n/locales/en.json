@@ -114,7 +114,7 @@
       {
         "company": "Included Health",
         "position": "Software Engineer II",
-        "period": "May 2021 - Present",
+        "period": "May 2021 - April 2026",
         "location": "San Francisco, California",
         "responsibilities": [
           "Lead role in Dependabot campaigns and security mitigation, significantly improving maintainability of our monolithic application and contributing to securing a major client deal.",
@@ -198,4 +198,4 @@
       }
     ]
   }
-} 
+}
