@@ -1,26 +1,22 @@
 <template>
-  <div ref="skillsRoot" class="skills-container" :class="{ 'is-visible': isVisible }">
-    <ul class="skills-grid">
+  <div ref="skillsRoot" class="cap-wrap" :class="{ 'is-visible': isVisible }">
+    <ul class="cap-grid">
       <li
         v-for="(category, index) in skillCategories"
         :key="index"
-        class="skill-category"
+        class="cap"
       >
-        <h3 class="skill-category-title" v-html="category.title"></h3>
-        <ul class="skill-items">
+        <div class="cap-head">
+          <span class="cap-idx">{{ String(index + 1).padStart(2, '0') }}</span>
+          <h3 class="cap-title" v-html="category.title"></h3>
+        </div>
+        <ul class="cap-tags">
           <li
             v-for="(skill, skillIndex) in category.skills"
             :key="skillIndex"
-            class="skill-item"
-            :style="{ '--item-delay': `${skillIndex * 0.05}s` }"
+            class="tag"
           >
-            <span class="skill-icon" v-if="skill.icon" aria-hidden="true">
-              <app-icon
-                :icon="skill.icon"
-                :style="{ color: skill.iconColor || 'var(--primary-color)' }"
-              />
-            </span>
-            <span class="skill-name">{{ skill.name }}</span>
+            {{ skill.name }}
           </li>
         </ul>
       </li>
@@ -62,145 +58,81 @@ export default {
 </script>
 
 <style scoped>
-.skills-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.skills-grid {
+.cap-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-2xl);
+  gap: 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.skill-category {
+.cap {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.875rem;
   background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--card-padding-editorial);
-  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+  transition: border-color var(--transition-normal);
 }
 
-.skill-category:hover {
-  background: color-mix(in srgb, var(--bg-secondary) 35%, var(--bg-primary));
-  box-shadow: var(--shadow-sm);
+.cap:hover {
+  border-color: var(--border-color);
 }
 
-.skill-category-title {
-  font-size: 1.25rem;
+.cap-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cap-idx {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--primary-color);
+}
+
+.cap-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--border-light);
+  margin: 0;
 }
 
-.skill-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+.cap-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  border-radius: var(--radius-md);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  transition: background var(--transition-normal), box-shadow var(--transition-normal);
-  min-width: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(12px);
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 7px 11px;
+  background: var(--bg-primary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
-.skills-container.is-visible .skill-item {
-  animation: skillFadeIn 0.45s ease-out forwards;
-  animation-delay: var(--item-delay, 0s);
+.cap:hover .tag {
+  border-color: var(--border-color);
 }
 
-.skill-item:hover {
-  background: var(--bg-tertiary);
-  box-shadow: var(--shadow-sm);
-}
-
-.skill-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.skill-icon :deep(svg) {
-  width: 1rem;
-  height: 1rem;
-}
-
-.skill-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  min-width: 0;
-  line-height: 1.3;
-  overflow-wrap: break-word;
-}
-
-@keyframes skillFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-item {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-
-  .skill-category {
-    padding: var(--card-padding-dense);
-  }
-
-  .skill-items {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
-  }
-
-  .skill-item {
-    padding: var(--space-xs) var(--space-sm);
-  }
-
-  .skill-name {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 340px) {
-  .skill-items {
+@media (max-width: 880px) {
+  .cap-grid {
     grid-template-columns: 1fr;
   }
 
-  .skill-category-title {
-    font-size: 1.125rem;
+  .cap {
+    padding: 1.5rem;
   }
 }
 </style>

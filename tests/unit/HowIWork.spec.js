@@ -63,7 +63,7 @@ describe('HowIWork.vue', () => {
       },
     })
 
-    expect(container.querySelector('.how-i-work')).toBeInTheDocument()
+    expect(container.querySelector('.principles')).toBeInTheDocument()
   })
 
   it('should have no accessibility violations', async () => {

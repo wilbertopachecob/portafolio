@@ -2,137 +2,124 @@
   <div class="portfolio">
     <p class="portfolio-intro">{{ $t('portfolio.intro') }}</p>
 
-    <ul class="portfolio-featured" :aria-label="$t('portfolio.featured')">
+    <!-- Featured products as alternating 2-column case studies -->
+    <ul class="case-list" :aria-label="$t('portfolio.featured')">
       <li
-        v-for="project in featuredProjects"
+        v-for="(project, index) in featuredProjects"
         :key="project.name"
-        class="portfolio-card"
-        :class="{ 'portfolio-card--featured': project.featured }"
+        class="case"
+        :class="{ 'case--flip': index % 2 === 1 }"
       >
-        <div class="portfolio-card-header">
-          <div class="portfolio-card-meta">
-            <span v-if="project.type" class="portfolio-type">{{ $t(`portfolio.types.${project.type}`) }}</span>
-            <span class="portfolio-badge">{{ $t('portfolio.featured') }}</span>
-          </div>
-          <h3 class="portfolio-card-title">
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="chip chip--accent">{{ $t('portfolio.caseStudy') }}</span>
+            <span v-if="project.type" class="chip">{{ $t(`portfolio.types.${project.type}`) }}</span>
             <a
               :href="project.url"
               target="_blank"
               rel="noopener noreferrer"
+              class="chip chip--link"
               :aria-label="$t('portfolio.visitProject', { name: project.name })"
             >
-              <span class="portfolio-card-title-text">{{ project.name }}</span>
+              {{ displayHost(project.url) }}
               <app-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
             </a>
-          </h3>
+          </div>
+
+          <h3 class="case-title">{{ project.name }}</h3>
+          <p class="case-lead">{{ project.description }}</p>
+
+          <div v-if="caseFields(project).length" class="case-grid">
+            <div v-for="field in caseFields(project)" :key="field" class="case-field">
+              <div class="k">{{ $t(`portfolio.${field}`) }}</div>
+              <div class="v">{{ project[field] }}</div>
+            </div>
+          </div>
+
+          <div v-if="project.outcome" class="case-outcome">
+            <div class="k">{{ $t('portfolio.outcome') }}</div>
+            <div class="v">{{ project.outcome }}</div>
+          </div>
+
+          <ul
+            v-if="project.highlights && project.highlights.length"
+            class="case-highlights"
+            :aria-label="$t('portfolio.highlights')"
+          >
+            <li v-for="(highlight, hi) in project.highlights" :key="hi">{{ highlight }}</li>
+          </ul>
+
+          <ul
+            v-if="project.tags && project.tags.length"
+            class="case-tags"
+            :aria-label="$t('portfolio.technologies')"
+          >
+            <li v-for="(tag, ti) in project.tags" :key="ti" class="tag">{{ tag }}</li>
+          </ul>
         </div>
 
-        <p class="portfolio-card-description">{{ project.description }}</p>
-
-        <ul
+        <!-- Screenshots: phone frames for mobile, browser frame otherwise -->
+        <div
           v-if="project.screenshots && project.screenshots.length"
-          class="portfolio-screenshots"
-          :class="`portfolio-screenshots--${project.type === 'mobile' ? 'mobile' : 'desktop'}`"
+          class="case-shots"
           :aria-label="$t('portfolio.screenshots', { name: project.name })"
         >
-          <li
-            v-for="(screenshot, screenshotIndex) in project.screenshots"
-            :key="`${project.name}-${screenshotIndex}`"
-            class="portfolio-screenshot"
-          >
-            <figure class="portfolio-screenshot-frame">
+          <template v-if="project.type === 'mobile'">
+            <figure
+              v-for="(screenshot, si) in project.screenshots"
+              :key="si"
+              class="phone"
+            >
               <img
                 :src="getScreenshotSrc(screenshot.src)"
                 :alt="screenshot.alt"
-                class="portfolio-screenshot-image"
                 width="360"
                 height="780"
                 loading="lazy"
                 decoding="async"
               />
             </figure>
-          </li>
-        </ul>
-
-        <div
-          v-if="getCaseStudyFields(project).length"
-          class="portfolio-case-study"
-          :aria-label="$t('portfolio.caseStudy')"
-        >
-          <div
-            v-for="field in getCaseStudyFields(project)"
-            :key="field.key"
-            class="portfolio-case-study-item"
-          >
-            <h4>{{ $t(`portfolio.${field.key}`) }}</h4>
-            <p>{{ project[field.key] }}</p>
-          </div>
+          </template>
+          <figure v-else class="browser">
+            <div class="browser-bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span class="url">{{ displayHost(project.url) }}</span>
+            </div>
+            <img
+              :src="getScreenshotSrc(project.screenshots[0].src)"
+              :alt="project.screenshots[0].alt"
+              width="1024"
+              height="822"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </div>
-
-        <ul
-          v-if="project.highlights && project.highlights.length"
-          class="portfolio-highlights"
-          :aria-label="$t('portfolio.highlights')"
-        >
-          <li
-            v-for="(highlight, highlightIndex) in project.highlights"
-            :key="highlightIndex"
-          >
-            {{ highlight }}
-          </li>
-        </ul>
-
-        <ul v-if="project.tags && project.tags.length" class="portfolio-tags" :aria-label="$t('portfolio.technologies')">
-          <li
-            v-for="(tag, tagIndex) in project.tags"
-            :key="tagIndex"
-            class="portfolio-tag"
-          >
-            {{ tag }}
-          </li>
-        </ul>
       </li>
     </ul>
 
-    <section v-if="experimentProjects.length" class="portfolio-experiments" :aria-labelledby="'portfolio-experiments-heading'">
-      <h3 id="portfolio-experiments-heading" class="portfolio-subsection-title">
+    <!-- Experiments -->
+    <section v-if="experimentProjects.length" class="experiments" aria-labelledby="portfolio-experiments-heading">
+      <h3 id="portfolio-experiments-heading" class="experiments-title">
         {{ $t('portfolio.experiments') }}
       </h3>
 
-      <ul class="portfolio-grid" :aria-label="$t('portfolio.experiments')">
-        <li
-          v-for="project in experimentProjects"
-          :key="project.name"
-          class="portfolio-card portfolio-card--compact"
-        >
-          <div class="portfolio-card-header">
-            <div class="portfolio-card-meta">
-              <span v-if="project.type" class="portfolio-type">{{ $t(`portfolio.types.${project.type}`) }}</span>
+      <ul class="exp-grid" :aria-label="$t('portfolio.experiments')">
+        <li v-for="project in experimentProjects" :key="project.name">
+          <a
+            :href="project.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="exp-card"
+            :aria-label="$t('portfolio.visitProject', { name: project.name })"
+          >
+            <div class="exp-top">
+              <span class="exp-name">{{ project.name }}</span>
+              <app-icon class="exp-arrow" :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
             </div>
-            <h3 class="portfolio-card-title">
-              <a
-                :href="project.url"
-                target="_blank"
-                rel="noopener noreferrer"
-                :aria-label="$t('portfolio.visitProject', { name: project.name })"
-              >
-                <span class="portfolio-card-title-text">{{ project.name }}</span>
-                <app-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
-              </a>
-            </h3>
-          </div>
-
-          <p class="portfolio-card-description">{{ project.description }}</p>
-
-          <ul v-if="project.tags && project.tags.length" class="portfolio-tags" :aria-label="$t('portfolio.technologies')">
-            <li
-              v-for="(tag, tagIndex) in project.tags"
-              :key="tagIndex"
-              class="portfolio-tag"
-            >
-              {{ tag }}
-            </li>
-          </ul>
+            <p class="exp-desc">{{ project.description }}</p>
+            <span v-if="project.tags && project.tags.length" class="exp-tag">{{ project.tags.join(' · ') }}</span>
+          </a>
         </li>
       </ul>
     </section>
@@ -161,13 +148,8 @@ export default {
   name: 'Portfolio',
   data() {
     return {
-      caseStudyFields: [
-        { key: 'problem' },
-        { key: 'user' },
-        { key: 'solution' },
-        { key: 'role' },
-        { key: 'outcome' },
-      ],
+      // Case fields shown in the 2x2 grid (outcome is rendered separately)
+      gridFields: ['problem', 'user', 'solution', 'role'],
     }
   },
   computed: {
@@ -182,8 +164,15 @@ export default {
     },
   },
   methods: {
-    getCaseStudyFields(project) {
-      return this.caseStudyFields.filter((field) => project[field.key])
+    caseFields(project) {
+      return this.gridFields.filter((field) => project[field])
+    },
+    displayHost(url) {
+      try {
+        return new URL(url).hostname.replace(/^www\./, '')
+      } catch {
+        return url
+      }
     },
     getScreenshotSrc(filename) {
       const webpName = filename.replace(/\.(png|jpe?g)$/i, '.webp')
@@ -204,257 +193,301 @@ export default {
   font-size: 1.0625rem;
   line-height: 1.7;
   max-width: 760px;
-  margin: 0 auto var(--space-2xl);
-  text-align: center;
+  margin: 0 0 var(--space-2xl);
 }
 
-.portfolio-featured,
-.portfolio-grid {
-  display: grid;
-  gap: var(--space-xl);
+.case-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.375rem;
 }
 
-.portfolio-featured {
-  grid-template-columns: 1fr;
-}
-
-.portfolio-grid {
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-.portfolio-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--card-padding-editorial);
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
+.case {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: background var(--transition-normal), box-shadow var(--transition-normal);
-  min-width: 0;
+  background: var(--bg-primary);
+  overflow: hidden;
 }
 
-.portfolio-card:hover {
-  background: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-primary));
-  box-shadow: var(--shadow-md);
+.case--flip .case-shots {
+  order: -1;
+  border-left: 0;
+  border-right: 1px solid var(--border-light);
 }
 
-.portfolio-card--featured {
-  grid-column: 1 / -1;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  border-color: color-mix(in srgb, var(--primary-color) 30%, var(--border-color));
+.case-body {
+  padding: clamp(2rem, 4vw, 3.25rem);
 }
 
-.portfolio-card--compact {
-  gap: var(--space-md);
-  padding: var(--space-lg);
-}
-
-.portfolio-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.portfolio-card-meta {
+.case-meta {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 0.75rem;
+  margin-bottom: 1.375rem;
   flex-wrap: wrap;
 }
 
-.portfolio-type {
-  font-size: 0.75rem;
+.case-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--primary-color);
-}
-
-.portfolio-badge {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--accent-color) 16%, transparent);
-  color: var(--accent-color);
-}
-
-.portfolio-card-title {
-  margin: 0;
-  font-size: 1.375rem;
-  font-weight: 600;
-}
-
-.portfolio-card-title a {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  max-width: 100%;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+  margin: 0 0 0.875rem;
 }
 
-.portfolio-card-title a:hover {
-  color: var(--primary-color);
-}
-
-.portfolio-card-title-text {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.portfolio-card-title svg {
-  width: 0.875rem;
-  height: 0.875rem;
-  opacity: 0.7;
-  flex-shrink: 0;
-  margin-top: 0.35em;
-}
-
-.portfolio-card-description {
-  margin: 0;
+.case-lead {
   color: var(--text-secondary);
-  line-height: 1.65;
-  flex: 1;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin: 0 0 1.875rem;
+  max-width: 52ch;
 }
 
-.portfolio-screenshots {
+.case-grid {
   display: grid;
-  gap: var(--space-lg);
-  margin: var(--space-sm) 0 var(--space-md);
-  list-style: none;
-  padding: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
 }
 
-.portfolio-screenshot {
-  min-width: 0;
-}
-
-.portfolio-screenshot-frame {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  background: var(--bg-secondary);
-}
-
-.portfolio-screenshot-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.portfolio-screenshots--mobile .portfolio-screenshot-image {
-  aspect-ratio: 9 / 19.5;
-}
-
-.portfolio-screenshots--desktop .portfolio-screenshot-image {
-  aspect-ratio: 16 / 9;
-}
-
-.portfolio-screenshots--mobile {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.portfolio-screenshots--desktop {
-  grid-template-columns: 1fr;
-}
-
-.portfolio-case-study {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-md);
-  margin: var(--space-sm) 0;
-}
-
-.portfolio-case-study-item {
-  padding: var(--space-md);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--bg-secondary) 75%, transparent);
-}
-
-.portfolio-case-study-item h4 {
-  margin: 0 0 var(--space-sm);
-  color: var(--primary-color);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.case-field .k,
+.case-outcome .k {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
-.portfolio-case-study-item p {
-  margin: 0;
+.case-field .k {
+  color: var(--primary-color);
+}
+
+.case-field .v {
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
-.portfolio-highlights {
+.case-outcome {
+  border-left: 2px solid var(--primary-color);
+  padding: 0.25rem 0 0.25rem 1.125rem;
+  margin-bottom: 1.75rem;
+}
+
+.case-outcome .k {
+  color: var(--text-muted);
+}
+
+.case-outcome .v {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.case-highlights {
   list-style: none;
+  margin: 0 0 1.75rem;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+  display: grid;
+  gap: 0.6rem;
 }
 
-.portfolio-highlights li {
+.case-highlights li {
   position: relative;
-  padding-left: var(--space-lg);
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
-.portfolio-highlights li::before {
+.case-highlights li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.55rem;
+  top: 0.5rem;
   width: 6px;
   height: 6px;
   background: var(--primary-color);
   border-radius: 50%;
 }
 
-.portfolio-tags {
+.case-tags {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: auto;
-  list-style: none;
+  gap: 0.5rem;
+  margin: 0;
   padding: 0;
 }
 
-.portfolio-tag {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
+/* Screenshots column */
+.case-shots {
   background: var(--bg-secondary);
-  color: var(--text-secondary);
+  border-left: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  gap: 0.875rem;
+}
+
+.phone {
+  flex: 1 1 0;
+  max-width: 158px;
+  margin: 0;
+  border-radius: 22px;
   border: 1px solid var(--border-color);
+  background: #000;
+  overflow: hidden;
+  aspect-ratio: 1280 / 2856;
+  box-shadow: var(--shadow-lg);
+}
+
+.phone:nth-child(2) {
+  transform: translateY(-18px);
+}
+
+.phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.browser {
+  width: 100%;
+  margin: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--bg-primary);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.browser-bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-color);
+  display: block;
+}
+
+.browser-bar .url {
+  margin-left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.browser img {
+  width: 100%;
+  display: block;
+}
+
+/* Experiments */
+.experiments {
+  margin-top: var(--space-3xl);
+}
+
+.experiments-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xl);
+}
+
+.exp-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.exp-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.375rem;
+  background: var(--bg-primary);
+  text-decoration: none;
+  transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+.exp-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.exp-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exp-name {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.exp-arrow {
+  color: var(--text-muted);
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.exp-card:hover .exp-arrow {
+  color: var(--primary-color);
+}
+
+.exp-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.exp-tag {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .portfolio-infra {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  margin-top: var(--space-2xl);
+  gap: 0.625rem;
+  margin: var(--space-2xl) 0 0;
   color: var(--text-muted);
-  font-size: 0.9375rem;
-  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
 }
 
 .portfolio-infra svg {
@@ -462,39 +495,80 @@ export default {
   flex-shrink: 0;
 }
 
-.portfolio-experiments {
-  margin-top: var(--space-3xl);
+/* Shared chip / tag */
+.chip {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 5px 11px;
 }
 
-.portfolio-subsection-title {
-  margin: 0 0 var(--space-xl);
-  color: var(--text-primary);
-  font-size: 1.5rem;
-  text-align: center;
+.chip--accent {
+  color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  background: var(--accent-tint);
 }
 
-@media (max-width: 768px) {
-  .portfolio-featured,
-  .portfolio-grid {
+.chip--link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.chip--link svg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .case,
+  .case--flip {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-screenshots--mobile {
+  .case--flip .case-shots {
+    order: 0;
+    border-right: 0;
+  }
+
+  .case-shots {
+    border-left: 0;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .phone {
+    max-width: 140px;
+  }
+
+  .exp-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .case-grid {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-screenshots--mobile .portfolio-screenshot-image,
-  .portfolio-screenshots--desktop .portfolio-screenshot-image {
-    aspect-ratio: auto;
-    object-fit: contain;
-  }
-
-  .portfolio-card {
-    padding: var(--card-padding-dense);
-  }
-
-  .portfolio-card-title {
-    font-size: 1.2rem;
+  .exp-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

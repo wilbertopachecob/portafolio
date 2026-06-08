@@ -18,7 +18,8 @@
       
       <!-- Brand/Logo -->
       <a href="#about" class="navbar-brand" aria-label="Go to about section">
-        Wilberto Pacheco
+        <span class="brand-main">Wilberto Pacheco</span>
+        <span class="brand-suffix" aria-hidden="true">// SWE</span>
       </a>
       
       <!-- Navigation Links -->
@@ -383,9 +384,9 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-light);
   z-index: 1000;
   transition: all var(--transition-normal);
   height: 64px;
@@ -393,17 +394,16 @@ export default {
 }
 
 [data-theme="dark"] .navbar {
-  background: rgba(15, 23, 42, 0.9);
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
   border-bottom-color: var(--border-color);
 }
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-md);
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
 }
 
 [data-theme="dark"] .navbar-scrolled {
-  background: rgba(15, 23, 42, 0.95);
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
 }
 
 .navbar-container {
@@ -425,16 +425,30 @@ export default {
 }
 
 .navbar-brand {
-  font-size: 1.25rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
+  letter-spacing: -0.012em;
   white-space: nowrap;
 }
 
 .navbar-brand:hover {
-  color: var(--primary-color);
+  color: var(--text-primary);
+}
+
+.brand-suffix {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translateY(-1px);
 }
 
 .navbar-nav {
@@ -460,60 +474,46 @@ export default {
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.875rem;
-  transition: color var(--transition-fast);
-  position: relative;
-  padding: var(--space-sm) 0;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.4rem 0.72rem;
   white-space: nowrap;
   display: block;
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width var(--transition-normal);
-}
-
-.nav-link:hover::after {
-  width: 100%;
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  background: color-mix(in srgb, var(--bg-secondary) 70%, transparent);
 }
 
 .nav-link.active {
   color: var(--primary-color);
-}
-
-.nav-link.active::after {
-  width: 100%;
+  border-color: color-mix(in srgb, var(--primary-color) 30%, var(--border-light));
+  background: var(--accent-tint);
 }
 
 .theme-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: 999px;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: background var(--transition-normal), color var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  transition: background var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
 }
 
 .theme-toggle:hover {
-  background: var(--primary-color);
-  color: white;
-  box-shadow: var(--shadow-md);
+  background: var(--accent-tint);
+  color: var(--primary-color);
   border-color: var(--primary-color);
+  transform: translateY(-1px);
 }
 
 .mobile-menu-toggle {
@@ -765,8 +765,8 @@ export default {
   }
 
   .theme-toggle {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
 
   .navbar-container {
@@ -775,7 +775,11 @@ export default {
   }
 
   .navbar-brand {
-    font-size: 1.125rem;
+    font-size: 1rem;
+  }
+
+  .brand-suffix {
+    display: none;
   }
 }
 
@@ -785,7 +789,7 @@ export default {
   }
 
   .navbar-brand {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .theme-toggle {

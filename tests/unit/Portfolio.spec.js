@@ -131,7 +131,7 @@ describe('Portfolio.vue', () => {
       },
     })
 
-    expect(screen.getByRole('list', { name: 'CiudadanoUSA screenshots' })).toBeInTheDocument()
+    expect(screen.getByLabelText('CiudadanoUSA screenshots')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'CiudadanoUSA home screen with study progress.' })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Renderlog home page preview.' })).toBeInTheDocument()
     expect(screen.queryByRole('img', { name: /Canvas experiment/ })).not.toBeInTheDocument()

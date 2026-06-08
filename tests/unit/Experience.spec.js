@@ -68,7 +68,7 @@ const createTestI18n = (locale = 'en') => {
 }
 
 describe('Experience.vue', () => {
-  it('renders the experience timeline container', () => {
+  it('renders the role list container', () => {
     const i18n = createTestI18n()
     const { container } = render(Experience, {
       global: {
@@ -76,10 +76,10 @@ describe('Experience.vue', () => {
       },
     })
 
-    expect(container.querySelector('.timeline')).toBeInTheDocument()
+    expect(container.querySelector('.role-list')).toBeInTheDocument()
   })
 
-  it('renders experience timeline', () => {
+  it('renders role cards', () => {
     const i18n = createTestI18n()
     const { container } = render(Experience, {
       global: {
@@ -87,7 +87,7 @@ describe('Experience.vue', () => {
       },
     })
 
-    expect(container.querySelector('.timeline-list')).toBeInTheDocument()
+    expect(container.querySelectorAll('.role').length).toBeGreaterThan(0)
   })
 
   it('renders multiple experience items', () => {
@@ -101,16 +101,15 @@ describe('Experience.vue', () => {
     expect(experienceItems.length).toBeGreaterThan(0)
   })
 
-  it('renders job titles', () => {
+  it('renders position and company text', () => {
     const i18n = createTestI18n()
     render(Experience, {
       global: {
         plugins: [i18n]
       }
     })
-    // Look for common job titles that should be present
-    const jobTitles = screen.getAllByRole('heading', { level: 3 })
-    expect(jobTitles.length).toBeGreaterThan(0)
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument()
+    expect(screen.getByText('Test Company')).toBeInTheDocument()
   })
 
   it('renders company names', () => {
@@ -157,11 +156,11 @@ describe('Experience.vue', () => {
       },
     })
 
-    expect(screen.getAllByRole('heading', { level: 3 }).length).toBeGreaterThan(0)
     expect(screen.getAllByRole('list').length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('listitem').length).toBeGreaterThan(0)
   })
 
-  it('renders timeline with proper styling', () => {
+  it('renders cards with redesign classes', () => {
     const i18n = createTestI18n()
     const { container } = render(Experience, {
       global: {
@@ -169,7 +168,8 @@ describe('Experience.vue', () => {
       },
     })
 
-    expect(container.querySelector('.timeline')).toHaveClass('timeline')
+    expect(container.querySelector('.role')).toHaveClass('role')
+    expect(container.querySelector('.role-achievements')).toBeInTheDocument()
   })
 
   it('displays English content when locale is English', () => {
@@ -225,28 +225,28 @@ describe('Experience.vue', () => {
     expect(screen.queryByText('Legacy responsibility 4')).not.toBeInTheDocument()
   })
 
-  it('displays translated labels in English', () => {
+  it('displays English achievements and stack', () => {
     const i18n = createTestI18n('en')
     render(Experience, {
       global: {
         plugins: [i18n]
       }
     })
-    
-    expect(screen.getByText(/Period:/)).toBeInTheDocument()
-    expect(screen.getByText(/Location:/)).toBeInTheDocument()
+
+    expect(screen.getByText('Primary achievement')).toBeInTheDocument()
+    expect(screen.getByText('Vue.js')).toBeInTheDocument()
   })
 
-  it('displays translated labels in Spanish', () => {
+  it('displays Spanish experience content', () => {
     const i18n = createTestI18n('es')
     render(Experience, {
       global: {
         plugins: [i18n]
       }
     })
-    
-    expect(screen.getByText(/Período:/)).toBeInTheDocument()
-    expect(screen.getByText(/Ubicación:/)).toBeInTheDocument()
+
+    expect(screen.getByText('Ingeniero de Software')).toBeInTheDocument()
+    expect(screen.getByText('Logro principal ES')).toBeInTheDocument()
   })
 
   it('should have no accessibility violations', async () => {

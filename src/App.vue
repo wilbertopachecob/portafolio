@@ -36,8 +36,8 @@
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
-          <p>&copy; {{ currentYear }} Wilberto Pacheco Batista. {{ $t('footer.copyright') }}</p>
-          <p>{{ $t('footer.builtWith') }}</p>
+          <p class="footer-line">&copy; {{ currentYear }} Wilberto Pacheco Batista. {{ $t('footer.copyright') }}</p>
+          <p class="footer-line footer-line--right">{{ $t('footer.builtWith') }}</p>
         </div>
       </div>
     </footer>
@@ -112,6 +112,10 @@ export default {
   padding-top: 64px;
 }
 
+.footer-line {
+  margin: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .main-content {
@@ -120,6 +124,10 @@ export default {
 
   .container {
     padding: 0 var(--space-md);
+  }
+
+  .footer-line--right {
+    text-align: left;
   }
 }
 
