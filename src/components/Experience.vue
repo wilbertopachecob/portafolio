@@ -201,13 +201,12 @@ export default {
 
   .role-aside {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.375rem 0.875rem;
+    flex-direction: column;
+    gap: 0.375rem;
   }
 
   .role-company {
-    margin-top: 0;
+    margin-top: 0.25rem;
   }
 
   .role-loc {
