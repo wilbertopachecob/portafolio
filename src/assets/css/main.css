@@ -107,7 +107,7 @@
   top: -40px;
   left: 6px;
   background: var(--primary-color);
-  color: white;
+  color: #ffffff;
   padding: 8px;
   text-decoration: none;
   border-radius: var(--radius-md);
@@ -117,6 +117,14 @@
 
 .skip-link:focus {
   top: 6px;
+}
+
+a.skip-link:focus-visible {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--primary-color);
 }
 
 /* Base Styles */
@@ -194,14 +202,14 @@ p {
   color: var(--text-secondary);
 }
 
-/* Links — exclude .btn so global hover color does not override button text */
-a:not(.btn) {
+/* Links — exclude .btn and .skip-link so global color does not override button/skip text */
+a:not(.btn):not(.skip-link) {
   color: var(--primary-color);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-a:not(.btn):hover {
+a:not(.btn):not(.skip-link):hover {
   color: var(--primary-dark);
 }
 
