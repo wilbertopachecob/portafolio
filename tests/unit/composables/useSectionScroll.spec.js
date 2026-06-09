@@ -72,6 +72,39 @@ describe('useSectionScroll', () => {
     wrapper.unmount()
   })
 
+  it('uses instant scroll and focus timing when reduced motion is preferred', () => {
+    vi.useFakeTimers()
+    window.matchMedia.mockImplementation((query) => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }))
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    const invalidateSectionCache = vi.fn()
+
+    const { result, wrapper } = withSetup(useSectionScroll, invalidateSectionCache)
+    const heading = document.getElementById('experience-heading')
+    const focusSpy = vi.spyOn(heading, 'focus')
+
+    result.scrollToSection('experience')
+
+    expect(scrollTo).toHaveBeenCalledWith({
+      top: 136,
+      behavior: 'auto',
+    })
+
+    vi.runAllTimers()
+    expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true })
+
+    wrapper.unmount()
+  })
+
   it('closes the mobile menu before navigating', async () => {
     vi.useFakeTimers()
     const scrollTo = vi.fn()

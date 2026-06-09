@@ -3,7 +3,7 @@
     class="navbar"
     :class="{ 'navbar-scrolled': isScrolled }"
     role="navigation"
-    aria-label="Main navigation"
+    :aria-label="$t('accessibility.mainNavigation')"
   >
     <div class="navbar-container">
       <button
@@ -21,7 +21,7 @@
         <span></span>
       </button>
 
-      <a href="#about" class="navbar-brand" aria-label="Go to about section">
+      <a href="#about" class="navbar-brand" :aria-label="$t('accessibility.goToAbout')">
         <span class="brand-main">Wilberto Pacheco</span>
         <span class="brand-suffix" aria-hidden="true">// SWE</span>
       </a>
@@ -36,6 +36,7 @@
             :href="'#' + item.id"
             class="nav-link"
             :class="{ active: activeSection === item.id }"
+            :aria-current="activeSection === item.id ? 'location' : undefined"
             @click="scrollToSection(item.id)"
           >
             {{ navLabel(item.id) }}
@@ -113,7 +114,7 @@ const {
   isMobileMenuOpen,
   toggleMobileMenu,
   closeMobileMenu,
-  handleEscape,
+  handleMenuKeydown,
 } = useMobileMenu()
 
 const menuToggleLabel = computed(() =>
@@ -129,11 +130,13 @@ const themeToggleLabel = computed(() =>
 )
 
 const goToSection = (sectionId) => {
-  navigateAfterClose(sectionId, closeMobileMenu)
+  navigateAfterClose(sectionId, () => closeMobileMenu({ restoreFocus: false }))
 }
 
 const handleKeydown = (event) => {
-  handleEscape(event)
+  if (handleMenuKeydown(event)) {
+    return
+  }
 
   if ((event.ctrlKey || event.metaKey) && event.key === 't') {
     event.preventDefault()

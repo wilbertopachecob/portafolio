@@ -8,7 +8,11 @@ describe('useMobileMenu', () => {
     document.body.style.overflow = ''
     document.body.innerHTML = `
       <button class="mobile-menu-toggle"></button>
-      <aside class="mobile-menu-drawer"></aside>
+      <aside id="mobile-menu" class="mobile-menu-drawer">
+        <button class="mm-close">Close</button>
+        <a href="#impact" class="mm-link">Impact</a>
+        <a href="/resume.pdf" class="mm-resume-btn">Resume</a>
+      </aside>
     `
   })
 
@@ -80,6 +84,41 @@ describe('useMobileMenu', () => {
 
     expect(result.isMobileMenuOpen.value).toBe(false)
     expect(focusSpy).toHaveBeenCalled()
+
+    wrapper.unmount()
+  })
+
+  it('moves focus to the first drawer control when opened', async () => {
+    const { result, wrapper } = withSetup(useMobileMenu)
+
+    result.toggleMobileMenu()
+    await flushPromises()
+    await new Promise((resolve) => window.requestAnimationFrame(resolve))
+
+    expect(document.querySelector('.mm-close')).toHaveFocus()
+
+    wrapper.unmount()
+  })
+
+  it('traps Tab focus inside the drawer', () => {
+    const { result, wrapper } = withSetup(useMobileMenu)
+    const closeButton = document.querySelector('.mm-close')
+    const resumeLink = document.querySelector('.mm-resume-btn')
+
+    result.toggleMobileMenu()
+    closeButton.focus()
+
+    const shiftTab = { key: 'Tab', shiftKey: true, preventDefault: vi.fn() }
+    result.handleMenuKeydown(shiftTab)
+
+    expect(shiftTab.preventDefault).toHaveBeenCalled()
+    expect(resumeLink).toHaveFocus()
+
+    const tab = { key: 'Tab', shiftKey: false, preventDefault: vi.fn() }
+    result.handleMenuKeydown(tab)
+
+    expect(tab.preventDefault).toHaveBeenCalled()
+    expect(closeButton).toHaveFocus()
 
     wrapper.unmount()
   })

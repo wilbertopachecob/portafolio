@@ -82,12 +82,21 @@
   },
   "accessibility": {
     "skipToContent": "Skip to main content",
+    "mainNavigation": "Main navigation",
+    "goToAbout": "Go to about section",
     "darkMode": "Switch to Dark Mode",
     "lightMode": "Switch to Light Mode",
     "openMenu": "Open mobile menu",
     "closeMenu": "Close mobile menu",
     "mobileNavigation": "Mobile navigation",
-    "languageToggle": "Toggle language"
+    "languageToggle": "Toggle language",
+    "switchToSpanish": "ES - Switch to Spanish",
+    "switchToEnglish": "EN - Switch to English",
+    "callToAction": "Call to action",
+    "socialLinks": "Social media links",
+    "visitLinkedInProfile": "Visit LinkedIn profile",
+    "visitGitHubProfile": "Visit GitHub profile",
+    "visitXProfile": "Visit X profile"
   },
   "contact": {
     "email": "Email",

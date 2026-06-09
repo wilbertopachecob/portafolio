@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/vue'
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
+import { axe } from 'jest-axe'
 import MobileMenuDrawer from '@/components/MobileMenuDrawer.vue'
 import { NAV_ITEMS, PRIMARY_NAV_IDS } from '@/config/sections'
 import { getPublicAssetUrl, RESUME_FILENAME } from '@/utils/public-assets'
@@ -62,7 +63,8 @@ describe('MobileMenuDrawer.vue', () => {
   it('renders drawer navigation when open', () => {
     renderDrawer()
 
-    expect(screen.getByRole('complementary', { name: 'Mobile navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: 'Mobile navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Mobile navigation' })).toBeInTheDocument()
     expect(document.querySelectorAll('.mm-nav .mm-link')).toHaveLength(navItems.length)
     expect(screen.getByText('Process')).toBeInTheDocument()
   })
@@ -79,6 +81,7 @@ describe('MobileMenuDrawer.vue', () => {
 
     const activeLink = document.querySelector('.mm-link[href="#howIWork"]')
     expect(activeLink).toHaveClass('active')
+    expect(activeLink).toHaveAttribute('aria-current', 'location')
   })
 
   it('renders the resume download action', () => {
@@ -106,5 +109,12 @@ describe('MobileMenuDrawer.vue', () => {
     await fireEvent.click(document.querySelector('.mm-link[href="#skills"]'))
 
     expect(emitted().navigate).toEqual([['skills']])
+  })
+
+  it('should have no accessibility violations when open', async () => {
+    renderDrawer()
+
+    const results = await axe(document.body)
+    expect(results).toHaveNoViolations()
   })
 })

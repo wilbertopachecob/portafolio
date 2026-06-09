@@ -13,7 +13,7 @@
         </div>
 
         <div class="role-main">
-          <div class="role-pos">{{ job.position }}</div>
+          <h3 class="role-pos">{{ job.position }}</h3>
           <p v-if="job.summary" class="role-summary">{{ job.summary }}</p>
 
           <div v-if="job.scopeTags && job.scopeTags.length" class="role-scope">

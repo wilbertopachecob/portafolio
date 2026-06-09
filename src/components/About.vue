@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" role="banner" aria-labelledby="hero-title">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
@@ -23,7 +23,7 @@
 
           <!-- Call to Action -->
           <div class="hero-actions" role="region" aria-labelledby="actions-heading">
-            <h2 id="actions-heading" class="sr-only">Call to Action</h2>
+            <h2 id="actions-heading" class="sr-only">{{ $t('accessibility.callToAction') }}</h2>
             <a
               href="#impact"
               class="btn btn-primary"
@@ -57,14 +57,14 @@
 
           <!-- Social Links -->
           <div class="social-links" role="region" aria-labelledby="social-heading">
-            <h2 id="social-heading" class="sr-only">Social Media Links</h2>
+            <h2 id="social-heading" class="sr-only">{{ $t('accessibility.socialLinks') }}</h2>
             <a
               href="https://www.linkedin.com/in/wilberto-pacheco-batista/"
               class="social-link"
               title="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Visit LinkedIn profile"
+              :aria-label="$t('accessibility.visitLinkedInProfile')"
               @click="track('social_click', { network: 'linkedin' })"
             >
               <app-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
@@ -75,7 +75,7 @@
               title="GitHub"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Visit GitHub profile"
+              :aria-label="$t('accessibility.visitGitHubProfile')"
               @click="track('social_click', { network: 'github' })"
             >
               <app-icon :icon="['fab', 'github']" aria-hidden="true" />
@@ -86,7 +86,7 @@
               title="X (Twitter)"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Visit X (Twitter) profile"
+              :aria-label="$t('accessibility.visitXProfile')"
               @click="track('social_click', { network: 'x' })"
             >
               <app-icon :icon="['fab', 'x-twitter']" aria-hidden="true" />

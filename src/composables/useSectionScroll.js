@@ -23,9 +23,11 @@ export function useSectionScroll(invalidateSectionCache) {
       section.querySelector('.section-header, .hero-content, h1, h2') || section
     const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     window.scrollTo({
       top: Math.max(0, top),
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
     })
 
     const focusTarget =
@@ -34,9 +36,7 @@ export function useSectionScroll(invalidateSectionCache) {
       focusTarget.setAttribute('tabindex', '-1')
     }
 
-    const focusDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      ? 0
-      : 500
+    const focusDelay = prefersReducedMotion ? 0 : 500
 
     setTimeout(() => {
       focusTarget.focus({ preventScroll: true })

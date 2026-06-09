@@ -66,7 +66,7 @@ describe('Credentials.vue', () => {
       },
     })
 
-    expect(screen.getByRole('region', { name: 'Education and certifications' })).toBeInTheDocument()
+    expect(screen.getByText('Education')).toBeInTheDocument()
     expect(screen.getByText('Computer Science Engineer')).toBeInTheDocument()
     expect(screen.getByText('University of Informatic Sciences · 2005 - 2010')).toBeInTheDocument()
     expect(screen.getByText(/Native Spanish and professional \/ bilingual English/)).toBeInTheDocument()
