@@ -10,10 +10,12 @@
     </Transition>
 
     <Transition name="mm-slide">
-      <aside
+      <div
         v-if="open"
         id="mobile-menu"
         class="mobile-menu-drawer"
+        role="dialog"
+        aria-modal="true"
         :aria-label="$t('accessibility.mobileNavigation')"
       >
         <div class="mm-header">
@@ -21,6 +23,7 @@
           <button
             type="button"
             class="mm-close"
+            data-autofocus
             :aria-label="$t('accessibility.closeMenu')"
             @click="$emit('close')"
           >
@@ -29,13 +32,14 @@
           </button>
         </div>
 
-        <nav class="mm-nav">
+        <nav class="mm-nav" :aria-label="$t('accessibility.mobileNavigation')">
           <a
             v-for="item in items"
             :key="item.id"
             :href="'#' + item.id"
             class="mm-link"
             :class="{ active: activeSection === item.id }"
+            :aria-current="activeSection === item.id ? 'location' : undefined"
             @click.prevent="$emit('navigate', item.id)"
           >
             <span class="mm-icon" aria-hidden="true">
@@ -57,7 +61,7 @@
             {{ $t('hero.downloadResume') }}
           </a>
         </div>
-      </aside>
+      </div>
     </Transition>
   </Teleport>
 </template>

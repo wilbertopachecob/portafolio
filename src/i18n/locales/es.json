@@ -82,12 +82,21 @@
   },
   "accessibility": {
     "skipToContent": "Saltar al contenido principal",
+    "mainNavigation": "Navegación principal",
+    "goToAbout": "Ir a la sección de inicio",
     "darkMode": "Cambiar a modo oscuro",
     "lightMode": "Cambiar a modo claro",
     "openMenu": "Abrir menú móvil",
     "closeMenu": "Cerrar menú móvil",
     "mobileNavigation": "Navegación móvil",
-    "languageToggle": "Cambiar idioma"
+    "languageToggle": "Cambiar idioma",
+    "switchToSpanish": "ES - Cambiar a español",
+    "switchToEnglish": "EN - Cambiar a inglés",
+    "callToAction": "Llamado a la acción",
+    "socialLinks": "Enlaces de redes sociales",
+    "visitLinkedInProfile": "Visitar perfil de LinkedIn",
+    "visitGitHubProfile": "Visitar perfil de GitHub",
+    "visitXProfile": "Visitar perfil de X"
   },
   "contact": {
     "email": "Correo electrónico",

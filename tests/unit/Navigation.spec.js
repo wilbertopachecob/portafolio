@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createI18n } from 'vue-i18n'
@@ -33,12 +34,16 @@ const createTestI18n = (locale = 'en') => {
           downloadResume: 'Download Resume'
         },
         accessibility: {
+          mainNavigation: 'Main navigation',
+          goToAbout: 'Go to about section',
           lightMode: 'Switch to Light Mode',
           darkMode: 'Switch to Dark Mode',
           openMenu: 'Open mobile menu',
           closeMenu: 'Close mobile menu',
           mobileNavigation: 'Mobile navigation',
-          languageToggle: 'Toggle language'
+          languageToggle: 'Toggle language',
+          switchToSpanish: 'ES - Switch to Spanish',
+          switchToEnglish: 'EN - Switch to English'
         }
       },
       es: {
@@ -63,12 +68,16 @@ const createTestI18n = (locale = 'en') => {
           downloadResume: 'Descargar CV'
         },
         accessibility: {
+          mainNavigation: 'Navegación principal',
+          goToAbout: 'Ir a la sección de inicio',
           lightMode: 'Cambiar a Modo Claro',
           darkMode: 'Cambiar a Modo Oscuro',
           openMenu: 'Abrir menú móvil',
           closeMenu: 'Cerrar menú móvil',
           mobileNavigation: 'Navegación móvil',
-          languageToggle: 'Cambiar idioma'
+          languageToggle: 'Cambiar idioma',
+          switchToSpanish: 'ES - Cambiar a español',
+          switchToEnglish: 'EN - Cambiar a inglés'
         }
       }
     }
@@ -247,7 +256,7 @@ describe('Navigation.vue', () => {
       expect(toggle).toHaveAttribute('aria-expanded', 'true')
       expect(document.body.style.overflow).toBe('hidden')
       expect(document.querySelector('.mobile-menu-drawer')).toBeTruthy()
-      expect(screen.getByRole('complementary', { name: 'Mobile navigation' })).toBeInTheDocument()
+      expect(screen.getByRole('dialog', { name: 'Mobile navigation' })).toBeInTheDocument()
 
       await fireEvent.click(toggle)
       expect(toggle).toHaveAttribute('aria-expanded', 'false')
@@ -284,6 +293,34 @@ describe('Navigation.vue', () => {
 
       expect(toggle).toHaveAttribute('aria-expanded', 'false')
       expect(focusSpy).toHaveBeenCalled()
+    })
+
+    it('moves focus into the drawer when it opens', async () => {
+      renderNavigation()
+      await fireEvent.click(getMobileToggle())
+
+      await vi.waitFor(() => {
+        expect(document.querySelector('.mm-close')).toHaveFocus()
+      })
+    })
+
+    it('traps Tab and Shift+Tab inside the open drawer', async () => {
+      const user = userEvent.setup()
+      renderNavigation()
+      await fireEvent.click(getMobileToggle())
+
+      const closeButton = document.querySelector('.mm-close')
+      const resumeLink = document.querySelector('.mm-resume-btn')
+
+      await vi.waitFor(() => {
+        expect(closeButton).toHaveFocus()
+      })
+
+      await user.keyboard('{Shift>}{Tab}{/Shift}')
+      expect(resumeLink).toHaveFocus()
+
+      await user.tab()
+      expect(closeButton).toHaveFocus()
     })
 
     it('closes the drawer when clicking outside the drawer and toggle', async () => {
@@ -363,6 +400,7 @@ describe('Navigation.vue', () => {
 
       await vi.waitFor(() => {
         expect(getDesktopNavLink('experience')).toHaveClass('active')
+        expect(getDesktopNavLink('experience')).toHaveAttribute('aria-current', 'location')
       })
     })
 

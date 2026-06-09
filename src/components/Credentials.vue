@@ -1,5 +1,5 @@
 <template>
-  <div class="cred-grid" role="region" :aria-label="$t('sections.credentials.title')">
+  <div class="cred-grid">
     <!-- Column A: education + languages -->
     <div class="cred-col">
       <section class="cred-card" :aria-labelledby="'credentials-education-heading'">

@@ -9,6 +9,7 @@
       class="language-option"
       :class="{ 'language-option--active': currentLocale === 'es' }"
       :aria-pressed="currentLocale === 'es'"
+      :aria-label="$t('accessibility.switchToSpanish')"
       @click="setLocale('es')"
     >
       ES
@@ -18,6 +19,7 @@
       class="language-option"
       :class="{ 'language-option--active': currentLocale === 'en' }"
       :aria-pressed="currentLocale === 'en'"
+      :aria-label="$t('accessibility.switchToEnglish')"
       @click="setLocale('en')"
     >
       EN

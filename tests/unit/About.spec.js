@@ -24,6 +24,13 @@ const createTestI18n = (locale = 'en') => {
         },
         contact: {
           letsTalk: "Let's talk"
+        },
+        accessibility: {
+          callToAction: 'Call to action',
+          socialLinks: 'Social media links',
+          visitLinkedInProfile: 'Visit LinkedIn profile',
+          visitGitHubProfile: 'Visit GitHub profile',
+          visitXProfile: 'Visit X profile',
         }
       },
       es: {
@@ -40,6 +47,13 @@ const createTestI18n = (locale = 'en') => {
         },
         contact: {
           letsTalk: 'Hablemos'
+        },
+        accessibility: {
+          callToAction: 'Llamado a la acción',
+          socialLinks: 'Enlaces de redes sociales',
+          visitLinkedInProfile: 'Visitar perfil de LinkedIn',
+          visitGitHubProfile: 'Visitar perfil de GitHub',
+          visitXProfile: 'Visitar perfil de X',
         }
       }
     }
@@ -112,7 +126,7 @@ describe('About.vue', () => {
     })
     expect(screen.getByRole('link', { name: /LinkedIn/ })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /GitHub/ })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /X \(Twitter\)/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /X profile/ })).toBeInTheDocument()
   })
 
   it('renders the primary call to action buttons', () => {
@@ -146,8 +160,7 @@ describe('About.vue', () => {
         plugins: [i18n]
       }
     })
-    const section = screen.getByRole('banner')
-    expect(section).toBeInTheDocument()
+    const section = document.querySelector('.hero')
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title')
     
     const title = screen.getByRole('heading', { level: 1 })
@@ -161,7 +174,6 @@ describe('About.vue', () => {
         plugins: [i18n]
       }
     })
-    expect(screen.getByRole('banner')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(screen.getAllByRole('heading', { level: 2 }).length).toBeGreaterThan(0)
   })

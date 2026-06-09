@@ -1,13 +1,13 @@
 <template>
   <div id="app" itemscope itemtype="https://schema.org/Person">
     <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">{{ $t('accessibility.skipToContent') }}</a>
+    <a href="#main-content" class="skip-link" @click="focusMainContent">{{ $t('accessibility.skipToContent') }}</a>
     
     <!-- Navigation -->
     <Navigation />
     
     <!-- Main Content -->
-    <main id="main-content" class="main-content" role="main">
+    <main id="main-content" class="main-content" role="main" tabindex="-1">
       <section
         v-for="section in pageSections"
         :key="section.id"
@@ -84,6 +84,11 @@ export default {
         ? 'Wilberto Pacheco Batista - Software Engineer de Producto y Modernización'
         : 'Wilberto Pacheco Batista - Product-Minded Software Engineer'
       document.title = title
+    },
+    focusMainContent() {
+      this.$nextTick(() => {
+        document.getElementById('main-content')?.focus({ preventScroll: true })
+      })
     }
   },
   watch: {
@@ -136,12 +141,6 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-}
-
-/* Focus styles for accessibility */
-*:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
 }
 
 /* Print styles */
