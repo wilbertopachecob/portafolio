@@ -59,7 +59,7 @@ global.Response = class Response {
     this.headers = new Map(Object.entries(options.headers || {}))
     this.ok = this.status >= 200 && this.status < 300
   }
-  
+
   clone() {
     return new Response(this.body, {
       status: this.status,
@@ -67,11 +67,11 @@ global.Response = class Response {
       headers: Object.fromEntries(this.headers)
     })
   }
-  
+
   async text() {
     return this.body
   }
-  
+
   get(key) {
     return this.headers.get(key)
   }
@@ -84,7 +84,7 @@ global.Request = class Request {
     this.method = options.method || 'GET'
     this.headers = new Map(Object.entries(options.headers || {}))
   }
-  
+
   get(key) {
     return this.headers.get(key)
   }
@@ -109,7 +109,7 @@ const STATIC_ASSETS = [
   '/favicon-geometric.svg',
   '/robots.txt',
   '/sitemap.xml',
-  '/Engineer_Wilberto_Pacheco_Batista.pdf'
+  '/Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
 ];
 
 // Development mode detection
@@ -540,7 +540,7 @@ describe('Service Worker', () => {
         '/favicon-geometric.svg',
         '/robots.txt',
         '/sitemap.xml',
-        '/Engineer_Wilberto_Pacheco_Batista.pdf'
+        '/Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
       ]
 
       expect(self.testExports.STATIC_ASSETS).toEqual(expectedAssets)

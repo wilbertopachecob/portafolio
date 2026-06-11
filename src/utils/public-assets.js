@@ -14,4 +14,4 @@ export function getPublicAssetUrl(filename) {
   return `${normalizedBase}${normalizedFilename}`
 }
 
-export const RESUME_FILENAME = 'Engineer_Wilberto_Pacheco_Batista.pdf'
+export const RESUME_FILENAME = 'Senior_Engineer_Wilberto_Pacheco_Batista.pdf'

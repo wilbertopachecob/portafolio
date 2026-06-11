@@ -149,8 +149,8 @@ describe('About.vue', () => {
       }
     })
     const resumeLink = screen.getByRole('link', { name: /Download Resume/ })
-    expect(resumeLink).toHaveAttribute('href', expect.stringContaining('Engineer_Wilberto_Pacheco_Batista.pdf'))
-    expect(resumeLink).toHaveAttribute('download', 'Engineer_Wilberto_Pacheco_Batista.pdf')
+    expect(resumeLink).toHaveAttribute('href', expect.stringContaining('Senior_Engineer_Wilberto_Pacheco_Batista.pdf'))
+    expect(resumeLink).toHaveAttribute('download', 'Senior_Engineer_Wilberto_Pacheco_Batista.pdf')
   })
 
   it('has proper accessibility attributes', () => {
@@ -162,7 +162,7 @@ describe('About.vue', () => {
     })
     const section = document.querySelector('.hero')
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title')
-    
+
     const title = screen.getByRole('heading', { level: 1 })
     expect(title).toHaveAttribute('id', 'hero-title')
   })
