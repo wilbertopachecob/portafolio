@@ -26,7 +26,7 @@ const STATIC_ASSETS = [
   basePath + '/favicon-geometric.svg',
   basePath + '/robots.txt',
   basePath + '/sitemap.xml',
-  basePath + '/Engineer_Wilberto_Pacheco_Batista.pdf'
+  basePath + '/Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
 ];
 
 // Cache strategies
@@ -42,14 +42,14 @@ const CACHE_STRATEGIES = {
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
   console.log('Service Worker: Installing...');
-  
+
   event.waitUntil(
     caches.open(STATIC_CACHE_NAME)
       .then((cache) => {
         console.log('Service Worker: Caching static assets');
         // In development, only cache basic assets, let others be cached on demand
         if (isDevelopment) {
-          return cache.addAll(STATIC_ASSETS.filter(asset => 
+          return cache.addAll(STATIC_ASSETS.filter(asset =>
             !asset.includes('.js') && !asset.includes('.css')
           ));
         } else {
@@ -71,15 +71,15 @@ self.addEventListener('install', (event) => {
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   console.log('Service Worker: Activating...');
-  
+
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
-            if (cacheName !== STATIC_CACHE_NAME && 
-                cacheName !== DYNAMIC_CACHE_NAME && 
-                cacheName !== CACHE_NAME) {
+            if (cacheName !== STATIC_CACHE_NAME &&
+              cacheName !== DYNAMIC_CACHE_NAME &&
+              cacheName !== CACHE_NAME) {
               console.log('Service Worker: Deleting old cache', cacheName);
               return caches.delete(cacheName);
             }
@@ -116,7 +116,7 @@ self.addEventListener('fetch', (event) => {
       // Let the request pass through without service worker interception
       return;
     }
-    
+
     // For other development requests, use network-first strategy
     if (isStaticAsset(request) && (url.pathname.includes('.js') || url.pathname.includes('.css'))) {
       event.respondWith(handleDevelopmentAsset(request));
@@ -128,7 +128,7 @@ self.addEventListener('fetch', (event) => {
   // This ensures offline fallbacks still work while respecting no-cache directives
   const cacheControl = request.headers.get('cache-control');
   const shouldSkipCache = cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'));
-  
+
   if (shouldSkipCache) {
     // Handle via network-first but don't write to cache
     event.respondWith(handleNoCacheRequest(request));
@@ -173,9 +173,9 @@ function isImageRequest(request) {
 
 function isFontRequest(request) {
   const url = new URL(request.url);
-  return url.pathname.match(/\.(woff2?|ttf|eot)$/) || 
-         url.hostname.includes('fonts.googleapis.com') ||
-         url.hostname.includes('fonts.gstatic.com');
+  return url.pathname.match(/\.(woff2?|ttf|eot)$/) ||
+    url.hostname.includes('fonts.googleapis.com') ||
+    url.hostname.includes('fonts.gstatic.com');
 }
 
 // Development-specific asset handling
@@ -183,14 +183,14 @@ async function handleDevelopmentAsset(request) {
   try {
     // In development, always try network first
     const networkResponse = await fetch(request);
-    
+
     // Check if response has no-cache headers - don't cache these
     const cacheControl = networkResponse.headers.get('cache-control');
     if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
       // Return response without caching
       return networkResponse;
     }
-    
+
     if (networkResponse.ok) {
       // Only cache if response doesn't have no-cache headers
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
@@ -199,15 +199,15 @@ async function handleDevelopmentAsset(request) {
     return networkResponse;
   } catch (error) {
     console.log('Service Worker: Development asset network failed, trying cache', request.url);
-    
+
     // If network fails, try cache
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // If no cache either, return minimal fallback
     const url = new URL(request.url);
     if (url.pathname.endsWith('.js')) {
@@ -221,7 +221,7 @@ async function handleDevelopmentAsset(request) {
         headers: { 'Content-Type': 'text/css' }
       });
     }
-    
+
     throw error;
   }
 }
@@ -229,10 +229,10 @@ async function handleDevelopmentAsset(request) {
 // Helper function to check if cached response is still valid
 function isCacheValid(cachedResponse, maxAge) {
   if (!cachedResponse) return false;
-  
+
   const dateHeader = cachedResponse.headers.get('date');
   if (!dateHeader) return true; // If no date header, assume valid
-  
+
   const responseDate = new Date(dateHeader).getTime();
   const now = Date.now();
   return (now - responseDate) < maxAge;
@@ -243,23 +243,23 @@ async function handleStaticAsset(request) {
   try {
     const cache = await caches.open(STATIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     // Check if cached response is still valid (within max age)
     if (cachedResponse && isCacheValid(cachedResponse, STATIC_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
-    
+
     // Try to fetch from network
     try {
       const networkResponse = await fetch(request);
-      
+
       // Check if response has no-cache headers - don't cache these
       const cacheControl = networkResponse.headers.get('cache-control');
       if (cacheControl && (cacheControl.includes('no-cache') || cacheControl.includes('no-store'))) {
         // Return response without caching
         return networkResponse;
       }
-      
+
       if (networkResponse.ok) {
         // Clone response before caching
         const responseToCache = networkResponse.clone();
@@ -267,13 +267,13 @@ async function handleStaticAsset(request) {
         const headers = new Headers(responseToCache.headers);
         headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
         headers.set('Date', new Date().toUTCString());
-        
+
         const modifiedResponse = new Response(responseToCache.body, {
           status: responseToCache.status,
           statusText: responseToCache.statusText,
           headers: headers
         });
-        
+
         cache.put(request, modifiedResponse.clone());
         return networkResponse;
       }
@@ -284,7 +284,7 @@ async function handleStaticAsset(request) {
         return cachedResponse;
       }
     }
-    
+
     // If no cache and no network, return appropriate fallback
     const url = new URL(request.url);
     if (url.pathname.endsWith('.js')) {
@@ -298,16 +298,16 @@ async function handleStaticAsset(request) {
         headers: { 'Content-Type': 'text/css' }
       });
     }
-    
-    return new Response('Offline - Static asset not available', { 
-      status: 503, 
-      statusText: 'Service Unavailable' 
+
+    return new Response('Offline - Static asset not available', {
+      status: 503,
+      statusText: 'Service Unavailable'
     });
   } catch (error) {
     console.error('Service Worker: Error handling static asset', error);
-    return new Response('Offline - Static asset not available', { 
-      status: 503, 
-      statusText: 'Service Unavailable' 
+    return new Response('Offline - Static asset not available', {
+      status: 503,
+      statusText: 'Service Unavailable'
     });
   }
 }
@@ -323,12 +323,12 @@ async function handleAPIRequest(request) {
   } catch (error) {
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     if (cachedResponse) {
       return cachedResponse;
     }
-    
-    return new Response(JSON.stringify({ 
+
+    return new Response(JSON.stringify({
       error: 'Offline - API not available',
       message: 'Please check your internet connection and try again.'
     }), {
@@ -350,11 +350,11 @@ async function handleHTMLRequest(request) {
   } catch (error) {
     const cache = await caches.open(STATIC_CACHE_NAME);
     const cachedResponse = await cache.match(basePath + '/index.html');
-    
+
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     return new Response(`
       <!DOCTYPE html>
       <html>
@@ -411,37 +411,37 @@ async function handleImageRequest(request) {
   try {
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     // Check if cached image is still valid
     if (cachedResponse && isCacheValid(cachedResponse, IMAGE_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
-    
+
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       // Clone the response before using its body to avoid stream locking
       const clonedResponse = networkResponse.clone();
-      
+
       // Add cache headers for image caching
       const headers = new Headers(networkResponse.headers);
       headers.set('Cache-Control', 'public, max-age=2592000'); // 30 days
       headers.set('Date', new Date().toUTCString());
-      
+
       const responseToCache = new Response(clonedResponse.body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: headers
       });
-      
+
       cache.put(request, responseToCache.clone());
       return networkResponse;
     }
-    
+
     // Return stale cache if available
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     return networkResponse;
   } catch (error) {
     // Return cached response if available, even if expired
@@ -450,7 +450,7 @@ async function handleImageRequest(request) {
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // Return a placeholder image or transparent pixel
     return new Response(
       'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+',
@@ -465,37 +465,37 @@ async function handleFontRequest(request) {
   try {
     const cache = await caches.open(STATIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     // Fonts should be cached long-term (1 year)
     if (cachedResponse && isCacheValid(cachedResponse, STATIC_CACHE_MAX_AGE)) {
       return cachedResponse;
     }
-    
+
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       // Clone the response before using its body to avoid stream locking
       const clonedResponse = networkResponse.clone();
-      
+
       // Add cache headers for long-term font caching
       const headers = new Headers(networkResponse.headers);
       headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
       headers.set('Date', new Date().toUTCString());
-      
+
       const responseToCache = new Response(clonedResponse.body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: headers
       });
-      
+
       cache.put(request, responseToCache.clone());
       return networkResponse;
     }
-    
+
     // Return stale cache if available
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.error('Service Worker: Font request failed', error);
@@ -518,14 +518,14 @@ async function handleNoCacheRequest(request) {
     // Even for no-cache requests, try to serve stale cache if offline
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     if (cachedResponse) {
       return cachedResponse;
     }
-    
-    return new Response('Offline - Resource not available', { 
-      status: 503, 
-      statusText: 'Service Unavailable' 
+
+    return new Response('Offline - Resource not available', {
+      status: 503,
+      statusText: 'Service Unavailable'
     });
   }
 }
@@ -541,14 +541,14 @@ async function handleGenericRequest(request) {
   } catch (error) {
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
-    
+
     if (cachedResponse) {
       return cachedResponse;
     }
-    
-    return new Response('Offline - Resource not available', { 
-      status: 503, 
-      statusText: 'Service Unavailable' 
+
+    return new Response('Offline - Resource not available', {
+      status: 503,
+      statusText: 'Service Unavailable'
     });
   }
 }
@@ -556,7 +556,7 @@ async function handleGenericRequest(request) {
 // Background sync for when connection is restored
 self.addEventListener('sync', (event) => {
   console.log('Service Worker: Background sync triggered', event.tag);
-  
+
   if (event.tag === 'background-sync') {
     event.waitUntil(doBackgroundSync());
   }
@@ -567,7 +567,7 @@ async function doBackgroundSync() {
     // Clear old dynamic cache entries based on cache type
     const dynamicCache = await caches.open(DYNAMIC_CACHE_NAME);
     const staticCache = await caches.open(STATIC_CACHE_NAME);
-    
+
     // Clean dynamic cache (7 days)
     const dynamicRequests = await dynamicCache.keys();
     for (const request of dynamicRequests) {
@@ -576,7 +576,7 @@ async function doBackgroundSync() {
         await dynamicCache.delete(request);
       }
     }
-    
+
     // Clean static cache (1 year) - only remove if really old
     const staticRequests = await staticCache.keys();
     for (const request of staticRequests) {
@@ -585,7 +585,7 @@ async function doBackgroundSync() {
         await staticCache.delete(request);
       }
     }
-    
+
     console.log('Service Worker: Background sync completed - cache cleaned');
   } catch (error) {
     console.error('Service Worker: Background sync failed', error);
@@ -595,7 +595,7 @@ async function doBackgroundSync() {
 // Push notifications (if needed in the future)
 self.addEventListener('push', (event) => {
   console.log('Service Worker: Push notification received');
-  
+
   const options = {
     body: event.data ? event.data.text() : 'New update available',
     icon: '/favicon-geometric.svg',
@@ -618,7 +618,7 @@ self.addEventListener('push', (event) => {
       }
     ]
   };
-  
+
   event.waitUntil(
     self.registration.showNotification('Portfolio Update', options)
   );
@@ -627,9 +627,9 @@ self.addEventListener('push', (event) => {
 // Handle notification clicks
 self.addEventListener('notificationclick', (event) => {
   console.log('Service Worker: Notification clicked');
-  
+
   event.notification.close();
-  
+
   if (event.action === 'explore') {
     event.waitUntil(
       clients.openWindow(basePath + '/')
@@ -640,11 +640,11 @@ self.addEventListener('notificationclick', (event) => {
 // Message handling for communication with main thread
 self.addEventListener('message', (event) => {
   console.log('Service Worker: Message received', event.data);
-  
+
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
-  
+
   if (event.data && event.data.type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_NAME });
   }
