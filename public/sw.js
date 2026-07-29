@@ -1,10 +1,10 @@
 // Service Worker for Portfolio Website
-// Version: 1.1.0
+// Version: 1.2.0
 // Caches resources for offline functionality with optimized cache lifetimes
 
-const CACHE_NAME = 'portfolio-cache-v1.1';
-const STATIC_CACHE_NAME = 'portfolio-static-v1.1';
-const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1.1';
+const CACHE_NAME = 'portfolio-cache-v1.2';
+const STATIC_CACHE_NAME = 'portfolio-static-v1.2';
+const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1.2';
 
 // Cache lifetime constants (in milliseconds)
 const STATIC_CACHE_MAX_AGE = 365 * 24 * 60 * 60 * 1000; // 1 year for static assets
@@ -135,8 +135,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Handle different types of requests
-  if (isStaticAsset(request)) {
+  // SEO files must bypass the HTML handler — browser navigation sends
+  // Accept: text/html, which would otherwise route sitemap.xml to index.html fallback.
+  if (isSeoFile(request)) {
+    event.respondWith(handleSeoFile(request));
+  } else if (isStaticAsset(request)) {
     event.respondWith(handleStaticAsset(request));
   } else if (isAPIRequest(request)) {
     event.respondWith(handleAPIRequest(request));
@@ -162,7 +165,16 @@ function isAPIRequest(request) {
   return url.pathname.startsWith('/api/') || url.hostname.includes('api');
 }
 
+function isSeoFile(request) {
+  const url = new URL(request.url);
+  return /\.(xml|txt)$/.test(url.pathname);
+}
+
 function isHTMLRequest(request) {
+  if (isSeoFile(request)) {
+    return false;
+  }
+
   return request.headers.get('accept')?.includes('text/html');
 }
 
@@ -335,6 +347,29 @@ async function handleAPIRequest(request) {
       status: 503,
       statusText: 'Service Unavailable',
       headers: { 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+async function handleSeoFile(request) {
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+      const cache = await caches.open(STATIC_CACHE_NAME);
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  } catch (error) {
+    const cache = await caches.open(STATIC_CACHE_NAME);
+    const cachedResponse = await cache.match(request);
+
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+
+    return new Response('Offline - SEO file not available', {
+      status: 503,
+      statusText: 'Service Unavailable'
     });
   }
 }
