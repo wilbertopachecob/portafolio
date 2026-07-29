@@ -190,7 +190,16 @@ function isAPIRequest(request) {
   return url.pathname.startsWith('/api/') || url.hostname.includes('api');
 }
 
+function isSeoFile(request) {
+  const url = new URL(request.url);
+  return /\.(xml|txt)$/.test(url.pathname);
+}
+
 function isHTMLRequest(request) {
+  if (isSeoFile(request)) {
+    return false;
+  }
+
   return request.headers.get('accept')?.includes('text/html');
 }
 
@@ -297,6 +306,7 @@ async function handleStaticAsset(request) {
 // Export functions for testing
 self.testExports = {
   isStaticAsset,
+  isSeoFile,
   isAPIRequest,
   isHTMLRequest,
   isImageRequest,
@@ -378,9 +388,23 @@ describe('Service Worker', () => {
       const jsonRequest = new Request('http://localhost:8080/api', {
         headers: { 'accept': 'application/json' }
       })
+      const sitemapRequest = new Request('http://localhost:8080/portafolio/sitemap.xml', {
+        headers: { 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' }
+      })
 
       expect(self.testExports.isHTMLRequest(htmlRequest)).toBe(true)
       expect(self.testExports.isHTMLRequest(jsonRequest)).toBe(false)
+      expect(self.testExports.isHTMLRequest(sitemapRequest)).toBe(false)
+    })
+
+    it('should identify SEO files correctly', () => {
+      const sitemapRequest = new Request('http://localhost:8080/portafolio/sitemap.xml')
+      const robotsRequest = new Request('http://localhost:8080/portafolio/robots.txt')
+      const htmlRequest = new Request('http://localhost:8080/index.html')
+
+      expect(self.testExports.isSeoFile(sitemapRequest)).toBe(true)
+      expect(self.testExports.isSeoFile(robotsRequest)).toBe(true)
+      expect(self.testExports.isSeoFile(htmlRequest)).toBe(false)
     })
 
     it('should identify image requests correctly', () => {
