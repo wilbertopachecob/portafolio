@@ -403,6 +403,19 @@
           "Weather API",
           "JavaScript"
         ]
+      },
+      {
+        "name": "rockpaperscissors.wilbertopachecob.dev",
+        "url": "https://rockpaperscissors.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "Juego bilingüe de piedra, papel o tijera construido para practicar estado de juego, patrones de UI accesibles y un sistema de diseño neobrutalista basado en tokens con React y TypeScript.",
+        "highlights": [],
+        "tags": [
+          "React",
+          "TypeScript",
+          "i18n"
+        ]
       }
     ],
     "certifications": [
