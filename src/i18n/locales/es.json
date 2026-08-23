@@ -405,6 +405,19 @@
         ]
       },
       {
+        "name": "magic8ball.wilbertopachecob.dev",
+        "url": "https://magic8ball.wilbertopachecob.dev",
+        "featured": false,
+        "type": "web",
+        "description": "App web bilingüe de Magic 8 Ball construida para practicar interacciones con shake en móvil, patrones de UI accesibles e i18n con React y TypeScript.",
+        "highlights": [],
+        "tags": [
+          "React",
+          "TypeScript",
+          "i18n"
+        ]
+      },
+      {
         "name": "rockpaperscissors.wilbertopachecob.dev",
         "url": "https://rockpaperscissors.wilbertopachecob.dev",
         "featured": false,
