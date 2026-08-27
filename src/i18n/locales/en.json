@@ -149,7 +149,7 @@
     "workExperience": [
       {
         "company": "Included Health",
-        "position": "Software Engineer II",
+        "position": "Team Lead, Full Stack Engineer",
         "period": "May 2021 - April 2026",
         "location": "San Francisco, California",
         "summary": "Technical leadership role across platform, security, and product initiatives for internal tooling and member-facing health tech experiences.",
@@ -161,7 +161,7 @@
         ],
         "achievements": [
           "Led security improvements and Dependabot campaigns that raised monolith maintainability and helped unblock a key enterprise deal.",
-          "Modernized internal Care Coordinator workflows with Node.js, React, Redis, and Elasticsearch, reducing response times by 5% and dependence on external tools.",
+          "Modernized internal Care Coordinator workflows with Node.js, React, Redis, and Elasticsearch, speeding up how coordinators find information and cutting dependence on external tools.",
           "Executed critical migrations from Ruby to Go, Snowplow to Amplitude, and AngularJS to Vue, reducing technical debt and improving product evolution."
         ],
         "stack": [
@@ -176,7 +176,7 @@
           "Took on senior-level scope and technical leadership across multiple initiatives as Team Lead, from shipping new features for strategic clients to modernizing deprecated services and architecture.",
           "Led Dependabot campaigns and security mitigation efforts that significantly improved monolith maintainability and security posture, helping support a major enterprise client deal.",
           "Contributed to a Chrome extension for Care Coordinators (CCs), driving a substantial refactor that improved readability, test coverage, linting standards, developer workflows, and JavaScript bundle size.",
-          "Delivered end-to-end full stack work in a Node.js, Redis, React, and Elasticsearch web application, improving CC response times by 5% and removing dependency on a third-party tool to reduce operating costs.",
+          "Delivered end-to-end full stack work in a Node.js, Redis, React, and Elasticsearch web application, improving Care Coordinator response times and removing dependency on a paid third-party tool to reduce operating costs.",
           "Executed critical platform migrations (Ruby to Go, Snowplow to Amplitude, and Elasticsearch to internal LLM-powered capabilities), improving scalability, observability, and long-term product evolution.",
           "Migrated AngularJS modules to Vue.js components in the member-facing app, reducing technical debt, improving code organization, and strengthening feature-flag implementation."
         ]
@@ -196,7 +196,7 @@
         "achievements": [
           "Migrated the primary client from Microsoft Dynamics NAV 2009 to a modern web UI, improving performance, visibility, and communication.",
           "Designed a RESTful architecture with Golang to extract Jira metadata and generate dynamic reports for end users.",
-          "Mentored a junior developer and contributed to a 30% improvement in code quality."
+          "Mentored a junior developer and raised code review standards across the team."
         ],
         "stack": [
           "Golang",
@@ -207,7 +207,7 @@
         "responsibilities": [
           "Migrated our primary client from Microsoft Dynamics NAV 2009 to a modern web UI, significantly enhancing performance, visibility, and communication.",
           "Designed and implemented a RESTful architecture with Golang to extract metadata from Jira and generate dynamic reports for end users.",
-          "Mentored a junior developer, resulting in improved code quality by 30%.",
+          "Mentored a junior developer and established code review standards for the codebase.",
           "Developed a Golang application to manage marketing campaigns. Integrated business data with the Mailchimp API for enhanced email campaign functionalities."
         ]
       },
@@ -226,7 +226,7 @@
         "achievements": [
           "Led conversion of significant portions of two Laravel platforms to Vue.js components, improving loading speed and maintainability.",
           "Designed reports, APIs, and visualizations with Google Maps, Google Charts, Highcharts, and vue-chartjs for real-time analysis.",
-          "Drove internationalization and localization of an administrative platform, increasing audience reach by 8%."
+          "Drove internationalization and localization of the administrative platform, opening it to Spanish-speaking users."
         ],
         "stack": [
           "Vue.js",
@@ -238,8 +238,8 @@
         "responsibilities": [
           "Led the conversion of significant portions of two major platforms from PHP (Laravel) to Vue.js components, resulting in improved loading speeds.",
           "Designed and implemented reports, a RESTful web service and APIs for various departments using Google Maps, Google Charts, Highcharts JS, vue-chartjs and jQuery to increase action response and data analysis in real time.",
-          "Provided rapid support for new features and bug fixes, with over 1,550 contributions on GitHub in order to maintain and improve code quality.",
-          "Drove the internationalization and localization of a web administrative platform increasing our audience reach by 8%."
+          "Provided rapid support for new features and bug fixes, maintaining and improving code quality across the platform.",
+          "Drove the internationalization and localization of the web administrative platform, extending it to non-English-speaking users."
         ]
       },
       {
@@ -255,9 +255,9 @@
           "Internal processes"
         ],
         "achievements": [
-          "Handled service requests in under 30 minutes and resolved high-priority tickets in 24h with a 90% success rate.",
-          "Designed custom WordPress themes and plugins, applying SEO techniques that increased visibility by 50%.",
-          "Improved internal communication by 80% and reduced maintenance resolution time by 17% through APIs and visualizations."
+          "Owned first-line support for the portal and internal tools, triaging service requests and resolving high-priority tickets.",
+          "Designed custom WordPress themes and plugins, applying SEO techniques that improved search visibility for the public portal.",
+          "Improved internal communication and shortened maintenance resolution time through internal APIs and reporting dashboards."
         ],
         "stack": [
           "PHP",
@@ -267,10 +267,10 @@
           "SEO"
         ],
         "responsibilities": [
-          "Assumed a FullStack role in web Portal using PHP, jQuery and MYSQL. Addressed customer service requests in less than 30 min and resolved high priority tickets in 24h with a 90% success rate.",
-          "Designed and maintained custom Wordpress themes and plugins for public website. Applied SEO techniques to attract customers into buying our products and increased our visibility by 50%.",
-          "Enhanced internal communication by 80% through the implementation of chat systems and forums.",
-          "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, reducing resolution time by 17%."
+          "Assumed a FullStack role in the web Portal using PHP, jQuery and MySQL. Owned first-line support, triaging customer service requests and resolving high-priority tickets.",
+          "Designed and maintained custom Wordpress themes and plugins for the public website. Applied SEO techniques to attract customers to our products and improve search visibility.",
+          "Enhanced internal communication through the implementation of chat systems and forums.",
+          "Revamped HR and maintenance resolution processes by developing APIs and interactive visual charts, shortening resolution time."
         ]
       }
     ],
@@ -294,12 +294,12 @@
         "user": "Spanish-speaking immigrants preparing civics, the N-400 interview, English reading, and writing in a high-anxiety context.",
         "solution": "A bilingual app with civics study, mock interview, N-400 rehearsal, reading/writing practice, audio, and elected-official lookup by ZIP code.",
         "role": "Product, design, React Native/Expo, Supabase backend, RevenueCat monetization, launch, and bilingual marketing site.",
-        "outcome": "Published on iOS and Android with a Pro flow, USCIS-aligned content, and an experience designed for a real bilingual user.",
+        "outcome": "Published on the iOS App Store with a Pro flow, USCIS-aligned content, and an experience designed for a real bilingual user.",
         "highlights": [
           "Civics 2025 (128 questions) and 2008 (100 questions) study banks aligned with USCIS",
           "Mock interview, N-400 rehearsal, English reading and writing practice",
           "Elected officials lookup by ZIP code for location-dependent civics answers",
-          "CarPlay and Android Auto audio for studying on the go (Pro)",
+          "CarPlay audio for studying on the go (Pro)",
           "Pro subscriptions via RevenueCat with a Supabase backend — React Native and Expo"
         ],
         "tags": [
@@ -480,7 +480,7 @@
       },
       {
         "metric": "3 products",
-        "title": "Shipped to iOS, Android, and web",
+        "title": "Shipped to iOS and the web",
         "description": "CiudadanoUSA, Renderlog, and self-hosted projects: end-to-end execution beyond formal work."
       }
     ],
