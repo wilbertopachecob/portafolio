@@ -2,9 +2,9 @@
 // Version: 1.2.0
 // Caches resources for offline functionality with optimized cache lifetimes
 
-const CACHE_NAME = 'portfolio-cache-v1.2';
-const STATIC_CACHE_NAME = 'portfolio-static-v1.2';
-const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1.2';
+const CACHE_NAME = 'portfolio-cache-v1.3';
+const STATIC_CACHE_NAME = 'portfolio-static-v1.3';
+const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1.3';
 
 // Cache lifetime constants (in milliseconds)
 const STATIC_CACHE_MAX_AGE = 365 * 24 * 60 * 60 * 1000; // 1 year for static assets

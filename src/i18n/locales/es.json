@@ -149,7 +149,7 @@
     "workExperience": [
       {
         "company": "Included Health",
-        "position": "Ingeniero de Software II",
+        "position": "Team Lead, Ingeniero Full Stack",
         "period": "Mayo 2021 - Abril 2026",
         "location": "San Francisco, California",
         "summary": "Rol de liderazgo técnico en iniciativas de plataforma, seguridad y producto para herramientas internas y experiencias orientadas a miembros en health tech.",
@@ -161,7 +161,7 @@
         ],
         "achievements": [
           "Lideré mejoras de seguridad y campañas Dependabot que elevaron la mantenibilidad del monolito y ayudaron a desbloquear un acuerdo enterprise clave.",
-          "Modernicé flujos internos para Care Coordinators con Node.js, React, Redis y Elasticsearch, reduciendo tiempos de respuesta en 5% y dependencia de herramientas externas.",
+          "Modernicé flujos internos para Care Coordinators con Node.js, React, Redis y Elasticsearch, agilizando la búsqueda de información y reduciendo la dependencia de herramientas externas.",
           "Ejecuté migraciones críticas de Ruby a Go, Snowplow a Amplitude y AngularJS a Vue, reduciendo deuda técnica y mejorando la evolución del producto."
         ],
         "stack": [
@@ -176,7 +176,7 @@
           "Asumí responsabilidades de nivel senior y liderazgo técnico en múltiples iniciativas como Team Lead, desde nuevas funcionalidades para clientes estratégicos hasta modernización de servicios deprecated y mejoras de arquitectura.",
           "Lideré campañas de Dependabot y mitigación de vulnerabilidades que elevaron la mantenibilidad de nuestro monolito y fortalecieron la postura de seguridad, contribuyendo a cerrar un acuerdo clave con un cliente empresarial.",
           "Contribuí al desarrollo de una extensión de Chrome para Care Coordinators (CCs), guiando una refactorización profunda que mejoró legibilidad, cobertura de pruebas, estándares de linting, flujo de desarrollo y redujo el tamaño del bundle de JavaScript.",
-          "Desarrollé soluciones full stack end-to-end en una aplicación web con Node.js, Redis, React y Elasticsearch, reduciendo tiempos de respuesta para CCs en 5% y eliminando la dependencia de una herramienta externa para bajar costos operativos.",
+          "Desarrollé soluciones full stack end-to-end en una aplicación web con Node.js, Redis, React y Elasticsearch, mejorando los tiempos de respuesta de los Care Coordinators y eliminando la dependencia de una herramienta externa de pago para bajar costos operativos.",
           "Ejecuté migraciones críticas de stack y plataforma (Ruby a Go, Snowplow a Amplitude y Elasticsearch a capacidades internas basadas en LLM), facilitando escalabilidad, observabilidad y evolución tecnológica del producto.",
           "Migré módulos de AngularJS a componentes Vue.js en la aplicación orientada a miembros, reduciendo deuda técnica, mejorando organización del código y optimizando la estrategia de feature flags."
         ]
@@ -196,7 +196,7 @@
         "achievements": [
           "Migré el cliente principal de Microsoft Dynamics NAV 2009 a una interfaz web moderna, mejorando rendimiento, visibilidad y comunicación.",
           "Diseñé una arquitectura RESTful con Golang para extraer metadatos de Jira y generar reportes dinámicos para usuarios finales.",
-          "Mentoricé a un desarrollador junior y contribuí a mejorar la calidad del código en 30%."
+          "Mentoricé a un desarrollador junior y elevé los estándares de revisión de código del equipo."
         ],
         "stack": [
           "Golang",
@@ -207,7 +207,7 @@
         "responsibilities": [
           "Migré nuestro cliente principal de Microsoft Dynamics NAV 2009 a una interfaz web moderna, mejorando significativamente el rendimiento, visibilidad y comunicación.",
           "Diseñé e implementé una arquitectura RESTful con Golang para extraer metadatos de Jira y generar reportes dinámicos para usuarios finales.",
-          "Mentoricé a un desarrollador junior, resultando en una mejora del 30% en la calidad del código.",
+          "Mentoricé a un desarrollador junior y establecí estándares de revisión de código para el proyecto.",
           "Desarrollé una aplicación Golang para gestionar campañas de marketing. Integré datos comerciales con la API de Mailchimp para funcionalidades mejoradas de campañas por correo electrónico."
         ]
       },
@@ -226,7 +226,7 @@
         "achievements": [
           "Lideré la conversión de partes significativas de dos plataformas Laravel a componentes Vue.js, mejorando velocidad de carga y mantenibilidad.",
           "Diseñé reportes, APIs y visualizaciones con Google Maps, Google Charts, Highcharts y vue-chartjs para análisis en tiempo real.",
-          "Impulsé internacionalización y localización de una plataforma administrativa, aumentando el alcance de audiencia en 8%."
+          "Impulsé la internacionalización y localización de la plataforma administrativa, abriéndola a usuarios hispanohablantes."
         ],
         "stack": [
           "Vue.js",
@@ -238,8 +238,8 @@
         "responsibilities": [
           "Lideré la conversión de porciones significativas de dos plataformas principales de PHP (Laravel) a componentes Vue.js, resultando en velocidades de carga mejoradas.",
           "Diseñé e implementé reportes, un servicio web RESTful y APIs para varios departamentos usando Google Maps, Google Charts, Highcharts JS, vue-chartjs y jQuery para aumentar la respuesta de acción y análisis de datos en tiempo real.",
-          "Proporcioné soporte rápido para nuevas características y correcciones de errores, con más de 1,550 contribuciones en GitHub para mantener y mejorar la calidad del código.",
-          "Impulsé la internacionalización y localización de una plataforma administrativa web aumentando nuestro alcance de audiencia en un 8%."
+          "Proporcioné soporte rápido para nuevas características y correcciones de errores, manteniendo y mejorando la calidad del código de la plataforma.",
+          "Impulsé la internacionalización y localización de la plataforma administrativa web, extendiéndola a usuarios que no hablaban inglés."
         ]
       },
       {
@@ -255,9 +255,9 @@
           "Procesos internos"
         ],
         "achievements": [
-          "Atendí solicitudes de servicio en menos de 30 minutos y resolví tickets de alta prioridad en 24h con 90% de éxito.",
-          "Diseñé temas y plugins WordPress personalizados, aplicando SEO para aumentar la visibilidad en 50%.",
-          "Mejoré comunicación interna en 80% y reduje tiempo de resolución de mantenimiento en 17% mediante APIs y visualizaciones."
+          "Asumí el soporte de primera línea del portal y las herramientas internas, clasificando solicitudes y resolviendo tickets de alta prioridad.",
+          "Diseñé temas y plugins WordPress personalizados, aplicando SEO para mejorar la visibilidad del portal público en buscadores.",
+          "Mejoré la comunicación interna y acorté el tiempo de resolución de mantenimiento mediante APIs internas y paneles de reporte."
         ],
         "stack": [
           "PHP",
@@ -267,10 +267,10 @@
           "SEO"
         ],
         "responsibilities": [
-          "Asumí un rol FullStack en el Portal web usando PHP, jQuery y MYSQL. Atendí solicitudes de servicio al cliente en menos de 30 min y resolví tickets de alta prioridad en 24h con una tasa de éxito del 90%.",
-          "Diseñé y mantuve temas y plugins personalizados de Wordpress para el sitio web público. Apliqué técnicas de SEO para atraer clientes a comprar nuestros productos y aumenté nuestra visibilidad en un 50%.",
-          "Mejoré la comunicación interna en un 80% a través de la implementación de sistemas de chat y foros.",
-          "Renové los procesos de RRHH y resolución de mantenimiento desarrollando APIs y gráficos visuales interactivos, reduciendo el tiempo de resolución en un 17%."
+          "Asumí un rol FullStack en el Portal web usando PHP, jQuery y MySQL. Me encargué del soporte de primera línea, clasificando solicitudes de servicio y resolviendo tickets de alta prioridad.",
+          "Diseñé y mantuve temas y plugins personalizados de Wordpress para el sitio web público. Apliqué técnicas de SEO para atraer clientes a nuestros productos y mejorar la visibilidad en buscadores.",
+          "Mejoré la comunicación interna a través de la implementación de sistemas de chat y foros.",
+          "Renové los procesos de RRHH y resolución de mantenimiento desarrollando APIs y gráficos visuales interactivos, acortando el tiempo de resolución."
         ]
       }
     ],
@@ -294,12 +294,12 @@
         "user": "Inmigrantes hispanohablantes que preparan civics, entrevista N-400, lectura y escritura en inglés desde un contexto de alta ansiedad.",
         "solution": "Una app bilingüe con estudio cívico, entrevista simulada, ensayo N-400, práctica de lectura/escritura, audio y búsqueda de autoridades por código postal.",
         "role": "Producto, diseño, React Native/Expo, backend Supabase, monetización RevenueCat, lanzamiento y sitio bilingüe.",
-        "outcome": "Producto publicado en iOS y Android con flujo Pro, contenido alineado a USCIS y experiencia diseñada para un usuario bilingüe real.",
+        "outcome": "Producto publicado en la App Store de iOS con flujo Pro, contenido alineado a USCIS y experiencia diseñada para un usuario bilingüe real.",
         "highlights": [
           "Bancos de estudio cívica 2025 (128 preguntas) y 2008 (100 preguntas) alineados con USCIS",
           "Entrevista simulada, ensayo N-400, práctica de lectura y escritura en inglés",
           "Consulta de autoridades electas por código postal para respuestas que cambian por ubicación",
-          "Audio CarPlay y Android Auto para estudiar en movimiento (Pro)",
+          "Audio CarPlay para estudiar en movimiento (Pro)",
           "Suscripciones Pro con RevenueCat y backend en Supabase — React Native y Expo"
         ],
         "tags": [
@@ -480,7 +480,7 @@
       },
       {
         "metric": "3 productos",
-        "title": "Enviados a iOS, Android y web",
+        "title": "Enviados a iOS y web",
         "description": "CiudadanoUSA, Renderlog y proyectos auto-hospedados: ejecución end-to-end más allá del trabajo formal."
       }
     ],

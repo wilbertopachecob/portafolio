@@ -80,7 +80,7 @@ Una seccion nueva de "Impacto destacado" podria incluir 4 metricas:
 - 15+ anos construyendo software full stack
 - Liderazgo tecnico en iniciativas para clientes enterprise
 - Migraciones Ruby a Go, AngularJS a Vue, Snowplow a Amplitude
-- Productos propios publicados en iOS, Android y web
+- Productos propios publicados en iOS y web
 
 ### 3. Hay demasiado espacio visual para contenido de baja conversion
 
@@ -127,7 +127,7 @@ Redisenar cada experiencia como una tarjeta con capas:
 
 Ejemplo de reescritura:
 
-**Included Health - Software Engineer II**
+**Included Health - Team Lead, Ingeniero Full Stack**
 
 Rol de liderazgo tecnico en iniciativas de plataforma, seguridad y producto para herramientas internas de health tech.
 
@@ -155,7 +155,7 @@ Cambiar el enfoque de "habilidades tecnicas" a "capacidades":
 - Frontend systems: React, Vue, performance, i18n, accessibility.
 - Backend and platform: Node.js, Go, Redis, APIs, Supabase.
 - Modernization: migrations, refactors, feature flags, observability.
-- Independent shipping: mobile apps, App Store / Play Store, RevenueCat, Cloudflare Tunnel.
+- Independent shipping: mobile apps, App Store, RevenueCat, Cloudflare Tunnel.
 
 Esto eleva la conversacion de "se usar herramientas" a "se resolver clases de problemas".
 
@@ -192,7 +192,7 @@ Para CiudadanoUSA, crear un mini case study:
 - Solucion: app mobile bilingüe con simulacion, audio, autoridades por zip code y monetizacion Pro.
 - Rol: producto, diseño, mobile engineering, backend, lanzamiento.
 - Stack: React Native, Expo, Supabase, RevenueCat.
-- Resultado: publicado en iOS/Android, producto real end-to-end.
+- Resultado: publicado en la App Store de iOS, producto real end-to-end.
 
 Este proyecto por si solo puede demostrar seniority si se cuenta como producto, no solo como "app".
 
@@ -252,7 +252,7 @@ Recomendacion:
 Agregar imagenes o mockups reales en proyectos destacados:
 
 - 2-3 screenshots por producto.
-- Una captura del App Store / Play Store si aplica.
+- Una captura del App Store si aplica.
 - Un diagrama simple de arquitectura para CiudadanoUSA.
 - Un bloque "What I owned" por proyecto.
 
@@ -399,7 +399,7 @@ Cuatro bloques:
 
 - Liderazgo tecnico: Team Lead en iniciativas de plataforma y producto.
 - Modernizacion: Ruby a Go, AngularJS a Vue, Snowplow a Amplitude.
-- Producto end-to-end: CiudadanoUSA publicado en iOS/Android.
+- Producto end-to-end: CiudadanoUSA publicado en la App Store de iOS.
 - Calidad y seguridad: Dependabot, vulnerabilidades, testing, linting, bundle size.
 
 ### 3. Experiencia
@@ -539,7 +539,7 @@ Acciones:
 
 El rediseño debe lograr que una persona entienda en menos de un minuto:
 
-- Que Wilberto tiene trayectoria senior aunque el titulo formal haya sido Software Engineer II.
+- Que Wilberto tiene trayectoria senior, con rol formal de Team Lead, Ingeniero Full Stack.
 - Que ha liderado iniciativas, no solo implementado tickets.
 - Que puede trabajar end-to-end: producto, frontend, backend, mobile, infraestructura, lanzamiento.
 - Que tiene criterio para modernizar sistemas existentes sin perder pragmatismo.
