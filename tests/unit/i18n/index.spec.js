@@ -133,8 +133,8 @@ describe('i18n Configuration', () => {
       expect(Array.isArray(es.content.certifications)).toBe(true)
       
       expect(en.content.certifications.length).toBe(es.content.certifications.length)
-      expect(en.content.certifications[0].date).toBe('December 2020')
-      expect(es.content.certifications[0].date).toBe('Diciembre 2020')
+      expect(en.content.certifications[0].date).toBe('September 2026')
+      expect(es.content.certifications[0].date).toBe('Septiembre 2026')
     })
 
     it('has impact content and language note in both languages', () => {

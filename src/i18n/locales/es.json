@@ -434,9 +434,23 @@
     "certifications": [
       {
         "issuer": "Amazon Web Services (AWS)",
+        "title": "AWS Certified Developer – Associate",
+        "date": "Septiembre 2026",
+        "link": "https://www.credly.com/badges/45e670a5-6630-4fbf-b77b-e501ef9174b4/public_url",
+        "description": "Los ganadores de esta certificación tienen una comprensión integral de la gestión del ciclo de vida de las aplicaciones. Demostraron competencia al escribir aplicaciones con APIs de servicios AWS, AWS CLI y SDKs; usar contenedores; y desplegar con un pipeline CI/CD. Los propietarios de insignias pueden desarrollar, desplegar y depurar aplicaciones en la nube que siguen las mejores prácticas de AWS.",
+        "skills": [
+          "Amazon Web Services",
+          "Nube AWS",
+          "Desarrollo de Código",
+          "Despliegue de Código"
+        ],
+        "conciseDescription": "Prueba formal de desarrollo, despliegue y depuración de aplicaciones en AWS con APIs, SDKs, contenedores y CI/CD."
+      },
+      {
+        "issuer": "Amazon Web Services (AWS)",
         "title": "AWS Certified Cloud Practitioner",
         "date": "Diciembre 2020",
-        "link": "https://www.youracclaim.com/users/wilberto-pacheco-batista",
+        "link": "https://www.credly.com/badges/c005b66f-fdf4-47d2-b58b-70e86ef069f8/public_url",
         "description": "Los ganadores de esta certificación tienen una comprensión fundamental de los servicios de TI y sus usos en la Nube AWS. Demostraron fluidez en la nube y conocimiento fundamental de AWS. Los propietarios de insignias pueden identificar servicios esenciales de AWS necesarios para configurar proyectos enfocados en AWS.",
         "skills": [
           "Amazon Web Services",
