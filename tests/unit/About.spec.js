@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import About from '@/components/About.vue'
+import { RESUME_FILENAME } from '@/utils/public-assets'
 
 // Mock i18n for testing
 const createTestI18n = (locale = 'en') => {
@@ -149,8 +150,8 @@ describe('About.vue', () => {
       }
     })
     const resumeLink = screen.getByRole('link', { name: /Download Resume/ })
-    expect(resumeLink).toHaveAttribute('href', expect.stringContaining('Senior_Engineer_Wilberto_Pacheco_Batista.pdf'))
-    expect(resumeLink).toHaveAttribute('download', 'Senior_Engineer_Wilberto_Pacheco_Batista.pdf')
+    expect(resumeLink).toHaveAttribute('href', expect.stringContaining(RESUME_FILENAME))
+    expect(resumeLink).toHaveAttribute('download', RESUME_FILENAME)
   })
 
   it('has proper accessibility attributes', () => {

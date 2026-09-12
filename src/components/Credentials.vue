@@ -64,10 +64,10 @@
           <div>
             <h4 class="cred-row-title">
               <a
-                :href="certification.link"
+                :href="resolveCredentialLink(certification.link)"
                 target="_blank"
                 rel="noopener noreferrer"
-                :aria-label="$t('certifications.visitWebsite', { issuer: certification.issuer })"
+                :aria-label="certificationLinkLabel(certification)"
               >
                 {{ certification.title }}
               </a>
@@ -85,6 +85,7 @@
 
 <script>
 import { getCredentials } from '@/i18n/content'
+import { resolveCredentialLink } from '@/utils/public-assets'
 
 const assetModules = import.meta.glob('@/assets/img/*.{jpg,jpeg,webp}', {
   eager: true,
@@ -102,6 +103,20 @@ export default {
     getAssetImage(filename) {
       const match = Object.entries(assetModules).find(([path]) => path.endsWith(`/${filename}`))
       return match ? match[1] : `${import.meta.env.BASE_URL}img/${filename}`
+    },
+    resolveCredentialLink,
+    /**
+     * Accessible name for a certification title link.
+     *
+     * @param {{ title: string, issuer: string, link?: string }} certification
+     * @returns {string}
+     */
+    certificationLinkLabel(certification) {
+      if (certification.link && /^https?:\/\//i.test(certification.link)) {
+        return this.$t('certifications.visitWebsite', { issuer: certification.issuer })
+      }
+
+      return this.$t('certifications.viewCertificate', { title: certification.title })
     },
   },
 }

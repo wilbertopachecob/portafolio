@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 import { axe } from 'jest-axe'
 import Credentials from '@/components/Credentials.vue'
+import { getPublicAssetUrl } from '@/utils/public-assets'
 
 vi.mock('@/i18n/content', () => ({
   getCredentials: vi.fn(() => ({
@@ -21,6 +22,13 @@ vi.mock('@/i18n/content', () => ({
         date: 'December 2020',
         link: 'https://www.credly.com/',
         conciseDescription: 'Cloud foundation.',
+      },
+      {
+        issuer: 'Centre for Development of Advanced Computing (C-DAC), Mohali, India',
+        title: 'Specialized Training Programme in Multimedia and Web Design Technology',
+        date: 'Mar–Jun 2016',
+        link: 'certificates/cdac-itec-mwdt-2016.webp',
+        conciseDescription: 'ITEC programme at C-DAC Mohali.',
       },
     ],
   })),
@@ -53,6 +61,7 @@ const createTestI18n = () => createI18n({
       certifications: {
         issued: 'Issued',
         visitWebsite: 'Visit {issuer} website',
+        viewCertificate: 'View {title} certificate',
       },
     },
   },
@@ -83,6 +92,10 @@ describe('Credentials.vue', () => {
 
     expect(screen.getByRole('link', { name: /University of Informatic Sciences/ })).toHaveAttribute('href', 'https://www.uci.cu/')
     expect(screen.getByRole('link', { name: /Amazon Web Services/ })).toHaveAttribute('href', 'https://www.credly.com/')
+    expect(screen.getByRole('link', { name: /Multimedia and Web Design Technology/ })).toHaveAttribute(
+      'href',
+      getPublicAssetUrl('certificates/cdac-itec-mwdt-2016.webp')
+    )
   })
 
   it('should have no accessibility violations', async () => {
