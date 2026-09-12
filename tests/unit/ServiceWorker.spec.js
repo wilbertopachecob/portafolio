@@ -109,7 +109,7 @@ const STATIC_ASSETS = [
   '/favicon-geometric.svg',
   '/robots.txt',
   '/sitemap.xml',
-  '/Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
+  '/Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf'
 ];
 
 // Development mode detection
@@ -564,7 +564,7 @@ describe('Service Worker', () => {
         '/favicon-geometric.svg',
         '/robots.txt',
         '/sitemap.xml',
-        '/Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
+        '/Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf'
       ]
 
       expect(self.testExports.STATIC_ASSETS).toEqual(expectedAssets)

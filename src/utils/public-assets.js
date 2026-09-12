@@ -32,4 +32,4 @@ export function resolveCredentialLink(link) {
   return getPublicAssetUrl(link)
 }
 
-export const RESUME_FILENAME = 'Senior_Engineer_Wilberto_Pacheco_Batista.pdf'
+export const RESUME_FILENAME = 'Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf'

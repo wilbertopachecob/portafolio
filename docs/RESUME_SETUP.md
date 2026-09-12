@@ -7,29 +7,25 @@ Your portfolio website now includes a downloadable PDF resume feature. The resum
 - The mobile menu
 
 ## Current Setup
-- **Resume PDF**: `public/Senior_Engineer_Wilberto_Pacheco_Batista.pdf` (your actual resume)
-- **Download filename**: `Senior_Engineer_Wilberto_Pacheco_Batista.pdf`
+- **Resume PDF**: `public/Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf`
+- **Download filename**: `Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf` (from `RESUME_FILENAME` in `src/utils/public-assets.js`)
 - **Accessible in**: English and Spanish
 
 ## How to Replace with Your Actual Resume
 
 ### Option 1: Replace the existing file
 1. Create your resume as a PDF file
-2. Name it `Senior_Engineer_Wilberto_Pacheco_Batista.pdf`
-3. Replace the file at `public/Senior_Engineer_Wilberto_Pacheco_Batista.pdf`
+2. Name it `Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf`
+3. Replace the file at `public/Wilberto_Pacheco_Batista_Senior_Full_Stack_Engineer.pdf`
 4. The website will automatically use your new resume
 
 ### Option 2: Use a different filename
 1. Place your resume PDF in the `public/` folder
-2. Update the href attributes in the following files:
-   - `src/components/About.vue` (line with `href="/Senior_Engineer_Wilberto_Pacheco_Batista.pdf"`)
-   - `src/components/Navigation.vue` (line with `href="/Senior_Engineer_Wilberto_Pacheco_Batista.pdf"`)
+2. Update `RESUME_FILENAME` in `src/utils/public-assets.js` and the matching path in `public/sw.js`
 
 ### Option 3: Use a different download filename
 To change the filename that users see when downloading:
-1. Update the `download` attribute in:
-   - `src/components/About.vue` (line with `download="Senior_Engineer_Wilberto_Pacheco_Batista.pdf"`)
-   - `src/components/Navigation.vue` (line with `download="Senior_Engineer_Wilberto_Pacheco_Batista.pdf"`)
+1. Update `RESUME_FILENAME` in `src/utils/public-assets.js`
 
 ## Resume Best Practices
 - Keep the file size under 2MB for faster downloads
