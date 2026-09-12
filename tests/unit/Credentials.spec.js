@@ -26,7 +26,7 @@ vi.mock('@/i18n/content', () => ({
       {
         issuer: 'Centre for Development of Advanced Computing (C-DAC), Mohali, India',
         title: 'Specialized Training Programme in Multimedia and Web Design Technology',
-        date: 'Mar–Jun 2016',
+        date: 'Jun 2016',
         link: 'certificates/cdac-itec-mwdt-2016.webp',
         conciseDescription: 'ITEC programme at C-DAC Mohali.',
       },
