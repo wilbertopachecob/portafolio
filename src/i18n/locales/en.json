@@ -111,7 +111,8 @@
     "visitWebsite": "Visit {institution} website"
   },
   "certifications": {
-    "visitWebsite": "Visit {issuer} website"
+    "visitWebsite": "Visit {issuer} website",
+    "viewCertificate": "View {title} certificate"
   },
   "portfolio": {
     "intro": "Products and experiments born from real needs, late-night ideas, and the recurring question: why does this not exist better in Spanish? Featured work shows product ownership, design, engineering, launch, and operations.",
@@ -461,19 +462,19 @@
         "conciseDescription": "Formal foundation for evaluating cloud services, cost, shared security, and initial AWS architecture decisions."
       },
       {
-        "issuer": "Centre for Development of Advanced Computing",
+        "issuer": "Centre for Development of Advanced Computing (C-DAC), Mohali, India",
         "title": "Specialized Training Programme in Multimedia and Web Design Technology",
-        "date": "June 2016",
-        "link": "https://www.cdac.in/",
+        "date": "Mar–Jun 2016",
+        "link": "certificates/cdac-itec-mwdt-2016.webp",
         "certificateNumber": "Certificate No. CDAC(M)/16-17/ITEC-MWDT/7725",
-        "description": "This was an intensive 3 months program in the Centre for Development of Advanced Computing in Mohali, Chandigarh, India to master different tools to create multimedia like:",
+        "description": "Specialized training at C-DAC Mohali, awarded under the Indian Technical and Economic Cooperation (ITEC) programme of the Ministry of External Affairs, Government of India.",
         "skills": [
           "Multimedia Design",
           "Web Design Technology",
           "Advanced Computing",
           "Digital Media"
         ],
-        "conciseDescription": "International training in multimedia and web design that connected engineering, visual experience, and digital communication."
+        "conciseDescription": "ITEC-sponsored C-DAC training in multimedia and web design: engineering, visual experience, and digital communication."
       }
     ],
     "impactHighlights": [

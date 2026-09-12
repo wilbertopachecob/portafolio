@@ -14,4 +14,22 @@ export function getPublicAssetUrl(filename) {
   return `${normalizedBase}${normalizedFilename}`
 }
 
+/**
+ * Resolves a credential link that may be an external URL or a file in `public/`.
+ *
+ * @param {string} [link] - Absolute http(s) URL or public-relative path.
+ * @returns {string} Link ready for an href, or an empty string when missing.
+ */
+export function resolveCredentialLink(link) {
+  if (!link) {
+    return ''
+  }
+
+  if (/^https?:\/\//i.test(link)) {
+    return link
+  }
+
+  return getPublicAssetUrl(link)
+}
+
 export const RESUME_FILENAME = 'Senior_Engineer_Wilberto_Pacheco_Batista.pdf'

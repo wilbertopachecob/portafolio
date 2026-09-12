@@ -111,7 +111,8 @@
     "visitWebsite": "Visitar sitio web de {institution}"
   },
   "certifications": {
-    "visitWebsite": "Visitar sitio web de {issuer}"
+    "visitWebsite": "Visitar sitio web de {issuer}",
+    "viewCertificate": "Ver certificado de {title}"
   },
   "portfolio": {
     "intro": "Productos y experimentos nacidos de necesidades reales, ideas nocturnas y la pregunta recurrente: ¿por qué esto no existe mejor en español? Los destacados muestran ownership de producto, diseño, ingeniería, lanzamiento y operación.",
@@ -461,19 +462,19 @@
         "conciseDescription": "Base formal para evaluar servicios cloud, costos, seguridad compartida y decisiones iniciales de arquitectura en AWS."
       },
       {
-        "issuer": "Centro para el Desarrollo de Computación Avanzada",
+        "issuer": "Centro para el Desarrollo de Computación Avanzada (C-DAC), Mohali, India",
         "title": "Programa de Entrenamiento Especializado en Tecnología de Diseño Multimedia y Web",
-        "date": "Junio 2016",
-        "link": "https://www.cdac.in/",
+        "date": "mar.–jun. 2016",
+        "link": "certificates/cdac-itec-mwdt-2016.webp",
         "certificateNumber": "Certificado No. CDAC(M)/16-17/ITEC-MWDT/7725",
-        "description": "Este fue un programa intensivo de 3 meses en el Centro para el Desarrollo de Computación Avanzada en Mohali, Chandigarh, India para dominar diferentes herramientas para crear multimedia como:",
+        "description": "Entrenamiento especializado en C-DAC Mohali, otorgado bajo el programa Indian Technical and Economic Cooperation (ITEC) del Ministerio de Asuntos Exteriores del Gobierno de India.",
         "skills": [
           "Diseño Multimedia",
           "Tecnología de Diseño Web",
           "Computación Avanzada",
           "Medios Digitales"
         ],
-        "conciseDescription": "Formación internacional en diseño multimedia y web que conectó ingeniería, experiencia visual y comunicación digital."
+        "conciseDescription": "Entrenamiento ITEC de C-DAC en diseño multimedia y web: ingeniería, experiencia visual y comunicación digital."
       }
     ],
     "impactHighlights": [
