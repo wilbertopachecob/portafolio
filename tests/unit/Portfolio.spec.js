@@ -9,6 +9,7 @@ vi.mock('@/i18n/content', () => ({
     {
       name: 'CiudadanoUSA',
       url: 'https://ciudadanousa.com/es/home',
+      appUrl: 'https://apps.apple.com/us/app/ciudadanousa-estudio/id6767300564',
       featured: true,
       type: 'mobile',
       description: 'Featured citizenship product.',
@@ -85,6 +86,7 @@ const createTestI18n = () => createI18n({
         highlights: 'Key highlights',
         technologies: 'Technologies',
         visitProject: 'Visit {name}',
+        openApp: 'Open the {name} mobile app',
         screenshots: '{name} screenshots',
         infrastructure: 'Self-hosted infrastructure note.',
         types: {
@@ -145,6 +147,10 @@ describe('Portfolio.vue', () => {
     })
 
     expect(screen.getByRole('link', { name: /Visit CiudadanoUSA/ })).toHaveAttribute('href', 'https://ciudadanousa.com/es/home')
+    expect(screen.getByRole('link', { name: /Open the CiudadanoUSA mobile app/ })).toHaveAttribute(
+      'href',
+      'https://apps.apple.com/us/app/ciudadanousa-estudio/id6767300564',
+    )
     expect(screen.getByRole('link', { name: /Visit paint/ })).toHaveAttribute('href', 'https://paint.wilbertopachecob.dev')
   })
 

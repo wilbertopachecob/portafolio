@@ -127,6 +127,7 @@
     "highlights": "Key highlights",
     "technologies": "Technologies",
     "visitProject": "Visit {name}",
+    "openApp": "Open the {name} mobile app",
     "screenshots": "{name} screenshots",
     "screenshotControls": "{name} screenshot navigation",
     "previousScreenshot": "Previous screenshot",
@@ -288,6 +289,7 @@
       {
         "name": "CiudadanoUSA",
         "url": "https://ciudadanousa.com/es/home",
+        "appUrl": "https://apps.apple.com/us/app/ciudadanousa-estudio/id6767300564",
         "featured": true,
         "type": "mobile",
         "description": "A Spanish-first mobile app for U.S. citizenship interview preparation, designed for people who study in Spanish and need confidence answering in English.",
