@@ -127,6 +127,7 @@
     "highlights": "Aspectos clave",
     "technologies": "Tecnologías",
     "visitProject": "Visitar {name}",
+    "openApp": "Abrir la app móvil de {name}",
     "screenshots": "Capturas de {name}",
     "screenshotControls": "Navegación de capturas de {name}",
     "previousScreenshot": "Captura anterior",
@@ -288,6 +289,7 @@
       {
         "name": "CiudadanoUSA",
         "url": "https://ciudadanousa.com/es/home",
+        "appUrl": "https://apps.apple.com/us/app/ciudadanousa-estudio/id6767300564",
         "featured": true,
         "type": "mobile",
         "description": "App móvil español-first para preparar la entrevista de ciudadanía de EE. UU., diseñada para personas que estudian en español y necesitan responder con confianza en inglés.",

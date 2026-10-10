@@ -13,7 +13,18 @@
         <div class="case-body">
           <div class="case-meta">
             <span class="chip chip--accent">{{ $t('portfolio.caseStudy') }}</span>
-            <span v-if="project.type" class="chip">{{ $t(`portfolio.types.${project.type}`) }}</span>
+            <a
+              v-if="project.type && project.appUrl"
+              :href="project.appUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="chip chip--link"
+              :aria-label="$t('portfolio.openApp', { name: project.name })"
+            >
+              {{ $t(`portfolio.types.${project.type}`) }}
+              <app-icon :icon="['fas', 'arrow-up-right-from-square']" aria-hidden="true" />
+            </a>
+            <span v-else-if="project.type" class="chip">{{ $t(`portfolio.types.${project.type}`) }}</span>
             <a
               :href="project.url"
               target="_blank"
